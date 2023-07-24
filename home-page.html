@@ -1012,6 +1012,83 @@
     margin: 0 auto;
   }
 
+  /* fourth section of html */
+  #statistics {
+    background: var(---gray-cool-05);
+    padding: 1.5rem 1rem;
+  }
+  .home-stats {
+    margin: 0;
+    overflow: initial;
+  }
+  .home-stats__highlight {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+  }
+  .home-stats .section-statistics .statistics-cell {
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+    min-width: auto;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    padding: 8px;
+  }
+  .home-stats__highlight .statistic__data {
+    padding: 1.5rem 1rem;
+    background: var(---white);
+    box-shadow: 0px 1px 6px #00000033;
+    min-width: 280px;
+    min-height: 69px;
+  }
+  #statistics .heading3 {
+    color: var(--default-black);
+    text-align: center;
+    line-height: normal;
+    font-family: var(--unnamed-font-family-rawline);
+    font-style: var(--unnamed-font-style-normal);
+    font-weight: 600 !important;
+    font-size: var(--unnamed-font-size-20-15999984741211);
+  }
+
+  .statistics-cell .statistic__data {
+    text-align: center;
+    width: 100%;
+    position: relative;
+  }
+
+  .home-stats__highlight .statistic__number {
+    font-family: var(--unnamed-font-family-rawline);
+    font-style: var(--unnamed-font-style-normal);
+    font-weight: 800 !important;
+    font-size: var(--unnamed-font-size-50-15999984741211);
+    line-height: var(--unnamed-line-spacing-57-68000030517578);
+    letter-spacing: var(--unnamed-character-spacing-0);
+    color: var(---green-cool-vivid-50);
+  }
+  .statistics-cell .statistic__title {
+    font-family: var(--unnamed-font-family-rawline);
+    font-style: var(--unnamed-font-style-normal);
+    font-weight: 600 !important;
+    font-size: var(--unnamed-font-size-20-15999984741211);
+    line-height: "normal";
+    letter-spacing: var(--unnamed-character-spacing-0);
+    color: var(----gray-80);
+    text-transform: none;
+    margin-top: 1rem;
+  }
+  .home-stats__lowlight .statistic__data {
+    margin: 0 auto;
+  }
+  /* Estatísticas na Home */
+  .section-statistics .statistic__data.processes_count,
+  .section-statistics .statistic__data.assemblies_count,
+  .section-statistics .statistic__data.conferences_count,
+  .home-stats .home-stats__lowlight {
+    display: none;
+  }
+
   /* Media queries */
   @media (min-width: 768px) {
     /* first block of html */
@@ -1055,6 +1132,11 @@
     #statistics .heading3 {
       font-weight: 600 !important;
       font-size: var(--unnamed-font-size-29-030000686645508);
+    }
+    .home-stats .section-statistics .statistics-cell {
+      justify-content: center;
+      gap: 1.5rem;
+      padding: 2rem 2.5rem 2.5rem 2.5rem;
     }
   }
 
