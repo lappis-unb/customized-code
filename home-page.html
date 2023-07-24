@@ -1,8 +1,8 @@
 <section class="home-section">
   <div class="hero__container__img"></div>
-  <div class="hero-button-container">
+  <div>
     <a href="/pages/entenda-ppa-minhas-propostas" class="hero-link">
-      <span class="hero-link-text">Entenda o processo</span>
+      <span>Entenda o processo</span>
     </a>
   </div>
 </section>
@@ -827,3 +827,91 @@
     </a>
   </div>
 </section>
+
+<style type="text/css">
+  .home-section:nth-child(2n) {
+    background-color: var(---gray-03);
+  }
+
+  .home-section:nth-of-type(2n + 1) {
+    background-color: var(---white);
+  }
+  .home-section-title {
+    color: var(--default-black);
+    text-align: center;
+    line-height: normal;
+    font-family: var(--unnamed-font-family-rawline);
+    font-style: var(--unnamed-font-style-normal);
+    font-weight: 600 !important;
+    font-size: var(--unnamed-font-size-20-15999984741211);
+  }
+  @media (min-width: 768px) {
+    .home-section-title {
+      font-weight: 600 !important;
+      font-size: var(--unnamed-font-size-29-030000686645508);
+    }
+    .hero__container__img {
+      background-image: var(--banner-desktop);
+      background-size: cover;
+      width: 100%;
+      padding-bottom: 34%; /* 35.5 */
+      background-repeat: round;
+      height: 0;
+
+      display: flex;
+      flex-flow: column;
+      align-items: center;
+    }
+  }
+  .hero__container__img {
+    background-image: var(--banner-mobile);
+    background-size: cover;
+    width: 100%;
+    padding-bottom: 57%; /* 60.5 */
+    background-repeat: round;
+    height: 0;
+
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+
+    position: relative;
+  }
+
+  .hero__container__img::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 20px;
+    background: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0),
+      rgba(255, 255, 255, 1)
+    );
+    filter: blur(0px);
+  }
+  .hero-link,
+  .hero-link:hover,
+  .hero-link:visited {
+    display: flex;
+    padding: 12px 24px;
+    gap: 0.5rem;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+    border-radius: 100px;
+    background: var(---green-cool-vivid-50);
+    color: var(---white);
+    font-size: var(--unnamed-font-size-20-15999984741211);
+    font-weight: 600;
+    border: solid 10px #f0f0f0;
+    max-width: 318px;
+    margin: 2rem auto 1.5rem auto;
+  }
+
+  .hero-link-icon {
+    color: var(---white);
+  }
+</style>
