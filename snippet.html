@@ -17,12 +17,44 @@
     s.parentNode.insertBefore(g, s);
   })();
 </script>
-<!-- End Matomo Code -->
+
+<!-- Rawline Font -->
+<link
+  rel="stylesheet"
+  href="https://cdngovbr-ds.estaleiro.serpro.gov.br/design-system/fonts/rawline/css/rawline.css"
+/>
+
+<!-- Font Awesome -->
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+/>
+
 <script defer>
   // Variável referente ao ID do programa, utilizada no menu-tab "Escolher programas" da aplicação.
   const chooseProgramId = 1;
   // Variável referente ao ID da proposta, utilizada no menu-tab "Fazer proposta ao governo" da aplicação.
   const makeProposalId = 2;
+
+  (() => {
+    window.addEventListener("DOMContentLoaded", (e) => {
+      ImportVlibrasScriptFile();
+      CreateDOMObjects();
+      // Evento para primeira letra maiuscula
+      capitalizarOnBlur("proposal_title");
+      capitalizarOnBlur("proposal_body");
+      definirUrlLogOut();
+    });
+  })();
+
+  var ImportVlibrasScriptFile = () => {
+    let script = document.createElement("script");
+    script.src = "https://vlibras.gov.br/app/vlibras-plugin.js";
+    script.onload = () => {
+      new window.VLibras.Widget("https://vlibras.gov.br/app");
+    };
+    document.body.appendChild(script);
+  };
 
   var CreateDOMObjects = () => {
     const DOM = `
@@ -60,15 +92,6 @@
     );
   };
 
-  var ImportScriptFile = () => {
-    let script = document.createElement("script");
-    script.src = "https://vlibras.gov.br/app/vlibras-plugin.js";
-    script.onload = () => {
-      new window.VLibras.Widget("https://vlibras.gov.br/app");
-    };
-    document.body.appendChild(script);
-  };
-
   function definirUrlLogOut() {
     var logOutUrl;
     var hostname = window.location.hostname;
@@ -95,17 +118,6 @@
       });
     }
   }
-
-  (() => {
-    window.addEventListener("DOMContentLoaded", (e) => {
-      ImportScriptFile();
-      CreateDOMObjects();
-      // Evento para primeira letra maiuscula
-      capitalizarOnBlur("proposal_title");
-      capitalizarOnBlur("proposal_body");
-      definirUrlLogOut();
-    });
-  })();
 
   function capitalizarOnBlur(elementId) {
     let element = document.getElementById(elementId);
@@ -295,15 +307,6 @@
     });
   });
 </script>
-
-<link
-  rel="stylesheet"
-  href="https://cdngovbr-ds.estaleiro.serpro.gov.br/design-system/fonts/rawline/css/rawline.css"
-/>
-<link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-/>
 
 <style type="text/css">
   @import url("https://fonts.cdnfonts.com/css/rawline");
@@ -551,7 +554,6 @@
     letter-spacing: var(--unnamed-character-spacing-0);
     color: var(---gray-80);
   }
-
   .heading4 {
     font-family: var(--unnamed-font-family-rawline);
     font-style: var(--unnamed-font-style-normal);
@@ -561,7 +563,6 @@
     letter-spacing: var(--unnamed-character-spacing-0);
     color: var(---gray-80);
   }
-
   p {
     font-family: var(--unnamed-font-family-rawline);
     font-style: var(--unnamed-font-style-normal);
@@ -571,7 +572,6 @@
     letter-spacing: var(--unnamed-character-spacing-0);
     color: var(---gray-80);
   }
-
   a,
   a:hover,
   .card__link {
@@ -581,17 +581,14 @@
   .off-canvas-content.is-open-right.has-transition-push {
     transform: translateX(0);
   }
-
   .link {
     text-decoration: none;
   }
-
   .menu a,
   .menu .button,
   .menu .meeting-polls__button {
     padding: 0;
   }
-
   .sign-in-link {
     background: var(---gray-02);
     padding: 5px 24px;
@@ -628,25 +625,20 @@
     gap: 10px;
     line-height: 1.1rem;
   }
-
   .meeting-polls__button {
     background-color: var(---blue-warm-vivid-70);
     margin: 0;
   }
-
   .logo-wrapper img {
     display: block;
     max-height: 23px;
   }
-
   .footer-separator {
     background: var(---white);
   }
-
   form#session_new_user {
     margin-bottom: 2rem;
   }
-
   .header {
     box-shadow: 0px 1px 6px #00000029;
     position: fixed;
@@ -2851,10 +2843,4 @@
   .process-card #first-card {
     width: 210px;
   }
-  /* .new-features-content {
-    display: flex;
-    gap: 44px;
-    justify-content: center;
-    align-items: center;
-} */
 </style>
