@@ -302,7 +302,7 @@
       wrapper.remove();
     }
   }
-  window.addEventListener("DOMContentLoaded", function () {
+  document.addEventListener("DOMContentLoaded", function () {
     ImportVlibrasScriptFile();
     CreateDOMObjects();
     capitalizarOnBlur("proposal_title");
@@ -2666,5 +2666,14 @@
 
   .process-card #first-card {
     width: 210px;
+  }
+  .hero::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: none;
   }
 </style>
