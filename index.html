@@ -1,0 +1,130 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      rel="stylesheet"
+      href="https://cdngovbr-ds.estaleiro.serpro.gov.br/design-system/fonts/rawline/css/rawline.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="conference-cards">
+      <span class="conference-cards__title">
+        Lorem ipsum dolor sit amet consectetur.
+      </span>
+      <div class="conference-cards__items">
+        <div class="conference-cards__items__item">
+          <span class="conference-cards__items__item__texts">
+            <span
+              class="fa-solid fa-question conference-cards__items__item__texts__icon"
+            ></span>
+            <div class="conference-cards__items__item__texts__label">
+              Tire suas dúvidas e entenda como participar da Conferência
+            </div>
+          </span>
+          <div class="conference-cards__items__item__link">Ler mais</div>
+        </div>
+        <div class="conference-cards__items__divider"></div>
+        <div class="conference-cards__items__item">
+          <span class="conference-cards__items__item__texts">
+            <span
+              class="fa-solid fa-list conference-cards__items__item__texts__icon"
+            ></span>
+            <div class="conference-cards__item__texts__label">
+              Cadastre a ata da etapa que você organizou
+            </div>
+          </span>
+          <div class="conference-cards__items__item__link">Ler mais</div>
+        </div>
+        <div class="conference-cards__items__divider"></div>
+        <div class="conference-cards__items__item">
+          <span class="conference-cards__items__item__texts">
+            <span
+              class="fa-solid fa-download conference-cards__items__item__texts__icon"
+            ></span>
+            <div class="conference-cards__items__item__texts__label">
+              Baixe os materiais e divulgue a Conferência
+            </div>
+          </span>
+          <div class="conference-cards__items__item__link">Ler mais</div>
+        </div>
+      </div>
+    </div>
+    <div class="conference-carrosel"></div>
+  </body>
+</html>
+
+<style type="text/css">
+  .conference-cards {
+    display: flex;
+    flex-direction: column;
+    font-family: Rawline;
+    justify-content: center;
+    width: 100%;
+  }
+  .conference-cards__title {
+    color: #333;
+    font-size: 1.25rem;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 2.75rem;
+  }
+  .conference-cards__items {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+  .conference-cards__items__divider {
+    width: 0.0625rem;
+    height: 6rem;
+    background: #c6cace;
+    margin: 0 2.75rem;
+  }
+  .conference-cards__items__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 20rem;
+    cursor: pointer;
+  }
+  .conference-cards__items__item__texts {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 20rem;
+  }
+  .conference-cards__items__item__texts__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 4rem;
+    width: 4rem;
+    height: 4rem;
+    background-color: #3f4293;
+    color: white;
+    font-size: 1.75rem;
+    font-style: normal;
+    font-weight: 900;
+    border-radius: 50%;
+    margin-right: 1rem;
+  }
+
+  .conference-cards__items__item__texts__label {
+    color: #333;
+    font-size: 1.25rem;
+    font-weight: 400;
+    display: block;
+  }
+  .conference-cards__items__item__link {
+    color: #2670e8;
+    font-size: 1rem;
+    font-weight: 600;
+    align-self: flex-end;
+  }
+</style>
