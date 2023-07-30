@@ -207,12 +207,9 @@
           path: `/conferences/juventude/f/3/`,
         },
       ];
-      items.forEach(item => navbarUl.appendChild(
-        createLi(
-          item.label,
-          item.path
-        )
-      ))
+      items.forEach((item) =>
+        navbarUl.appendChild(createLi(item.label, item.path))
+      );
     }
     const programContentContainer =
       document.querySelector(".ql-editor-display");
@@ -331,15 +328,15 @@
     document.querySelector(elementSelector).classList.add(cssClass);
   }
   function isOnConferencePage() {
-    console.log(window.location.pathname)
+    console.log(window.location.pathname);
     return window.location.pathname === "/conferences/juventude";
   }
   function isOnConferenceDomain() {
     return window.location.href.includes("conferences/juventude");
   }
   function insertConferenceElements() {
-    console.log(isOnConferenceDomain())
-    console.log(isOnConferencePage())
+    console.log(isOnConferenceDomain());
+    console.log(isOnConferencePage());
     if (isOnConferenceDomain()) {
       const originalMenu = document.querySelector(".process-nav");
       originalMenu.remove();
@@ -347,11 +344,17 @@
       const hero__container = document.querySelector(".hero__container");
       const dateRow = hero__container.getElementsByClassName("row");
       const wrapper = document.querySelector(".wrapper");
+      const main_canvas = document.querySelector(".off-canvas-wrapper");
 
+      // createCssClass(
+      //     ".changedWrapper { overflow: auto; }",
+      //     "changedWrapper",
+      //     ".off-canvas-wrapper"
+      //   );
       if (isOnConferencePage()) {
         hero.classList.remove("hero");
         createCssClass(
-          ".changedHero { background-size: cover; height: 29rem; }",
+          ".changedHero {background-size: contain; background-repeat: no-repeat;}",
           "changedHero",
           ".extended"
         );
@@ -363,7 +366,7 @@
         dateRow[0].remove();
         dateRow[dateRow.length - 1].remove();
         wrapper.remove();
-        const code = `     <div class="conference">
+        const code = `    <div class="conference">
       <div class="conference-cards">
         <span class="conference-cards__title">
           Lorem ipsum dolor sit amet consectetur.
@@ -1144,6 +1147,7 @@
         justify-content: center;
         width: 100%;
         max-width: 100%;
+        margin-top: 2rem;
       }
       .conference-cards__title {
         color: #333;
@@ -1287,13 +1291,13 @@
         
       }
     </style>`
-    const body = document.createElement("div");
+        const body = document.createElement("div");
         body.innerHTML = code;
         hero__container.after(body);
       } else {
-        hero.remove()
-        hero__container.remove()
-        wrapper.remove()
+        hero.remove();
+        hero__container.remove();
+        wrapper.remove();
       }
     }
   }
@@ -3591,50 +3595,6 @@
   .bp-logo {
     width: 300px;
     margin: 0 auto;
-  }
-
-  @media (min-width: 768px) {
-    .ppa-process {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      gap: 8px;
-      width: 630px;
-      margin: 0 auto;
-      flex-wrap: wrap;
-    }
-
-    .ppa-process-arrow-icon {
-      transform: rotate(-90deg);
-    }
-
-    .bp-logo {
-      width: 430px;
-      margin: 0 auto;
-    }
-
-    #statistics .heading3 {
-      font-weight: 600 !important;
-      font-size: var(--unnamed-font-size-29-030000686645508);
-    }
-  }
-
-  @media (min-width: 1284px) {
-    .ppa-process {
-      width: auto;
-    }
-
-    .ppa-info-text {
-      width: auto;
-    }
-
-    .home-stats .section-statistics .statistics-cell {
-      justify-content: center;
-      min-width: 680px;
-      flex-wrap: nowrap;
-      gap: 1.5rem;
-      padding: 2rem 2.5rem 2.5rem 2.5rem;
-    }
   }
 
   #statistics {
