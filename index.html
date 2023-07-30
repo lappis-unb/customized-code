@@ -70,15 +70,17 @@
           </div>
         </div>
       </div>
-      <img
-        class="conference-bp__logo"
-        src="https://brasilparticipativo.presidencia.gov.br/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBZ0VpIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--83a2abd12f5092b982cfdec5938eb1296f17c1d2/novo_bp_logo.png"
-        alt="logo-brasil-participativo"
-      />
+      <span class="conference-bp-logo__container">
+        <image
+          class="conference-bp-logo__container__image"
+          src="https://brasilparticipativo.presidencia.gov.br/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBZ0VpIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--83a2abd12f5092b982cfdec5938eb1296f17c1d2/novo_bp_logo.png"
+          alt="logo-brasil-participativo"
+      /></span>
       <section class="conference-logos__section">
         <div class="conference-logos__section__container">
           <a href="https://www.unb.br/">
             <img
+            height="100"
               id="unb-logo"
               src="https://brasilparticipativo.presidencia.gov.br/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBGZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--76ef1c7950a4004478f2873e319b6f78971c9c40/logo_unb.png"
               alt="unb logo"
@@ -771,10 +773,16 @@
           </a>
         </div>
       </section>
+      <div class="conference-fake-padding"></div>
     </div>
     <style type="text/css">
       .conference {
         background-color: white;
+        margin-top: 4rem;
+        margin-bottom: 2.25rem;
+        max-width: 100%;
+        min-height: 100%;
+        height: 100%;
       }
       /* Cards */
       .conference-cards {
@@ -783,6 +791,7 @@
         font-family: Rawline;
         justify-content: center;
         width: 100%;
+        max-width: 100%;
       }
       .conference-cards__title {
         color: #333;
@@ -808,7 +817,6 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        width: 20rem;
         cursor: pointer;
       }
       .conference-cards__items__item__texts {
@@ -816,7 +824,8 @@
         flex-direction: row;
         align-items: center;
         justify-content: center;
-        width: 20rem;
+        font-size: 1.25rem;
+        max-width: 20rem;
       }
       .conference-cards__items__item__texts__icon {
         display: flex;
@@ -844,12 +853,15 @@
         font-size: 1rem;
         font-weight: 600;
         align-self: flex-end;
+        margin-top: 0.75rem;
       }
       /* Carousel */
       .conference-carousel {
         display: flex;
         flex-direction: column;
         align-items: center;
+        max-width: 100%;
+        overflow: auto;
       }
       .conference-carousel__title {
         color: #333;
@@ -866,8 +878,16 @@
         margin: 0 0.75rem;
       }
       /* logos */
-      .conference-bp__logo {
-        max-width: 300px;
+      .conference-bp-logo__container {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-top: 5rem;
+        margin-bottom: 2.5rem;
+      }
+      .conference-bp-logo__container__image {
+        max-height: 9.5rem;
+        height: 9.5rem;
         object-fit: contain;
       }
       .conference-logos__section {
@@ -876,15 +896,44 @@
       }
       .conference-logos__section__container {
         display: flex;
-        flex-flow: row;
         justify-content: center;
-        gap: 24px;
-        margin: 0 auto;
-        flex-wrap: wrap;
         align-items: center;
-        max-height: 6.25rem;
+        object-fit: contain;
+        gap: 2rem;
+
+      }
+      .conference-logos__section__container a {
+        object-fit: contain;
+      }
+      .conference-fake-padding {
+        display: block;
+        height: 100px;
+      }
+
+      /* Media queries */
+      @media (max-width: 768px) {
+        .conference-cards__items {
+          flex-direction: column;
+          gap: 10px;
+        }
+        .conference-cards__items__divider {
+          display: none;
+        }
+      }
+
+      @media (max-width: 1284px) {
+        .conference-cards__items {
+          flex-direction: column;
+        }
+        .conference-cards__items__divider {
+          display: none;
+        }
+        .conference-logos__section__container {
+          flex-direction: column;
+
+        }
+        
       }
     </style>
   </body>
 </html>
-
