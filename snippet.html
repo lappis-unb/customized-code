@@ -196,7 +196,7 @@
         },
         {
           label: "Sobre",
-          path: `/conferences/juventude/f/1/`,
+          path: `/pages/conferences%2Fjuventude`,
         },
         {
           label: "Notícias",
@@ -359,7 +359,8 @@
           ".extended"
         );
         createCssClass(
-          ".changedHeroContainer { height: 29rem; }",
+          `.changedHeroContainer { height: 14rem;} @media (min-width: 768px) {.changedHeroContainer {height: 22rem;}}; 
+           @media (min-width: 1284px) {.changedHeroContainer { height: 33rem; } }`,
           "changedHeroContainer",
           ".hero__container"
         );
@@ -367,7 +368,7 @@
         dateRow[dateRow.length - 1].remove();
         wrapper.remove();
         const code = `    <div class="conference">
-      <div class="conference-cards">
+      <section class="conference-cards">
         <span class="conference-cards__title">
           Lorem ipsum dolor sit amet consectetur.
         </span>
@@ -381,7 +382,9 @@
                 Tire suas dúvidas e entenda como participar da Conferência
               </div>
             </span>
-            <div class="conference-cards__items__item__link">Ler mais</div>
+            <a href="/pages/conferences%2Fjuventude" class="conference-cards__items__item__link"
+              >Ler mais</a
+            >
           </div>
           <div class="conference-cards__items__divider"></div>
           <div class="conference-cards__items__item">
@@ -393,7 +396,9 @@
                 Cadastre a ata da etapa que você organizou
               </div>
             </span>
-            <div class="conference-cards__items__item__link">Ler mais</div>
+            <a href="juventude/f/2/" class="conference-cards__items__item__link"
+              >Ler mais</a
+            >
           </div>
           <div class="conference-cards__items__divider"></div>
           <div class="conference-cards__items__item">
@@ -405,37 +410,49 @@
                 Baixe os materiais e divulgue a Conferência
               </div>
             </span>
-            <div class="conference-cards__items__item__link">Ler mais</div>
+            <a href="juventude/f/3/" class="conference-cards__items__item__link"
+              >Ler mais</a
+            >
           </div>
         </div>
-      </div>
-      <div class="conference-carousel">
+      </section>
+      <section class="conference-carousel">
         <span class="conference-carousel__title"
           >Lorem ipsum dolor sit amet consectetur.
         </span>
         <div class="conference-carousel__list">
           <div class="conference-carousel__list__item">
             <img src="https://dummyimage.com/576x352/ccc/b6b7cc" />
+            <div class="conference-carousel__list__item__overlay">
+              Lorem ipsum dolor sit amet consectetur 
+            </div>
           </div>
           <div class="conference-carousel__list__item">
             <img src="https://dummyimage.com/576x352/ccc/b6b7cc" />
+            <div class="conference-carousel__list__item__overlay">
+              Lorem ipsum dolor sit amet consectetur E
+            </div>
           </div>
           <div class="conference-carousel__list__item">
             <img src="https://dummyimage.com/576x352/ccc/b6b7cc" />
+            <div class="conference-carousel__list__item__overlay">
+              Lorem ipsum dolor sit amet consectetur 
+            </div>
           </div>
         </div>
-      </div>
-      <span class="conference-bp-logo__container">
+      </section>
+      <section class="conference-bp-logo__container">
         <image
           class="conference-bp-logo__container__image"
           src="https://brasilparticipativo.presidencia.gov.br/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBZ0VpIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--83a2abd12f5092b982cfdec5938eb1296f17c1d2/novo_bp_logo.png"
           alt="logo-brasil-participativo"
-      /></span>
+        />
+      </section>
       <section class="conference-logos__section">
         <div class="conference-logos__section__container">
           <a href="https://www.unb.br/">
             <img
-            height="100"
+              height="100"
               id="unb-logo"
               src="https://brasilparticipativo.presidencia.gov.br/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBGZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--76ef1c7950a4004478f2873e319b6f78971c9c40/logo_unb.png"
               alt="unb logo"
@@ -1128,7 +1145,6 @@
           </a>
         </div>
       </section>
-      <div class="conference-fake-padding"></div>
     </div>
     <style type="text/css">
       .conference {
@@ -1155,6 +1171,7 @@
         font-weight: 600;
         text-align: center;
         margin-bottom: 2.75rem;
+        margin-top: 2rem;
       }
       .conference-cards__items {
         display: flex;
@@ -1225,6 +1242,7 @@
         font-weight: 600;
         margin-bottom: 1.75rem;
         margin-top: 9rem;
+        text-align: center;
       }
       .conference-carousel__list {
         display: flex;
@@ -1232,6 +1250,22 @@
       }
       .conference-carousel__list__item {
         margin: 0 0.75rem;
+        position: relative;
+      }
+      .conference-carousel__list__item__overlay {
+        background: rgba(0, 0, 0, 0.59);
+        height: 4.75rem;
+        position: absolute;
+        bottom: 0;
+        width: calc(100% - 4.5rem);
+        color: var(--default-white, #FFF);
+text-align: center;
+font-size: 1.25rem;
+font-weight: 400;
+display: flex;
+justify-content: center;
+align-items: center;
+padding: 0.5rem 2.25rem;
       }
       /* logos */
       .conference-bp-logo__container {
@@ -1256,18 +1290,13 @@
         align-items: center;
         object-fit: contain;
         gap: 2rem;
-
       }
       .conference-logos__section__container a {
         object-fit: contain;
       }
-      .conference-fake-padding {
-        display: block;
-        height: 100px;
-      }
 
       /* Media queries */
-      @media (max-width: 768px) {
+      @media (max-width: 1284px) {
         .conference-cards__items {
           flex-direction: column;
           gap: 10px;
@@ -1275,9 +1304,6 @@
         .conference-cards__items__divider {
           display: none;
         }
-      }
-
-      @media (max-width: 1284px) {
         .conference-cards__items {
           flex-direction: column;
         }
@@ -1286,9 +1312,15 @@
         }
         .conference-logos__section__container {
           flex-direction: column;
-
         }
-        
+        .conference-carousel {
+          overflow: auto;
+        }
+        .conference-carousel__list {
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
+        }
       }
     </style>`
         const body = document.createElement("div");
