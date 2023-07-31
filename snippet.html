@@ -162,7 +162,7 @@
 
     const conferencesLi = document.querySelector(
       '.main-nav__link a[href="/conferences"]'
-    );
+    );    
 
     if (initLi) removeElement(initLi.parentElement);
     if (processesLi) removeElement(processesLi.parentElement);
@@ -210,6 +210,9 @@
       items.forEach((item) =>
         navbarUl.appendChild(createLi(item.label, item.path))
       );
+      const assembliesLi = document.querySelector(
+      '.main-nav__link a[href="/assemblies"]'    );
+      if (assembliesLi) removeElement(assembliesLi.parentElement);
     }
     const programContentContainer =
       document.querySelector(".ql-editor-display");
@@ -339,7 +342,7 @@
     console.log(isOnConferencePage());
     if (isOnConferenceDomain()) {
       const originalMenu = document.querySelector(".process-nav");
-      originalMenu.remove();
+      if (originalMenu) originalMenu.remove();
       const hero = document.querySelector(".extended");
       const hero__container = document.querySelector(".hero__container");
       const dateRow = hero__container.getElementsByClassName("row");
@@ -352,7 +355,7 @@
       //     ".off-canvas-wrapper"
       //   );
       if (isOnConferencePage()) {
-        hero.classList.remove("hero");
+        if(hero) hero.classList.remove("hero");
         createCssClass(
           ".changedHero {background-size: contain; background-repeat: no-repeat;}",
           "changedHero",
@@ -364,10 +367,10 @@
           "changedHeroContainer",
           ".hero__container"
         );
-        dateRow[0].remove();
-        dateRow[dateRow.length - 1].remove();
-        wrapper.remove();
-        const code = `    <div class="conference">
+        if(dateRow[0]) dateRow[0].remove();
+        if(dateRow[dateRow.length - 1]) dateRow[dateRow.length - 1].remove();
+        if(wrapper) wrapper.remove();
+        const code = `<div class="conference">
       <section class="conference-cards">
         <span class="conference-cards__title">
           Lorem ipsum dolor sit amet consectetur.
@@ -1257,7 +1260,7 @@
         height: 4.75rem;
         position: absolute;
         bottom: 0;
-        width: calc(100% - 4.5rem);
+        width: 100% ;
         color: var(--default-white, #FFF);
 text-align: center;
 font-size: 1.25rem;
