@@ -196,22 +196,19 @@
         },
         {
           label: "Sobre",
-          path: `/pages/conferences%2Fjuventude`,
+          path: `/conferences/juventude/f/56/`,
         },
         {
           label: "Notícias",
-          path: `/conferences/juventude/f/2/`,
-        },
-        {
-          label: "Divulgar",
-          path: `/conferences/juventude/f/3/`,
+          path: `/conferences/juventude/f/53/`,
         },
       ];
       items.forEach((item) =>
         navbarUl.appendChild(createLi(item.label, item.path))
       );
       const assembliesLi = document.querySelector(
-      '.main-nav__link a[href="/assemblies"]'    );
+        '.main-nav__link a[href="/assemblies"]'
+      );
       if (assembliesLi) removeElement(assembliesLi.parentElement);
     }
     const programContentContainer =
@@ -330,16 +327,19 @@
     document.getElementsByTagName("head")[0].appendChild(style);
     document.querySelector(elementSelector).classList.add(cssClass);
   }
-  function isOnConferencePage() {
-    console.log(window.location.pathname);
+  function isOnConferenceLandingPage() {
     return window.location.pathname === "/conferences/juventude";
   }
   function isOnConferenceDomain() {
     return window.location.href.includes("conferences/juventude");
   }
+  function isOnConferenceBlogPage() {
+    return window.location.pathname === "/conferences/juventude/f/53/";
+  }
+  function isOnConferenceAboutPage() {
+    return window.location.pathname === "/conferences/juventude/f/56/";
+  }
   function insertConferenceElements() {
-    console.log(isOnConferenceDomain());
-    console.log(isOnConferencePage());
     if (isOnConferenceDomain()) {
       const originalMenu = document.querySelector(".process-nav");
       if (originalMenu) originalMenu.remove();
@@ -354,8 +354,8 @@
       //     "changedWrapper",
       //     ".off-canvas-wrapper"
       //   );
-      if (isOnConferencePage()) {
-        if(hero) hero.classList.remove("hero");
+      if (isOnConferenceLandingPage()) {
+        if (hero) hero.classList.remove("hero");
         createCssClass(
           ".changedHero {background-size: contain; background-repeat: no-repeat;}",
           "changedHero",
@@ -367,10 +367,10 @@
           "changedHeroContainer",
           ".hero__container"
         );
-        if(dateRow[0]) dateRow[0].remove();
-        if(dateRow[dateRow.length - 1]) dateRow[dateRow.length - 1].remove();
-        if(wrapper) wrapper.remove();
-        const code = `<div class="conference">
+        if (dateRow[0]) dateRow[0].remove();
+        if (dateRow[dateRow.length - 1]) dateRow[dateRow.length - 1].remove();
+        if (wrapper) wrapper.remove();
+        const code = `    <div class="conference">
       <section class="conference-cards">
         <span class="conference-cards__title">
           Lorem ipsum dolor sit amet consectetur.
@@ -385,7 +385,7 @@
                 Tire suas dúvidas e entenda como participar da Conferência
               </div>
             </span>
-            <a href="/pages/conferences%2Fjuventude" class="conference-cards__items__item__link"
+            <a href="juventude/f/56/" class="conference-cards__items__item__link"
               >Ler mais</a
             >
           </div>
@@ -399,7 +399,7 @@
                 Cadastre a ata da etapa que você organizou
               </div>
             </span>
-            <a href="juventude/f/2/" class="conference-cards__items__item__link"
+            <a href="juventude/f/53/" class="conference-cards__items__item__link"
               >Ler mais</a
             >
           </div>
@@ -1325,14 +1325,99 @@ padding: 0.5rem 2.25rem;
           gap: 1rem;
         }
       }
-    </style>`
+    </style>` 
         const body = document.createElement("div");
         body.innerHTML = code;
         hero__container.after(body);
-      } else {
-        hero.remove();
-        hero__container.remove();
-        wrapper.remove();
+      } 
+      else if(isOnConferenceAboutPage()) {
+        const code = `    <section class="conference-about">
+      <div class="conference-about__title">
+        <h1 class="">Sobre</h1>
+        <hr class="conference-about__divider" />
+      </div>
+
+      <div class="conference-about__list">
+        <div class="conference-about__list__content">
+          <ul class="conference-about__list__content__item">
+            <li class="conference-about__list__content__item__link">
+              <a href="https://www.in.gov.br/en/web/dou/-/decreto-n-11.619-de-25-de-julho-de-2023-498922757" target="_blank" 
+                >Regimento da IV Conferencia da juventude</a
+              >
+            </li>
+
+            <li class="conference-about__list__content__item__link">
+              <a href="https://www.in.gov.br/en/web/dou/-/decreto-n-11.619-de-25-de-julho-de-2023-498922757" target="_blank" 
+                >Manual da IV Conferencia da juventude</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <style type="text/css">
+      .conference-about {
+        font-family: Rawline;
+        padding: 48px 64px;
+      }
+      .conference-about__title {
+        font-family: Rawline;
+      }
+      .conference-about__divider {
+        margin: 4px;
+      }
+      .conference-about__list {
+        display: flex;
+        flex-direction: column;
+      }    
+       .conference-about__list__title {
+        font-size: 1.1rem;
+
+      }
+      .conference-about__list__content {
+        display: flex;
+        flex-direction: column;
+      }
+      .conference-about__list__content__title {
+        font-size: 1.1rem;
+      }
+      .conference-about__list__content__item {
+        display: flex;
+        flex-direction: column;
+        box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.16);
+        padding: 24px 16px;
+        list-style-position: outside;
+        max-width: 300px;
+        margin: 0;
+        margin-top: 16px;
+      }
+      .conference-about__list__content__item__title {
+        font-weight: 400;
+        margin: 0;
+        margin-bottom: 8px;
+        color: rgb(41, 54, 76);
+
+      }
+      .conference-about__list__content__item a {
+        color: rgb(19, 81, 180);
+        text-decoration: none;
+      }
+      .conference-about__list__content__item__link{
+        margin-left: 1.25rem;
+      }
+    </style>` 
+        const body = document.createElement("div");
+        body.innerHTML = code;
+        hero.remove()
+        hero__container.remove()
+        wrapper.after(body);
+        console.log("OIE")
+        wrapper.remove()
+
+      }
+      else {
+        hero.remove()
+        hero__container.remove()
       }
     }
   }
