@@ -202,6 +202,10 @@
           label: "Notícias",
           path: `/conferences/juventude/f/53/`,
         },
+        {
+          label: "Propostas",
+          path: `/processes/juventude/f/77/`,
+        },
       ];
       items.forEach((item) =>
         navbarUl.appendChild(createLi(item.label, item.path))
@@ -331,7 +335,7 @@
     return window.location.pathname === "/conferences/juventude";
   }
   function isOnConferenceDomain() {
-    return window.location.href.includes("conferences/juventude");
+    return window.location.href.includes("conferences/juventude") || window.location.href.includes("processes/juventude");
   }
   function isOnConferenceBlogPage() {
     return window.location.pathname === "/conferences/juventude/f/53/";
@@ -345,7 +349,7 @@
       if (originalMenu) originalMenu.remove();
       const hero = document.querySelector(".extended");
       const hero__container = document.querySelector(".hero__container");
-      const dateRow = hero__container.getElementsByClassName("row");
+      const dateRow = hero__container?.getElementsByClassName("row");
       const wrapper = document.querySelector(".wrapper");
       const main_canvas = document.querySelector(".off-canvas-wrapper");
 
@@ -1412,7 +1416,7 @@ padding: 0.5rem 2.25rem;
     </style>` 
         const body = document.createElement("div");
         body.innerHTML = code;
-        hero.remove()
+        hero?.remove()
         hero__container.remove()
         wrapper.after(body);
         console.log("OIE")
@@ -1420,8 +1424,8 @@ padding: 0.5rem 2.25rem;
 
       }
       else {
-        hero.remove()
-        hero__container.remove()
+        hero?.remove()
+        hero__container?.remove()
       }
     }
   }
