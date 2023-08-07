@@ -356,8 +356,11 @@
       //   );
       if (isOnConferenceLandingPage()) {
         if (hero) hero.classList.remove("hero");
+        const desktopBannerUrl = 'url("/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBbVFEIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--395196c3cffbfaeca85dd34817b39852e7c10b87/Screenshot%202023-08-07%20172938.png")'
+
         createCssClass(
-          ".changedHero {background-size: contain; background-repeat: no-repeat;}",
+          `.changedHero {background-size: contain; background-repeat: no-repeat;  }
+          @media (min-width: 1284px) {.changedHero { background-image: ${desktopBannerUrl} !important; } }`,
           "changedHero",
           ".extended"
         );
@@ -367,6 +370,7 @@
           "changedHeroContainer",
           ".hero__container"
         );
+
         if (dateRow[0]) dateRow[0].remove();
         if (dateRow[dateRow.length - 1]) dateRow[dateRow.length - 1].remove();
         if (wrapper) wrapper.remove();
