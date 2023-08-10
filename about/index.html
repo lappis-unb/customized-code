@@ -17,25 +17,7 @@
         <hr class="conference-about__divider" />
       </div>
       <div class="conference-about__list">
-        <div class="conference-about__list__content" id="content">
-          <ul class="conference-about__list__content__item">
-            <li class="conference-about__list__content__item__link">
-              <a
-                href="https://www.in.gov.br/en/web/dou/-/decreto-n-11.619-de-25-de-julho-de-2023-498922757"
-                target="_blank"
-                >Regimento da IV Conferencia da juventude</a
-              >
-            </li>
-
-            <li class="conference-about__list__content__item__link">
-              <a
-                href="https://www.in.gov.br/en/web/dou/-/decreto-n-11.619-de-25-de-julho-de-2023-498922757"
-                target="_blank"
-                >Manual da IV Conferencia da juventude</a
-              >
-            </li>
-          </ul>
-        </div>
+        <div class="conference-about__list__content" id="aboutContent"></div>
       </div>
     </section>
     <style type="text/css">
@@ -188,12 +170,11 @@
           ],
         },
       ];
-      const pageContent = document.getElementById("content");
       function getItemById(itemId, contentId) {
         let item = items.find((i) => i.id === itemId);
         return item.content.find((i) => i.id === contentId);
       }
-      function buildInitialContent() {
+      function buildInitialContent(pageContent) {
         pageContent.innerHTML = "";
         items.forEach((arrayitem) => {
           const wrapper = document.createElement("div");
@@ -213,7 +194,7 @@
             listItemLabel.classList.add("conference-about__clickable-link");
             listItemLabel.id = arrayitem.id + "__" + index;
             listItemLabel.onclick = (element) =>
-              onContentClick(arrayitem, element);
+              onContentClick(arrayitem, element, pageContent);
             listItemLabel.textContent = listItem.title;
             itemContent.appendChild(listItemLabel);
           });
@@ -223,7 +204,7 @@
           pageContent.appendChild(wrapper);
         });
       }
-      function onContentClick(arrayitem, element) {
+      function onContentClick(arrayitem, element, pageContent) {
         const result = getItemById(arrayitem.id, element.srcElement.id);
         if (result) {
           pageContent.innerHTML = "";
@@ -234,15 +215,20 @@
           itemContent.textContent = result.text;
           itemButton.textContent = "voltar";
           itemButton.id = "conference-about__back-button";
+
           itemButton.onclick = function () {
-            buildInitialContent();
+            const pageContent = document.getElementById("aboutContent");
+
+            buildInitialContent(pageContent);
           };
           pageContent.appendChild(itemTitle);
           pageContent.appendChild(itemContent);
           pageContent.appendChild(itemButton);
         }
       }
-      buildInitialContent();
+      const pageContent = document.getElementById("aboutContent");
+
+      buildInitialContent(pageContent);
     </script>
   </body>
 </html>
