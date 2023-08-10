@@ -162,7 +162,7 @@
 
     const conferencesLi = document.querySelector(
       '.main-nav__link a[href="/conferences"]'
-    );    
+    );
 
     if (initLi) removeElement(initLi.parentElement);
     if (processesLi) removeElement(processesLi.parentElement);
@@ -335,7 +335,10 @@
     return window.location.pathname === "/conferences/juventude";
   }
   function isOnConferenceDomain() {
-    return window.location.href.includes("conferences/juventude") || window.location.href.includes("processes/juventude");
+    return (
+      window.location.href.includes("conferences/juventude") ||
+      window.location.href.includes("processes/juventude")
+    );
   }
   function isOnConferenceBlogPage() {
     return window.location.pathname === "/conferences/juventude/f/53/";
@@ -360,7 +363,8 @@
       //   );
       if (isOnConferenceLandingPage()) {
         if (hero) hero.classList.remove("hero");
-        const desktopBannerUrl = 'url("/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBbVFEIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--395196c3cffbfaeca85dd34817b39852e7c10b87/Screenshot%202023-08-07%20172938.png")'
+        const desktopBannerUrl =
+          'url("/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBbVFEIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--395196c3cffbfaeca85dd34817b39852e7c10b87/Screenshot%202023-08-07%20172938.png")';
 
         createCssClass(
           `.changedHero {background-size: contain; background-repeat: no-repeat;  }
@@ -1333,105 +1337,181 @@ padding: 0.5rem 2.25rem;
           gap: 1rem;
         }
       }
-    </style>` 
+    </style>`;
         const body = document.createElement("div");
         body.innerHTML = code;
         hero__container.after(body);
-      } 
-      else if(isOnConferenceAboutPage()) {
+      } else if (isOnConferenceAboutPage()) {
         const code = `    <section class="conference-about">
       <div class="conference-about__title">
         <h1 class="">Sobre</h1>
         <hr class="conference-about__divider" />
       </div>
-
       <div class="conference-about__list">
-        <div class="conference-about__list__content">
-          <ul class="conference-about__list__content__item">
-            <li class="conference-about__list__content__item__link">
-              <a href="https://www.in.gov.br/en/web/dou/-/decreto-n-11.619-de-25-de-julho-de-2023-498922757" target="_blank" 
-                >Regimento da IV Conferencia da juventude</a
-              >
-            </li>
-
-            <li class="conference-about__list__content__item__link">
-              <a href="https://www.in.gov.br/en/web/dou/-/decreto-n-11.619-de-25-de-julho-de-2023-498922757" target="_blank" 
-                >Manual da IV Conferencia da juventude</a
-              >
-            </li>
-          </ul>
-        </div>
+        <div class="conference-about__list__content" id="aboutContent"></div>
       </div>
-    </section>
-    <style type="text/css">
-      .conference-about {
-        font-family: Rawline;
-        padding: 48px 64px;
-      }
-      .conference-about__title {
-        font-family: Rawline;
-      }
-      .conference-about__divider {
-        margin: 4px;
-      }
-      .conference-about__list {
-        display: flex;
-        flex-direction: column;
-      }    
-       .conference-about__list__title {
-        font-size: 1.1rem;
-
-      }
-      .conference-about__list__content {
-        display: flex;
-        flex-direction: column;
-      }
-      .conference-about__list__content__title {
-        font-size: 1.1rem;
-      }
-      .conference-about__list__content__item {
-        display: flex;
-        flex-direction: column;
-        box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.16);
-        padding: 24px 16px;
-        list-style-position: outside;
-        max-width: 300px;
-        margin: 0;
-        margin-top: 16px;
-      }
-      .conference-about__list__content__item__title {
-        font-weight: 400;
-        margin: 0;
-        margin-bottom: 8px;
-        color: rgb(41, 54, 76);
-
-      }
-      .conference-about__list__content__item a {
-        color: rgb(19, 81, 180);
-        text-decoration: none;
-      }
-      .conference-about__list__content__item__link{
-        margin-left: 1.25rem;
-      }
-    </style>` 
+    </section>`;
         const body = document.createElement("div");
         body.innerHTML = code;
-        hero?.remove()
-        hero__container.remove()
+        hero?.remove();
+        hero__container.remove();
         wrapper.after(body);
-        console.log("OIE")
-        wrapper.remove()
-
-      }
-      else {
-        hero?.remove()
-        hero__container?.remove()
+        wrapper?.remove();
+      } else {
+        hero?.remove();
+        hero__container?.remove();
       }
     }
   }
-  document.addEventListener("DOMContentLoaded", function () {
+  window.addEventListener("DOMContentLoaded", function () {
     doEverything();
+    const pageContent = document.getElementById("aboutContent");
+    if (pageContent && isOnConferenceAboutPage()) {
+      console.log("oie");
+      buildInitialContent(pageContent);
+    }
   });
+  const items = [
+    {
+      id: "conference-about__0",
+      title: "Sobre a Conferência",
+      content: [
+        {
+          id: "conference-about__0__0",
+          title: "Como funciona a Conferência Nacional de Juventude?",
+          text: "A Conferência Nacional da Juventude é expressão do direito à participação social. Atualmente em sua 4ª Conferência essa instância de participação social já passou por inúmeros momentos de construção e debate acerca dos direitos da juventude. No entanto, desde 2015 não há um espaço como este e os canais de escuta abertos para a população jovem foram reduzidos. No entanto, em sua 4ª edição, a Conferência Nacional pretende reunir jovens delegados de todos os estados do Brasil, respeitando e valorizando a diversidade deste país continental. A Conferência Nacional é a última etapa de um longo processo de organização de Conferências municipais, regionais, livres, territoriais e digitais.",
+        },
+        {
+          id: "conference-about__0__1",
+          title:
+            "Como será a etapa nacional da 4ª Conferência Nacional da Juventude?",
+          text: "A etapa Nacional da 4ª Conferência Nacional da Juventude acontecerá em Brasília-DF, de 14 a 17 de dezembro de 2023. Reunirá jovens delegados de todos os estados do Brasil. Durante a programação acontecerão atividades culturais, exposições e plenárias para debater os eixos do Estatuto da Juventude e outras temáticas importantes para a juventude brasileira, além de paineis expositivos relevantes. ",
+        },
+        {
+          id: "conference-about__0__2",
+          title: "Como participar da etapa nacional?",
+          text: "Para participar da 4ª Conferência você pode escolher entre as duas opções: delegado ou observadO delegado é uma pessoa que participou de etapas municipais/territoriais foi eleito para as estaduais e então eleito para a etapa nacional. A etapa distrital também elege delegados para a etapa nacionVocê também pode ser eleito por meio das etapas temáticas ou por meio da etapa digitO delegado é alguém que tem direito a voz  e voto, bem como terá apoio para participar do evenO observador poderá se inscrever no site da conferência, não tem direito  a voz e voto, e nem sua permanência custeada pelo even",
+        },
+        {
+          id: "conference-about__0__3",
+          title: "Quais são as etapas da 4ª Conferência?",
+          text: "As etapas são as seguintes: I. Etapas Livres que poderão ocorrer até 30 de outubro de 2023; II. Etapa Digital que ocorrerá de 31 de agosto de 2023 a 30 de outubro de 2023; III. Etapas Temáticas que podem ocorrer de 31 de agosto de 2023 a 30 de outubro de 2023  IV. Etapas Territoriais que poderão ocorrer até o dia 30 de setembro de 2023; V. Consulta às Juventudes de Povos e Comunidades Tradicionais que poderão ocorrer até 30 de outubro de 2023; VI. Etapas Municipais e Regionais que poderão ocorrer até o dia 30 de setembro de 2023; VII. Etapas Estaduais e do Distrito Federal que poderão ocorrer até 30 de outubro de 2023; e VIII. Etapa Nacional que acontecerá de 14 a 17 de dezembro de 2023. ",
+        },
+        {
+          id: "conference-about__0__4",
+          title: "Como as propostas serão levadas para a etapa nacional?",
+          text: "A Conferência Nacional da Juventude é expressão do direito à participação social. Atualmente em sua 4ª Conferência essa instância de participação social já passou por inúmeros momentos de construção e debate acerca dos direitos da juventude. No entanto, desde 2015 não há um espaço como este e os canais de escuta abertos para a população jovem foram reduzidos. No entanto, em sua 4ª edição, a Conferência Nacional pretende reunir jovens delegados de todos os estados do Brasil, respeitando e valorizando a diversidade deste país continental. A Conferência Nacional é a última etapa de um longo processo de organização de Conferências municipais, regionais, livres, territoriais e digitais.",
+        },
+        {
+          id: "conference-about__0__5",
+          title: "Quem pode organizar uma Etapa Municipal?",
+          text: "A etapa Municipal será realizada por iniciativa dos próprios municípios, conforme previsto no art.43, inc. IV da Lei 12.852/2014.As Etapas Municipais e Regionais poderão ser convocadas pelo Poder Público até 31 de agosto de 2023. No caso da Etapa Municipal não ter sido convocada pelo Poder Público até a essa data, a Sociedade Civil poderá convocá-l Para a realização devem ser constituídas Comissões Organizadoras Municipais para organizar e realizar as etapas municipais. Tendo como referência para composição miníma a particpação de representante dos conselhos municipais de juventude, quando houver, bem como a composição da comissão organizadora nacional.É importante lembrar que   A Comissão Organizadora Municipal ou Regional deve se cadastrar na plataforma digital, informando sua composição, contato, data, horário e local da Etapa com antecedência mínima de 5 dias úteis para o dia da Conferência Municipal ou Regional.",
+        },
+        {
+          id: "conference-about__0__6",
+          title: "Quem pode organizar uma Etapa Livre?",
+          text: "X",
+        },
+        {
+          id: "conference-about__0__7",
+          title: "Quem pode organizar uma Etapa Estadual?",
+          text: "X",
+        },
+        {
+          id: "conference-about__0__8",
+          title: "Participei de uma etapa. E agora?",
+          text: "X",
+        },
+      ],
+    },
+    {
+      id: "conference-about__1",
+      title: "Item 3",
+      content: [
+        {
+          id: "conference-about__1__0",
+          title: "Como funciona a Conferência Nacional de Juventude?",
+          text: "A Conferência Nacional da Juventude é expressão do direito à participação social. Atualmente em sua 4ª Conferência essa instância de participação social já passou por inúmeros momentos de construção e debate acerca dos direitos da juventude. No entanto, desde 2015 não há um espaço como este e os canais de escuta abertos para a população jovem foram reduzidos. No entanto, em sua 4ª edição, a Conferência Nacional pretende reunir jovens delegados de todos os estados do Brasil, respeitando e valorizando a diversidade deste país continental. A Conferência Nacional é a última etapa de um longo processo de organização de Conferências municipais, regionais, livres, territoriais e digitais.",
+        },
+      ],
+    },
+    {
+      id: "conference-about__2",
+      title: "Item 4",
+      content: [
+        {
+          id: "conference-about__2__0",
+          title: "Como funciona a Conferência Nacional de Juventude?",
+          text: "A Conferência Nacional da Juventude é expressão do direito à participação social. Atualmente em sua 4ª Conferência essa instância de participação social já passou por inúmeros momentos de construção e debate acerca dos direitos da juventude. No entanto, desde 2015 não há um espaço como este e os canais de escuta abertos para a população jovem foram reduzidos. No entanto, em sua 4ª edição, a Conferência Nacional pretende reunir jovens delegados de todos os estados do Brasil, respeitando e valorizando a diversidade deste país continental.A Conferência Nacional é a última etapa de um longo processo de organização de Conferências municipais, regionais, livres, territoriais e digitais.",
+        },
+      ],
+    },
+    {
+      id: "conference-about__3",
+      title: "Item 2",
+      content: [
+        {
+          id: "conference-about__3__0",
+          title: "Como funciona a Conferência Nacional de Juventude?",
+          text: "A Conferência Nacional da Juventude é expressão do direito à participação social. Atualmente em sua 4ª Conferência essa instância de participação social já passou por inúmeros momentos de construção e debate acerca dos direitos da juventude. No entanto, desde 2015 não há um espaço como este e os canais de escuta abertos para a população jovem foram reduzidos. No entanto, em sua 4ª edição, a Conferência Nacional pretende reunir jovens delegados de todos os estados do Brasil, respeitando e valorizando a diversidade deste país continental.A Conferência Nacional é a última etapa de um longo processo de organização de Conferências municipais, regionais, livres, territoriais e digitais.",
+        },
+      ],
+    },
+  ];
+  function getItemById(itemId, contentId) {
+    let item = items.find((i) => i.id === itemId);
+    return item.content.find((i) => i.id === contentId);
+  }
+  function buildInitialContent(pageContent) {
+    pageContent.innerHTML = "";
+    items.forEach((arrayitem) => {
+      const wrapper = document.createElement("div");
+      const item = document.createElement("ul");
+      item.classList.add("conference-about__list__content__item");
+      const itemTitle = document.createElement("a");
+      const itemContent = document.createElement("div");
+      itemTitle.textContent = arrayitem.title;
+      itemTitle.classList.add("conference-about__list__content__item__title");
+      arrayitem.content.forEach((listItem, index) => {
+        const listItemLabel = document.createElement("li");
+        listItemLabel.classList.add(
+          "conference-about__list__content__item__link"
+        );
+        listItemLabel.classList.add("conference-about__clickable-link");
+        listItemLabel.id = arrayitem.id + "__" + index;
+        listItemLabel.onclick = (element) =>
+          onContentClick(arrayitem, element, pageContent);
+        listItemLabel.textContent = listItem.title;
+        itemContent.appendChild(listItemLabel);
+      });
+      item.appendChild(itemTitle);
+      item.appendChild(itemContent);
+      wrapper.appendChild(item);
+      pageContent.appendChild(wrapper);
+    });
+  }
+  function onContentClick(arrayitem, element, pageContent) {
+    const result = getItemById(arrayitem.id, element.srcElement.id);
+    if (result) {
+      pageContent.innerHTML = "";
+      let itemTitle = document.createElement("span");
+      let itemContent = document.createElement("span");
+      let itemButton = document.createElement("button");
+      itemTitle.textContent = result.title;
+      itemContent.textContent = result.text;
+      itemButton.textContent = "voltar";
+      itemButton.id = "conference-about__back-button";
+
+      itemButton.onclick = function () {
+        const pageContent = document.getElementById("aboutContent");
+
+        buildInitialContent(pageContent);
+      };
+      pageContent.appendChild(itemTitle);
+      pageContent.appendChild(itemContent);
+      pageContent.appendChild(itemButton);
+    }
+  }
 </script>
 
 <link
@@ -1445,6 +1525,66 @@ padding: 0.5rem 2.25rem;
 
 <style type="text/css">
   @import url("https://fonts.cdnfonts.com/css/rawline");
+  .conference-about {
+    font-family: Rawline;
+    padding: 48px 64px;
+  }
+  .conference-about__title {
+    font-family: Rawline;
+  }
+  .conference-about__divider {
+    margin: 4px;
+  }
+  .conference-about__list {
+    display: flex;
+    flex-direction: row;
+  }
+  .conference-about__list__title {
+    font-size: 1.1rem;
+  }
+  .conference-about__list__content {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    flex-wrap: wrap;
+  }
+  .conference-about__list__content__title {
+    font-size: 1.1rem;
+  }
+  .conference-about__list__content__item {
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.16);
+    padding: 24px 16px;
+    list-style-position: outside;
+    max-width: 300px;
+    min-width: 300px;
+    margin: 0;
+    margin-top: 16px;
+  }
+  .conference-about__list__content__item__title {
+    font-weight: 400;
+    margin: 0;
+    margin-bottom: 8px;
+    color: rgb(41, 54, 76);
+  }
+  .conference-about__list__content__item__content {
+    font-weight: 400;
+    margin: 0;
+    margin-bottom: 8px;
+    color: rgb(41, 54, 76);
+  }
+  .conference-about__list__content__item a {
+    color: rgb(19, 81, 180);
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .conference-about__list__content__item__link {
+    margin-left: 1.25rem;
+    list-style-position: outside;
+    color: rgb(19, 81, 180);
+    cursor: pointer;
+  }
 
   :root {
     --banner-mobile: url("https://brasilparticipativo.presidencia.gov.br/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBaVVmIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--f36fb771757af1fb904a07246355b3bc7cc5e458/Banner%20Mobile.jpg");
