@@ -18,6 +18,164 @@
   })();
 </script>
 <!-- End Matomo Code -->
+
+/* --------------- CONSEA ---------------- */
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Verifica se a pagina atual eh a do consea
+    function is_home() {
+      return window.location.href.indexOf("https://lab-decide.dataprev.gov.br/conferences/consea") === 0
+    }
+    function addClassAfterDelay(element, className) {
+      setTimeout(function() {
+        if(element) {
+          element.classList.add(className);
+        }
+      }, 1000); // 1 segundo
+    }
+    if (is_home()) {
+
+      // Remove o banner superior
+      var banner = document.querySelector(".omnipresent-banner");
+      if (banner) {
+        banner.remove();
+      }
+
+      // Remove ass datas e botoes de reunioes
+      var rows = document.querySelectorAll(".hero__container .row");
+      if (rows && rows.length > 1) {
+        rows[1].remove();
+      }
+
+      // Remove o subtitulo da pagina
+      var h2Element = document.querySelector(".hero__container h2");
+      if (h2Element) {
+        h2Element.remove();
+      }
+
+      // Remove o espacamento abaixo da imagem
+      var heroContainer = document.querySelector(".hero__container");
+      if (heroContainer) {
+        heroContainer.remove();
+      }
+
+      // Tira a imagem do bg e deixa como elemento
+      var sectionElement = document.querySelector("section.extended.hero");
+      if (sectionElement) {
+        sectionElement.classList.remove('hero');
+
+        var bgImage = sectionElement.style.backgroundImage;
+        var imageURL = bgImage.slice(5, -2); // Remove "url('" no início e "')" no final
+
+        sectionElement.style.backgroundImage = '';
+
+        var imgElement = document.createElement('img');
+        imgElement.src = imageURL;
+        imgElement.classList.add("hero-background");
+
+        sectionElement.insertBefore(imgElement, sectionElement.firstChild);
+
+        sectionElement.style.backgroundColor = 'white';
+        sectionElement.style.paddingTop = "75px";
+
+        var addCSS = function (styles) {
+          var css = document.createElement('style');
+          css.type = 'text/css';
+
+          if (css.styleSheet) css.styleSheet.cssText = styles;
+          else css.appendChild(document.createTextNode(styles));
+
+          document.getElementsByTagName("head")[0].appendChild(css);
+        };
+
+        var styles = `
+          .extended.hero {
+            position: relative;
+          }
+
+          .hero-background {
+            width: 100%;
+            display: block;
+            z-index: -1;
+          }
+
+          .hero__container {
+            position: relative;
+            z-index: 1;
+          }
+
+          .hero::after {
+            display: none;
+          }
+        `;
+
+        addCSS(styles);
+      }
+
+      // Remove o titulo da pagina
+      var h1Element = document.querySelector("h1.text-highlight.hero-heading.mb-none");
+      if (h1Element) {
+        h1Element.remove()
+      }
+
+      // Remove o botao de conferencias
+      var buttonElement = document.querySelector('a.button.button--sc.secondary.light.expanded[href="/conferences/consea/program/84"]');
+      if (buttonElement) {
+        buttonElement.remove();
+      }
+
+      // Remove a nav bar da conferencia
+      var navBar = document.querySelector(".process-nav")
+      if (navBar) {
+        navBar.remove()
+      }
+
+      // Apaga os itens da nav-bar do decidim
+      var divToRemove = document.querySelector('.show-for-medium[data-set="nav-holder"]');
+      if (divToRemove) {
+        divToRemove.remove();
+      }
+
+      // header do decidim
+      var header = document.querySelector('.header');
+      // Cria a nova nav-bar
+      if (header) {
+        var newNav = document.createElement('nav');
+        newNav.className = "navbar main-nav-consea";
+        newNav.setAttribute('aria-label', 'Menu principal');
+
+        // Lista dos itens e links desejados
+        var menuItems = [
+          { text: 'Início', link: '/conferences/consea' },
+          { text: 'Sobre', link: '/conferences/consea/f/88/' },
+          { text: 'Notícias', link: '/conferences/consea/f/80/' },
+          { text: 'Reuniões Estaduais', link: '/conferences/consea/f/84/' }
+        ];
+
+        var ulElement = document.createElement('ul');
+
+        // Loop para criar os itens <li> e <a> e anexá-los ao <ul>
+        menuItems.forEach(function (item) {
+          var liElement = document.createElement('li');
+          liElement.classList.add('main-nav__link');
+          liElement.classList.add('main-nav__link__color');
+
+          var aElement = document.createElement('a');
+          aElement.href = item.link;
+          aElement.textContent = item.text;
+
+          liElement.appendChild(aElement);
+          ulElement.appendChild(liElement);
+        });
+
+        newNav.appendChild(ulElement);
+        header.appendChild(newNav)
+      }
+    }
+  });
+</script>
+/* ---------------- Fim do codigo da CONSEA ----------------- */
+
 <script defer>
   // Variável referente ao ID do programa, utilizada no menu-tab "Escolher programas" da aplicação.
   const chooseProgramId = 1;
@@ -1524,6 +1682,38 @@ padding: 0.5rem 2.25rem;
 />
 
 <style type="text/css">
+
+  /* --- CONSEA --- */
+  
+  .navbar.main-nav-consea ul {
+    display: flex;
+    flex-wrap: nowrap; 
+    list-style-type: none;
+    padding: 0;
+    margin: 0 auto;           /* Centraliza o contêiner */
+    justify-content: flex-start;  /* Centraliza os itens da lista */
+    overflow-x: auto;         /* Habilita rolagem horizontal */
+  }
+
+  .navbar.main-nav-consea li {
+    flex-shrink: 0; 
+    margin-right: 15px;       /* Espaço entre os itens da lista */
+    white-space: nowrap;      /* Evita que os links se quebrem em duas linhas */
+  }
+
+  .main-nav-consea ul {
+    display: block;
+    text-align: center;
+    white-space: wrap;
+  }
+
+  .main-nav-consea ul>li:hover {
+    background: rgba(51, 51, 51, var(--hover));
+  }
+
+  /* ---- FIM CONSEA ---- */
+
+
   @import url("https://fonts.cdnfonts.com/css/rawline");
   .conference-about {
     font-family: Rawline;
