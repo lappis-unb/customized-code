@@ -23,9 +23,15 @@
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     // Verifica se a pagina atual eh a do consea
-    function is_home() {
-      return window.location.href.indexOf("https://lab-decide.dataprev.gov.br/conferences/consea") === 0
+    function is_consea() {
+      return window.location.href.indexOf("https://lab-decide.dataprev.gov.br/conferences/consea") === 0;
     }
+
+    // Verifica se eh o questionario privado do processo
+    function is_quest(){
+      return window.location.href.indexOf("https://lab-decide.dataprev.gov.br/processes/consea/f/114/") === 0;
+    }
+
     function addClassAfterDelay(element, className) {
       setTimeout(function() {
         if(element) {
@@ -33,8 +39,8 @@
         }
       }, 1000); // 1 segundo
     }
-    if (is_home()) {
 
+    if (is_consea() || is_quest()) {
       // Remove o banner superior
       var banner = document.querySelector(".omnipresent-banner");
       if (banner) {
@@ -148,6 +154,7 @@
         var menuItems = [
           { text: 'Início', link: '/conferences/consea' },
           { text: 'Inscrição Livre', link: '/conferences/consea/f/104/' },
+          { text: 'Inscrição Privada', link: '/processes/consea/f/114/' },
           { text: 'Sobre', link: '/conferences/consea/f/88/' },
           { text: 'Notícias', link: '/conferences/consea/f/80/' },
           { text: 'Reuniões Estaduais', link: '/conferences/consea/f/84/' }
