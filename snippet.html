@@ -29,7 +29,11 @@
 
     // Verifica se eh o questionario privado do processo
     function is_quest(){
-      return window.location.href.indexOf("https://lab-decide.dataprev.gov.br/processes/consea/f/114/") === 0;
+      return window.location.href.indexOf("https://lab-decide.dataprev.gov.br/processes/consea") === 0;
+    }
+
+    function is_home(){
+      return window.location.href === "https://lab-decide.dataprev.gov.br/conferences/consea";
     }
 
     function addClassAfterDelay(element, className) {
@@ -65,9 +69,9 @@
         heroContainer.remove();
       }
 
-      // Tira a imagem do bg e deixa como elemento
+      // Tira a imagem do bg e deixa como elemento se for a home
       var sectionElement = document.querySelector("section.extended.hero");
-      if (sectionElement) {
+      if (sectionElement && is_home()) {
         sectionElement.classList.remove('hero');
 
         var bgImage = sectionElement.style.backgroundImage;
@@ -116,6 +120,22 @@
         `;
 
         addCSS(styles);
+      }
+      else if (sectionElement){
+        sectionElement.remove()
+
+        // Da um padding do topo da pagina pois o cabecalho tampa o titulo
+        var contentElement = document.getElementById("content");
+        if (contentElement){
+          contentElement.style.paddingTop = "100px";
+        }
+      }
+      else if (is_quest()){
+        // Da um padding do topo da pagina pois o cabecalho tampa o titulo
+        var contentElement = document.getElementById("content");
+        if (contentElement){
+          contentElement.style.paddingTop = "100px";
+        }
       }
 
       // Remove o titulo da pagina
