@@ -23,9 +23,19 @@
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     // Verifica se a pagina atual eh a do consea
-    function is_home() {
-      return window.location.href.indexOf("https://lab-decide.dataprev.gov.br/conferences/consea") === 0
+    function is_consea() {
+      return window.location.href.indexOf("https://lab-decide.dataprev.gov.br/conferences/consea") === 0;
     }
+
+    // Verifica se eh o questionario privado do processo
+    function is_quest(){
+      return window.location.href.indexOf("https://lab-decide.dataprev.gov.br/processes/consea") === 0;
+    }
+
+    function is_home(){
+      return window.location.href === "https://lab-decide.dataprev.gov.br/conferences/consea";
+    }
+
     function addClassAfterDelay(element, className) {
       setTimeout(function() {
         if(element) {
@@ -33,8 +43,8 @@
         }
       }, 1000); // 1 segundo
     }
-    if (is_home()) {
 
+    if (is_consea() || is_quest()) {
       // Remove o banner superior
       var banner = document.querySelector(".omnipresent-banner");
       if (banner) {
@@ -59,9 +69,9 @@
         heroContainer.remove();
       }
 
-      // Tira a imagem do bg e deixa como elemento
+      // Tira a imagem do bg e deixa como elemento se for a home
       var sectionElement = document.querySelector("section.extended.hero");
-      if (sectionElement) {
+      if (sectionElement && is_home()) {
         sectionElement.classList.remove('hero');
 
         var bgImage = sectionElement.style.backgroundImage;
@@ -111,6 +121,22 @@
 
         addCSS(styles);
       }
+      else if (sectionElement){
+        sectionElement.remove()
+
+        // Da um padding do topo da pagina pois o cabecalho tampa o titulo
+        var contentElement = document.getElementById("content");
+        if (contentElement){
+          contentElement.style.paddingTop = "100px";
+        }
+      }
+      else if (is_quest()){
+        // Da um padding do topo da pagina pois o cabecalho tampa o titulo
+        var contentElement = document.getElementById("content");
+        if (contentElement){
+          contentElement.style.paddingTop = "100px";
+        }
+      }
 
       // Remove o titulo da pagina
       var h1Element = document.querySelector("h1.text-highlight.hero-heading.mb-none");
@@ -148,6 +174,7 @@
         var menuItems = [
           { text: 'Início', link: '/conferences/consea' },
           { text: 'Inscrição Livre', link: '/conferences/consea/f/104/' },
+          { text: 'Inscrição Privada', link: '/processes/consea/f/114/' },
           { text: 'Sobre', link: '/conferences/consea/f/88/' },
           { text: 'Notícias', link: '/conferences/consea/f/80/' },
           { text: 'Reuniões Estaduais', link: '/conferences/consea/f/84/' }
