@@ -192,8 +192,10 @@
         ];
 
         if (isAllowed) {
-          console.log("eh valido")
-          menuItems.push(privateItems);
+          console.log("eh valido");
+          privateItems.forEach(item => {
+              menuItems.push(item);
+          });
         }
         else{
           console.log("nao eh valido")
