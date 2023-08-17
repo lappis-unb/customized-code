@@ -13,16 +13,15 @@
     />
   </head>
   <body>
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/flickity@2/dist/flickity.min.css"
-    />
-    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
     <div class="conference">
+      <form class="conference-cta" action="juventude/f/107/meetings/new">
+        <button type="submit" class="conference-cta__button">
+          <span class="conference-cta__button__wrapper__label"
+            >Organize uma etapa da conferência</span
+          >
+        </button>
+      </form>
       <section class="conference-cards">
-        <span class="conference-cards__title">
-          Lorem ipsum dolor sit amet consectetur.
-        </span>
         <div class="conference-cards__items">
           <div class="conference-cards__items__item">
             <span class="conference-cards__items__item__texts">
@@ -50,7 +49,7 @@
               </div>
             </span>
             <a
-              href="juventude/f/53/"
+              href="/processes/juventude/f/113/surveys/16"
               class="conference-cards__items__item__link"
               >Ler mais</a
             >
@@ -59,56 +58,45 @@
           <div class="conference-cards__items__item">
             <span class="conference-cards__items__item__texts">
               <span
-                class="fa-solid fa-download conference-cards__items__item__texts__icon"
+                class="fa-solid fa-check-to-slot conference-cards__items__item__texts__icon"
               ></span>
               <div class="conference-cards__items__item__texts__label">
-                Baixe os materiais e divulgue a Conferência
+                Envie uma proposta
               </div>
             </span>
             <a
-              href="juventude/f/53/"
+              href="/processes/juventude/f/77/"
               class="conference-cards__items__item__link"
               >Ler mais</a
             >
           </div>
         </div>
       </section>
-      <form class="conference-cta" action="juventude/f/56/">
-        <button type="submit" class="conference-cta__button">
-          <span
-            class="conference-cta__button__wrapper__icon fa-solid fa-thumbs-up"
-          ></span>
-          <span class="conference-cta__button__wrapper__label">Participar</span>
-        </button>
-      </form>
       <section class="conference-carousel">
         <span class="conference-carousel__title"
-          >Lorem ipsum dolor sit amet consectetur.
+          >Saiba o que está rolando sobre a 4ª Conferência da Juventude
         </span>
+        <div class="conference-carousel__list">
+          <div class="conference-carousel__list__item">
+            <img src="https://dummyimage.com/576x352/ccc/b6b7cc" />
+            <div class="conference-carousel__list__item__overlay">
+              Lorem ipsum dolor sit amet consectetur
+            </div>
+          </div>
+          <div class="conference-carousel__list__item">
+            <img src="https://dummyimage.com/576x352/ccc/b6b7cc" />
+            <div class="conference-carousel__list__item__overlay">
+              Lorem ipsum dolor sit amet consectetur E
+            </div>
+          </div>
+          <div class="conference-carousel__list__item">
+            <img src="https://dummyimage.com/576x352/ccc/b6b7cc" />
+            <div class="conference-carousel__list__item__overlay">
+              Lorem ipsum dolor sit amet consectetur
+            </div>
+          </div>
+        </div>
       </section>
-      <div
-        class="gallery js-flickity"
-        data-flickity-options='{ "wrapAround": true }'
-      >
-        <div class="gallery-cell conference-carousel__list__item">
-          <img src="https://dummyimage.com/576x352/ccc/b6b7cc" />
-          <div class="conference-carousel__list__item__overlay">
-            Lorem ipsum dolor sit amet consectetur
-          </div>
-        </div>
-        <div class="gallery-cell conference-carousel__list__item">
-          <img src="https://dummyimage.com/576x352/ccc/b6b7cc" />
-          <div class="conference-carousel__list__item__overlay">
-            Lorem ipsum dolor sit amet consectetur E
-          </div>
-        </div>
-        <div class="gallery-cell conference-carousel__list__item">
-          <img src="https://dummyimage.com/576x352/ccc/b6b7cc" />
-          <div class="conference-carousel__list__item__overlay">
-            Lorem ipsum dolor sit amet consectetur
-          </div>
-        </div>
-      </div>
       <section class="conference-bp-logo__container">
         <image
           class="conference-bp-logo__container__image"
@@ -667,7 +655,7 @@
         min-width: 4rem;
         width: 4rem;
         height: 4rem;
-        background-color: #3f4293;
+        background-color: #003aec;
         color: white;
         font-size: 1.75rem;
         font-style: normal;
@@ -702,15 +690,16 @@
         border-radius: 6.25rem;
         background: #008e53;
         color: white;
-        width: 14rem;
+        width: auto;
         padding: 12px 24px;
         gap: 0.5rem;
         border-radius: 100px;
         font-weight: 500;
         border: solid 10px #f0f0f0;
-        max-width: 365px;
         cursor: pointer;
         font-size: 1.25rem;
+        margin-bottom: 2.5rem;
+        margin-top: 2.5rem;
       }
 
       .conference-cta__button__wrapper {
@@ -806,9 +795,6 @@
         .conference-cta {
           margin-top: 1.25rem;
         }
-        .conference-cta__button {
-          width: 80%;
-        }
         .conference-cards__items__divider {
           display: none;
         }
@@ -833,7 +819,6 @@
           width: 80%;
         }
       }
-
 
       .gallery {
         background: #eee;
