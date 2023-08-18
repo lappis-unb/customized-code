@@ -713,24 +713,41 @@
           >Saiba o que está rolando sobre a 4ª Conferência da Juventude
         </span>
         <div class="conference-carousel__list">
-          <div class="conference-carousel__list__item">
-            <img src="https://dummyimage.com/576x352/ccc/b6b7cc" />
+          <a
+            class="conference-carousel__list__item"
+            href="juventude/f/53/posts/14"
+          >
+            <img
+              src="/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBbThEIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--c9fd69d072eb46f3f2f242f0ecddb524cccb1b6b/not%C3%ADcia_6.jpeg"
+            />
             <div class="conference-carousel__list__item__overlay">
-              Lorem ipsum dolor sit amet consectetur
+              Governo prepara participação do Brasil em Fórum da Juventude da
+              ONU
             </div>
-          </div>
-          <div class="conference-carousel__list__item">
-            <img src="https://dummyimage.com/576x352/ccc/b6b7cc" />
+          </a>
+          <a
+            class="conference-carousel__list__item"
+            href="juventude/f/53/posts/13"
+          >
+            <img
+              src="/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBbTREIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--ee926676cdebf7b3a6f489dfb43e970566df642b/not%C3%ADcia_5.jpeg"
+            />
             <div class="conference-carousel__list__item__overlay">
-              Lorem ipsum dolor sit amet consectetur E
+              Semana Nacional da Juventude começa com programação dentro dos
+              Diálogos Amazônicos
             </div>
-          </div>
-          <div class="conference-carousel__list__item">
-            <img src="https://dummyimage.com/576x352/ccc/b6b7cc" />
+          </a>
+          <a
+            class="conference-carousel__list__item"
+            href="juventude/f/53/posts/12"
+          >
+            <img
+              src="/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBbXdEIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--0ec17b01d05571aaaf817f4bc319483caa165b64/Not%C3%ADcia_3.jpeg"
+            />
             <div class="conference-carousel__list__item__overlay">
-              Lorem ipsum dolor sit amet consectetur
+              SNJ apresenta na ONU prioridades das juventudes brasileiras
             </div>
-          </div>
+          </a>
         </div>
       </section>
       <section class="conference-bp-logo__container">
@@ -1228,7 +1245,7 @@
           </a>
         </div>
       </section>
-      </div>
+    </div>
     <style type="text/css">
       .conference {
         background-color: white;
@@ -1364,11 +1381,14 @@
       }
       .conference-carousel__list {
         display: flex;
+        height: 327px;
         flex-direction: row;
+        gap: 0 3rem;
+        overflow: hidden;
       }
       .conference-carousel__list__item {
-        margin: 0 0.75rem;
         position: relative;
+        cursor: pointer;
       }
       .conference-carousel__list__item__overlay {
         background: rgba(0, 0, 0, 0.4);
@@ -1450,12 +1470,23 @@
           display: flex;
           flex-direction: column;
           gap: 1rem;
+          height: auto;
         }
         .conference-bp-logo__container__image {
           width: 80%;
         }
       }
 
+      .gallery {
+        background: #eee;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+      }
+
+      .gallery-cell {
+        margin-right: 10px;
+        counter-increment: gallery-cell;
+      }
     </style>`;
         const body = document.createElement("div");
         body.innerHTML = code;
