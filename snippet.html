@@ -640,25 +640,18 @@
       const dateRow = hero__container?.getElementsByClassName("row");
       const wrapper = document.querySelector(".wrapper");
       const main_canvas = document.querySelector(".off-canvas-wrapper");
-
-      // createCssClass(
-      //     ".changedWrapper { overflow: auto; }",
-      //     "changedWrapper",
-      //     ".off-canvas-wrapper"
-      //   );
       if (isOnConferenceLandingPage()) {
         if (hero) hero.classList.remove("hero");
         const desktopBannerUrl =
-          'url("/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBcHdEIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--176b4e7f2f3993fc231d8c5c9520ad487d0f3708/Banner_alta.jpg")';
-
+          "url('/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBcWdEIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--7a9f8c7e91fc8fcd403032fe422b44f614f4abb3/CNJuventude%20-%20(Banner%20Desktop)%20(2).png')";
         createCssClass(
-          `.changedHero {background-size: 1000px; background-repeat: no-repeat; background-position: top; }
-          @media (max-width: 768px) {.changedHero { background-size: contain; } }`,
+          `.changedHero {  background-size: contain;}
+          @media (min-width: 1284px) {.changedHero { background-image: ${desktopBannerUrl} !important; background-size: 1800px; background-repeat: no-repeat; background-position: top; } }`,
           "changedHero",
           ".extended"
         );
         createCssClass(
-          `.changedHeroContainer { height: 14rem;} @media (min-width: 768px) {.changedHeroContainer {height: 22rem;}}; 
+          `.changedHeroContainer { height: 14rem;} @media (min-width: 768px) {.changedHeroContainer {height: 40rem;}}; 
            @media (min-width: 1284px) {.changedHeroContainer { height: 33rem; } }`,
           "changedHeroContainer",
           ".hero__container"
@@ -1341,7 +1334,7 @@
         display: block;
       }
       .conference-cards__items__item__link {
-        color: #2670e8;
+        color: #003aec;
         font-size: 1rem;
         font-weight: 600;
         align-self: flex-end;
@@ -1359,8 +1352,8 @@
         box-shadow: 0px 1px 6px 0px rgba(0, 0, 0, 0.16);
         height: 4rem;
         border-radius: 6.25rem;
-        background: #008e53;
-        color: white;
+        background: #b0ff37;
+        color: #242020;
         width: auto;
         padding: 12px 24px;
         gap: 0.5rem;
@@ -1390,7 +1383,7 @@
         overflow: auto;
       }
       .conference-carousel__title {
-        color: #333;
+        color: #242020;
         font-size: 1.5rem;
         font-weight: 600;
         margin-bottom: 1.75rem;
@@ -1409,7 +1402,7 @@
         cursor: pointer;
       }
       .conference-carousel__list__item__overlay {
-        background: rgba(0, 0, 0, 0.4);
+        background: #24202046;
         height: 4.75rem;
         position: absolute;
         bottom: 0;
