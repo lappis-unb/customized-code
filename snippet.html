@@ -21,209 +21,229 @@
 
 /* --------------- CONSEA ---------------- */
 <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    // Verifica se a pagina atual eh a do consea
-    function is_consea() {
-      return (
-        window.location.href.indexOf(
+    document.addEventListener("DOMContentLoaded", function () {
+      // Verifica se a pagina atual eh a do consea
+      function is_consea() {
+        return (
+          window.location.href.indexOf(
+            "https://lab-decide.dataprev.gov.br/conferences/consea"
+          ) === 0
+        );
+      }
+
+      // Verifica se eh o questionario privado do processo
+      function is_quest() {
+        return (
+          window.location.href.indexOf(
+            "https://lab-decide.dataprev.gov.br/processes/consea"
+          ) === 0
+        );
+      }
+
+      function is_home() {
+        return (
+          window.location.href ===
           "https://lab-decide.dataprev.gov.br/conferences/consea"
-        ) === 0
-      );
-    }
-
-    // Verifica se eh o questionario privado do processo
-    function is_quest() {
-      return (
-        window.location.href.indexOf(
-          "https://lab-decide.dataprev.gov.br/processes/consea"
-        ) === 0
-      );
-    }
-
-    function is_home() {
-      return (
-        window.location.href ===
-        "https://lab-decide.dataprev.gov.br/conferences/consea"
-      );
-    }
-
-    function addClassAfterDelay(element, className) {
-      setTimeout(function () {
-        if (element) {
-          element.classList.add(className);
-        }
-      }, 1000); // 1 segundo
-    }
-
-    if (is_consea() || is_quest()) {
-      // Remove o banner superior
-      var banner = document.querySelector(".omnipresent-banner");
-      if (banner) {
-        banner.remove();
+        );
       }
 
-      // Remove ass datas e botoes de reunioes
-      var rows = document.querySelectorAll(".hero__container .row");
-      if (rows && rows.length > 1) {
-        rows[1].remove();
-      }
-
-      // Remove o subtitulo da pagina
-      var h2Element = document.querySelector(".hero__container h2");
-      if (h2Element) {
-        h2Element.remove();
-      }
-
-      // Remove o espacamento abaixo da imagem
-      var heroContainer = document.querySelector(".hero__container");
-      if (heroContainer) {
-        heroContainer.remove();
-      }
-
-      // Tira a imagem do bg e deixa como elemento se for a home
-      var sectionElement = document.querySelector("section.extended.hero");
-      if (sectionElement && is_home()) {
-        sectionElement.classList.remove("hero");
-
-        var bgImage = sectionElement.style.backgroundImage;
-        var imageURL = bgImage.slice(5, -2); // Remove "url('" no início e "')" no final
-
-        sectionElement.style.backgroundImage = "";
-
-        var imgElement = document.createElement("img");
-        imgElement.src = imageURL;
-        imgElement.classList.add("hero-background");
-
-        sectionElement.insertBefore(imgElement, sectionElement.firstChild);
-
-        sectionElement.style.backgroundColor = "white";
-        sectionElement.style.paddingTop = "75px";
-
-        var addCSS = function (styles) {
-          var css = document.createElement("style");
-          css.type = "text/css";
-
-          if (css.styleSheet) css.styleSheet.cssText = styles;
-          else css.appendChild(document.createTextNode(styles));
-
-          document.getElementsByTagName("head")[0].appendChild(css);
-        };
-
-        var styles = `
-          .extended.hero {
-            position: relative;
+      function addClassAfterDelay(element, className) {
+        setTimeout(function () {
+          if (element) {
+            element.classList.add(className);
           }
-
-          .hero-background {
-            width: 100%;
-            display: block;
-            z-index: -1;
-          }
-
-          .hero__container {
-            position: relative;
-            z-index: 1;
-          }
-
-          .hero::after {
-            display: none;
-          }
-        `;
-
-        addCSS(styles);
-      } else if (sectionElement) {
-        sectionElement.remove();
-
-        // Da um padding do topo da pagina pois o cabecalho tampa o titulo
-        var contentElement = document.getElementById("content");
-        if (contentElement) {
-          contentElement.style.paddingTop = "100px";
-        }
-      } else if (is_quest()) {
-        // Da um padding do topo da pagina pois o cabecalho tampa o titulo
-        var contentElement = document.getElementById("content");
-        if (contentElement) {
-          contentElement.style.paddingTop = "100px";
-        }
+        }, 1000); // 1 segundo
       }
 
-      // Remove o titulo da pagina
-      var h1Element = document.querySelector(
-        "h1.text-highlight.hero-heading.mb-none"
-      );
-      if (h1Element) {
-        h1Element.remove();
-      }
-
-      // Remove o botao de conferencias
-      var buttonElement = document.querySelector(
-        'a.button.button--sc.secondary.light.expanded[href="/conferences/consea/program/84"]'
-      );
-      if (buttonElement) {
-        buttonElement.remove();
-      }
-
-      // Remove a nav bar da conferencia
-      var navBar = document.querySelector(".process-nav");
-      if (navBar) {
-        navBar.remove();
-      }
-
-      // Apaga os itens da nav-bar do decidim
-      var divToRemove = document.querySelector(
-        '.show-for-medium[data-set="nav-holder"]'
-      );
-      if (divToRemove) {
-        divToRemove.remove();
-      }
-      // header do decidim
-      var header = document.querySelector(".header");
-      // Cria a nova nav-bar
-      if (header) {
-        var newNav = document.createElement("nav");
-        newNav.className = "navbar main-nav-consea";
-        newNav.setAttribute("aria-label", "Menu principal");
-
-        // Lista dos itens e links desejados
-        var menuItems = [
-          { text: "Início", link: "/conferences/consea" },
-          { text: "Inscrição Livre", link: "/conferences/consea/f/104/" },
-          { text: "Inscrição Privada", link: "/processes/consea/f/114/" },
-          { text: "Sobre", link: "/conferences/consea/f/88/" },
-          { text: "Notícias", link: "/conferences/consea/f/80/" },
-          { text: "Reuniões Estaduais", link: "/conferences/consea/f/84/" },
-        ];
-
-        if (isAllowed) {
-          console.log("eh valido");
-          menuItems.push(privateItems);
-        } else {
-          console.log("nao eh valido");
+      if (is_consea() || is_quest()) {
+        // Remove o banner superior
+        var banner = document.querySelector(".omnipresent-banner");
+        if (banner) {
+          banner.remove();
         }
 
-        console.log(menuItems);
+        // Remove ass datas e botoes de reunioes
+        var rows = document.querySelectorAll(".hero__container .row");
+        if (rows && rows.length > 1) {
+          rows[1].remove();
+        }
 
-        var ulElement = document.createElement("ul");
+        // Remove o subtitulo da pagina
+        var h2Element = document.querySelector(".hero__container h2");
+        if (h2Element) {
+          h2Element.remove();
+        }
 
-        // Loop para criar os itens <li> e <a> e anexá-los ao <ul>
-        menuItems.forEach(function (item) {
-          var liElement = document.createElement("li");
-          liElement.classList.add("main-nav__link");
-          liElement.classList.add("main-nav__link__color");
+        // Remove o espacamento abaixo da imagem
+        var heroContainer = document.querySelector(".hero__container");
+        if (heroContainer) {
+          heroContainer.remove();
+        }
 
-          var aElement = document.createElement("a");
-          aElement.href = item.link;
-          aElement.textContent = item.text;
+        // Tira a imagem do bg e deixa como elemento se for a home
+        var sectionElement = document.querySelector("section.extended.hero");
+        if (sectionElement && is_home()) {
+          sectionElement.classList.remove("hero");
 
-          liElement.appendChild(aElement);
-          ulElement.appendChild(liElement);
-        });
+          var bgImage = sectionElement.style.backgroundImage;
+          var imageURL = bgImage.slice(5, -2); // Remove "url('" no início e "')" no final
 
-        newNav.appendChild(ulElement);
-        header.appendChild(newNav);
+          sectionElement.style.backgroundImage = "";
+
+          var imgElement = document.createElement("img");
+          imgElement.src = imageURL;
+          imgElement.classList.add("hero-background");
+
+          sectionElement.insertBefore(imgElement, sectionElement.firstChild);
+
+          sectionElement.style.backgroundColor = "white";
+          sectionElement.style.paddingTop = "75px";
+
+          var addCSS = function (styles) {
+            var css = document.createElement("style");
+            css.type = "text/css";
+
+            if (css.styleSheet) css.styleSheet.cssText = styles;
+            else css.appendChild(document.createTextNode(styles));
+
+            document.getElementsByTagName("head")[0].appendChild(css);
+          };
+
+          var styles = `
+            .extended.hero {
+              position: relative;
+            }
+
+            .hero-background {
+              width: 100%;
+              display: block;
+              z-index: -1;
+            }
+
+            .hero__container {
+              position: relative;
+              z-index: 1;
+            }
+
+            .hero::after {
+              display: none;
+            }
+          `;
+
+          addCSS(styles);
+        } else if (sectionElement) {
+          sectionElement.remove();
+
+          // Da um padding do topo da pagina pois o cabecalho tampa o titulo
+          var contentElement = document.getElementById("content");
+          if (contentElement) {
+            contentElement.style.paddingTop = "100px";
+          }
+        } else if (is_quest()) {
+          // Da um padding do topo da pagina pois o cabecalho tampa o titulo
+          var contentElement = document.getElementById("content");
+          if (contentElement) {
+            contentElement.style.paddingTop = "100px";
+          }
+        }
+
+        // Remove o titulo da pagina
+        var h1Element = document.querySelector(
+          "h1.text-highlight.hero-heading.mb-none"
+        );
+        if (h1Element) {
+          h1Element.remove();
+        }
+
+        // Remove o botao de conferencias
+        var buttonElement = document.querySelector(
+          'a.button.button--sc.secondary.light.expanded[href="/conferences/consea/program/84"]'
+        );
+        if (buttonElement) {
+          buttonElement.remove();
+        }
+
+        // Remove a nav bar da conferencia
+        var navBar = document.querySelector(".process-nav");
+        if (navBar) {
+          navBar.remove();
+        }
+
+        // Apaga os itens da nav-bar do decidim
+        var divToRemove = document.querySelector(
+          '.show-for-medium[data-set="nav-holder"]'
+        );
+        if (divToRemove) {
+          divToRemove.remove();
+        }
+  <<<<<<< HEAD
+  =======
+
+  >>>>>>> parent of d08784a (Adicionando requisição de nickname)
+        // header do decidim
+        var header = document.querySelector(".header");
+        // Cria a nova nav-bar
+        if (header) {
+          var newNav = document.createElement("nav");
+          newNav.className = "navbar main-nav-consea";
+  <<<<<<< HEAD
+          newNav.setAttribute("aria-label", "Menu principal");
+
+          // Lista dos itens e links desejados
+          var menuItems = [
+            { text: "Início", link: "/conferences/consea" },
+            { text: "Inscrição Livre", link: "/conferences/consea/f/104/" },
+            { text: "Inscrição Privada", link: "/processes/consea/f/114/" },
+            { text: "Sobre", link: "/conferences/consea/f/88/" },
+            { text: "Notícias", link: "/conferences/consea/f/80/" },
+            { text: "Reuniões Estaduais", link: "/conferences/consea/f/84/" },
+          ];
+
+          if (isAllowed) {
+            console.log("eh valido");
+            menuItems.push(privateItems);
+          } else {
+            console.log("nao eh valido");
+          }
+
+          console.log(menuItems);
+
+          var ulElement = document.createElement("ul");
+  =======
+          newNav.setAttribute('aria-label', 'Menu principal');
+
+          // Lista dos itens e links desejados
+          var menuItems = [
+            { text: 'Início', link: '/conferences/consea' },
+            { text: 'Inscrição Livre', link: '/conferences/consea/f/104/' },
+            { text: 'Inscrição Privada', link: '/processes/consea/f/114/' },
+            { text: 'Sobre', link: '/conferences/consea/f/88/' },
+            { text: 'Notícias', link: '/conferences/consea/f/80/' },
+            { text: 'Reuniões Estaduais', link: '/conferences/consea/f/84/' }
+          ];
+
+          var ulElement = document.createElement('ul');
+  >>>>>>> parent of d08784a (Adicionando requisição de nickname)
+
+          // Loop para criar os itens <li> e <a> e anexá-los ao <ul>
+          menuItems.forEach(function (item) {
+            var liElement = document.createElement("li");
+            liElement.classList.add("main-nav__link");
+            liElement.classList.add("main-nav__link__color");
+
+            var aElement = document.createElement("a");
+            aElement.href = item.link;
+            aElement.textContent = item.text;
+
+            liElement.appendChild(aElement);
+            ulElement.appendChild(liElement);
+          });
+
+          newNav.appendChild(ulElement);
+          header.appendChild(newNav);
+        }
       }
-    }
-  });
+    });
 </script>
 /* ---------------- Fim do codigo da CONSEA ----------------- */
 
