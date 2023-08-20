@@ -296,7 +296,6 @@
   const chooseProgramId = 1;
   // Variável referente ao ID da proposta, utilizada no menu-tab "Fazer proposta ao governo" da aplicação.
   const makeProposalId = 2;
-
   var CreateDOMObjects = () => {
     const DOM = `
           <div vw class="enabled">
@@ -332,7 +331,6 @@
       false
     );
   };
-
   var ImportScriptFile = () => {
     let script = document.createElement("script");
     script.src = "https://vlibras.gov.br/app/vlibras-plugin.js";
@@ -341,7 +339,6 @@
     };
     document.body.appendChild(script);
   };
-
   function definirUrlLogOut() {
     var logOutUrl;
     var hostname = window.location.hostname;
@@ -368,7 +365,6 @@
       });
     }
   }
-
   (() => {
     window.addEventListener("DOMContentLoaded", (e) => {
       ImportScriptFile();
@@ -380,7 +376,6 @@
       insertConferenceElements();
     });
   })();
-
   function capitalizarOnBlur(elementId) {
     let element = document.getElementById(elementId);
     if (element != undefined && element != null) {
@@ -417,9 +412,7 @@
       li.appendChild(a);
       return li;
     };
-
     const removeElement = (element) => element.parentNode.removeChild(element);
-
     const navbarUl = document.querySelector(".main-nav ul");
     const initLi = document.querySelector('.main-nav__link a[href="/"]');
     const processesLi = document.querySelector(
@@ -432,11 +425,9 @@
     const calendarLi = document.querySelector(
       '.main-nav__link a[href="/calendar"]'
     );
-
     const conferencesLi = document.querySelector(
       '.main-nav__link a[href="/conferences"]'
     );
-
     if (initLi) removeElement(initLi.parentElement);
     if (processesLi) removeElement(processesLi.parentElement);
     if (pagesLi) removeElement(pagesLi.parentElement);
@@ -512,7 +503,6 @@
     ) {
       programContentContainer.appendChild(linkToAllPrograms);
     }
-
     const proposalTextNumber = document.querySelector("#proposals-count");
     if (
       url.includes(`/processes/programas/f/${chooseProgramId}/`) &&
@@ -523,10 +513,8 @@
         "programas"
       );
     }
-
     const urlProgram = window.location.href;
     const oldLink = document.querySelector(".ql-editor-display a");
-
     if (
       oldLink &&
       urlProgram.includes(`/processes/programas/f/1/proposals/43`)
@@ -537,7 +525,6 @@
       newLink.textContent = "https://www.gov.br/mda/pt-br";
       oldLink.parentNode.replaceChild(newLink, oldLink);
     }
-
     function updateContentMarginTop() {
       const header = document.querySelector(".header");
       const content = document.querySelector("#content");
