@@ -194,6 +194,15 @@
           { text: "Reuniões Estaduais", link: "/conferences/consea/f/84/" },
         ];
 
+        if (isAllowed) {
+          console.log("eh valido");
+          menuItems.push(privateItems);
+        } else {
+          console.log("nao eh valido");
+        }
+
+        console.log(menuItems);
+
         var ulElement = document.createElement("ul");
 
         // Loop para criar os itens <li> e <a> e anexá-los ao <ul>
