@@ -26,12 +26,6 @@
     function is_home() {
       return window.location.href.indexOf("https://lab-decide.dataprev.gov.br/conferences/consea") === 0
     }
-
-    // Verifica se eh o questionario privado do processo
-    function is_quest(){
-      return window.location.href.indexOf("https://lab-decide.dataprev.gov.br/processes/consea/f/114/") === 0;
-    }
-
     function addClassAfterDelay(element, className) {
       setTimeout(function() {
         if(element) {
