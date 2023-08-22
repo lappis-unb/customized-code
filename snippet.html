@@ -359,7 +359,7 @@
         const desktopBannerUrl =
           "url('/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBcWdEIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--7a9f8c7e91fc8fcd403032fe422b44f614f4abb3/CNJuventude%20-%20(Banner%20Desktop)%20(2).png')";
         createCssClass(
-          `.changedHero {  background-size: contain;}
+          `.changedHero {    background-repeat: no-repeat;  background-size: contain;}
           @media (min-width: 1284px) {.changedHero { background-image: ${desktopBannerUrl} !important; background-size: 1800px; background-repeat: no-repeat; background-position: top; } }`,
           "changedHero",
           ".extended"
