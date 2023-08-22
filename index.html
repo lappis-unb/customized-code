@@ -78,10 +78,25 @@
         </a>
       </div>
     </section>
-    <section class="conference-bp-logo__container">
-      <image class="conference-bp-logo__container__image"
-        src="https://brasilparticipativo.presidencia.gov.br/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBZ0VpIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--83a2abd12f5092b982cfdec5938eb1296f17c1d2/novo_bp_logo.png"
-        alt="logo-brasil-participativo" />
+    <section class="conference-organizers">
+      <span class="conference-organizers__title">Organizadores</span>
+      <span class="conference-organizers__container">
+        <a href="https://www.gov.br/participamaisbrasil/conjuve">
+          <image class="conference-organizers__container__image"
+            src="/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBcmdEIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--b622b01f2ac31ca2eb2bab7e71f29fc6520c4d77/photo_2023-08-22_13-27-55.jpg"
+            alt="logo-brasil-participativo" />
+        </a>
+        <a href="https://lab-decide.dataprev.gov.br/">
+          <image class="conference-organizers__container__image"
+            src="https://brasilparticipativo.presidencia.gov.br/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBZ0VpIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--83a2abd12f5092b982cfdec5938eb1296f17c1d2/novo_bp_logo.png"
+            alt="logo-brasil-participativo" />
+        </a>
+        <a href="https://www.finatec.org.br">
+          <image class="conference-organizers__container__image"
+            src="/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBcmNEIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--48ad33dde44d148557bfa676230a661883c15f91/logo30anos-finatec-p.png"
+            alt="logo-brasil-participativo" />
+        </a>
+      </span>
     </section>
     <section class="conference-logos__section">
       <div class="conference-logos__section__container">
@@ -686,19 +701,33 @@
       padding: 0.5rem 2.25rem;
     }
 
-    /* logos */
-    .conference-bp-logo__container {
-      width: 100%;
+    .conference-organizers {
       display: flex;
-      justify-content: center;
-      margin-top: 5rem;
-      margin-bottom: 2.5rem;
+      flex-direction: column;
     }
 
-    .conference-bp-logo__container__image {
-      max-height: 9.5rem;
-      height: 9.5rem;
+    .conference-organizers__title {
+      color: #242020;
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-top: 2.5rem;
+      text-align: center;
+    }
+
+    .conference-organizers__container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      margin-top: 2.5rem;
+      margin-bottom: 2.5rem;
+      gap: 6rem;
+    }
+
+    .conference-organizers__container__image {
+      width: 25rem;
       object-fit: contain;
+      cursor: pointer;
     }
 
     .conference-logos__section {
@@ -781,7 +810,7 @@
         font-size: 1rem;
       }
 
-      .conference-bp-logo__container__image {
+      .conference-organizers__container__image {
         width: 80%;
       }
     }
