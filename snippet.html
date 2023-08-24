@@ -190,24 +190,12 @@
           path: `/conferences/juventude/f/56/`,
         },
         {
-          label: "Organize uma etapa",
+          label: "Organize sua etapa",
           path: `/conferences/juventude/f/107/meetings/new`,
         },
         {
-          label: "Novidades",
+          label: "Notícias",
           path: `/conferences/juventude/f/53/`,
-        },
-        {
-          label: "Propostas",
-          path: `/processes/juventude/f/77/`,
-        },
-        {
-          label: "Calendário",
-          path: `/conferences/juventude/program/107/`,
-        },
-        {
-          label: "Registre sua reunião",
-          path: `/processes/juventude/f/113/surveys/16`,
         },
       ];
       items.forEach((item) =>
@@ -375,9 +363,9 @@
         if (dateRow[dateRow.length - 1]) dateRow[dateRow.length - 1].remove();
         if (wrapper) wrapper.remove();
         const code = `  <div class="conference">
-    <form class="conference-cta" action="juventude/program/107/">
+    <form class="conference-cta" action="juventude/f/107/meetings/new">
       <button type="submit" class="conference-cta__button">
-        <span class="conference-cta__button__wrapper__label">Confira o calendário das conferências</span>
+        <span class="conference-cta__button__wrapper__label">Organize uma etapa</span>
       </button>
     </form>
     <section class="conference-cards">
@@ -400,16 +388,6 @@
             </div>
           </span>
           <a href="/processes/juventude/f/113/surveys/16" class="conference-cards__items__item__link">Ler mais</a>
-        </div>
-        <div class="conference-cards__items__divider"></div>
-        <div class="conference-cards__items__item">
-          <span class="conference-cards__items__item__texts">
-            <span class="fa-solid fa-check-to-slot conference-cards__items__item__texts__icon"></span>
-            <div class="conference-cards__items__item__texts__label">
-              Envie uma proposta
-            </div>
-          </span>
-          <a href="/processes/juventude/f/77/" class="conference-cards__items__item__link">Ler mais</a>
         </div>
       </div>
     </section>
@@ -448,11 +426,6 @@
         <a href="https://www.gov.br/participamaisbrasil/conjuve">
           <image class="conference-organizers__container__image"
             src="/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBcmdEIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--b622b01f2ac31ca2eb2bab7e71f29fc6520c4d77/photo_2023-08-22_13-27-55.jpg"
-            alt="logo-brasil-participativo" />
-        </a>
-        <a href="https://lab-decide.dataprev.gov.br/">
-          <image class="conference-organizers__container__image"
-            src="https://brasilparticipativo.presidencia.gov.br/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBZ0VpIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--83a2abd12f5092b982cfdec5938eb1296f17c1d2/novo_bp_logo.png"
             alt="logo-brasil-participativo" />
         </a>
         <a href="https://www.finatec.org.br">
@@ -995,8 +968,8 @@
       box-shadow: 0px 1px 6px 0px #24202011;
       height: 4rem;
       border-radius: 6.25rem;
-      background: #b0ff37;
-      color: #242020;
+      background: #003aec;
+      color: white;
       width: auto;
       padding: 12px 24px;
       gap: 0.5rem;
@@ -1075,6 +1048,7 @@
       font-size: 1.5rem;
       font-weight: 600;
       margin-top: 2.5rem;
+      margin-bottom: 2.5rem;
       text-align: center;
     }
 
@@ -1084,12 +1058,11 @@
       align-items: center;
 
       margin-top: 2.5rem;
-      margin-bottom: 2.5rem;
       gap: 6rem;
     }
 
     .conference-organizers__container__image {
-      width: 25rem;
+      width: 12rem;
       object-fit: contain;
       cursor: pointer;
     }
@@ -1097,6 +1070,8 @@
     .conference-logos__section {
       background-color: var(---white);
       padding: 2rem 1rem;
+      margin-top: 5rem;
+
     }
 
     .conference-logos__section__container span.external-link-indicator {
@@ -1170,7 +1145,6 @@
       }
 
       .conference-carousel__list__item__overlay {
-
         font-size: 1rem;
       }
 
@@ -1180,6 +1154,7 @@
         justify-content: center;
         align-items: center;
         margin: 0 auto;
+        width: 60%;
       }
 
     }
@@ -1188,116 +1163,120 @@
         body.innerHTML = code;
         hero__container.after(body);
       } else if (isOnConferenceAboutPage()) {
-        const code = `    <section class="conference-about">
-      <div class="conference-about__title">
-        <h1>Sobre</h1>
-        <hr class="conference-about__divider" />
-      </div>
-      <div class="conference-about__list">
-        <div class="conference-about__list__content" id="aboutContent"></div>
-      </div>
-    </section>
-    <style type="text/css">
-      .conference-about {
-        font-family: Rawline;
-        padding: 48px 64px;
-        margin: 0 auto;
-        max-width: 62rem;
-      }
+        const code = `  <section class="conference-about">
+    <div class="conference-about__title">
+      <h1>Sobre</h1>
+      <hr class="conference-about__divider" />
+    </div>
+    <div class="conference-about__list">
+      <div class="conference-about__list__content" id="aboutContent"></div>
+    </div>
+  </section>
+  <style type="text/css">
+    .conference-about {
+      font-family: Rawline;
+      padding: 48px 64px;
+      margin: 0 auto;
+      max-width: 62rem;
+    }
 
-      .conference-about__title {
-        font-family: Rawline;
-      }
-      .conference-about__divider {
-        margin: 4px;
-      }
+    .conference-about__title {
+      font-family: Rawline;
+    }
 
-      .conference-about__list {
-        display: flex;
-        flex-direction: row;
-      }
+    .conference-about__divider {
+      margin: 4px;
+    }
 
-      .conference-about__list__title {
-        font-size: 1.2rem;
-        margin-top: 1rem;
-        font-weight: bold;
-      }
+    .conference-about__list {
+      display: flex;
+      flex-direction: row;
+    }
 
-      .conference-about__list__content {
-        display: flex;
-        flex-direction: row;
-        gap: 30px;
-        flex-wrap: wrap;
-        justify-content: flex-start;
-      }
+    .conference-about__list__title {
+      font-size: 1.2rem;
+      margin-top: 1rem;
+      font-weight: bold;
+    }
 
-      .conference-about__list__content__title {
-        font-size: 1.1rem;
-      }
+    .conference-about__list__content {
+      display: flex;
+      flex-direction: row;
+      gap: 30px;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+    }
 
-      .conference-about__list__content__item {
-        display: flex;
-        flex-direction: column;
-        box-shadow: 0px 1px 6px #24202026;
-        padding: 24px 16px;
-        list-style-position: outside;
-        max-width: 275px;
-        min-width: 275px;
-        min-height: 420px;
-        margin: 0;
-        margin-top: 16px;
-        flex: 1 0 calc(33.33% - 20px);
-      }
+    .conference-about__list__content__title {
+      font-size: 1.1rem;
+    }
 
-      .conference-about__list__content__item__title {
-        font-weight: 400;
-        margin: 0;
-        margin-bottom: 8px;
-        color: #242020;
-      }
+    .conference-about__list__content__item {
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0px 1px 6px #24202026;
+      padding: 24px 16px;
+      list-style-position: outside;
+      max-width: 275px;
+      min-width: 275px;
+      min-height: 420px;
+      margin: 0;
+      margin-top: 16px;
+      flex: 1 0 calc(33.33% - 20px);
+    }
 
-      .conference-about__list__content__item__content {
-        font-weight: 400;
-        margin: 0;
-        margin-bottom: 8px;
-        color: #242020;
-      }
+    .conference-about__list__content__item__title {
+      font-weight: 400;
+      margin: 0;
+      margin-bottom: 8px;
+      color: #242020;
+    }
 
-      .conference-about__list__content__item a {
-        color: #242020;
-        text-decoration: none;
-      }
+    .conference-about__list__content__item__content {
+      font-weight: 400;
+      margin: 0;
+      margin-bottom: 8px;
+      color: #242020;
+    }
 
-      .conference-about__list__content__item__link {
-        margin-left: 1.25rem;
-        list-style-position: outside;
-        color: #016df0;
-        cursor: pointer;
-        list-style-type: disc;
-      }
-      .conference-about__list__content__item__link:hover {
-        color: #004aa4;
-        text-decoration: underline;
-      }
-      .conference-about__list__content__item__link::marker {
-        color: #242020;
-      }
-      .conference-about__back-button {
-        height: 2rem;
-        width: 4rem;
-        border-radius: 0.5rem;
-        border: none;
-        background-color: #242020;
-        color: white;
-        font-weight: bold;
-        cursor: pointer;
-      }
+    .conference-about__list__content__item a {
+      color: #242020;
+      text-decoration: none;
+    }
 
-      .conference-about__back-button:hover {
-        color: #242020;
-        background-color: #ccc;
-      }
-    </style>`
+    .conference-about__list__content__item__link {
+      margin-left: 1.25rem;
+      list-style-position: outside;
+      color: #016df0;
+      cursor: pointer;
+      list-style-type: disc;
+    }
+
+    .conference-about__list__content__item__link:hover {
+      color: #004aa4;
+      text-decoration: underline;
+    }
+
+    .conference-about__list__content__item__link::marker {
+      color: #242020;
+    }
+
+    .conference-about__back-button {
+      height: 2rem;
+      width: 4rem;
+      border-radius: 0.5rem;
+      border: none;
+      background-color: #242020;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .conference-about__back-button:hover {
+      color: #242020;
+      background-color: #ccc;
+    }
+  </style>`
         const body = document.createElement("div");
         body.innerHTML = code;
         hero?.remove();
@@ -1318,6 +1297,30 @@
     }
   });
   const items = [
+    {
+      id: "conference-about__2",
+      title: "Documentos",
+      content: [
+        {
+          id: "conference-about__2__0",
+          title: "Decreto",
+          text: [{
+            link: true,
+            label: "https://www.in.gov.br/en/web/dou/-/decreto-n-11.619-de-25-de-julho-de-2023-498922757",
+          }],
+          link: true
+        },
+        {
+          id: "conference-about__2__1",
+          title: "Regimento Interno",
+          text: [{
+            link: true,
+            label: "https://www.in.gov.br/web/dou/-/resolucao-con/conjuve/snj/sgpr/pr-n-1-de-11-de-agosto-de-2023-502722391",
+          }],
+
+        },
+      ],
+    },
     {
       id: "conference-about__0",
       title: "Sobre a Conferência",
@@ -1403,30 +1406,6 @@
           id: "conference-about__0__8",
           title: "Participei de uma etapa. E agora?",
           text: "X",
-        },
-      ],
-    },
-    {
-      id: "conference-about__2",
-      title: "Documentos",
-      content: [
-        {
-          id: "conference-about__2__0",
-          title: "Decreto",
-          text: [{
-            link: true,
-            label: "https://www.in.gov.br/en/web/dou/-/decreto-n-11.619-de-25-de-julho-de-2023-498922757",
-          }],
-          link: true
-        },
-        {
-          id: "conference-about__2__1",
-          title: "Regimento Interno",
-          text: [{
-            link: true,
-            label: "https://www.in.gov.br/web/dou/-/resolucao-con/conjuve/snj/sgpr/pr-n-1-de-11-de-agosto-de-2023-502722391",
-          }],
-
         },
       ],
     },

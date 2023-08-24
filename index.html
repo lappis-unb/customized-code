@@ -11,9 +11,9 @@
 
 <body>
   <div class="conference">
-    <form class="conference-cta" action="juventude/program/107/">
+    <form class="conference-cta" action="juventude/f/107/meetings/new">
       <button type="submit" class="conference-cta__button">
-        <span class="conference-cta__button__wrapper__label">Confira o calendário das conferências</span>
+        <span class="conference-cta__button__wrapper__label">Organize uma etapa</span>
       </button>
     </form>
     <section class="conference-cards">
@@ -36,16 +36,6 @@
             </div>
           </span>
           <a href="/processes/juventude/f/113/surveys/16" class="conference-cards__items__item__link">Ler mais</a>
-        </div>
-        <div class="conference-cards__items__divider"></div>
-        <div class="conference-cards__items__item">
-          <span class="conference-cards__items__item__texts">
-            <span class="fa-solid fa-check-to-slot conference-cards__items__item__texts__icon"></span>
-            <div class="conference-cards__items__item__texts__label">
-              Envie uma proposta
-            </div>
-          </span>
-          <a href="/processes/juventude/f/77/" class="conference-cards__items__item__link">Ler mais</a>
         </div>
       </div>
     </section>
@@ -84,11 +74,6 @@
         <a href="https://www.gov.br/participamaisbrasil/conjuve">
           <image class="conference-organizers__container__image"
             src="/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBcmdEIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--b622b01f2ac31ca2eb2bab7e71f29fc6520c4d77/photo_2023-08-22_13-27-55.jpg"
-            alt="logo-brasil-participativo" />
-        </a>
-        <a href="https://lab-decide.dataprev.gov.br/">
-          <image class="conference-organizers__container__image"
-            src="https://brasilparticipativo.presidencia.gov.br/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBZ0VpIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--83a2abd12f5092b982cfdec5938eb1296f17c1d2/novo_bp_logo.png"
             alt="logo-brasil-participativo" />
         </a>
         <a href="https://www.finatec.org.br">
@@ -631,8 +616,8 @@
       box-shadow: 0px 1px 6px 0px #24202011;
       height: 4rem;
       border-radius: 6.25rem;
-      background: #b0ff37;
-      color: #242020;
+      background: #003aec;
+      color: white;
       width: auto;
       padding: 12px 24px;
       gap: 0.5rem;
@@ -711,6 +696,7 @@
       font-size: 1.5rem;
       font-weight: 600;
       margin-top: 2.5rem;
+      margin-bottom: 2.5rem;
       text-align: center;
     }
 
@@ -720,12 +706,11 @@
       align-items: center;
 
       margin-top: 2.5rem;
-      margin-bottom: 2.5rem;
       gap: 6rem;
     }
 
     .conference-organizers__container__image {
-      width: 25rem;
+      width: 12rem;
       object-fit: contain;
       cursor: pointer;
     }
@@ -733,6 +718,8 @@
     .conference-logos__section {
       background-color: var(---white);
       padding: 2rem 1rem;
+      margin-top: 5rem;
+
     }
 
     .conference-logos__section__container span.external-link-indicator {
@@ -806,7 +793,6 @@
       }
 
       .conference-carousel__list__item__overlay {
-
         font-size: 1rem;
       }
 
@@ -816,6 +802,7 @@
         justify-content: center;
         align-items: center;
         margin: 0 auto;
+        width: 60%;
       }
 
     }
