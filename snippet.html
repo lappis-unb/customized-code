@@ -328,12 +328,23 @@
     );
   }
   function isOnConferenceBlogPage() {
-    return window.location.pathname === "/conferences/juventude/f/53/";
+    return window.location.pathname.includes("/conferences/juventude/f/53/");
   }
   function isOnConferenceAboutPage() {
     return window.location.pathname === "/conferences/juventude/f/56/";
   }
+  function isOnConferenceOrganizeStep() {
+    return window.location.pathname === "/conferences/juventude/f/107/meetings/new";
+  }
+  function isOnPlatformLogin() {
+    console.log(window.location.pathname)
+    return window.location.pathname === "/users/sign_in";
+  }
   function insertConferenceElements() {
+    if (isOnPlatformLogin()) {
+      const bar = document.getElementsByClassName("flash callout alert")[0]
+      if (bar) bar.style.display = 'none';
+    }
     if (isOnConferenceDomain()) {
       const originalMenu = document.querySelector(".process-nav");
       if (originalMenu) originalMenu.remove();
@@ -342,6 +353,17 @@
       const dateRow = hero__container?.getElementsByClassName("row");
       const wrapper = document.querySelector(".wrapper");
       const main_canvas = document.querySelector(".off-canvas-wrapper");
+      if (isOnConferenceOrganizeStep()) {
+        document.querySelector(".section-heading").innerHTML = "Organize uma etapa";
+      }
+
+      if (isOnConferenceBlogPage()) {
+        const author = document.querySelector(".card__author");
+        const authorData = document.querySelector(".author-data");
+        if (author) author.style.display = 'none';
+        if (authorData) authorData.style.display = 'none';
+      }
+
       if (isOnConferenceLandingPage()) {
         if (hero) hero.classList.remove("hero");
         const desktopBannerUrl =
