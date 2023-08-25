@@ -190,7 +190,7 @@
           path: `/conferences/juventude/f/56/`,
         },
         {
-          label: "Organize sua etapa",
+          label: "Organize uma etapa",
           path: `/conferences/juventude/f/107/meetings/new`,
         },
         {
@@ -396,7 +396,7 @@
           <span class="conference-cards__items__item__texts">
             <span class="fa-solid fa-question conference-cards__items__item__texts__icon"></span>
             <div class="conference-cards__items__item__texts__label">
-              Tire suas dúvidas e entenda como participar da Conferência
+              Perguntas frequentes
             </div>
           </span>
           <a href="juventude/f/56/" class="conference-cards__items__item__link">Ler mais</a>
@@ -406,10 +406,10 @@
           <span class="conference-cards__items__item__texts">
             <span class="fa-solid fa-list conference-cards__items__item__texts__icon"></span>
             <div class="conference-cards__item__texts__label">
-              Cadastre a ata da etapa que você organizou
+              Organize uma etapa
             </div>
           </span>
-          <a href="/processes/juventude/f/113/surveys/16" class="conference-cards__items__item__link">Ler mais</a>
+          <a href="juventude/f/107/meetings/new" class="conference-cards__items__item__link">Ler mais</a>
         </div>
       </div>
     </section>
@@ -1903,14 +1903,13 @@
       itemTitle.classList.add("conference-about__list__title");
 
       result.text.forEach((contentItem) => {
-        if (contentItem.link) {
+        if (contentItem.link === true) {
           let itemContent = document.createElement("a");
           itemContent.textContent = contentItem.label;
           itemContent.href = contentItem.label;
           itemContent.target = "_blank"
           pageContent.appendChild(itemContent);
         } else {
-
           let itemContent = document.createElement("div");
           itemContent.textContent = contentItem;
           pageContent.appendChild(itemContent);
@@ -4306,5 +4305,9 @@
 
   .process-card #first-card {
     width: 210px;
+  }
+
+  .card__author {
+    display: none;
   }
 </style>
