@@ -1,0 +1,752 @@
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet"
+    href="https://cdngovbr-ds.estaleiro.serpro.gov.br/design-system/fonts/rawline/css/rawline.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+
+<body>
+  <section class="conference-about">
+    <div class="conference-about__title">
+      <h1>Sobre</h1>
+      <hr class="conference-about__divider" />
+    </div>
+    <div class="conference-about__list">
+      <div class="conference-about__list__content" id="aboutContent"></div>
+    </div>
+  </section>
+  <style type="text/css">
+    .conference-about {
+      font-family: Rawline;
+      padding: 48px 64px;
+      margin: 0 auto;
+      max-width: 62rem;
+    }
+
+    .conference-about__title {
+      font-family: Rawline;
+    }
+
+    .conference-about__divider {
+      margin: 4px;
+    }
+
+    .conference-about__list {
+      display: flex;
+      flex-direction: row;
+    }
+
+    .conference-about__list__title {
+      font-size: 1.2rem;
+      margin-top: 1rem;
+      font-weight: bold;
+    }
+
+    .conference-about__list__content {
+      display: flex;
+      flex-direction: row;
+      gap: 30px;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+    }
+
+    .conference-about__list__content__title {
+      font-size: 1.1rem;
+    }
+
+    .conference-about__list__content__item {
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0px 1px 6px #24202026;
+      padding: 24px 16px;
+      list-style-position: outside;
+      max-width: 275px;
+      min-width: 275px;
+      min-height: 420px;
+      margin: 0;
+      margin-top: 16px;
+      flex: 1 0 calc(33.33% - 20px);
+    }
+
+    .conference-about__list__content__item__title {
+      font-weight: 400;
+      margin: 0;
+      margin-bottom: 8px;
+      color: #242020;
+    }
+
+    .conference-about__list__content__item__content {
+      font-weight: 400;
+      margin: 0;
+      margin-bottom: 8px;
+      color: #242020;
+    }
+
+    .conference-about__list__content__item a {
+      color: #242020;
+      text-decoration: none;
+    }
+
+    .conference-about__list__content__item__link {
+      margin-left: 1.25rem;
+      list-style-position: outside;
+      color: #016df0;
+      cursor: pointer;
+      list-style-type: disc;
+    }
+
+    .conference-about__list__content__item__link:hover {
+      color: #004aa4;
+      text-decoration: underline;
+    }
+
+    .conference-about__list__content__item__link::marker {
+      color: #242020;
+    }
+
+    .conference-about__back-button {
+      height: 2rem;
+      width: 4rem;
+      border-radius: 0.5rem;
+      border: none;
+      background-color: #242020;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .conference-about__back-button:hover {
+      color: #242020;
+      background-color: #ccc;
+    }
+  </style>
+  <script>
+    const items = [
+      {
+        id: "conference-about__2",
+        title: "Documentos",
+        content: [
+          {
+            id: "conference-about__2__0",
+            title: "Decreto",
+            text: [{
+              link: true,
+              label: "https://www.in.gov.br/en/web/dou/-/decreto-n-11.619-de-25-de-julho-de-2023-498922757",
+            }],
+            link: true
+          },
+          {
+            id: "conference-about__2__1",
+            title: "Regimento Interno",
+            text: [{
+              link: true,
+              label: "https://www.in.gov.br/web/dou/-/resolucao-con/conjuve/snj/sgpr/pr-n-1-de-11-de-agosto-de-2023-502722391",
+            }],
+
+          },
+        ],
+      },
+      {
+        id: "conference-about__0",
+        title: "Sobre a Conferência",
+        content: [
+          {
+            id: "conference-about__0__0",
+            title: "O que são as Conferências Nacionais da Juventude?",
+            text: [
+              "A Conferência Nacional da Juventude é expressão do direito à participação social. Atualmente em sua 4ª Conferência essa instância de participação social já passou por inúmeros momentos de construção e debate acerca dos direitos da juventude. No entanto, desde 2015 não há um espaço como este e os canais de escuta abertos para a população jovem foram reduzidos. No entanto, em sua 4ª edição, a Conferência Nacional pretende reunir jovens delegados de todos os estados do Brasil, respeitando e valorizando a diversidade deste país continental.",
+              "A Conferência Nacional é a última etapa de um longo processo de organização de Conferências municipais, regionais, livres, territoriais e digitais.",
+            ],
+          },
+          {
+            id: "conference-about__0__1",
+            title:
+              "Como será a etapa nacional da 4ª Conferência Nacional da Juventude?",
+            text: [
+              "A etapa Nacional da 4ª Conferência Nacional da Juventude acontecerá em Brasília-DF, de 14 a 17 de dezembro de 2023. Reunirá jovens delegados de todos os estados do Brasil. Durante a programação acontecerão atividades culturais, exposições e plenárias para debater os eixos do Estatuto da Juventude e outras temáticas importantes para a juventude brasileira, além de paineis expositivos relevantes.",
+            ],
+          },
+          {
+            id: "conference-about__0__2",
+            title: "Como participar da etapa nacional?",
+            text: [
+              "Para participar da 4ª Conferência você pode escolher entre as duas opções: delegado ou observador.",
+              "O delegado é uma pessoa que participou de etapas municipais/territoriais foi eleito para as estaduais e então eleito para a etapa nacional. A etapa distrital também elege delegados para a etapa nacional.",
+              "Você também pode ser eleito por meio das etapas temáticas ou por meio da etapa digital.",
+              "O delegado é alguém que tem direito a voz  e voto, bem como terá apoio para participar do evento.",
+              "O observador poderá se inscrever no site da conferência, não tem direito  a voz e voto, e nem sua permanência custeada pelo evento.",
+            ],
+          },
+          {
+            id: "conference-about__0__3",
+            title: "Quais são as etapas da 4ª Conferência?",
+            text: [
+              "As etapas são as seguintes:",
+              "I. Etapas Livres que poderão ocorrer até 30 de outubro de 2023;",
+              "II. Etapa Digital que ocorrerá de 31 de agosto de 2023 a 30 de outubro de 2023;",
+              "III. Etapas Temáticas que podem ocorrer de 31 de agosto de 2023 a 30 de outubro de 2023;",
+              "IV. Etapas Territoriais que poderão ocorrer até o dia 30 de setembro de 2023;",
+              "V. Consulta às Juventudes de Povos e Comunidades Tradicionais que poderão ocorrer até 30 de outubro de 2023;",
+              "VI. Etapas Municipais e Regionais que poderão ocorrer até o dia 30 de setembro de 2023;",
+              "VII. Etapas Estaduais e do Distrito Federal que poderão ocorrer até 30 de outubro de 2023;",
+              "VIII. Etapa Nacional que acontecerá de 14 a 17 de dezembro de 2023.",
+            ],
+          },
+          {
+            id: "conference-about__0__4",
+            title: "Como as propostas serão levadas para a etapa nacional?",
+            text: [
+              "Existem alguns caminhos, que serão apresentados a seguir:",
+              "Você pode apresentar propostas nas etapas municipais, que serão votadas e encaminhadas para a etapa estadual. As mais votadas desse segundo momento vão para a Etapa Nacional.",
+              "As propostas apresentadas nas etapas de Consulta aos Povos Tradicionais e Originários, Temáticas, Livres e Digital são encaminhadas diretamente para a Etapa Nacional! Mas fique atento, cada uma terá seu critério de votação.",
+              "Ao final de todo esse processo, chegamos na etapa nacional com propostas enviadas por todos os lugares do Brasil, respeitando a diversidade e a representatividade desse país continental. Nos dias 14 a 17 de agosto de 2023, serão, enfim, votadas as propostas e as que tiverem mais votos nesse momento irão para a sistematização deste momento tão rico.",
+            ],
+          },
+          {
+            id: "conference-about__0__5",
+            title: "Quem pode organizar uma Etapa Municipal?",
+            text: [
+              "A etapa Municipal será realizada por iniciativa dos próprios municípios, conforme previsto no art.43, inc. IV da Lei 12.852/2014.",
+              "As Etapas Municipais e Regionais poderão ser convocadas pelo Poder Público até 31 de agosto de 2023. No caso da Etapa Municipal não ter sido convocada pelo Poder Público até essa data, a Sociedade Civil poderá convocá-la.",
+              "Para a realização devem ser constituídas Comissões Organizadoras Municipais para organizar e realizar as etapas municipais. Tendo como referência para composição mínima a participação de representante dos conselhos municipais de juventude, quando houver, bem como a composição da comissão organizadora nacional.",
+              "É importante lembrar que a Comissão Organizadora Municipal ou Regional deve se cadastrar na plataforma digital, informando sua composição, contato, data, horário e local da Etapa com antecedência mínima de 5 dias úteis para o dia da Conferência Municipal ou Regional.",
+            ],
+          },
+          {
+            id: "conference-about__0__6",
+            title: "Quem pode organizar uma Etapa Livre?",
+            text: [
+              "Qualquer um pode organizar uma Conferência Livre da Juventude, basta se juntar com pessoas interessadas pelo mesmo tema que você e seguir os outros pré-requisitos que serão respondidos mais à diante!",
+              "Um detalhe importante é que quantas mais pessoas se juntarem para organizar uma Conferência Livre, mais força terão as propostas dessa Conferência! Então, aproveite para se juntar com as associações de bairro, grupos estudantis, de esporte, cultura, etc.",
+            ],
+          },
+          {
+            id: "conference-about__0__7",
+            title: "Quem pode organizar uma Etapa Estadual?",
+            text: [
+              " As Etapas Estaduais e do Distrito Federal serão realizadas por iniciativa dos próprios estados e do Distrito Federal, conforme previsto no art. 42, inc. IV, e no art. 44, respectivamente, da Lei 12.852/2013.",
+            ],
+          },
+          {
+            id: "conference-about__0__8",
+            title: "Participei de uma etapa. E agora?",
+            text: "X",
+          },
+        ],
+      },
+      {
+        id: "conference-about__3",
+        title: "Termos de Uso",
+        content: [
+          {
+            id: "conference-about__3__0",
+            title: "Aceitação do Termo de Uso",
+            text: [
+              "O presente Termo de Uso se refere a um contrato de adesão firmado entre o usuário e o fornecedor deste serviço, a Secretaria Nacional de Participação Social – SNPS / SGPR / PR, localizada em Anexo do Palácio do Planalto, Anexo I, Ala B, sala 212.",
+              "O uso deste serviço está condicionado à aceitação dos termos e das políticas associadas. O usuário deverá ler tais termos e políticas, certificar-se de havê-los entendido, estar consciente de todas as condições estabelecidas no Termo de Uso e se comprometer a cumpri-las.",
+              "Ao utilizar o serviço, o usuário manifesta estar de acordo com relação ao conteúdo deste Termo de Uso e estará legalmente vinculado a todas as condições aqui previstas.",
+              "Este termo de uso estabelece condições do processo do PPA Participativo na Plataforma Brasil Participativo.",
+            ],
+          },
+          {
+            id: "conference-about__3__1",
+            title: "Definições do Termo de Uso",
+            text: [
+              "Para os fins deste Termo de Uso, são aplicáveis as seguintes definições:",
+              "Agente público: Todo aquele que exerce, ainda que transitoriamente ou sem remuneração, por eleição, nomeação, designação, contratação ou qualquer outra forma de investidura ou vínculo, mandato, cargo, emprego ou função nos órgãos e entidades da Administração Pública, direta e indireta.",
+              "Códigos maliciosos: São qualquer programa de computador, ou parte de um programa, construído com a intenção de provocar danos, obter informações não autorizadas ou interromper o funcionamento de sistemas e/ou redes de computadores.",
+              "Terceiro: Pessoa ou entidade que não participa diretamente em um contrato, em um ato jurídico ou em um negócio, ou que, para além das partes envolvidas, pode ter interesse num processo jurídico.",
+              "Internet: Sistema constituído do conjunto de protocolos lógicos, estruturado em escala mundial para uso público e irrestrito, com a finalidade de possibilitar a comunicação de dados entre terminais por meio de diferentes redes.",
+              "Usuários ou 'Usuário': Todas as pessoas naturais que utilizarem o 'Brasil Participativo'.",
+              "Moderação: Análise posterior da equipe técnica multidisciplinar e por pares para prevenção de publicação de comentários que ultrapassem os limites do direito à livre expressão, tais como discurso de ódio, argumentos que ferem os direitos humanos, propostas não convenientes com o PPA do Governo Federal (alteração de cláusula pétrea; assuntos pertinentes à Ouvidoria; demandas de outros poderes e/ou entes federados), além de conteúdos nocivos ou perigosos, ofensas e linguagem inapropriada.",
+            ],
+          },
+          {
+            id: "conference-about__3__2",
+            title: "Arcabouço Legal",
+            text: [
+              "O arcabouço legal aplicável ao “Brasil Participativo” compreende os seguintes atos legislativos e normativos:",
+              "1) Constituição da República Federativa do Brasil, de 5 de outubro de 1988: Constituição Federal Brasileira;",
+              "2) Decreto-Lei nº 2.848, de 7 de dezembro de 1940 - Código Penal: Código Penal Brasileiro;",
+              "3) Lei nº 7.716, de 05 de janeiro de 1989: Define os crimes resultantes de preconceito de raça ou de cor;",
+              "4) Lei nº 12.965, de 23 de abril de 2014 - Marco Civil da Internet: Estabelece princípios, garantias, direitos e deveres para o uso da Internet no Brasil;",
+              "5) Lei nº 12.527, de 18 de novembro de 2011 - Lei de Acesso à Informação: Regula o acesso a informações previsto na Constituição Federal;",
+              "6) Lei nº 13.460, de 26 de junho de 2017: Dispõe sobre participação, proteção e defesa dos direitos do usuário dos serviços públicos da administração pública;",
+              "7) Lei nº 13.709, de 14 de agosto de 2018: Dispõe sobre o tratamento de dados pessoais, inclusive nos meios digitais, por pessoa natural ou por pessoa jurídica de direito público ou privado, com o objetivo de proteger os direitos fundamentais de liberdade e de privacidade e o livre desenvolvimento da personalidade da pessoa natural;",
+              "8) Lei nº 13.444, de 11 de maio de 2017: Dispõe sobre a Identificação Civil Nacional (ICN);",
+              "9) Decreto nº 8.777, de 11 de maio de 2016: Institui a Política de Dados Abertos do Poder Executivo federal;",
+              "10) Decreto nº 7.724, de 16 de maio de 2012: Regulamenta a Lei no 12.527, de 18 de novembro de 2011 (Lei de Acesso à Informação), que dispõe sobre o acesso a informações previsto na Constituição;",
+              "11) Decreto nº 7.845, de 14 de novembro de 2012: Regulamenta procedimentos para credenciamento de segurança e tratamento de informação classificada em qualquer grau de sigilo, e dispõe sobre o Núcleo de Segurança e Credenciamento;",
+              "12) Decreto nº 10.046, de 09 de outubro de 2019: Dispõe sobre a governança no compartilhamento de dados no âmbito da administração pública federal e institui o Cadastro Base do Cidadão e o Comitê Central de Governança de Dados;",
+              "13) Normas complementares do Gabinete de Segurança da Informação da Presidência (GSI/PR): Disciplinam a Gestão de Segurança da Informação e Comunicações na Administração Pública Federal, direta e indireta, e dá outras providências;",
+              "14) Decreto nº 9.637, de 26 de dezembro de 2018: Institui a Política Nacional de Segurança da Informação, dispõe sobre a governança da segurança da informação, e altera o Decreto nº 2.295, de 4 de agosto de 1997, que regulamenta o disposto no art. 24, caput, inciso IX, da Lei nº 8.666, de 21 de junho de 1993, e dispõe sobre a dispensa de licitação nos casos que possam comprometer a segurança nacional;",
+              "15) Lei nº 12.737, de 30 de novembro de 2012: Dispõe sobre a tipificação criminal de delitos informáticos;",
+              "16) Decreto n° 11.363, de 1 de janeiro de 2023: Aprova a Estrutura Regimental e o Quadro Demonstrativo dos Cargos em Comissão e das Funções de Confiança da Secretaria-Geral da Presidência da República e remaneja cargos em comissão e funções de confiança.",
+            ],
+          },
+          {
+            id: "conference-about__3__3",
+            title: "Descrição do Serviço",
+            text: [
+              "i) Brasil Participativo;",
+              "ii) Secretaria Nacional de Participação Social – SNPS/SG/PR;",
+              "iii) Plataforma digital de participação social do Governo Federal que contará, em primeiro momento, com módulos que auxiliarão na participação social no Plano Plurianual (PPA):",
+              "i) priorização dos programas do governo federal;",
+              "ii) coleta de propostas e sugestões para o planejamento governamental; e",
+              "iii) voto nas propostas criadas.",
+            ],
+          },
+          {
+            id: "conference-about__3__4",
+            title: "Direitos dos Usuários do Serviço",
+            text: [
+              "O art.6 da Lei nº 13.460, de 26 de junho de 2017 estabelecem os direitos básicos do usuário de serviço público, especialmente:",
+              "I. Participação no acompanhamento da prestação e na avaliação dos serviços;",
+              "II. Obtenção e utilização dos serviços com liberdade de escolha entre os meios oferecidos e sem discriminação;",
+              "III. Acesso e obtenção de informações relativas à sua pessoa constantes de registros ou bancos de dados, observado o disposto no inciso X do caput do art. 5º da Constituição Federal e na Lei nº 12.527, de 18 de novembro de 2011;",
+              "IV. Proteção de suas informações pessoais, nos termos da Lei nº 12.527, de 18 de novembro de 2011.",
+              "Em relação ao processo de participação no Plano Plurianual (PPA) no Brasil Participativo, os usuários poderão:",
+              "1) Votar em até 3 programas do governo federal;",
+              "2) Fazer até 3 propostas de políticas públicas para o governo federal;",
+              "3) Votar em até 3 propostas feitas por outros participantes.",
+              "A definição desses requisitos de número de votos e propostas deve-se aos seguintes princípios:",
+              "1) Eficiência administrativa:",
+              "i) Esse princípio busca assegurar que os recursos públicos, incluindo o tempo e a capacidade dos órgãos públicos, sejam utilizados da forma mais eficiente possível. Limitar o número de programas/propostas a serem considerados em um determinado processo de votação contribui para uma gestão mais ágil e eficiente dos recursos, concentrando esforços nas questões mais relevantes e urgentes de cada região de residência dos cidadãos.",
+              "2) Proporcionalidade:",
+              "ii) Esse princípio exige que as medidas adotadas pelo poder público sejam proporcionais aos objetivos almejados, evitando excessos ou restrições arbitrárias. Ao limitar o número de programas/propostas, levando em consideração as necessidades específicas de cada região de residência, busca-se alcançar um equilíbrio entre a participação democrática e a eficiência na tomada de decisões.",
+              "3) A participação é gratuita e pessoal.",
+            ],
+          },
+          {
+            id: "conference-about__3__5",
+            title: "Responsabilidades do Usuário",
+            text: [
+              "Quais são as obrigações dos usuários que utilizam o serviço?",
+              "O usuário se responsabiliza pela precisão e pela veracidade dos dados informados e reconhece que a inconsistência deles, bem como o descumprimento desses termos de uso, poderão implicar na impossibilidade de se utilizar o 'Brasil Participativo'.",
+              "Durante a utilização do serviço, a fim de resguardar e de proteger os direitos de terceiros, o usuário se compromete a fornecer somente seus dados pessoais, e não os de terceiros.",
+              "O login e senha deverão ser feitos pelo gov.br e só poderão ser utilizados pelo usuário cadastrado. Ele se compromete a manter o sigilo da senha, que é pessoal e intransferível, não sendo possível, em qualquer hipótese, a alegação de uso indevido após o ato de compartilhamento.",
+              "O usuário do serviço é responsável pela atualização de seus dados pessoais e pelas consequências em caso de omissão ou erros nos dados fornecidos.",
+              "O usuário é responsável pela reparação de todos e quaisquer danos, diretos ou indiretos (inclusive decorrentes de situações que atentem contra direitos fundamentais; de violação de quaisquer direitos de outros usuários; de terceiros, inclusive direitos de propriedade intelectual; de sigilo; e de personalidade), que sejam causados à Administração Pública, a qualquer outro usuário, ou ainda a qualquer terceiro, inclusive em virtude do descumprimento do disposto nestes Termos de Uso e Política de Privacidade ou de qualquer ato praticado a partir de seu acesso ao serviço.",
+            ],
+          },
+          {
+            id: "conference-about__3__6",
+            title: "Responsabilidade da Administração Pública",
+            text: [
+              "Quais são as responsabilidades da Administração Pública?",
+              "1) Em relação aos dados:",
+              "i) A Administração Pública se compromete a cumprir todas as legislações inerentes ao uso correto dos dados pessoais do cidadão de forma a preservar a privacidade dos dados utilizados no serviço, bem como a garantir todos os direitos e garantias legais dos titulares dos dados.",
+              "Ela também se obriga a promover, independentemente de requerimentos, a divulgação em local de fácil acesso, no âmbito de suas competências, de informações de interesse coletivo ou geral por eles produzidas ou custodiadas.",
+              "É de responsabilidade da Administração Pública implementar controles de segurança para proteção dos dados pessoais dos titulares;",
+              "ii) A Administração Pública poderá, quanto às ordens judiciais de pedido das informações, compartilhar informações necessárias para investigações ou tomar medidas relacionadas a atividades ilegais, suspeitas de fraude ou ameaças potenciais contra pessoas, bens ou sistemas que sustentam o Brasil ParticipativoServiço ou de outra forma necessárias para cumprir com obrigações legais.",
+              "Caso ocorra, a Administração Pública notificará os titulares dos dados, salvo quando o processo estiver em segredo de justiça.",
+              "2) Em relação aos conteúdos:",
+              "i) A Administração Pública fará moderação posterior dos conteúdos inseridos na Plataforma;",
+              "ii) Os conteúdos serão analisados e respondidos para o usuário com os seguintes status:",
+              "3) Enviada ao governo: proposta foi analisada pela moderação e não viola os termos de uso;",
+              "4) Rejeitada: proposta foi analisada pela moderação e descumpre os termos de uso por constituir uma violação às condicionais estabelecidas neste termos de uso.",
+              "Nos casos previstos no item (a), a proposta aparecerá como rejeitada na plataforma e não será contabilizada como válida para as regras de participação.",
+              "Nos casos apresentados no item (b), os conteúdos poderão ser ocultos pela moderação nas seguintes condições, entre outras:",
+              "a) apresenta calúnia, difamação ou injúrias;",
+              "b) contém linguagem vulgar ou impróprias;",
+              "c) apresenta conteúdo sexual ou pornográfico;",
+              "d) utiliza discurso ou comunicação que promove a discriminação, a hostilidade ou a violência contra indivíduos ou grupos com base em sua religião, etnia, nacionalidade, raça, cor, descendência, gênero ou outra característica de identidade;",
+              "e) induz ou incita condutas homofóbicas e transfóbicas;",
+              "f) promove assédio e bullying virtual.",
+              "Caso essas situações ocorram, a equipe fará a análise do conteúdo e, certificada a violação, o ocultará da plataforma.",
+              "Nesses casos, a administração pública também poderá bloquear o usuário do Brasil Participativo e notificará os titulares das contribuições, encaminhando, inclusive, para os órgãos que farão análises legais.",
+              "Os usuários bloqueados não poderão participar novamente da plataforma.",
+              "Como medida de segurança, a plataforma Brasil Participativo oculta automaticamente as propostas que receberam mais de 10 denúncias por outro(a) usuário(a).",
+              "O recebimento de propostas ocorrerá todos os dias, incluindo finais de semana e feriados, das 08h às 22h.",
+              "Em relação ao processo participativo do PPA:",
+              "Serão contabilizadas como válidas somente as propostas aceitas pela moderação.",
+              "As propostas validadas poderão ser votadas por qualquer usuário, respeitando o limite de 3 votos por pessoa.",
+              "O processo participativo inicia às 08h do dia 11 de maio de 2023 e se encerra às 22h do dia 16 de julho de 2023.",
+              "Encerrado o processo, a administração pública irá disponibilizar os resultados das propostas e programas com maior número de votos.",
+              "As 5 (cinco) propostas mais votadas pela população serão premiadas. O prêmio consiste em um convite para que os proponentes possam apresentar suas propostas no 3º Fórum Interconselhos a ser realizado em agosto de 2023, em Brasília.",
+              "Em caso de empate entre duas ou mais propostas, caberá à administração pública avaliar a premiação.",
+              "A administração pública se responsabilizará por custear a vinda dos selecionados para o 3º Fórum Interconselhos em Brasília, incluindo passagem e diárias exclusivas ao encontro e para pessoas residentes no Brasil.",
+              "Os proponentes das propostas premiadas serão notificados por meio dos contatos fornecidos no cadastro gov.br.",
+              "Eles receberão todas as informações necessárias sobre a participação no 3º Fórum Interconselhos, incluindo detalhes sobre as passagens e diárias custeadas pela administração pública.",
+              "Os selecionados deverão confirmar sua participação no 3º Fórum Interconselhos dentro do prazo estabelecido.",
+              "Caso algum vencedor não confirme sua participação, a administração pública poderá cancelar a premiação.",
+              "A administração pública será responsável por divulgar os resultados do edital, informando os proponentes premiados e disponibilizando as informações necessárias para a participação no 3º Fórum Interconselhos.",
+              "A administração pública não poderá ser responsabilizada pelos seguintes fatos:",
+              "a) Equipamento infectado ou invadido por atacantes;",
+              "b) Equipamento avariado no momento do consumo de serviços;",
+              "c) Proteção do computador;",
+              "d) Proteção das informações baseadas nos computadores dos usuários;",
+              "e) Abuso de uso dos computadores dos usuários;",
+              "f) Monitoração clandestina do computador dos usuários;",
+              "g) Vulnerabilidades ou instabilidades existentes nos sistemas dos usuários;",
+              "h) Perímetro inseguro;",
+              "i) Conteúdos publicados por usuários da plataforma;",
+              "Em nenhuma hipótese, a Administração Pública Federal será responsável pela instalação, no equipamento do Usuário ou de terceiros, de códigos maliciosos (vírus, trojans, malware, worm, bot, backdoor, spyware, rootkit, ou de quaisquer outros que venham a ser criados), em decorrência da navegação na Internet pelo usuário.",
+            ],
+          },
+          {
+            id: "conference-about__3__7",
+            title: "Política de Privacidade",
+            text: [
+              "A Política de Privacidade estabelecida pela Secretaria Nacional de Participação Social – SNPS / SGPR / PR e utilizada pela Plataforma Brasil Participativo trata da utilização de dados pessoais.",
+              "Essa Política específica faz parte de forma inerente do presente Termo de Uso, ressaltando-se que os dados pessoais mencionados no Brasil Participativo serão tratados nos termos da legislação em vigor.",
+              "Para mais informações acesse nossa política de privacidade em inserir o nome da seção ou o link da política de privacidade.",
+            ],
+          },
+          {
+            id: "conference-about__3__8",
+            title: "Mudanças no Termo de Uso",
+            text: [
+              "Este Termo de Uso pode ser alterado? A presente versão 1.0 deste Termo de Uso foi atualizada pela última vez em: 11.05.2023. ",
+              "O editor se reserva o direito de modificar no site, a qualquer momento, as presentes normas, especialmente para adaptá-las ",
+              "às evoluções do “Brasil Participativo”, seja pela disponibilização de novas funcionalidades, seja pela supressão ou modificação ",
+              "daquelas já existentes. Qualquer alteração e/ou atualização do Termos de Uso e da Política de Privacidade passará a vigorar a ",
+              "partir da data de sua publicação no sítio do serviço e deverá ser integralmente observada pelos Usuários.",
+            ],
+          },
+          {
+            id: "conference-about__3__9",
+            title: "Informações Para Contato",
+            text: [
+              "Em caso de dúvidas relacionadas ao Plataforma Brasil Participativo, entre em contato através dos nossos canais de atendimento:",
+              "E-mail: participacaosocial@presidencia.gov.br.",
+              "Telefone: 3411-3566",
+            ],
+          },
+          {
+            id: "conference-about__3__10",
+            title: "Foro",
+            text: [
+              "Este Termo será regido pela legislação brasileira.",
+              "Qualquer reclamação ou controvérsia com base neste Termo será dirimida exclusivamente pela Justiça Federal, Seção Judiciária do Distrito Federal.",
+              "Sem prejuízo de qualquer outra via administrativa ou judicial disponível, todos os titulares de dados pessoais têm direito a apresentar reclamação à Autoridade Nacional de Proteção de Dados (ANPD).",
+            ],
+          },
+        ],
+      },
+      {
+        id: "conference-about__4",
+        title: "Políticas de Privacidade",
+        content: [
+          {
+            id: "conference-about__4__0",
+            title: "Definições",
+            text: [
+              "Para melhor compreensão deste documento, nesta Política de Privacidade, consideram-se:",
+              "Agentes de tratamento: O controlador e o operador.",
+              "Anonimização: Utilização de meios técnicos razoáveis e disponíveis no momento do tratamento, por meio dos quais um dado perde a possibilidade de associação, direta ou indireta, a um indivíduo.",
+              "Autoridade Nacional: Órgão da administração pública responsável por zelar, implementar e fiscalizar o cumprimento desta Lei em todo o território nacional.",
+              "Banco de Dados: Conjunto estruturado de dados pessoais, estabelecido em um ou em vários locais, em suporte eletrônico ou físico.",
+              "Consentimento: Manifestação livre, informada e inequívoca pela qual o titular concorda com o tratamento de seus dados pessoais para uma finalidade determinada.",
+              "Controlador: Pessoa natural ou jurídica, de direito público ou privado, a quem competem as decisões referentes ao tratamento de dados pessoais.",
+              "Dado Anonimizado: Dado relativo a um titular que não possa ser identificado, considerando a utilização de meios técnicos razoáveis e disponíveis na ocasião de seu tratamento.",
+              "Dado Pessoal: Informação relacionada a uma pessoa natural identificada ou identificável.",
+              "Dado Pessoal Sensível: Dado pessoal sobre origem racial ou étnica, convicção religiosa, opinião política, filiação a sindicato ou a organização de caráter religioso, filosófico ou político, dado referente à saúde ou à vida sexual, dado genético ou biométrico, quando vinculado a uma pessoa natural.",
+              "Encarregado: Pessoa indicada pelo controlador e operador para atuar como canal de comunicação entre o controlador, os titulares dos dados e a Autoridade Nacional de Proteção de Dados (ANPD).",
+              "Operador: Pessoa natural ou jurídica, de direito público ou privado, que realiza o tratamento de dados pessoais em nome do controlador.",
+              "Órgão de Pesquisa: Órgão ou entidade da administração pública direta ou indireta ou pessoa jurídica de direito privado sem fins lucrativos, legalmente constituída sob as leis brasileiras e com sede e foro no País, que inclua em sua missão institucional ou em seu objetivo social ou estatutário a pesquisa básica ou aplicada de caráter histórico, científico, tecnológico ou estatístico.",
+              "Titular: Pessoa natural a quem se referem os dados pessoais que são objeto de tratamento.",
+              "Transferência Internacional de Dados: Transferência de dados pessoais para país estrangeiro ou organismo internacional do qual o país seja membro.",
+              "Tratamento: Toda operação realizada com dados pessoais, como as que se referem a coleta, produção, recepção, classificação, utilização, acesso, reprodução, transmissão, distribuição, processamento, arquivamento, armazenamento, eliminação, avaliação ou controle da informação, modificação, comunicação, transferência, difusão ou extração.",
+              "Uso Compartilhado de Dados: Comunicação, difusão, transferência internacional, interconexão de dados pessoais ou tratamento compartilhado de bancos de dados pessoais por órgãos e entidades públicos no cumprimento de suas competências legais, ou entre esses e entes privados, reciprocamente, com autorização específica, para uma ou mais modalidades de tratamento permitidas por esses entes públicos, ou entre entes privados.",
+            ],
+          },
+          {
+            id: "conference-about__4__1",
+            title: "Base Legal para Tratamento de Dados Pessoais",
+            text: [
+              "Esta Política de Privacidade foi elaborada em conformidade com a Lei Federal nº 12.965 de 23 de abril de 2014 (Marco Civil da Internet) e com a Lei Federal nº 13.709, de 14 de agosto de 2018 (Lei Geral de Proteção de Dados Pessoais).",
+              "O site se compromete a cumprir as normas previstas na Lei Geral de Proteção de Dados Pessoais (LGPD) e a respeitar os princípios dispostos no Art. 6º de tal norma:",
+              "I. Finalidade: realização do tratamento para propósitos legítimos, específicos, explícitos e informados ao titular, sem possibilidade de tratamento posterior de forma incompatível com essas finalidades;",
+              "II. Adequação: compatibilidade do tratamento com as finalidades informadas ao titular, de acordo com o contexto do tratamento;",
+              "III. Necessidade: limitação do tratamento ao mínimo necessário para a realização de suas finalidades, com abrangência dos dados pertinentes, proporcionais e não excessivos em relação às finalidades do tratamento de dados;",
+              "IV. Livre acesso: garantia, aos titulares, de consulta facilitada e gratuita sobre a forma e a duração do tratamento, bem como sobre a integralidade de seus dados pessoais;",
+              "V. Qualidade dos dados: garantia, aos titulares, de exatidão, clareza, relevância e atualização dos dados, de acordo com a necessidade e para o cumprimento da finalidade de seu tratamento;",
+              "VI. Transparência: garantia, aos titulares, de informações claras, precisas e facilmente acessíveis sobre a realização do tratamento e os respectivos agentes de tratamento, observados os segredos comercial e industrial;",
+              "VII. Segurança: utilização de medidas técnicas e administrativas aptas a proteger os dados pessoais de acessos não autorizados e de situações acidentais ou ilícitas de destruição, perda, alteração, comunicação ou difusão;",
+              "VIII. Prevenção: adoção de medidas para prevenir a ocorrência de danos em virtude do tratamento de dados pessoais;",
+              "IX. Não discriminação: impossibilidade de realização do tratamento para fins discriminatórios ilícitos ou abusivos;",
+              "X. Responsabilização e prestação de contas: demonstração, pelo agente, da adoção de medidas eficazes e capazes de comprovar a observância e o cumprimento das normas de proteção de dados pessoais e, inclusive, da eficácia dessas medidas.",
+            ],
+          },
+          {
+            id: "conference-about__4__2",
+            title: "Controlador",
+            text: [
+              "A quem competem as decisões referentes ao tratamento de dados pessoais realizado no serviço Brasil Participativo (Controlador)?",
+              "A Lei Geral de Proteção de Dados Pessoais define como controlador, em seu Art. 5º, inciso VI, a pessoa natural ou jurídica, de direito público ou privado, a quem competem as decisões referentes ao tratamento de dados pessoais.",
+              "Para o serviço Brasil Participativo, as decisões referentes ao tratamento de dados pessoais são de responsabilidade da Secretaria Nacional de Participação Social – SNPS / SGPR / PR.",
+              "Endereço: Anexo do Palácio do Planalto, Anexo I, Ala B, sala 212.",
+              "E-mail: participacaosocial@presidencia.gov.br.",
+              "Telefone: 3411-3566.",
+            ],
+          },
+          {
+            id: "conference-about__4__3",
+            title: "Operador",
+            text: [
+              "Quem realiza o tratamento de dados (Operador)?",
+              "A Lei Geral de Proteção de Dados Pessoais define como operador, em seu Art. 5º, inciso VII, a pessoa natural ou jurídica, de direito público ou privado, que realiza o tratamento de dados pessoais em nome do controlador.",
+              "Para o serviço Brasil Participativo, quem realiza o tratamento de dados pessoais em nome do controlador é o operador:",
+              "SECRETARIA NACIONAL DE PARTICIPAÇÃO SOCIAL.",
+              "Nome: Romulo de Oliveira Azevedo.",
+              "Endereço: Anexo do Palácio do Planalto, Anexo I, Ala B, sala 206.",
+              "E-mail: romulo.azevedo@presidencia.gov.br.",
+              "Telefone: 61 3411-2943.",
+              "DATAPREV.",
+              "Nome: EMPRESA DE TECNOLOGIA E INFORMAÇÕES DA PREVIDÊNCIA - DATAPREV S.A.",
+              "Endereço: Setor de Autarquias Sul, Quadra 01, blocos E/F, CEP: 70.070-931.",
+              "E-mail: dpo@dataprev.gov.br.",
+              "Telefone: não disponível.",
+              "As demandas devem ser formalizadas através do e-mail acima para que tenham o devido tratamento.",
+            ],
+          },
+          {
+            id: "conference-about__4__4",
+            title: "Encarregado",
+            text: [
+              "Quem é o responsável por atuar como canal de comunicação entre o controlador, os titulares dos dados e a Autoridade Nacional de Proteção de Dados (Encarregado)?",
+              "A Lei Geral de Proteção de Dados Pessoais define como encarregado, em seu Art. 5º, inciso VIII, a pessoa indicada pelo controlador e operador para atuar como canal de comunicação entre o controlador, os titulares dos dados e a Autoridade Nacional de Proteção de Dados (ANPD).",
+              "Para o serviço Brasil Participativo, os responsáveis por atuar como canal de comunicação entre o controlador, os titulares dos dados e a Autoridade Nacional de Proteção de Dados são os encarregados:",
+              "i) Secretaria Nacional de Participação Social: Dannytha Rayres Lopes Câmara;",
+              "ii) Dataprev: Fernando da Silva Costa.",
+              "O usuário poderá entrar em contato por meio do e-mail participacaosocial@presidencia.gov.br e dpo@dataprev.gov.br, para sanar quaisquer dúvidas sobre esta Política de Privacidade ou para obter mais informações sobre o tratamento dos dados realizado com fundamento na LGPD.",
+            ],
+          },
+          {
+            id: "conference-about__4__5",
+            title: "Direitos do titular de dados pessoais",
+            text: [
+              "Quais são os direitos do titular de dados pessoais?",
+              "O titular de dados pessoais possui os seguintes direitos, conferidos pela Lei Geral de Proteção de Dados Pessoais (LGPD):",
+              "1) Direito de confirmação e acesso (Art. 18, incisos I e II): é o direito do titular de dados de obter do serviço a confirmação de que os dados pessoais que lhe digam respeito são ou não objeto de tratamento e, se for esse o caso, o direito de acessar os seus dados pessoais;",
+              "2) Direito de retificação (Art. 18, inciso III): é o direito de solicitar a correção de dados incompletos, inexatos ou desatualizados;",
+              "3) Direito à limitação do tratamento dos dados (Art. 18, inciso IV): é o direito do titular de dados de limitar o tratamento de seus dados pessoais, podendo exigir a eliminação de dados desnecessários, excessivos ou tratados em desconformidade com o disposto na Lei Geral de Proteção de Dados Pessoais;",
+              "4) Direito de oposição (Art. 18, § 2º): é o direito do titular de dados de, a qualquer momento, opor-se ao tratamento de dados por motivos relacionados com a sua situação particular, com fundamento em uma das hipóteses de dispensa de consentimento ou em caso de descumprimento ao disposto na Lei Geral de Proteção de Dados Pessoais;",
+              "5) Direito de portabilidade dos dados (Art. 18, inciso V): é o direito do titular de dados de realizar a portabilidade dos dados a outro fornecedor de serviço ou produto, mediante requisição expressa, de acordo com a regulamentação da autoridade nacional, observados os segredos comercial e industrial;",
+              "6) Direito de não ser submetido a decisões automatizadas (Art. 20): o titular dos dados tem direito a solicitar a revisão de decisões tomadas unicamente com base em tratamento automatizado de dados pessoais que afetem seus interesses, incluídas as decisões destinadas a definir o seu perfil pessoal, profissional, de consumo e de crédito ou os aspectos de sua personalidade.",
+            ],
+          },
+          {
+            id: "conference-about__4__6",
+            title: "Quais dados são tratados",
+            text: [
+              "A utilização de determinadas funcionalidades do Serviço pelo titular de dados pessoais dependerá do tratamento dos seguintes dados pessoais:",
+              "1) Número de inscrição no CPF;",
+              "2) Número de inscrição do trabalhador;",
+              "3) Município, Unidade da Federação e Região de residência;",
+              "4) Data de nascimento;",
+              "5) Sexo;",
+              "6) Raça-cor;",
+              "7) Deficiência;",
+              "8) Profissão;",
+              "9) Grau de instrução;",
+              "10) Caracaterística domiciliar;",
+              "12) Beneficiário Bolsa Família;",
+              "13) Situação domiciliar;",
+              "14) Função principal de trabalho;",
+              "15) Grupos populacionais tradicionais e específicos;",
+              "16) Família quilombola;",
+              "17) Residência em reserva indígena;",
+              "18) Renda.",
+            ],
+          },
+          {
+            id: "conference-about__4__7",
+            title: "Como os dados são coletados",
+            text: [
+              "A forma como os seus dados pessoais são coletados é indicada abaixo:",
+              "1) Número de inscrição no CPF será informado pelo usuário no login;",
+              "2) Os demais dados serão obtidos pelas bases de dados como do Cadastro Nacional de Informações Sociais - CNIS, Relação Anual de Informações Sociais - RAIS; entre outros, a partir de cadastros governamentais.",
+              "Dados tratados: Número de inscrição no CPF. Forma de Coleta dos Dados: Informado pelo usuário.",
+              "Dados tratados: Número de inscrição do trabalhador. Forma de Coleta dos Dados: CNIS-PF / RAIS / CadÚnico.",
+              "Dados tratados: Município, Unidade da Federação e Região de residência. Forma de Coleta dos Dados: CNIS-PF.",
+              "Dados tratados: Data de nascimento; Forma de Coleta dos Dados: CNIS-PF.",
+              "Dados tratados: Sexo; Forma de Coleta dos Dados: CNIS-PF / RAIS / CADUNICO.",
+              "Dados tratados: Raça-cor. Forma de Coleta dos Dados: 1 – CadÚnico; 2 - RAIS.",
+              "Dados tratados: Deficiência. Forma de Coleta dos Dados: 1 – CadÚnico; 2 - RAIS.",
+              "Dados tratados: Profissão. Forma de Coleta dos Dados: 1 – CadÚnico; 2 - RAIS.",
+              "Dados tratados: Grau de instrução. Forma de Coleta dos Dados: 1 - CadÚnico / 2 - RAIS / 3 - CNIS PF /.",
+              "Dados tratados: Característica domiciliar. Forma de Coleta dos Dados: CadÚnico.",
+              "Dados tratados: Beneficiário Bolsa Família. Forma de Coleta dos Dados: CadÚnico.",
+              "Dados tratados: Situação domiciliar. Forma de Coleta dos Dados: CadÚnico.",
+              "Dados tratados: Função principal de trabalho. Forma de Coleta dos Dados: CadÚnico.",
+              "Dados tratados: Grupos populacionais tradicionais e específicos. Forma de Coleta dos Dados: CadÚnico.",
+              "Dados tratados: Família quilombola. Forma de Coleta dos Dados: CadÚnico.",
+              "Dados tratados: Residência em reserva indígena. Forma de Coleta dos Dados: CadÚnico.",
+              "Dados tratados: Renda. Forma de Coleta dos Dados: CadÚnico.",
+            ],
+          },
+          {
+            id: "conference-about__4__8",
+            title: "Qual o tratamento realizado e para qual finalidade",
+            text: [
+              "Todos os dados pessoais receberão o seguinte tratamento: Acesso, Utilização e Armazenamento.",
+              "O tratamento dos dados pessoais terão a finalidade de elaboração de estatísticas para subsidiar políticas públicas do governo federal.",
+              "1) Número de inscrição no CPF;",
+              "2) Número de inscrição do trabalhador;",
+              "3) Município, Unidade da Federação e Região de residência;",
+              "4) Data de nascimento;",
+              "5) Sexo;",
+              "6) Raça-cor;",
+              "7) Deficiência;",
+              "8) Profissão;",
+              "9) Grau de instrução;",
+              "10) Caracaterística domiciliar;",
+              "11) Beneficiário Bolsa Família;",
+              "12) Situação domiciliar;",
+              "13) Função principal de trabalho;",
+              "14) Grupos populacionais tradicionais e específicos;",
+              "15) Família quilombola;",
+              "16) Residência em reserva indígena;",
+              "17) Renda;",
+              "18) Número de inscrição no CPF.",
+            ],
+          },
+          {
+            id: "conference-about__4__9",
+            title: "Compartilhamento de dados",
+            text: [
+              "Os dados, de modo agrupado e sem identificação pessoal dos contribuintes, poderão ser compartilhados com os órgãos da Administração Pública Federal, com o objetivo de apoiar a elaboração de políticas públicas das pastas.",
+              "Os dados pessoais do usuário poderão ser compartilhados de modo agrupado, nos quais os usuários não serão identificados, com os órgãos da Administração Pública Federal.",
+            ],
+          },
+          {
+            id: "conference-about__4__10",
+            title: "Transferência internacional de dados",
+            text: [
+              "O “Brasil Participativo” não realizará transferência de dados internacionalmente.",
+            ],
+          },
+          {
+            id: "conference-about__4__11",
+            title: "Segurança dos dados",
+            text: [
+              "O Brasil Participativo se compromete a aplicar as medidas técnicas e organizativas aptas a proteger os dados pessoais de acessos não autorizados e de situações de destruição, perda, alteração, comunicação ou difusão de tais dados.",
+              "Para a garantia da segurança, serão adotadas soluções que levem em consideração: as técnicas adequadas; os custos de aplicação; a natureza, o âmbito, o contexto e as finalidades do tratamento; e os riscos para os direitos e liberdades do usuário.",
+              "O Brasil Participativo utiliza criptografia para que os dados sejam transmitidos de forma segura e confidencial, de maneira que a transmissão dos dados entre o servidor e o usuário, e em retroalimentação, ocorra de maneira totalmente cifrada ou encriptada.",
+              "No entanto, o Brasil Participativo se exime de responsabilidade por culpa exclusiva de terceiros, como em caso de ataque de hackers ou crackers, ou culpa exclusiva do usuário, como no caso em que ele mesmo transfere seus dados a terceiro.",
+              "O Brasil Participativo se compromete, ainda, a comunicar o usuário em prazo adequado caso ocorra algum tipo de violação da segurança de seus dados pessoais que possa lhe causar um alto risco para seus direitos e liberdades pessoais.",
+              "A violação de dados pessoais é uma violação de segurança que provoque, de modo acidental ou ilícito, a destruição, a perda, a alteração, a divulgação ou o acesso não autorizado a dados pessoais transmitidos, conservados ou sujeitos a qualquer outro tipo de tratamento.",
+              "Por fim, o Brasil Participativo se compromete a tratar os dados pessoais do usuário com confidencialidade, dentro dos limites legais.",
+            ],
+          },
+          {
+            id: "conference-about__4__12",
+            title: "Cookies",
+            text: [
+              "Cookies são pequenos arquivos de texto enviados pelo site ao computador do usuário e que nele ficam armazenados, com informações relacionadas à navegação do site.",
+              "Por meio dos cookies, pequenas quantidades de informação são armazenadas pelo navegador do usuário para que o servidor do serviço possa lê-las posteriormente.",
+              "Podem ser armazenados, por exemplo, dados sobre o dispositivo utilizado pelo usuário, bem como seu local e horário de acesso ao site.",
+              "É importante ressaltar que nem todo cookie contém dados pessoais do usuário, já que determinados tipos de cookies podem ser utilizados somente para que o serviço funcione corretamente.",
+              "As informações eventualmente armazenadas em cookies também são consideradas dados pessoais.",
+              "Todas as regras previstas nesta Política de Privacidade também são aplicáveis aos referidos cookies.",
+            ],
+          },
+          {
+            id: "conference-about__4__13",
+            title: "Mudanças na política de privacidade",
+            text: [
+              "A presente versão 1.0 desta Política de Privacidade foi atualizada pela última vez em 11.05.2023.",
+              "O editor se reserva o direito de modificar, a qualquer momento, o site as presentes normas, especialmente para adaptá-las às evoluções do serviço Brasil Participativo, seja pela disponibilização de novas funcionalidades, seja pela supressão ou modificação daquelas já existentes.",
+              "Esta Política de Privacidade poderá ser atualizada em decorrência de eventual atualização normativa, razão pela qual se convida o usuário a consultar periodicamente esta seção.",
+            ],
+          },
+        ],
+      },
+    ];
+    function getItemById(itemId, contentId) {
+      let item = items.find((i) => i.id === itemId);
+      return item.content.find((i) => i.id === contentId);
+    }
+    function createCssClass(innerHtml, cssClass, elementSelector) {
+      let style = document.createElement("style");
+      style.type = "text/css";
+      style.innerHTML = innerHtml;
+      document.getElementsByTagName("head")[0].appendChild(style);
+      document.querySelector(elementSelector).classList.add(cssClass);
+    }
+    function buildInitialContent(pageContent) {
+      pageContent.innerHTML = "";
+      items.forEach((arrayitem) => {
+        const wrapper = document.createElement("div");
+        const item = document.createElement("ul");
+        item.classList.add("conference-about__list__content__item");
+        const itemTitle = document.createElement("a");
+        const itemContent = document.createElement("div");
+        itemTitle.textContent = arrayitem.title;
+        itemTitle.classList.add(
+          "conference-about__list__content__item__title"
+        );
+        arrayitem.content.forEach((listItem, index) => {
+          const listItemLabel = document.createElement("li");
+          listItemLabel.classList.add(
+            "conference-about__list__content__item__link"
+          );
+          listItemLabel.classList.add("conference-about__clickable-link");
+          listItemLabel.id = arrayitem.id + "__" + index;
+          listItemLabel.onclick = (element) =>
+            onContentClick(arrayitem, element, pageContent);
+          listItemLabel.textContent = listItem.title;
+          itemContent.appendChild(listItemLabel);
+        });
+        item.appendChild(itemTitle);
+        item.appendChild(itemContent);
+        wrapper.appendChild(item);
+        pageContent.appendChild(wrapper);
+      });
+    }
+    function onContentClick(arrayitem, element, pageContent) {
+      const result = getItemById(arrayitem.id, element.srcElement.id);
+      if (result) {
+        pageContent.innerHTML = "";
+        let itemTitle = document.createElement("span");
+        itemTitle.textContent = result.title;
+        pageContent.appendChild(itemTitle);
+        itemTitle.classList.add("conference-about__list__title");
+
+        result.text.forEach((contentItem) => {
+          if (contentItem.link === true) {
+            let itemContent = document.createElement("a");
+            itemContent.textContent = contentItem.label;
+            itemContent.href = contentItem.label;
+            itemContent.target = "_blank"
+            pageContent.appendChild(itemContent);
+          } else {
+            let itemContent = document.createElement("div");
+            itemContent.textContent = contentItem;
+            pageContent.appendChild(itemContent);
+          }
+        });
+
+        let itemButton = document.createElement("button");
+        itemButton.textContent = "voltar";
+        itemButton.id = "conference-about__back-button";
+        itemButton.onclick = function () {
+          const pageContent = document.getElementById("aboutContent");
+          createCssClass(
+            ".conference-about__list__content {display: flex !important; flex-direction: row !important;}",
+            "conference-about__list__content",
+            ".conference-about__list__content"
+          );
+          buildInitialContent(pageContent);
+        };
+        pageContent.appendChild(itemButton);
+        document
+          .querySelector("#conference-about__back-button")
+          .classList.add("conference-about__back-button");
+        createCssClass(
+          ".conference-about__list__content {display: flex !important; flex-direction: column !important;}",
+          "conference-about__list__content",
+          ".conference-about__list__content"
+        );
+      }
+    }
+    const pageContent = document.getElementById("aboutContent");
+    buildInitialContent(pageContent);
+  </script>
+</body>
+
+</html>
