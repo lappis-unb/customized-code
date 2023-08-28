@@ -167,6 +167,49 @@
     if (initativesLi) removeElement(initativesLi.parentElement);
     if (calendarLi) removeElement(calendarLi.parentElement);
 
+if (window.location.href.includes("/processes/ENGD") ) {
+var allElements = document.querySelectorAll("*:not(script):not(style)");
+
+// Função para substituir o texto em um elemento
+function replaceText(node) {
+  if (node.nodeType === Node.TEXT_NODE) {
+    node.textContent = node.textContent.replace(/propostas/g, "recomendações");
+    node.textContent = node.textContent.replace(/proposta/g, "recomendação");
+    node.textContent = node.textContent.replace(/Propostas/g, "Recomendações");
+    node.textContent = node.textContent.replace(/Proposta/g, "Recomendação");
+  }
+}
+
+// Itera sobre todos os elementos de texto e substitui o conteúdo
+for (var i = 0; i < allElements.length; i++) {
+  var walker = document.createTreeWalker(allElements[i], NodeFilter.SHOW_TEXT, null, false);
+  var node;
+
+  while (node = walker.nextNode()) {
+    replaceText(node);
+  }
+}
+
+const elements = document.querySelectorAll('.callout.alert.callout--full');
+const onibanner = document.querySelectorAll('.omnipresent-banner');
+
+onibanner.forEach(element => {
+    element.remove();
+});
+
+elements.forEach(element => {
+  if (element.textContent.includes('Este é um processo privado')) {
+    element.remove();
+  }
+});
+      navbarUl.appendChild(createLi("Início", "/processes/ENGD"));
+      navbarUl.appendChild(
+        createLi(
+          "Recomendações",
+          `/processes/ENGD/f/3`
+        )
+      );
+} else {
     navbarUl.appendChild(createLi("Início", "/"));
     navbarUl.appendChild(
       createLi(
@@ -182,6 +225,7 @@
     );
     navbarUl.appendChild(createLi("Entenda o processo", `/pages/relatoriodaplataforma`));
     navbarUl.appendChild(createLi("Sobre", "/pages"));
+}
 
     const programContentContainer =
       document.querySelector(".ql-editor-display");
@@ -2763,6 +2807,9 @@
   }
 
   @media (min-width: 768px) {
+  .main-container__content {
+    padding: 0 1.5rem !important;
+}
     .ppa-process {
       display: flex;
       flex-direction: row;
@@ -2855,4 +2902,13 @@
     justify-content: center;
     align-items: center;
 } */
+
+.tabs-content {
+    padding: 0;
+    margin: 1rem 0;
+}
+
+.main-container__content {
+    padding: 0;
+}
 </style>
