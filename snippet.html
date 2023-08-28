@@ -166,23 +166,23 @@
         const items = [
           {
             label: "Início",
-            path: `/conferences/juventude`,
+            path: `/assemblies/confjuv4`,
           },
           {
             label: "Etapa Digital",
-            path: `/processes/juventude`,
+            path: `/assemblies/confjuv4/f/10/`,
           },
           {
             label: "Etapas",
-            path: `/conferences/juventude/f/107/meetings/new`,
+            path: `/assemblies/confjuv4/f/12/surveys/1`,
           },
           {
             label: "Notícias",
-            path: `/conferences/juventude/f/53/`,
+            path: `/assemblies/confjuv4/f/9/posts`,
           },
           {
             label: "Perguntas frequentes",
-            path: `/conferences/juventude/f/56/`,
+            path: `/assemblies/confjuv4/f/13/`,
           },
         ];
         items.forEach((item) =>
@@ -383,28 +383,28 @@
     document.querySelector(elementSelector).classList.add(cssClass);
   }
   function isOnConferenceLandingPage() {
-    return window.location.pathname === "/conferences/juventude";
+    return window.location.pathname === "/assemblies/confjuv4";
   }
   function isOnConferenceDomain() {
     return (
-      window.location.href.includes("conferences/juventude") ||
-      window.location.href.includes("processes/juventude")
+      window.location.href.includes("assemblies/confjuv4") ||
+      window.location.href.includes("assemblies/confjuv4/f/10/")
     );
   }
   function isOnConferenceBlogPage() {
-    return window.location.pathname.includes("/conferences/juventude/f/53/");
+    return window.location.pathname.includes("/assemblies/confjuv4/f/9/posts");
   }
   function isOnConferenceAboutPage() {
-    return window.location.pathname === "/conferences/juventude/f/56/";
+    return window.location.pathname === "/assemblies/confjuv4/f/13/";
   }
   function isOnConferenceOrganizeStep() {
     return (
-      window.location.pathname === "/conferences/juventude/f/107/meetings/new"
+      window.location.pathname === "/assemblies/confjuv4/f/12/surveys/1"
     );
   }
   function isOnConferenceSteps() {
     return (
-      window.location.pathname === "/conferences/juventude/f/126/"
+      window.location.pathname === "/assemblies/confjuv4/f/14/"
     );
   }
   function isOnPlatformLogin() {
@@ -456,8 +456,20 @@
         if (dateRow[0]) dateRow[0].remove();
         if (dateRow[dateRow.length - 1]) dateRow[dateRow.length - 1].remove();
         if (wrapper) wrapper.remove();
-        const code = `  <div class="conference">
-    <form class="conference-cta" action="/processes/juventude">
+        const code = `<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta charset="UTF-8" />
+  <link rel="stylesheet"
+    href="https://cdngovbr-ds.estaleiro.serpro.gov.br/design-system/fonts/rawline/css/rawline.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+
+<body>
+  <div class="conference">
+    <form class="conference-cta" action="/assemblies/confjuv4/f/10/">
       <button type="submit" class="conference-cta__button">
         <span class="conference-cta__button__wrapper__label">Participe da etapa digital</span>
       </button>
@@ -471,7 +483,7 @@
               Organize uma etapa
             </div>
           </span>
-          <a href="juventude/f/56/" class="conference-cards__items__item__link">Ler mais</a>
+          <a href="confjuv4/f/12/surveys/1" class="conference-cards__items__item__link">Ler mais</a>
         </div>
         <div class="conference-cards__items__divider"></div>
         <div class="conference-cards__items__item">
@@ -481,7 +493,7 @@
               Agenda
             </div>
           </span>
-          <a href="/processes/juventude/f/113/surveys/16" class="conference-cards__items__item__link">Ler mais</a>
+          <a href="/assemblies/confjuv4/f/12/" class="conference-cards__items__item__link">Ler mais</a>
         </div>
         <div class="conference-cards__items__divider"></div>
         <div class="conference-cards__items__item">
@@ -491,7 +503,7 @@
               Perguntas frequentes
             </div>
           </span>
-          <a href="/processes/juventude/f/113/surveys/16" class="conference-cards__items__item__link">Ler mais</a>
+          <a href="/assemblies/confjuv4/f/13/" class="conference-cards__items__item__link">Ler mais</a>
         </div>
       </div>
     </section>
@@ -499,7 +511,7 @@
       <span class="conference-carousel__title">Saiba o que está rolando sobre a 4ª Conferência da Juventude
       </span>
       <div class="conference-carousel__list">
-        <a class="conference-carousel__list__item" href="juventude/f/53/posts/14">
+        <a class="conference-carousel__list__item" href="confjuv4/f/9/posts/1">
           <img
             src="/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBbThEIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--c9fd69d072eb46f3f2f242f0ecddb524cccb1b6b/not%C3%ADcia_6.jpeg" />
           <div class="conference-carousel__list__item__overlay">
@@ -507,7 +519,7 @@
             ONU
           </div>
         </a>
-        <a class="conference-carousel__list__item" href="juventude/f/53/posts/13">
+        <a class="conference-carousel__list__item" href="confjuv4/f/9/posts/2">
           <img
             src="/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBbTREIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--ee926676cdebf7b3a6f489dfb43e970566df642b/not%C3%ADcia_5.jpeg" />
           <div class="conference-carousel__list__item__overlay">
@@ -515,7 +527,7 @@
             Diálogos Amazônicos
           </div>
         </a>
-        <a class="conference-carousel__list__item" href="juventude/f/53/posts/12">
+        <a class="conference-carousel__list__item" href="confjuv4/f/9/posts/3">
           <img
             src="/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBbXdEIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--0ec17b01d05571aaaf817f4bc319483caa165b64/Not%C3%ADcia_3.jpeg" />
           <div class="conference-carousel__list__item__overlay">
@@ -1273,7 +1285,10 @@
       }
 
     }
-  </style>`
+  </style>
+</body>
+
+</html>`
         const body = document.createElement("div");
         body.innerHTML = code;
         hero__container.after(body);
@@ -1407,14 +1422,14 @@
                 </div>
                 <div class="conference-steps__list__title">Organize uma etapa</div>
                 <div class="conference-steps__list__description">Realize uma conferência livre</div>
-                <a href="juventude/f/107/meetings/new" class="conference-steps__list__link">Leia mais</a>
+                <a href="confjuv4/f/12/surveys/1" class="conference-steps__list__link">Leia mais</a>
             </div>
             <div class="conference-steps__list__item">
                 <div class="conference-steps__list__icon fa-solid fa-arrows-spin">
                 </div>
                 <div class="conference-steps__list__title">Envie a ata da sua etapa</div>
                 <div class="conference-steps__list__description">Registre o que ocorreu</div>
-                <a href="/processes/juventude/f/113/surveys/16 " class="conference-steps__list__link">Leia mais</a>
+                <a href="/assemblies/confjuv4/f/12/" class="conference-steps__list__link">Leia mais</a>
             </div>
         </div>
     </section>
