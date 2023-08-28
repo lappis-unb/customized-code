@@ -20,9 +20,9 @@
 <!-- End Matomo Code -->
 <script defer>
   // Variável referente ao ID do programa, utilizada no menu-tab "Escolher programas" da aplicação.
-  const chooseProgramId = 1;
+  const chooseProgramId = 6;
   // Variável referente ao ID da proposta, utilizada no menu-tab "Fazer proposta ao governo" da aplicação.
-  const makeProposalId = 2;
+  const makeProposalId = 7;
   var CreateDOMObjects = () => {
     const DOM = `
           <div vw class="enabled">
@@ -155,113 +155,114 @@
     const conferencesLi = document.querySelector(
       '.main-nav__link a[href="/conferences"]'
     );
-    if (initLi) removeElement(initLi.parentElement);
-    if (processesLi) removeElement(processesLi.parentElement);
-    if (pagesLi) removeElement(pagesLi.parentElement);
-    if (initativesLi) removeElement(initativesLi.parentElement);
-    if (calendarLi) removeElement(calendarLi.parentElement);
-    if (conferencesLi) removeElement(conferencesLi.parentElement);
-    if (isOnConferenceDomain()) {
-      const items = [
-        {
-          label: "Início",
-          path: `/conferences/juventude`,
-        },
-        {
-          label: "Sobre",
-          path: `/conferences/juventude/f/56/`,
-        },
-        {
-          label: "Organize uma etapa",
-          path: `/conferences/juventude/f/107/meetings/new`,
-        },
-        {
-          label: "Notícias",
-          path: `/conferences/juventude/f/53/`,
-        },
-      ];
-      items.forEach((item) =>
-        navbarUl.appendChild(createLi(item.label, item.path))
-      );
-      const assembliesLi = document.querySelector(
-        '.main-nav__link a[href="/assemblies"]'
-      );
-      if (assembliesLi) removeElement(assembliesLi.parentElement);
-    }
-    else if (window.location.href.includes("/processes/ENGD")) {
-      var allElements = document.querySelectorAll("*:not(script):not(style)");
-
-      // Função para substituir o texto em um elemento
-      function replaceText(node) {
-        if (node.nodeType === Node.TEXT_NODE) {
-          node.textContent = node.textContent.replace(
-            /propostas/g,
-            "recomendações"
-          );
-          node.textContent = node.textContent.replace(
-            /proposta/g,
-            "recomendação"
-          );
-          node.textContent = node.textContent.replace(
-            /Propostas/g,
-            "Recomendações"
-          );
-          node.textContent = node.textContent.replace(
-            /Proposta/g,
-            "Recomendação"
-          );
-        }
-      }
-
-      // Itera sobre todos os elementos de texto e substitui o conteúdo
-      for (var i = 0; i < allElements.length; i++) {
-        var walker = document.createTreeWalker(
-          allElements[i],
-          NodeFilter.SHOW_TEXT,
-          null,
-          false
+    if (navbarUl) {
+      if (initLi) removeElement(initLi.parentElement);
+      if (processesLi) removeElement(processesLi.parentElement);
+      if (pagesLi) removeElement(pagesLi.parentElement);
+      if (initativesLi) removeElement(initativesLi.parentElement);
+      if (calendarLi) removeElement(calendarLi.parentElement);
+      if (conferencesLi) removeElement(conferencesLi.parentElement);
+      if (isOnConferenceDomain()) {
+        const items = [
+          {
+            label: "Início",
+            path: `/conferences/juventude`,
+          },
+          {
+            label: "Sobre",
+            path: `/conferences/juventude/f/56/`,
+          },
+          {
+            label: "Organize uma etapa",
+            path: `/conferences/juventude/f/107/meetings/new`,
+          },
+          {
+            label: "Notícias",
+            path: `/conferences/juventude/f/53/`,
+          },
+        ];
+        items.forEach((item) =>
+          navbarUl.appendChild(createLi(item.label, item.path))
         );
-        var node;
+        const assembliesLi = document.querySelector(
+          '.main-nav__link a[href="/assemblies"]'
+        );
+        if (assembliesLi) removeElement(assembliesLi.parentElement);
+      } else if (window.location.href.includes("/processes/ENGD")) {
+        var allElements = document.querySelectorAll("*:not(script):not(style)");
 
-        while ((node = walker.nextNode())) {
-          replaceText(node);
+        // Função para substituir o texto em um elemento
+        function replaceText(node) {
+          if (node.nodeType === Node.TEXT_NODE) {
+            node.textContent = node.textContent.replace(
+              /propostas/g,
+              "recomendações"
+            );
+            node.textContent = node.textContent.replace(
+              /proposta/g,
+              "recomendação"
+            );
+            node.textContent = node.textContent.replace(
+              /Propostas/g,
+              "Recomendações"
+            );
+            node.textContent = node.textContent.replace(
+              /Proposta/g,
+              "Recomendação"
+            );
+          }
         }
-      }
 
-      const elements = document.querySelectorAll(
-        ".callout.alert.callout--full"
-      );
-      const onibanner = document.querySelectorAll(".omnipresent-banner");
+        // Itera sobre todos os elementos de texto e substitui o conteúdo
+        for (var i = 0; i < allElements.length; i++) {
+          var walker = document.createTreeWalker(
+            allElements[i],
+            NodeFilter.SHOW_TEXT,
+            null,
+            false
+          );
+          var node;
 
-      onibanner.forEach((element) => {
-        element.remove();
-      });
+          while ((node = walker.nextNode())) {
+            replaceText(node);
+          }
+        }
 
-      elements.forEach((element) => {
-        if (element.textContent.includes("Este é um processo privado")) {
+        const elements = document.querySelectorAll(
+          ".callout.alert.callout--full"
+        );
+        const onibanner = document.querySelectorAll(".omnipresent-banner");
+
+        onibanner.forEach((element) => {
           element.remove();
-        }
-      });
-      navbarUl.appendChild(createLi("Início", "/processes/ENGD"));
-      navbarUl.appendChild(createLi("Recomendações", `/processes/ENGD/f/3`));
-    } else {
-      navbarUl.appendChild(createLi("Início", "/"));
-      navbarUl.appendChild(
-        createLi(
-          "Programas priorizados",
-          `/processes/programas/f/${chooseProgramId}/`
-        )
-      );
-      navbarUl.appendChild(
-        createLi(
-          "Propostas mais votadas",
-          `/processes/programas/f/${makeProposalId}/`
-        )
-      );
-      navbarUl.appendChild(
-        createLi("Entenda o processo", `/pages/relatoriodaplataforma`)
-      );
-      navbarUl.appendChild(createLi("Sobre", "/pages"));
+        });
+
+        elements.forEach((element) => {
+          if (element.textContent.includes("Este é um processo privado")) {
+            element.remove();
+          }
+        });
+        navbarUl.appendChild(createLi("Início", "/processes/ENGD"));
+        navbarUl.appendChild(createLi("Recomendações", `/processes/ENGD/f/3`));
+      } else {
+        navbarUl.appendChild(createLi("Início", "/"));
+        navbarUl.appendChild(
+          createLi(
+            "Programas priorizados",
+            `/processes/programas/f/${chooseProgramId}/`
+          )
+        );
+        navbarUl.appendChild(
+          createLi(
+            "Propostas mais votadas",
+            `/processes/programas/f/${makeProposalId}/`
+          )
+        );
+        navbarUl.appendChild(
+          createLi("Entenda o processo", `/pages/relatoriodaplataforma`)
+        );
+        navbarUl.appendChild(createLi("Sobre", "/pages"));
+      }
     }
 
     const programContentContainer =
