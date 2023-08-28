@@ -206,6 +206,83 @@
       );
       if (assembliesLi) removeElement(assembliesLi.parentElement);
     }
+
+    if (window.location.href.includes("/processes/ENGD")) {
+      var allElements = document.querySelectorAll("*:not(script):not(style)");
+
+      // Função para substituir o texto em um elemento
+      function replaceText(node) {
+        if (node.nodeType === Node.TEXT_NODE) {
+          node.textContent = node.textContent.replace(
+            /propostas/g,
+            "recomendações"
+          );
+          node.textContent = node.textContent.replace(
+            /proposta/g,
+            "recomendação"
+          );
+          node.textContent = node.textContent.replace(
+            /Propostas/g,
+            "Recomendações"
+          );
+          node.textContent = node.textContent.replace(
+            /Proposta/g,
+            "Recomendação"
+          );
+        }
+      }
+
+      // Itera sobre todos os elementos de texto e substitui o conteúdo
+      for (var i = 0; i < allElements.length; i++) {
+        var walker = document.createTreeWalker(
+          allElements[i],
+          NodeFilter.SHOW_TEXT,
+          null,
+          false
+        );
+        var node;
+
+        while ((node = walker.nextNode())) {
+          replaceText(node);
+        }
+      }
+
+      const elements = document.querySelectorAll(
+        ".callout.alert.callout--full"
+      );
+      const onibanner = document.querySelectorAll(".omnipresent-banner");
+
+      onibanner.forEach((element) => {
+        element.remove();
+      });
+
+      elements.forEach((element) => {
+        if (element.textContent.includes("Este é um processo privado")) {
+          element.remove();
+        }
+      });
+      navbarUl.appendChild(createLi("Início", "/processes/ENGD"));
+      navbarUl.appendChild(createLi("Recomendações", `/processes/ENGD/f/3`));
+    } else {
+      navbarUl.appendChild(createLi("Início", "/"));
+      navbarUl.appendChild(
+        createLi(
+          "Programas priorizados",
+          `/processes/programas/f/${chooseProgramId}/`
+        )
+      );
+      navbarUl.appendChild(
+        createLi(
+          "Propostas mais votadas",
+          `/processes/programas/f/${makeProposalId}/`
+        )
+      );
+      navbarUl.appendChild(
+        createLi("Entenda o processo", `/pages/relatoriodaplataforma`)
+      );
+      navbarUl.appendChild(createLi("Sobre", "/pages"));
+    }
+
     const programContentContainer =
       document.querySelector(".ql-editor-display");
     const url = window.location.href;
@@ -308,7 +385,7 @@
     });
 
     $(document).ready(function () {
-      $('input[type="checkbox"]').click(async function () { });
+      $('input[type="checkbox"]').click(async function () {});
     });
   }
   function createCssClass(innerHtml, cssClass, elementSelector) {
@@ -334,16 +411,18 @@
     return window.location.pathname === "/conferences/juventude/f/56/";
   }
   function isOnConferenceOrganizeStep() {
-    return window.location.pathname === "/conferences/juventude/f/107/meetings/new";
+    return (
+      window.location.pathname === "/conferences/juventude/f/107/meetings/new"
+    );
   }
   function isOnPlatformLogin() {
-    console.log(window.location.pathname)
+    console.log(window.location.pathname);
     return window.location.pathname === "/users/sign_in";
   }
   function insertConferenceElements() {
     if (isOnPlatformLogin()) {
-      const bar = document.getElementsByClassName("flash callout alert")[0]
-      if (bar) bar.style.display = 'none';
+      const bar = document.getElementsByClassName("flash callout alert")[0];
+      if (bar) bar.style.display = "none";
     }
     if (isOnConferenceDomain()) {
       const originalMenu = document.querySelector(".process-nav");
@@ -354,14 +433,15 @@
       const wrapper = document.querySelector(".wrapper");
       const main_canvas = document.querySelector(".off-canvas-wrapper");
       if (isOnConferenceOrganizeStep()) {
-        document.querySelector(".section-heading").innerHTML = "Organize uma etapa";
+        document.querySelector(".section-heading").innerHTML =
+          "Organize uma etapa";
       }
 
       if (isOnConferenceBlogPage()) {
         const author = document.querySelector(".card__author");
         const authorData = document.querySelector(".author-data");
-        if (author) author.style.display = 'none';
-        if (authorData) authorData.style.display = 'none';
+        if (author) author.style.display = "none";
+        if (authorData) authorData.style.display = "none";
       }
 
       if (isOnConferenceLandingPage()) {
@@ -1180,7 +1260,7 @@
       }
 
     }
-  </style>`
+  </style>`;
         const body = document.createElement("div");
         body.innerHTML = code;
         hero__container.after(body);
@@ -1298,7 +1378,7 @@
       color: #242020;
       background-color: #ccc;
     }
-  </style>`
+  </style>`;
         const body = document.createElement("div");
         body.innerHTML = code;
         hero?.remove();
@@ -1326,20 +1406,25 @@
         {
           id: "conference-about__2__0",
           title: "Decreto",
-          text: [{
-            link: true,
-            label: "https://www.in.gov.br/en/web/dou/-/decreto-n-11.619-de-25-de-julho-de-2023-498922757",
-          }],
-          link: true
+          text: [
+            {
+              link: true,
+              label:
+                "https://www.in.gov.br/en/web/dou/-/decreto-n-11.619-de-25-de-julho-de-2023-498922757",
+            },
+          ],
+          link: true,
         },
         {
           id: "conference-about__2__1",
           title: "Regimento Interno",
-          text: [{
-            link: true,
-            label: "https://www.in.gov.br/web/dou/-/resolucao-con/conjuve/snj/sgpr/pr-n-1-de-11-de-agosto-de-2023-502722391",
-          }],
-
+          text: [
+            {
+              link: true,
+              label:
+                "https://www.in.gov.br/web/dou/-/resolucao-con/conjuve/snj/sgpr/pr-n-1-de-11-de-agosto-de-2023-502722391",
+            },
+          ],
         },
       ],
     },
@@ -1872,9 +1957,7 @@
       const itemTitle = document.createElement("a");
       const itemContent = document.createElement("div");
       itemTitle.textContent = arrayitem.title;
-      itemTitle.classList.add(
-        "conference-about__list__content__item__title"
-      );
+      itemTitle.classList.add("conference-about__list__content__item__title");
       arrayitem.content.forEach((listItem, index) => {
         const listItemLabel = document.createElement("li");
         listItemLabel.classList.add(
@@ -1907,7 +1990,7 @@
           let itemContent = document.createElement("a");
           itemContent.textContent = contentItem.label;
           itemContent.href = contentItem.label;
-          itemContent.target = "_blank"
+          itemContent.target = "_blank";
           pageContent.appendChild(itemContent);
         } else {
           let itemContent = document.createElement("div");
@@ -1942,8 +2025,14 @@
   const pageContent = document.getElementById("aboutContent");
 </script>
 
-<link rel="stylesheet" href="https://cdngovbr-ds.estaleiro.serpro.gov.br/design-system/fonts/rawline/css/rawline.css" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+<link
+  rel="stylesheet"
+  href="https://cdngovbr-ds.estaleiro.serpro.gov.br/design-system/fonts/rawline/css/rawline.css"
+/>
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+/>
 
 <style type="text/css">
   @import url("https://fonts.cdnfonts.com/css/rawline");
@@ -2426,8 +2515,10 @@
   }
 
   .button:hover {
-    background-image: linear-gradient(rgba(var(--interactive-rgb-primary-btn), var(--hover)),
-        rgba(var(--interactive-rgb-primary-btn), var(--hover)));
+    background-image: linear-gradient(
+      rgba(var(--interactive-rgb-primary-btn), var(--hover)),
+      rgba(var(--interactive-rgb-primary-btn), var(--hover))
+    );
   }
 
   .main-nav__link a,
@@ -2603,7 +2694,7 @@
     white-space: wrap;
   }
 
-  .main-nav ul>li:hover {
+  .main-nav ul > li:hover {
     background: rgba(51, 51, 51, var(--hover));
   }
 
@@ -2661,7 +2752,9 @@
   }
 
   .phase-current {
-    font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-normal) 9.72px/14.09px var(--unnamed-font-family-rawline);
+    font: var(--unnamed-font-style-normal) normal
+      var(--unnamed-font-weight-normal) 9.72px/14.09px
+      var(--unnamed-font-family-rawline);
     letter-spacing: var(--unnamed-character-spacing-0);
     color: var(---gray-80);
     text-align: left;
@@ -2673,7 +2766,8 @@
   }
 
   .phase-title {
-    font: var(--unnamed-font-style-normal) normal 600 var(--unnamed-font-size-14) / 19.32px var(--unnamed-font-family-rawline);
+    font: var(--unnamed-font-style-normal) normal 600
+      var(--unnamed-font-size-14) / 19.32px var(--unnamed-font-family-rawline);
     letter-spacing: var(--unnamed-character-spacing-0);
     color: var(---gray-80);
     text-align: left;
@@ -2692,7 +2786,7 @@
     opacity: 1;
   }
 
-  .process-header__phase>a {
+  .process-header__phase > a {
     font-family: "rawline", sans-serif;
     font-style: italic;
     font-weight: var(--unnamed-font-weight-normal);
@@ -2719,14 +2813,14 @@
     opacity: 1;
   }
 
-  .external-link-container>.external-link-indicator {
+  .external-link-container > .external-link-indicator {
     height: 0.75rem;
     width: 0.75rem;
     /* margin: 0 0 -3px 0.625rem; */
     margin: 0 4px -1px 0.175rem;
   }
 
-  .collapsible-list>* {
+  .collapsible-list > * {
     display: inline-flex;
     margin: 0;
   }
@@ -2899,13 +2993,13 @@
     padding-left: 36px;
   }
 
-  .author-data__extra>button,
-  .author-data__extra>span,
-  .author-data__extra>a {
+  .author-data__extra > button,
+  .author-data__extra > span,
+  .author-data__extra > a {
     margin-right: 0;
   }
 
-  .topbar .dropdown.menu>li.is-dropdown-submenu-parent>a {
+  .topbar .dropdown.menu > li.is-dropdown-submenu-parent > a {
     position: relative;
     padding-right: 5px 1.5rem 0 0;
     color: var(---blue-warm-vivid-70);
@@ -2927,7 +3021,7 @@
     margin-top: 6px;
   }
 
-  .topbar__dropmenu>ul>li>a::after {
+  .topbar__dropmenu > ul > li > a::after {
     border-top-color: var(---blue-warm-vivid-70) !important;
   }
 
@@ -2954,7 +3048,10 @@
     text-align: center;
   }
 
-  .topbar__user__logged .dropdown.menu>li.is-dropdown-submenu-parent>a::after {
+  .topbar__user__logged
+    .dropdown.menu
+    > li.is-dropdown-submenu-parent
+    > a::after {
     color: var(---blue-warm-vivid-70);
   }
 
@@ -2968,7 +3065,7 @@
     text-decoration: none;
   }
 
-  .topbar__admin__link~.topbar__admin__link {
+  .topbar__admin__link ~ .topbar__admin__link {
     margin: 0;
   }
 
@@ -3174,8 +3271,10 @@
 
   textarea:hover,
   input[type="text"]:hover:not(.input-group-field) {
-    background-image: linear-gradient(rgba(var(--color-rgb), var(--hover)),
-        rgba(var(--color-rgb), var(--hover)));
+    background-image: linear-gradient(
+      rgba(var(--color-rgb), var(--hover)),
+      rgba(var(--color-rgb), var(--hover))
+    );
   }
 
   textarea:focus,
@@ -3220,21 +3319,21 @@
     display: none;
   }
 
-  .side-panel__tabs .tabs-title.is-active>[role="tab"],
-  .side-panel__tabs .tabs-title.is-active>a {
+  .side-panel__tabs .tabs-title.is-active > [role="tab"],
+  .side-panel__tabs .tabs-title.is-active > a {
     color: var(---white);
     box-shadow: none;
     background: var(--primary);
   }
 
-  .side-panel__tabs .tabs-title>[role="tab"],
-  .side-panel__tabs .tabs-title>a {
+  .side-panel__tabs .tabs-title > [role="tab"],
+  .side-panel__tabs .tabs-title > a {
     color: var(---blue-warm-vivid-70);
     text-decoration: none;
   }
 
-  .side-panel__tabs .tabs-title>[role="tab"],
-  .side-panel__tabs .tabs-title>a:hover {
+  .side-panel__tabs .tabs-title > [role="tab"],
+  .side-panel__tabs .tabs-title > a:hover {
     color: var(---blue-warm-vivid-70);
     background: rgba(19, 81, 180, 0.16);
   }
@@ -3360,8 +3459,8 @@
     gap: 1rem;
   }
 
-  label>[type="checkbox"],
-  label>[type="radio"] {
+  label > [type="checkbox"],
+  label > [type="radio"] {
     margin-right: 0.5rem;
     border-radius: 4px;
     color: var(---gray-80);
@@ -3561,8 +3660,10 @@
   }
 
   a.button.primary.button--nomargin:hover {
-    background-image: linear-gradient(rgba(var(--interactive-rgb-primary-btn), var(--hover)),
-        rgba(var(--interactive-rgb-primary-btn), var(--hover)));
+    background-image: linear-gradient(
+      rgba(var(--interactive-rgb-primary-btn), var(--hover)),
+      rgba(var(--interactive-rgb-primary-btn), var(--hover))
+    );
   }
 
   /* ACESSIBILIDADE */
@@ -3631,7 +3732,10 @@
   }
 
   div.columns.large-12 div.section.images h3.section-heading,
-  div.columns.large-12 div.section.images .gallery.row .columns.small-6.medium-4.end {
+  div.columns.large-12
+    div.section.images
+    .gallery.row
+    .columns.small-6.medium-4.end {
     display: none;
   }
 
@@ -3785,7 +3889,7 @@
     margin: 1rem 0;
   }
 
-  #dc-dialog-wrapper .dc-dialog .dc-button-wrapper>* {
+  #dc-dialog-wrapper .dc-dialog .dc-button-wrapper > * {
     width: auto;
     margin: 0;
   }
@@ -3824,7 +3928,6 @@
   }
 
   @media (min-width: 768px) {
-
     .omnipresent-banner,
     .omnipresent-banner a {
       background-color: var(---gray-cool-10);
@@ -3863,7 +3966,7 @@
       flex-direction: column;
     }
 
-    #dc-dialog-wrapper .dc-dialog .dc-button-wrapper>* {
+    #dc-dialog-wrapper .dc-dialog .dc-button-wrapper > * {
       width: 100%;
       margin: 0.5rem 0;
     }
@@ -4023,7 +4126,7 @@
       display: block;
     }
 
-    #dc-dialog-wrapper .dc-dialog .dc-button-wrapper>* {
+    #dc-dialog-wrapper .dc-dialog .dc-button-wrapper > * {
       width: 100%;
     }
   }
@@ -4072,12 +4175,12 @@
       display: block;
     }
 
-    #dc-dialog-wrapper .dc-dialog .dc-button-wrapper>* {
+    #dc-dialog-wrapper .dc-dialog .dc-button-wrapper > * {
       width: 100%;
     }
   }
 
-  .vw-links .vw-tooltip.active>.vw-tooltip__item {
+  .vw-links .vw-tooltip.active > .vw-tooltip__item {
     z-index: 99999999;
   }
 
@@ -4309,5 +4412,14 @@
 
   .card__author {
     display: none;
+  }
+
+  .tabs-content {
+    padding: 0;
+    margin: 1rem 0;
+  }
+
+  .main-container__content {
+    padding: 0;
   }
 </style>
