@@ -11,9 +11,9 @@
 
 <body>
   <div class="conference">
-    <form class="conference-cta" action="juventude/f/107/meetings/new">
+    <form class="conference-cta" action="/processes/juventude">
       <button type="submit" class="conference-cta__button">
-        <span class="conference-cta__button__wrapper__label">Organize uma etapa</span>
+        <span class="conference-cta__button__wrapper__label">Participe da etapa digital</span>
       </button>
     </form>
     <section class="conference-cards">
@@ -22,7 +22,7 @@
           <span class="conference-cards__items__item__texts">
             <span class="fa-solid fa-question conference-cards__items__item__texts__icon"></span>
             <div class="conference-cards__items__item__texts__label">
-              Tire suas dúvidas e entenda como participar da Conferência
+              Organize uma etapa
             </div>
           </span>
           <a href="juventude/f/56/" class="conference-cards__items__item__link">Ler mais</a>
@@ -30,9 +30,19 @@
         <div class="conference-cards__items__divider"></div>
         <div class="conference-cards__items__item">
           <span class="conference-cards__items__item__texts">
+            <span class="fa-solid fa-calendar conference-cards__items__item__texts__icon"></span>
+            <div class="conference-cards__item__texts__label">
+              Agenda
+            </div>
+          </span>
+          <a href="/processes/juventude/f/113/surveys/16" class="conference-cards__items__item__link">Ler mais</a>
+        </div>
+        <div class="conference-cards__items__divider"></div>
+        <div class="conference-cards__items__item">
+          <span class="conference-cards__items__item__texts">
             <span class="fa-solid fa-list conference-cards__items__item__texts__icon"></span>
             <div class="conference-cards__item__texts__label">
-              Cadastre a ata da etapa que você organizou
+              Perguntas frequentes
             </div>
           </span>
           <a href="/processes/juventude/f/113/surveys/16" class="conference-cards__items__item__link">Ler mais</a>
@@ -74,6 +84,16 @@
         <a href="https://www.gov.br/participamaisbrasil/conjuve">
           <image class="conference-organizers__container__image"
             src="/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBcmdEIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--b622b01f2ac31ca2eb2bab7e71f29fc6520c4d77/photo_2023-08-22_13-27-55.jpg"
+            alt="logo-brasil-participativo" />
+        </a>
+        <a href="https://www.finatec.org.br">
+          <image class="conference-organizers__container__image"
+            src="/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBcmNEIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--48ad33dde44d148557bfa676230a661883c15f91/logo30anos-finatec-p.png"
+            alt="logo-brasil-participativo" />
+        </a>
+        <a href="https://www.finatec.org.br">
+          <image class="conference-organizers__container__image"
+            src="/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBcmNEIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--48ad33dde44d148557bfa676230a661883c15f91/logo30anos-finatec-p.png"
             alt="logo-brasil-participativo" />
         </a>
         <a href="https://www.finatec.org.br">
@@ -545,7 +565,6 @@
       display: flex;
       flex-direction: row;
       align-items: center;
-      justify-content: center;
     }
 
     .conference-cards__items__divider {
@@ -559,8 +578,10 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
+      justify-content: start;
       cursor: pointer;
+      width: 280px;
+      align-items: flex-start;
     }
 
     .conference-cards__items__item__texts {
