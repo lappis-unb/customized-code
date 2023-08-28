@@ -161,25 +161,7 @@
     if (initativesLi) removeElement(initativesLi.parentElement);
     if (calendarLi) removeElement(calendarLi.parentElement);
     if (conferencesLi) removeElement(conferencesLi.parentElement);
-    if (!isOnConferenceDomain()) {
-      navbarUl.appendChild(createLi("Início", "/"));
-      navbarUl.appendChild(
-        createLi(
-          "Programas priorizados",
-          `/processes/programas/f/${chooseProgramId}/`
-        )
-      );
-      navbarUl.appendChild(
-        createLi(
-          "Propostas mais votadas",
-          `/processes/programas/f/${makeProposalId}/`
-        )
-      );
-      navbarUl.appendChild(
-        createLi("Entenda o processo", `/pages/entenda-ppa-minhas-propostas`)
-      );
-      navbarUl.appendChild(createLi("Sobre", "/pages"));
-    } else {
+    if (isOnConferenceDomain()) {
       const items = [
         {
           label: "Início",
@@ -206,8 +188,7 @@
       );
       if (assembliesLi) removeElement(assembliesLi.parentElement);
     }
-
-    if (window.location.href.includes("/processes/ENGD")) {
+    else if (window.location.href.includes("/processes/ENGD")) {
       var allElements = document.querySelectorAll("*:not(script):not(style)");
 
       // Função para substituir o texto em um elemento
