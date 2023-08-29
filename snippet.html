@@ -20,9 +20,9 @@
 <!-- End Matomo Code -->
 <script defer>
   // Variável referente ao ID do programa, utilizada no menu-tab "Escolher programas" da aplicação.
-  const chooseProgramId = 6;
+  const chooseProgramId = 1;
   // Variável referente ao ID da proposta, utilizada no menu-tab "Fazer proposta ao governo" da aplicação.
-  const makeProposalId = 7;
+  const makeProposalId = 2;
   var CreateDOMObjects = () => {
     const DOM = `
           <div vw class="enabled">
@@ -1293,8 +1293,13 @@
         height: 40rem;
       }
     }
+  .main-container__content {
+    padding: 0;
+  }
 
     @media (min-width: 768px) {
+
+
       .conferenceHero__image {
         height: 40rem;
       }
@@ -1803,7 +1808,7 @@
           align-items: center;
         }
       }
-    </style>` 
+    </style>`;
         const body = document.createElement("div");
         body.innerHTML = code;
         if (hero) hero?.remove();
@@ -2897,7 +2902,14 @@
     justify-content: end;
   }
 
+  .main-container__content {
+    padding: 0;
+  }
+
   @media (min-width: 640px) {
+    .main-container__content {
+      padding: 0 1.5rem;
+    }
     .external-domain-warning .buttons {
       display: flex;
       gap: 1rem;
@@ -3776,10 +3788,6 @@
     background-color: transparent;
     padding: 0;
     border: none;
-  }
-
-  .main-container__content {
-    padding: 0 1.5rem;
   }
 
   .page-title {
@@ -4836,8 +4844,8 @@
     margin: 1rem 0;
   }
 
-  .main-container__content {
-    padding: 0;
+  .row.collapse.buttons__row {
+    display: none;
   }
 
   .row.collapse.buttons__row {
