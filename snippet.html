@@ -174,7 +174,7 @@
           },
           {
             label: "Etapas",
-            path: `/assemblies/confjuv4/f/12/surveys/1`,
+            path: "/assemblies/confjuv4/f/14/",
           },
           {
             label: "Notícias",
@@ -421,9 +421,10 @@
       const wrapper = document.querySelector(".wrapper");
       const main_canvas = document.querySelector(".off-canvas-wrapper");
       const content = document.querySelector("#content");
+
       if (isOnConferenceOrganizeStep()) {
-        document.querySelector(".section-heading").innerHTML =
-          "Organize uma etapa";
+        const element = document.querySelector(".section-heading");
+        if (element) element.innerHTML = "Organize uma etapa";
       }
 
       if (isOnConferenceBlogPage()) {
@@ -434,16 +435,16 @@
       }
 
       if (isOnConferenceLandingPage()) {
+        if (wrapper) wrapper.remove();
+
         if (hero) hero.classList.remove("hero");
         if (dateRow) {
           if (dateRow[0]) dateRow[0].remove();
           if (dateRow[dateRow.length - 1]) dateRow[dateRow.length - 1].remove();
         }
-        if (wrapper) wrapper.remove();
-        const code = `<body>
-  <div class="conference">
+        const code = `  <div class="conference">
     <span class="conferenceHero">
-      <span class="conferenceHeroContainer"></span>
+      <span class="conferenceHero__image"></span>
     </span>
     <form class="conference-cta" action="/assemblies/confjuv4/f/10/">
       <button type="submit" class="conference-cta__button">
@@ -1272,37 +1273,29 @@
     }
 
     .conferenceHero {
-      width: 100%;
-      display: flex;
-      justify-content: center;
       background-repeat: no-repeat;
       background-size: contain;
+      display: flex;
+      justify-content: center;
+      background-position-x: center;
       align-items: center;
-      background-position: center;
-      background-image: url("http://localhost:3000/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBGZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--b177d07be8109b122adcb5905ae44fc77ed637bc/CNJuventude%20-%20(Banner%20Mobile).png");
-    }
-    .conferenceHeroContainer {
-      display: block;
-      height: 40rem;
       width: 100%;
+      height: 20rem;
+      background-image: url("/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBGZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--b177d07be8109b122adcb5905ae44fc77ed637bc/CNJuventude%20-%20(Banner%20Mobile).png") !important;
     }
     @media (min-width: 1284px) {
       .conferenceHero {
-        display: flex;
-        background-image: url("http://localhost:3000/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBGQT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--e21adcbaccb7fd51d7e35a1320c3a43bc5ebfc88/CNJuventude%20-%20(Banner%20Desktop).png");
+        background-image: url("/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBGQT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--e21adcbaccb7fd51d7e35a1320c3a43bc5ebfc88/CNJuventude%20-%20(Banner%20Desktop).png") !important;
         background-size: 1800px;
         background-repeat: no-repeat;
         background-position: top;
-        justify-content: center;
-        align-items: center;
-      }
-      .changedHeroContainer {
-        height: 33rem;
+        background-size: contain;
+        height: 40rem;
       }
     }
 
     @media (min-width: 768px) {
-      .conferenceHeroContainer {
+      .conferenceHero__image {
         height: 40rem;
       }
     }
@@ -1591,13 +1584,14 @@
         width: 60%;
       }
     }
-  </style>
-</body>`;
+  </style>`;
         const body = document.createElement("div");
         body.innerHTML = code;
         content.appendChild(body);
       } else if (isOnConferenceAboutPage()) {
-        const code = `  <section class="conference-about">
+        if (wrapper) wrapper.remove();
+
+        const code = `  <section class="conference-about"> 
     <div class="conference-about__title">
       <h1>Perguntas Frequentes</h1>
       <hr class="conference-about__divider" />
@@ -1713,11 +1707,12 @@
   </style>`;
         const body = document.createElement("div");
         body.innerHTML = code;
-        hero?.remove();
-        hero__container.remove();
-        wrapper.after(body);
-        wrapper?.remove();
-      } else if (isOnConferenceSteps) {
+        if (hero) hero?.remove();
+        if (hero__container) hero__container?.remove();
+        content.appendChild(body);
+      } else if (isOnConferenceSteps()) {
+        if (wrapper) wrapper.remove();
+
         const code = `    <section class="conference-steps">
       <div class="conference-steps__list">
         <div class="conference-steps__list__item">
@@ -1754,6 +1749,7 @@
       .conference-steps {
         font-family: Rawline;
         width: 100%;
+        padding-top: 32px;
       }
       .conference-steps__list {
         display: flex;
@@ -1792,6 +1788,8 @@
       .conference-steps__list__icon {
         width: 48px;
         height: 48px;
+        min-width: 48px;
+        min-height: 48px;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -1805,16 +1803,15 @@
           align-items: center;
         }
       }
-    </style>`;
+    </style>` 
         const body = document.createElement("div");
         body.innerHTML = code;
-        hero?.remove();
-        hero__container.remove();
-        wrapper.after(body);
-        wrapper?.remove();
+        if (hero) hero?.remove();
+        if (hero__container) hero__container?.remove();
+        content.appendChild(body);
       } else {
-        hero?.remove();
-        hero__container?.remove();
+        if (hero) hero?.remove();
+        if (hero__container) hero__container?.remove();
       }
     }
   }
