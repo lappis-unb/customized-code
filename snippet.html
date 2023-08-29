@@ -155,6 +155,9 @@
     const conferencesLi = document.querySelector(
       '.main-nav__link a[href="/conferences"]'
     );
+    const assembliesLi = document.querySelector(
+      '.main-nav__link a[href="/assemblies"]'
+    );
     if (navbarUl) {
       if (initLi) removeElement(initLi.parentElement);
       if (processesLi) removeElement(processesLi.parentElement);
@@ -162,6 +165,7 @@
       if (initativesLi) removeElement(initativesLi.parentElement);
       if (calendarLi) removeElement(calendarLi.parentElement);
       if (conferencesLi) removeElement(conferencesLi.parentElement);
+      if (assembliesLi) removeElement(assembliesLi.parentElement);
       if (isOnConferenceDomain()) {
         const items = [
           {
@@ -1585,7 +1589,7 @@
         width: 60%;
       }
     }
-  </style>` 
+  </style>`;
         const body = document.createElement("div");
         body.innerHTML = code;
         content.appendChild(body);
@@ -1724,7 +1728,9 @@
           <div class="conference-steps__list__description">
             Realize uma conferência livre
           </div>
-          <a href="confjuv4/f/12/surveys/1" class="conference-steps__list__link"
+          <a
+            href="/assemblies/confjuv4/f/12/surveys/1"
+            class="conference-steps__list__link"
             >Leia mais</a
           >
         </div>
@@ -1933,11 +1939,6 @@
           text: [
             " As Etapas Estaduais e do Distrito Federal serão realizadas por iniciativa dos próprios estados e do Distrito Federal, conforme previsto no art. 42, inc. IV, e no art. 44, respectivamente, da Lei 12.852/2013.",
           ],
-        },
-        {
-          id: "conference-about__0__8",
-          title: "Participei de uma etapa. E agora?",
-          text: "X",
         },
       ],
     },
