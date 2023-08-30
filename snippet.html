@@ -93,6 +93,8 @@
     }
   }
   (() => {
+    replaceWrongUrl();
+
     window.addEventListener("DOMContentLoaded", (e) => {
       ImportScriptFile();
       CreateDOMObjects();
@@ -1515,6 +1517,12 @@
         if (hero) hero?.remove();
         if (hero__container) hero__container?.remove();
       }
+    }
+  }
+  function replaceWrongUrl() {
+    console.log(window.location.href)
+    if (window.location.href.includes('conferences/4confjuv')) {
+      window.location.replace("/assemblies/confjuv4");
     }
   }
   window.addEventListener("DOMContentLoaded", function () {
