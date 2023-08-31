@@ -187,7 +187,7 @@
             path: `/assemblies/confjuv4/f/9/posts`,
           },
           {
-            label: "Perguntas frequentes",
+            label: "Sobre",
             path: `/assemblies/confjuv4/f/13/`,
           },
         ];
@@ -392,10 +392,7 @@
     return window.location.pathname === "/assemblies/confjuv4";
   }
   function isOnConferenceDomain() {
-    return (
-      window.location.href.includes("assemblies/confjuv4") ||
-      window.location.href.includes("assemblies/confjuv4/f/10/")
-    );
+    return window.location.href.includes("assemblies/confjuv4");
   }
   function isOnConferenceBlogPage() {
     return window.location.pathname.includes("/assemblies/confjuv4/f/9/posts");
@@ -407,7 +404,7 @@
     return window.location.pathname === "/assemblies/confjuv4/f/14/";
   }
   function isOnConferenceProposals() {
-    return window.location.pathname === "/assemblies/confjuv4/f/10/";
+    return window.location.pathname.includes("/assemblies/confjuv4/f/10/");
   }
   function isOnConferenceCreate() {
     return (
@@ -419,7 +416,6 @@
   }
 
   function isOnPlatformLogin() {
-    console.log(window.location.pathname);
     return window.location.pathname === "/users/sign_in";
   }
   function insertConferenceElements() {
@@ -587,6 +583,7 @@
         </a>
       </span>
     </section>
+    <hr class="conference-divider" />
     <section class="conference-logos__section">
       <div class="conference-logos__section__container">
         <a href="https://www.unb.br/">
@@ -1305,7 +1302,7 @@
       height: 14rem;
     }
 
-    @media (min-width: 1284px) {
+    @media (min-width: 768px) {
       .conferenceHero {
         background-image: url("https://brasilparticipativo.presidencia.gov.br/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBcWtxIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--48d1c69ad64440ad77269accac3217e08b6192c7/KV_4a_conferencia.jpg") !important;
         background-size: 1800px;
@@ -1518,7 +1515,11 @@
       object-fit: contain;
       cursor: pointer;
     }
-
+    .conference-divider {
+      width: 50%;
+      color: #242020;
+      margin-top: 5rem;
+    }
     .conference-logos__section {
       background-color: var(---white);
       padding: 2rem 1rem;
@@ -1839,6 +1840,15 @@
         if (hero__container) hero__container?.remove();
         content.appendChild(body);
       } else if (isOnConferenceProposals()) {
+        const scope = document.querySelector(
+          ".with_any_scope_check_boxes_tree_filter"
+        );
+        const themes = document.querySelector(
+          ".with_any_category_check_boxes_tree_filter"
+        );
+        if (scope) scope.style.display = "none";
+        if (themes) themes.style.display = "none";
+
         const filters = document.querySelector(".collection-sort-controls");
         const body = document.createElement("div");
         body.innerHTML =
@@ -1846,7 +1856,6 @@
         body.style.marginBottom = "20px";
 
         filters.after(body);
-        console.log(filters);
       } else if (isOnConferenceCreate()) {
         const element = document.querySelector(".section-heading");
         if (element) element.innerHTML = "Organize uma etapa";
@@ -1861,26 +1870,23 @@
         replaceLabel(inputString11, "Data e hora de término*");
       } else if (isOnConferenceSendDoc()) {
         const terms = document.querySelector(".tos-agreement");
-        const helpText = document.querySelector(".help-text");
+        const tosAgreement = document.querySelector(".tos-agreement");
+        const newText = tosAgreement.querySelector(`.help-text`);
+        var element = document.getElementById("questionnaire_tos_agreement");
 
-        var newText = helpText.textContent;
-        var regex =
-          /<input[^>]*name="questionnaire\[tos_agreement\]"[^>]*>(.*?)<\/label>/i;
-
-        // Replace the matched content with the new text
-        var resultString = inputString.replace(
-          regex,
-          '<input name="questionnaire[tos_agreement]" type="hidden" value="0" autocomplete="off">' +
-            newText +
-            "</label>"
-        );
-        terms.l;
+        // Verifica se o elemento foi encontrado
+        if (element) {
+          // Modifica o texto do elemento
+          element.nextSibling.textContent = newText.innerText;
+        }
+        newText.style.display = "none";
       } else {
         if (hero) hero?.remove();
         if (hero__container) hero__container?.remove();
       }
     }
   }
+
   function replaceLabel(component, newLabel) {
     var regex = /^(.*?<span[^>]*>[^<]*)/;
     var replacementText = newLabel;

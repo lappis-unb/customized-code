@@ -148,6 +148,7 @@
         </a>
       </span>
     </section>
+    <hr class="conference-divider" />
     <section class="conference-logos__section">
       <div class="conference-logos__section__container">
         <a href="https://www.unb.br/">
@@ -866,7 +867,7 @@
       height: 14rem;
     }
 
-    @media (min-width: 1284px) {
+    @media (min-width: 768px) {
       .conferenceHero {
         background-image: url("https://brasilparticipativo.presidencia.gov.br/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBcWtxIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--48d1c69ad64440ad77269accac3217e08b6192c7/KV_4a_conferencia.jpg") !important;
         background-size: 1800px;
@@ -1079,7 +1080,11 @@
       object-fit: contain;
       cursor: pointer;
     }
-
+    .conference-divider {
+      width: 50%;
+      color: #242020;
+      margin-top: 5rem;
+    }
     .conference-logos__section {
       background-color: var(---white);
       padding: 2rem 1rem;
