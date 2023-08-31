@@ -1,99 +1,110 @@
 <html>
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-</head>
-
-<body>
-  <section class="conference-steps">
-    <div class="conference-steps__list">
-      <a href="/assemblies/confjuv4/f/12/surveys/1" class="conference-steps__list__item">
-        <div class="conference-steps__list__icon fa-solid fa-list-check"></div>
-        <div class="conference-steps__list__title">Organize uma etapa</div>
-        <div class="conference-steps__list__description">
-          Realize uma conferência livre
-        </div>
-        <span href="/assemblies/confjuv4/f/12/surveys/1" class="conference-steps__list__link">Leia mais</span>
-      </a>
-      <a href="/assemblies/confjuv4/f/12/surveys/1" class="conference-steps__list__item">
-        <div class="conference-steps__list__icon fa-solid fa-arrows-spin"></div>
-        <div class="conference-steps__list__title">
-          Envie a ata da sua etapa
-        </div>
-        <div class="conference-steps__list__description">
-          Registre o que ocorreu
-        </div>
-        <span href="/assemblies/confjuv4/f/12/" class="conference-steps__list__link">Leia mais</span>
-      </a>
-    </div>
-  </section>
-  <style type="text/css">
-    .conference-steps {
-      font-family: Rawline;
-      width: 100%;
-      padding-top: 32px;
-    }
-
-    .conference-steps__list {
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      width: 100%;
-    }
-
-    .conference-steps__list__item {
-      font: Rawline;
-      width: 286px;
-      height: 168px;
-      display: flex;
-      align-items: center;
-      justify-items: center;
-      flex-direction: column;
-      gap: 20px;
-      margin-bottom: 35px;
-      text-decoration: none;
-      color: #242020;
-    }
-
-    .conference-steps__list__title {
-      font-family: Rawline;
-      font-size: 20px;
-      font-weight: 600;
-      line-height: 20px;
-      letter-spacing: 0.25px;
-    }
-
-    .conference-steps__list__link {
-      justify-self: end;
-      align-self: flex-end;
-      color: #5c32fe;
-      font-weight: 600;
-      cursor: pointer;
-    }
-
-    .conference-steps__list__icon {
-      width: 48px;
-      height: 48px;
-      min-width: 48px;
-      min-height: 48px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: #5c32fe;
-      border-radius: 50%;
-      color: white;
-      font-size: 24px;
-    }
-
-    @media (max-width: 1284px) {
-      .conference-steps__list {
-        flex-direction: column;
-        align-items: center;
+  <body>
+    <section class="conference-steps">
+      <div class="conference-steps__list">
+        <a
+          href="/assemblies/confjuv4/f/11/meetings/new"
+          class="conference-steps__list__item"
+        >
+          <div
+            class="conference-steps__list__icon fa-solid fa-list-check"
+          ></div>
+          <div class="conference-steps__list__title">Organize uma etapa</div>
+          <div class="conference-steps__list__description">
+            Realize uma conferência
+          </div>
+          <span class="conference-steps__list__link">Leia mais</span>
+        </a>
+        <a
+          href="/assemblies/confjuv4/f/12/surveys/1"
+          class="conference-steps__list__item"
+        >
+          <div
+            class="conference-steps__list__icon fa-solid fa-arrows-spin"
+          ></div>
+          <div class="conference-steps__list__title">
+            Envie a ata da sua etapa
+          </div>
+          <div class="conference-steps__list__description">
+            Registre o que ocorreu
+          </div>
+          <span class="conference-steps__list__link">Leia mais</span>
+        </a>
+      </div>
+    </section>
+    <style type="text/css">
+      .conference-steps {
+        font-family: Rawline;
+        width: 100%;
+        padding-top: 32px;
       }
-    }
-  </style>
-  <script></script>
-</body>
 
+      .conference-steps__list {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        width: 100%;
+      }
+
+      .conference-steps__list__item {
+        font: Rawline;
+        width: 286px;
+        height: 168px;
+        display: flex;
+        align-items: center;
+        justify-items: center;
+        flex-direction: column;
+        gap: 20px;
+        margin-bottom: 35px;
+        text-decoration: none;
+        color: #242020;
+      }
+
+      .conference-steps__list__title {
+        font-family: Rawline;
+        font-size: 20px;
+        font-weight: 600;
+        line-height: 20px;
+        letter-spacing: 0.25px;
+      }
+
+      .conference-steps__list__link {
+        justify-self: end;
+        align-self: flex-end;
+        color: #5c32fe;
+        font-weight: 600;
+        cursor: pointer;
+      }
+
+      .conference-steps__list__icon {
+        width: 48px;
+        height: 48px;
+        min-width: 48px;
+        min-height: 48px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #5c32fe;
+        border-radius: 50%;
+        color: white;
+        font-size: 24px;
+      }
+
+      @media (max-width: 1284px) {
+        .conference-steps__list {
+          flex-direction: column;
+          align-items: center;
+        }
+      }
+    </style>
+    <script></script>
+  </body>
 </html>
