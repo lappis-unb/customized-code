@@ -438,6 +438,17 @@
         const authorData = document.querySelector(".author-data");
         if (author) author.style.display = "none";
         if (authorData) authorData.style.display = "none";
+
+        const blogs = document.querySelector("#blogs");
+        blogs.classList.remove(...blogs.classList);
+
+        const code = `<style>#blogs {display: flex; flex-direction: column; justify-content: center; align-items: center; width: 100%; }</style>`;
+        const item = document.createElement("div");
+        item.innerHTML = code;
+
+        blogs.after(item);
+        blogs.firstElementChild.style.minWidth = "60%";
+        blogs.firstElementChild.style.maxWidth = "80%";
       }
 
       if (isOnConferenceLandingPage()) {
@@ -1616,119 +1627,119 @@
         if (wrapper) wrapper.remove();
 
         const code = `  <section class="conference-about">
-    <div class="conference-about__title">
-      <h1>Perguntas Frequentes</h1>
-      <hr class="conference-about__divider" />
-    </div>
-    <div class="conference-about__list">
-      <div class="conference-about__list__content" id="aboutContent"></div>
-    </div>
-  </section>
-  <style type="text/css">
-    .conference-about {
-      font-family: Rawline;
-      padding: 48px 64px;
-      margin: 0 auto;
-      max-width: 62rem;
-    }
+      <div class="conference-about__title">
+        <h1>Perguntas Frequentes</h1>
+        <hr class="conference-about__divider" />
+      </div>
+      <div class="conference-about__list">
+        <div class="conference-about__list__content" id="aboutContent"></div>
+      </div>
+    </section>
+    <style type="text/css">
+      .conference-about {
+        font-family: Rawline;
+        padding: 48px 64px;
+        margin: 0 auto;
+        max-width: 62rem;
+      }
 
-    .conference-about__title {
-      font-family: Rawline;
-    }
+      .conference-about__title {
+        font-family: Rawline;
+      }
 
-    .conference-about__divider {
-      margin: 4px;
-    }
+      .conference-about__divider {
+        margin: 4px;
+      }
 
-    .conference-about__list {
-      display: flex;
-      flex-direction: row;
-    }
+      .conference-about__list {
+        display: flex;
+        flex-direction: row;
+      }
 
-    .conference-about__list__title {
-      font-size: 1.2rem;
-      margin-top: 1rem;
-      font-weight: bold;
-    }
+      .conference-about__list__title {
+        font-size: 1.2rem;
+        margin-top: 1rem;
+        font-weight: bold;
+      }
 
-    .conference-about__list__content {
-      display: flex;
-      flex-direction: row;
-      gap: 30px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
+      .conference-about__list__content {
+        display: flex;
+        flex-direction: row;
+        gap: 30px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
 
-    .conference-about__list__content__title {
-      font-size: 1.1rem;
-    }
+      .conference-about__list__content__title {
+        font-size: 1.1rem;
+      }
 
-    .conference-about__list__content__item {
-      display: flex;
-      flex-direction: column;
-      box-shadow: 0px 1px 6px #24202026;
-      padding: 24px 16px;
-      list-style-position: outside;
-      max-width: 275px;
-      min-width: 275px;
-      min-height: 420px;
-      margin: 0;
-      margin-top: 16px;
-      flex: 1 0 calc(33.33% - 20px);
-    }
+      .conference-about__list__content__item {
+        display: flex;
+        flex-direction: column;
+        box-shadow: 0px 1px 6px #24202026;
+        padding: 24px 16px;
+        list-style-position: outside;
+        max-width: 275px;
+        min-width: 275px;
+        min-height: 420px;
+        margin: 0;
+        margin-top: 16px;
+        flex: 1 0 calc(33.33% - 20px);
+      }
 
-    .conference-about__list__content__item__title {
-      font-weight: 400;
-      margin: 0;
-      margin-bottom: 8px;
-      color: #242020;
-    }
+      .conference-about__list__content__item__title {
+        font-weight: 400;
+        margin: 0;
+        margin-bottom: 8px;
+        color: #242020;
+      }
 
-    .conference-about__list__content__item__content {
-      font-weight: 400;
-      margin: 0;
-      margin-bottom: 8px;
-      color: #242020;
-    }
+      .conference-about__list__content__item__content {
+        font-weight: 400;
+        margin: 0;
+        margin-bottom: 8px;
+        color: #242020;
+      }
 
-    .conference-about__list__content__item a {
-      color: #242020;
-      text-decoration: none;
-    }
+      .conference-about__list__content__item a {
+        color: #242020;
+        text-decoration: none;
+      }
 
-    .conference-about__list__content__item__link {
-      margin-left: 1.25rem;
-      list-style-position: outside;
-      color: #016df0;
-      cursor: pointer;
-      list-style-type: disc;
-    }
+      .conference-about__list__content__item__link {
+        margin-left: 1.25rem;
+        list-style-position: outside;
+        color: #016df0;
+        cursor: pointer;
+        list-style-type: disc;
+      }
 
-    .conference-about__list__content__item__link:hover {
-      color: #004aa4;
-      text-decoration: underline;
-    }
+      .conference-about__list__content__item__link:hover {
+        color: #004aa4;
+        text-decoration: underline;
+      }
 
-    .conference-about__list__content__item__link::marker {
-      color: #242020;
-    }
+      .conference-about__list__content__item__link::marker {
+        color: #242020;
+      }
 
-    .conference-about__back-button {
-      height: 2rem;
-      width: 4rem;
-      border-radius: 0.5rem;
-      border: none;
-      background-color: #242020;
-      color: white;
-      font-weight: bold;
-      cursor: pointer;
-    }
+      .conference-about__back-button {
+        height: 2rem;
+        width: 4rem;
+        border-radius: 0.5rem;
+        border: none;
+        background-color: #242020;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+      }
 
-    .conference-about__back-button:hover {
-      color: #242020;
-      background-color: #ccc;
-    }
-  </style>`;
+      .conference-about__back-button:hover {
+        color: #242020;
+        background-color: #ccc;
+      }
+    </style>`;
         const body = document.createElement("div");
         body.innerHTML = code;
         if (hero) hero?.remove();
@@ -1840,9 +1851,14 @@
         if (hero__container) hero__container?.remove();
         content.appendChild(body);
       } else if (isOnConferenceProposals()) {
+        const code = `<style>.with_any_scope_check_boxes_tree_filter {display: none;}</style>`;
+        const item = document.createElement("div");
+        item.innerHTML = code;
+
         const content = document.querySelector("#content");
+        content.after(item);
+
         const filter = content.querySelector(".new_filter");
-        filter.remove();
         const scope = filter.getElementsByClassName(
           "with_any_scope_check_boxes_tree_filter"
         );
@@ -1979,6 +1995,28 @@
               link: true,
               label:
                 "https://www.in.gov.br/en/web/dou/-/resolucao-con/conjuve/snj/sgpr/pr-n-3-de-25-de-agosto-de-2023-505752021",
+            },
+          ],
+        },
+        {
+          id: "conference-about__2__6",
+          title: "Regulamento Etapa Digital",
+          text: [
+            {
+              link: true,
+              label:
+                "https://www.in.gov.br/en/web/dou/-/resolucao-con/conjuve/snj/sgpr/pr-n-5-de-30-de-agosto-de-2023-506993025",
+            },
+          ],
+        },
+        {
+          id: "conference-about__2__7",
+          title: "Regulamento das Etapas Temáticas",
+          text: [
+            {
+              link: true,
+              label:
+                "https://www.in.gov.br/en/web/dou/-/resolucao-con/conjuve/snj/sgpr/pr-n-6-de-30-de-agosto-de-2023-506978195",
             },
           ],
         },
@@ -2539,7 +2577,7 @@
       result.text.forEach((contentItem) => {
         if (contentItem.link === true) {
           let itemContent = document.createElement("a");
-          itemContent.textContent = contentItem.label;
+          itemContent.textContent = "Acesse aqui";
           itemContent.href = contentItem.label;
           itemContent.target = "_blank";
           pageContent.appendChild(itemContent);
