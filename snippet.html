@@ -155,9 +155,10 @@
     const conferencesLi = document.querySelector(
       '.main-nav__link a[href="/conferences"]'
     );
-    if (!navigator.userAgentData.mobile) {
-      createBottomNavBar();
-    }
+
+    // Cria menu inferior no mobile
+    createBottomNavBar();
+
     if (navbarUl) {
       if (initLi) removeElement(initLi.parentElement);
       if (processesLi) removeElement(processesLi.parentElement);
@@ -451,6 +452,12 @@
         display: flex;  
         flex-direction: column;
     }
+
+    @media screen and (min-width: 600px) {
+        .mobile-bottom-nav {
+            display: none;
+        }
+    }
 </style>  
   `;
       // Corrigir para detectar quando é acessado pelo mobile
@@ -461,7 +468,7 @@
             navItems.forEach(function(e2, i2) {			
               e2.classList.remove("mobile-bottom-nav__item--active");
             })		
-            window.location.assign("../account"); 
+              window.location.assign("../account"); 
             this.classList.add("mobile-bottom-nav__item--active");	
           });
         }
