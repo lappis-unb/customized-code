@@ -1840,15 +1840,20 @@
         if (hero__container) hero__container?.remove();
         content.appendChild(body);
       } else if (isOnConferenceProposals()) {
-        const scope = document.querySelector(
-          ".with_any_scope_check_boxes_tree_filter"
+        const content = document.querySelector("#content");
+        const filter = content.querySelector(".new_filter");
+        filter.remove();
+        const scope = filter.getElementsByClassName(
+          "with_any_scope_check_boxes_tree_filter"
         );
-        const themes = document.querySelector(
-          ".with_any_category_check_boxes_tree_filter"
+        const themes = filter.querySelectorAll(
+          ".filters__section.with_any_category_check_boxes_tree_filter"
         );
-        if (scope) scope.style.display = "none";
-        if (themes) themes.style.display = "none";
-
+        console.log(scope);
+        scope[0].nextSibling.remove();
+        scope[0].remove();
+        themes[0].remove();
+        console.log("oi");
         const filters = document.querySelector(".collection-sort-controls");
         const body = document.createElement("div");
         body.innerHTML =
