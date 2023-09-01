@@ -1073,7 +1073,7 @@
             label: "Sobre",
             path: `/assemblies/confjuv4/f/13/`,
           },
-        ];
+        ]; // CONSEA: Colocar um if e alterar os dominios para o do consea.
         items.forEach((item) =>
           navbarUl.appendChild(createLi(item.label, item.path))
         );
@@ -1256,6 +1256,7 @@
     const element = document.querySelector(elementSelector);
     if (element) element.classList.add(cssClass);
   }
+  // CONSEA: Adicionar as funções para o dominio do consea
   function isOnConferenceLandingPage() {
     return window.location.pathname === "/assemblies/confjuv4";
   }
