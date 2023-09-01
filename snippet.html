@@ -133,11 +133,10 @@
   <div class="hero__container__img"></div>
   <div class="hero-button-container">
     <a
-      href="https://brasilparticipativo.presidencia.gov.br/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBaElxIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--088a2f143c1f4e5a2669c8f9c8fe47bcd90959eb/PLATAFORMA%20-%20Relat%C3%B3rio%20da%20plataforma%20Brasil%20Participativo.pdf"
+      href="/pages/relatoriodaplataforma"
       class="hero-link"
     >
-      <div class="hero-link-icon"><i class="fa-solid fa-download"></i></div>
-      <span class="hero-link-text">Relatório da Plataforma</span>
+      <span class="hero-link-text">Relatórios do PPA Participativo</span>
     </a>
   </div>
 </section>
@@ -164,18 +163,6 @@
           </div>
           <p class="card-name">Propostas mais votadas</p>
           <p class="card-description">Conheça as propostas mais votadas</p>
-          <p class="card-see-more">Leia mais</p>
-        </div>
-      </a>
-    </div>
-    <div class="new-feature-card">
-      <a href="/pages/relatoriodaplataforma">
-        <div class="card-content">
-          <div class="new-feature-icon-background">
-            <i class="fa fa-handshake-angle fa-2xl"></i>
-          </div>
-          <p class="card-name">Entenda o processo</p>
-          <p class="card-description">Saiba quais passos seguir</p>
           <p class="card-see-more">Leia mais</p>
         </div>
       </a>
@@ -1004,14 +991,14 @@
   function doEverything() {
     const createLi = (name, path) => {
       const li = document.createElement("li");
-      li.classList.add("main-nav__link", "main-nav__link__color");
+      li.classList.add("process-nav__link", "process-nav__link__color");
 
       const a = document.createElement("a");
       a.setAttribute("href", path);
       a.textContent = name;
 
       const hasActiveLink = document.querySelector(
-        ".main-nav__link--active__color"
+        ".process-nav__link--active__color"
       );
 
       const isActive =
@@ -1019,38 +1006,45 @@
         (name !== "Início" &&
           window.location.pathname.includes(path) &&
           !hasActiveLink);
-      li.classList.toggle("main-nav__link--active__color", isActive);
+      li.classList.toggle("is-active", isActive);
 
       li.appendChild(a);
       return li;
     };
     const removeElement = (element) => element.parentNode.removeChild(element);
-    const navbarUl = document.querySelector(".main-nav ul");
-    const initLi = document.querySelector('.main-nav__link a[href="/"]');
+    const navbarUl = document.querySelector(".process-nav ul");
+    const initLi = document.querySelector('.process-nav__link a[href="/"]');
     const processesLi = document.querySelector(
-      '.main-nav__link a[href="/processes"]'
+      '.process-nav__link a[href="/processes"]'
     );
-    const pagesLi = document.querySelector('.main-nav__link a[href="/pages"]');
+    const pagesLi = document.querySelector('.process-nav__link a[href="/pages"]');
     const initativesLi = document.querySelector(
-      '.main-nav__link a[href="/initiatives"]'
+      '.process-nav__link a[href="/initiatives"]'
     );
     const calendarLi = document.querySelector(
-      '.main-nav__link a[href="/calendar"]'
+      '.process-nav__link a[href="/calendar"]'
     );
     const conferencesLi = document.querySelector(
-      '.main-nav__link a[href="/conferences"]'
+      '.process-nav__link a[href="/conferences"]'
     );
     const assembliesLi = document.querySelector(
-      '.main-nav__link a[href="/assemblies"]'
+      '.process-nav__link a[href="/assemblies"]'
     );
+    function deleteLiProcessNav() {
+      const deleteLiList = document.querySelectorAll('li:has(a.process-nav__link)');
+      deleteLiList.forEach(el => {
+        el.remove();
+      });
+    }
+    deleteLiProcessNav();
     if (navbarUl) {
-      if (initLi) removeElement(initLi.parentElement);
-      if (processesLi) removeElement(processesLi.parentElement);
-      if (pagesLi) removeElement(pagesLi.parentElement);
-      if (initativesLi) removeElement(initativesLi.parentElement);
-      if (calendarLi) removeElement(calendarLi.parentElement);
-      if (conferencesLi) removeElement(conferencesLi.parentElement);
-      if (assembliesLi) removeElement(assembliesLi.parentElement);
+      // if (initLi) removeElement(initLi.parentElement);
+      // if (processesLi) removeElement(processesLi.parentElement);
+      // if (pagesLi) removeElement(pagesLi.parentElement);
+      // if (initativesLi) removeElement(initativesLi.parentElement);
+      // if (calendarLi) removeElement(calendarLi.parentElement);
+      // if (conferencesLi) removeElement(conferencesLi.parentElement);
+      // if (assembliesLi) removeElement(assembliesLi.parentElement);
       if (isOnConferenceDomain()) {
         const items = [
           {
@@ -1078,7 +1072,7 @@
           navbarUl.appendChild(createLi(item.label, item.path))
         );
         const assembliesLi = document.querySelector(
-          '.main-nav__link a[href="/assemblies"]'
+          '.process-nav__link a[href="/assemblies"]'
         );
         if (assembliesLi) removeElement(assembliesLi.parentElement);
       } else if (window.location.href.includes("/processes/ENGD")) {
@@ -1138,23 +1132,24 @@
         navbarUl.appendChild(createLi("Início", "/processes/ENGD"));
         navbarUl.appendChild(createLi("Recomendações", `/processes/ENGD/f/3`));
       } else {
-        navbarUl.appendChild(createLi("Início", "/"));
-        navbarUl.appendChild(
-          createLi(
-            "Programas priorizados",
-            `/processes/programas/f/${chooseProgramId}/`
-          )
-        );
-        navbarUl.appendChild(
-          createLi(
-            "Propostas mais votadas",
-            `/processes/programas/f/${makeProposalId}/`
-          )
-        );
-        navbarUl.appendChild(
-          createLi("Entenda o processo", `/pages/relatoriodaplataforma`)
-        );
-        navbarUl.appendChild(createLi("Sobre", "/pages"));
+        navbarUl.remove();
+        // navbarUl.appendChild(createLi("Início", "/processes/programas/"));
+        // navbarUl.appendChild(
+        //   createLi(
+        //     "Programas priorizados",
+        //     `/processes/programas/f/${chooseProgramId}/`
+        //   )
+        // );
+        // navbarUl.appendChild(
+        //   createLi(
+        //     "Propostas mais votadas",
+        //     `/processes/programas/f/${makeProposalId}/`
+        //   )
+        // );
+        // navbarUl.appendChild(
+        //   createLi("Entenda o processo", `/pages/relatoriodaplataforma`)
+        // );
+        // navbarUl.appendChild(createLi("Sobre", "/pages/relatoriodaplataforma"));
       }
     }
 
@@ -3565,8 +3560,8 @@
   }
 
   :root {
-    --banner-mobile: url("https://brasilparticipativo.presidencia.gov.br/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBaVVmIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--f36fb771757af1fb904a07246355b3bc7cc5e458/Banner%20Mobile.jpg");
-    --banner-desktop: url("https://brasilparticipativo.presidencia.gov.br/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBaVlmIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--df3be025ed70a54b7324aed068229ca812244b72/Banner%20Desktop.png");
+    --banner-mobile: url("https://brasilparticipativo.presidencia.gov.br/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBazByIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--78e4a5015530027f6d90a8ba9feb2689a6e5fd1f/ppa_mobile_text.jpg");
+    --banner-desktop: url("https://brasilparticipativo.presidencia.gov.br/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBa3dyIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--f94aaf30ccd09d12cd4ead43ca7d9921f7d46db2/ppa_desktop_text.jpg");
 
     --hover: 0.16;
     --interactive-rgb: 19, 81, 180;
@@ -3947,7 +3942,7 @@
       max-height: 33px;
     }
 
-    .main-nav ul {
+    .process-nav ul {
       white-space: wrap;
     }
 
@@ -3969,10 +3964,10 @@
         rgba(var(--interactive-rgb-primary-btn), var(--hover)));
   }
 
-  .main-nav__link a,
-  .main-nav__link a:hover,
-  .main-nav__link a:visited,
-  .main-nav__link a:link {
+  .process-nav__link a,
+  .process-nav__link a:hover,
+  .process-nav__link a:visited,
+  .process-nav__link a:link {
     font-family: var(--unnamed-font-family-rawline);
     font-style: var(--unnamed-font-style-normal);
     font-weight: var(--font-weight-medium);
@@ -3983,19 +3978,19 @@
     text-decoration: none;
   }
 
-  .main-nav__link__color a,
-  .main-nav__link__color a:hover,
-  .main-nav__link__color a:visited,
-  .main-nav__link__color a:link {
+  .process-nav__link__color a,
+  .process-nav__link__color a:hover,
+  .process-nav__link__color a:visited,
+  .process-nav__link__color a:link {
     color: var(---gray-80);
   }
 
-  .main-nav__link--active__color a {
+  .process-nav__link--active__color a {
     box-shadow: inset 0 -4px 0 0 var(---blue-warm-vivid-80);
     color: var(---blue-warm-vivid-80) !important;
   }
 
-  .main-nav__link--active a {
+  .process-nav__link--active a {
     box-shadow: inset 0 -4px 0 0 #e8e8e8;
     color: var(---white) !important;
   }
@@ -4136,13 +4131,13 @@
     margin: 0.4rem 0.5rem 0 0;
   }
 
-  .main-nav ul {
+  .process-nav ul {
     display: block;
     text-align: center;
     white-space: wrap;
   }
 
-  .main-nav ul>li:hover {
+  .process-nav ul > li:hover {
     background: rgba(51, 51, 51, var(--hover));
   }
 
@@ -5117,15 +5112,19 @@
   }
 
   #content .process-header {
-    display: none;
+    display: block;
   }
 
   .voting-rules .callout.secondary {
     display: none;
   }
 
-  .process-nav li:nth-child(1) {
+  /* .process-nav li:nth-child(1) {
     display: none;
+  } */
+
+  .process-nav {
+    display: block;
   }
 
   .card__label.card--process {
@@ -5238,6 +5237,16 @@
     margin: 0 auto;
   }
 
+  .hero__container__img {
+    background-image: var(--banner-mobile);
+  }
+
+  @media (min-width: 768px) {
+    .hero__container__img {
+      background-image: var(--banner-desktop);
+    }
+  }
+
   @media (min-width: 1284px) {
     .home-stats .section-statistics .statistics-cell {
       display: flex;
@@ -5248,5 +5257,18 @@
       gap: 1.5rem;
       padding: 8px;
     }
+  }
+
+  .process-nav {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    z-index: 1;
+  }
+
+  .process-header__inner {
+    display: none;
   }
 </style>
