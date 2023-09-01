@@ -1245,7 +1245,7 @@
     });
 
     $(document).ready(function () {
-      $('input[type="checkbox"]').click(async function () { });
+      $('input[type="checkbox"]').click(async function () {});
     });
   }
   function createCssClass(innerHtml, cssClass, elementSelector) {
@@ -1263,7 +1263,7 @@
     return window.location.href.includes("assemblies/confjuv4");
   }
   function isOnConferenceBlogPage() {
-    return window.location.pathname.includes("/assemblies/confjuv4/f/9/posts");
+    return window.location.pathname.includes("/assemblies/confjuv4/f/9");
   }
   function isOnConferenceAboutPage() {
     return window.location.pathname === "/assemblies/confjuv4/f/13/";
@@ -1275,8 +1275,8 @@
     return window.location.pathname.includes("/assemblies/confjuv4/f/10/");
   }
   function isOnConferenceCreate() {
-    return (
-      window.location.pathname === "/assemblies/confjuv4/f/11/meetings/new"
+    return window.location.pathname.includes(
+      "/assemblies/confjuv4/f/131/meetings"
     );
   }
   function isOnConferenceSendDoc() {
@@ -2736,19 +2736,41 @@
         const element = document.querySelector(".section-heading");
         if (element) element.innerHTML = "Organize uma etapa";
         const form = document.querySelector(".meetings_form ");
+        const select = form.querySelector("#meeting_type_of_meeting");
+        select.value = "online";
+
+        form.children[4].style.display = "none";
+        form.children[9].style.display = "none";
+        form.children[8].id = "vsf";
+
+        createCssClass(".vsf {display: none !important;}", "vsf", "#vsf");
+        var inputString7 = form.children[7].getElementsByTagName("label")[0];
+        var inputString12 = form.children[12].getElementsByTagName("label")[0];
         var inputString10 = form.children[10].getElementsByTagName("label")[0];
         var inputString11 = form.children[11].getElementsByTagName("label")[0];
+        form.children[7].querySelector(".help-text").style.display = "none";
+        inputString7.innerHTML = inputString7.innerHTML.replace(
+          "Dicas de localização",
+          "Localização"
+        );
+        inputString12.innerHTML = inputString12.innerHTML.replace(
+          "Âmbito",
+          "Estado"
+        );
+
         replaceLabel(inputString10, "Data e hora de início*");
         replaceLabel(inputString11, "Data e hora de término*");
+        form.children[8].querySelector("#meeting_online_meeting_url").value =
+          "https://www.teste.com";
+
+        form.children[8].required = false;
+        form.children[8].style = "display: none;";
       } else if (isOnConferenceSendDoc()) {
         const terms = document.querySelector(".tos-agreement");
         const tosAgreement = document.querySelector(".tos-agreement");
         const newText = tosAgreement.querySelector(`.help-text`);
         var element = document.getElementById("questionnaire_tos_agreement");
-
-        // Verifica se o elemento foi encontrado
         if (element) {
-          // Modifica o texto do elemento
           element.nextSibling.textContent = newText.innerText;
         }
         newText.style.display = "none";
@@ -2763,6 +2785,10 @@
     var regex = /^(.*?<span[^>]*>[^<]*)/;
     var replacementText = newLabel;
     var result = component.innerHTML.replace(regex, replacementText);
+    if (result.includes("Dicas de localização")) {
+      // Replace the text with an empty string
+      result = result.replace("Dicas de localização", "");
+    }
     component.innerHTML = result;
   }
   function replaceWrongUrl() {
@@ -3486,8 +3512,14 @@
   }
 </script>
 
-<link rel="stylesheet" href="https://cdngovbr-ds.estaleiro.serpro.gov.br/design-system/fonts/rawline/css/rawline.css" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+<link
+  rel="stylesheet"
+  href="https://cdngovbr-ds.estaleiro.serpro.gov.br/design-system/fonts/rawline/css/rawline.css"
+/>
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+/>
 
 <style type="text/css">
   @import url("https://fonts.cdnfonts.com/css/rawline");
@@ -3965,8 +3997,10 @@
   }
 
   .button:hover {
-    background-image: linear-gradient(rgba(var(--interactive-rgb-primary-btn), var(--hover)),
-        rgba(var(--interactive-rgb-primary-btn), var(--hover)));
+    background-image: linear-gradient(
+      rgba(var(--interactive-rgb-primary-btn), var(--hover)),
+      rgba(var(--interactive-rgb-primary-btn), var(--hover))
+    );
   }
 
   .main-nav__link a,
@@ -4142,7 +4176,7 @@
     white-space: wrap;
   }
 
-  .main-nav ul>li:hover {
+  .main-nav ul > li:hover {
     background: rgba(51, 51, 51, var(--hover));
   }
 
@@ -4200,7 +4234,9 @@
   }
 
   .phase-current {
-    font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-normal) 9.72px/14.09px var(--unnamed-font-family-rawline);
+    font: var(--unnamed-font-style-normal) normal
+      var(--unnamed-font-weight-normal) 9.72px/14.09px
+      var(--unnamed-font-family-rawline);
     letter-spacing: var(--unnamed-character-spacing-0);
     color: var(---gray-80);
     text-align: left;
@@ -4212,7 +4248,8 @@
   }
 
   .phase-title {
-    font: var(--unnamed-font-style-normal) normal 600 var(--unnamed-font-size-14) / 19.32px var(--unnamed-font-family-rawline);
+    font: var(--unnamed-font-style-normal) normal 600
+      var(--unnamed-font-size-14) / 19.32px var(--unnamed-font-family-rawline);
     letter-spacing: var(--unnamed-character-spacing-0);
     color: var(---gray-80);
     text-align: left;
@@ -4231,7 +4268,7 @@
     opacity: 1;
   }
 
-  .process-header__phase>a {
+  .process-header__phase > a {
     font-family: "rawline", sans-serif;
     font-style: italic;
     font-weight: var(--unnamed-font-weight-normal);
@@ -4258,14 +4295,14 @@
     opacity: 1;
   }
 
-  .external-link-container>.external-link-indicator {
+  .external-link-container > .external-link-indicator {
     height: 0.75rem;
     width: 0.75rem;
     /* margin: 0 0 -3px 0.625rem; */
     margin: 0 4px -1px 0.175rem;
   }
 
-  .collapsible-list>* {
+  .collapsible-list > * {
     display: inline-flex;
     margin: 0;
   }
@@ -4438,13 +4475,13 @@
     padding-left: 36px;
   }
 
-  .author-data__extra>button,
-  .author-data__extra>span,
-  .author-data__extra>a {
+  .author-data__extra > button,
+  .author-data__extra > span,
+  .author-data__extra > a {
     margin-right: 0;
   }
 
-  .topbar .dropdown.menu>li.is-dropdown-submenu-parent>a {
+  .topbar .dropdown.menu > li.is-dropdown-submenu-parent > a {
     position: relative;
     padding-right: 5px 1.5rem 0 0;
     color: var(---blue-warm-vivid-70);
@@ -4466,7 +4503,7 @@
     margin-top: 6px;
   }
 
-  .topbar__dropmenu>ul>li>a::after {
+  .topbar__dropmenu > ul > li > a::after {
     border-top-color: var(---blue-warm-vivid-70) !important;
   }
 
@@ -4493,7 +4530,10 @@
     text-align: center;
   }
 
-  .topbar__user__logged .dropdown.menu>li.is-dropdown-submenu-parent>a::after {
+  .topbar__user__logged
+    .dropdown.menu
+    > li.is-dropdown-submenu-parent
+    > a::after {
     color: var(---blue-warm-vivid-70);
   }
 
@@ -4507,7 +4547,7 @@
     text-decoration: none;
   }
 
-  .topbar__admin__link~.topbar__admin__link {
+  .topbar__admin__link ~ .topbar__admin__link {
     margin: 0;
   }
 
@@ -4713,8 +4753,10 @@
 
   textarea:hover,
   input[type="text"]:hover:not(.input-group-field) {
-    background-image: linear-gradient(rgba(var(--color-rgb), var(--hover)),
-        rgba(var(--color-rgb), var(--hover)));
+    background-image: linear-gradient(
+      rgba(var(--color-rgb), var(--hover)),
+      rgba(var(--color-rgb), var(--hover))
+    );
   }
 
   textarea:focus,
@@ -4759,21 +4801,21 @@
     display: none;
   }
 
-  .side-panel__tabs .tabs-title.is-active>[role="tab"],
-  .side-panel__tabs .tabs-title.is-active>a {
+  .side-panel__tabs .tabs-title.is-active > [role="tab"],
+  .side-panel__tabs .tabs-title.is-active > a {
     color: var(---white);
     box-shadow: none;
     background: var(--primary);
   }
 
-  .side-panel__tabs .tabs-title>[role="tab"],
-  .side-panel__tabs .tabs-title>a {
+  .side-panel__tabs .tabs-title > [role="tab"],
+  .side-panel__tabs .tabs-title > a {
     color: var(---blue-warm-vivid-70);
     text-decoration: none;
   }
 
-  .side-panel__tabs .tabs-title>[role="tab"],
-  .side-panel__tabs .tabs-title>a:hover {
+  .side-panel__tabs .tabs-title > [role="tab"],
+  .side-panel__tabs .tabs-title > a:hover {
     color: var(---blue-warm-vivid-70);
     background: rgba(19, 81, 180, 0.16);
   }
@@ -4895,8 +4937,8 @@
     gap: 1rem;
   }
 
-  label>[type="checkbox"],
-  label>[type="radio"] {
+  label > [type="checkbox"],
+  label > [type="radio"] {
     margin-right: 0.5rem;
     border-radius: 4px;
     color: var(---gray-80);
@@ -5096,8 +5138,10 @@
   }
 
   a.button.primary.button--nomargin:hover {
-    background-image: linear-gradient(rgba(var(--interactive-rgb-primary-btn), var(--hover)),
-        rgba(var(--interactive-rgb-primary-btn), var(--hover)));
+    background-image: linear-gradient(
+      rgba(var(--interactive-rgb-primary-btn), var(--hover)),
+      rgba(var(--interactive-rgb-primary-btn), var(--hover))
+    );
   }
 
   /* ACESSIBILIDADE */
