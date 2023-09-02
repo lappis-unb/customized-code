@@ -1,0 +1,69 @@
+<script defer>
+  (() => {
+    window.addEventListener("DOMContentLoaded", (e) => {
+      if (window.location.pathname === "/pages/brasil-participativo-sobre") {
+        // Criar um novo elemento div
+        const ppaPageHTML = document.createElement("div");
+        ppaPageHTML.classList.add("wrapper");
+        ppaPageHTML.innerHTML = `
+          <section>
+  <img src="https://brasilparticipativo.presidencia.gov.br/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBbHNyIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--fc0ad36146af41f6755918fcdef4be47c0dddcb5/SOBRE%20(Desktop)%20(1).jpg" alt="Banner do Brasil Participativo" />
+  <h1 class="about-title">Sobre o Brasil Participativo</h1>
+  <p class="about-text">
+    A Plataforma Brasil Participativo é a nova plataforma de participação social
+    do governo federal, construída para que a população possa contribuir com a
+    criação e melhoria das políticas públicas. De responsabilidade da Secretaria
+    Nacional de Participação Social da Secretaria Geral da Presidência da
+    República (SNPS/SGPR), a plataforma foi desenvolvida em software livre com o
+    apoio da Dataprev, da comunidade Decidim-Brasil, do Ministério da Gestão e
+    da Inovação em Serviços Públicos (MGI) e da Universidade de Brasília (UnB).
+  </p>
+  <p class="about-text">
+    A primeira iniciativa digital de participação foi o Plano Plurianual
+    Participativo, assinado pela SGPR e pelo Ministério do Planejamento e
+    Orçamento (MPO). Entre os dias 11 de maio e 16 de julho, a plataforma
+    possibilitou a coleta de propostas da sociedade e a priorização de programas
+    e propostas para o Plano Plurianual (PPA) 2024-2027. Ao todo, mais de um
+    milhão e 400 mil pessoas participaram ativamente da etapa digital do PPA, o
+    que deu ao Brasil Participativo o título de maior experiência de
+    participação social na internet já realizada pelo governo federal. Acesse os
+    <a href="/pages/relatoriodaplataforma">Relatórios do PPA Participativo</a>.
+  </p>
+  <p class="about-text">
+    Em breve, conselhos nacionais poderão criar suas páginas para memória e
+    votação de novas(os) conselheiras(os). Ministérios e outros órgãos federais
+    poderão realizar consultas públicas para escutar a população com objetivo de
+    definir decretos, portarias e outras ações. Conselhos e Ministérios poderão
+    também realizar etapas digitais em conferências nacionais, elegendo
+    delegadas(os) a partir de mobilização de votos e propostas feitas na
+    plataforma. As portas da participação social estão abertas e a participação
+    digital é um importante aliado nesse processo.
+    <a href="/users/sign_in">Crie seu perfil e participe!</a>
+  </p>
+  <style>
+  </style>
+</section>
+ 
+  `;
+        var wrapper = document.querySelector(".wrapper");
+        var content = document.querySelector("#content");
+
+        content.appendChild(ppaPageHTML);
+        wrapper.classList.add("none");
+      }
+    });
+  })();
+</script>
+
+<style>
+  .about-title {
+    margin-top: 1.5rem;
+  }
+  .about-text {
+    color: #555555;
+    font-size: 1.2rem;
+  }
+  .none {
+    display: none;
+  }
+</style>
