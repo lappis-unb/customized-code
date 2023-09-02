@@ -92,6 +92,114 @@
       });
     }
   }
+
+  const updateMenuConfJuv = () => {
+    var menuBody = document.querySelector("nav.menu-body");
+
+    // Remova todos os links existentes dentro do elemento <nav class="menu-body">
+    var links = menuBody.querySelectorAll("a.menu-item");
+    for (var i = links.length - 1; i >= 0; i--) {
+      links[i].remove();
+    }
+
+    const confJuvLinks = [
+      {
+        href: "/assemblies/confjuv4",
+        name: "Início",
+      },
+      {
+        href: "/assemblies/confjuv4/f/14/",
+        name: "Etapas",
+      },
+      {
+        href: "/assemblies/confjuv4/f/10/",
+        name: "Etapa Digital",
+      },
+      {
+        href: "/assemblies/confjuv4/f/9/",
+        name: "Notícias",
+      },
+      {
+        href: "/assemblies/confjuv4/f/13/",
+        name: "Perguntas frequentes",
+      },
+    ];
+
+    confJuvLinks.forEach((link) => {
+      let newAboutLinkMenu = document.createElement("a");
+      newAboutLinkMenu.className = "menu-item divider";
+      newAboutLinkMenu.href = link.href;
+      newAboutLinkMenu.innerHTML = `<span class="content">${link.name}</span>`;
+      let menuBody = document.querySelector("nav.menu-body");
+      menuBody.appendChild(newAboutLinkMenu);
+    });
+
+    const processHeader = document.querySelector(".process-header");
+    let menuConfJuvDesk = document.createElement("div");
+    menuConfJuvDesk.className = "row expanded";
+    menuConfJuvDesk.innerHTML = `<div class="row expanded">
+  <div class="process-nav" style="top: 142px">
+    <div class="row">
+      <div
+        class="row column process-nav__content"
+        id="process-nav-content"
+        data-toggler=".is-active"
+        data-is-active="k6ys6g-is-active"
+      >
+        <ul>
+          <li class=" ">
+            <a class="process-nav__link" href="/assemblies/confjuv4">
+              Início
+            </a>
+          </li>
+          <li class=" ">
+            <a class="process-nav__link" href="/assemblies/confjuv4/f/14/">
+              Etapas
+            </a>
+          </li>
+          <li class=" ">
+            <a class="process-nav__link" href="/assemblies/confjuv4/f/10/">
+              Etapa Digital
+            </a>
+          </li>
+          <li class="">
+            <a class="process-nav__link" href="/assemblies/confjuv4/f/9/">
+              Notícias
+            </a>
+          </li>
+          <li class="">
+            <a class="process-nav__link" href="/assemblies/confjuv4/f/13/">
+              Perguntas Frequentes
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>`;
+    processHeader.appendChild(menuConfJuvDesk);
+  };
+
+  const updateMenuContext = () => {
+    const aboutPPAMenu = document.querySelector("#ppa-sobre");
+    aboutPPAMenu.innerHTML = '<span class="content">Entenda o processo</span>';
+
+    let newAboutLinkMenu = document.createElement("a");
+    newAboutLinkMenu.className = "menu-item divider";
+    newAboutLinkMenu.href = "/pages/brasil-participativo-sobre";
+    newAboutLinkMenu.innerHTML = '<span class="content">Sobre</span>';
+    let menuBody = document.querySelector("nav.menu-body");
+    menuBody.appendChild(newAboutLinkMenu);
+
+    let startPPA = document.querySelector("#ppa-inicio");
+    let reportLinkPPA = document.createElement("li");
+    reportLinkPPA.innerHTML =
+      '<a class="menu-item divider" href="/pages/relatoriodaplataforma"><span class="content">Relatórios</span>';
+    startPPA.append(reportLinkPPA);
+
+    startPPA.parentNode.insertBefore(reportLinkPPA, startPPA.nextSibling);
+  };
+
   const createHomePagePPA = () => {
     const wppButton = document.createElement("div");
     wppButton.innerHTML = `
@@ -973,6 +1081,7 @@
       definirUrlLogOut();
       insertConferenceElements();
       createHomePagePPA();
+      updateMenuContext();
     });
   })();
   function capitalizarOnBlur(elementId) {
@@ -1291,6 +1400,7 @@
       if (bar) bar.style.display = "none";
     }
     if (isOnConferenceDomain()) {
+      updateMenuConfJuv();
       const originalMenu = document.querySelector(".process-nav");
       if (originalMenu) originalMenu.remove();
       const hero = document.querySelector(".extended");
@@ -5159,10 +5269,6 @@
     display: none;
   }
 
-  #content .process-header {
-    display: block;
-  }
-
   .voting-rules .callout.secondary {
     display: none;
   }
@@ -5289,9 +5395,17 @@
     background-image: var(--banner-mobile);
   }
 
+  #content .process-header {
+    display: none;
+  }
+
   @media (min-width: 768px) {
     .hero__container__img {
       background-image: var(--banner-desktop);
+    }
+
+    #content .process-header {
+      display: block;
     }
   }
 
