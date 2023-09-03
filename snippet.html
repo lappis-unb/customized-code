@@ -1497,7 +1497,14 @@
     return window.location.pathname === "/assemblies/confjuv4";
   }
   function isOnConferenceDomain() {
-    return window.location.href.includes("assemblies/confjuv4");
+    return window.location.href.includes("assemblies/confjuv4") ||
+    window.location.href.includes("assemblies/cnsan6");
+  }
+  function isConsea(){
+    return window.location.href.includes("assemblies/cnsan6");
+  }
+  function isJuventude(){
+    return window.location.href.includes("assemblies/confjuv4")
   }
   function isOnConferenceBlogPage() {
     return window.location.pathname.includes("/assemblies/confjuv4/f/9");
@@ -1529,7 +1536,11 @@
       if (bar) bar.style.display = "none";
     }
     if (isOnConferenceDomain()) {
-      updateMenuConfJuv();
+      if (isJuventude())
+        updateMenuConfJuv();
+      else if (isConsea())
+        updateMenuConfConsea();
+      
       const originalMenu = document.querySelector(".process-nav");
       if (originalMenu) originalMenu.remove();
       const hero = document.querySelector(".extended");
