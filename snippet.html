@@ -93,6 +93,84 @@
     }
   }
 
+  const updateMenuConfConsea = () => {
+    var menuBody = document.querySelector("nav.menu-body");
+
+    // Remova todos os links existentes dentro do elemento <nav class="menu-body">
+    var links = menuBody.querySelectorAll("a.menu-item");
+    for (var i = links.length - 1; i >= 0; i--) {
+      links[i].remove();
+    }
+
+    const confConseaLinks = [
+    {
+        href: "/assemblies/cnsan6",
+        name: "Início",
+      },
+      {
+        href: "/assemblies/cnsan6/f/18/",
+        name: "Etapas",
+      },
+      {
+        href: "/assemblies/cnsan6/f/20/",
+        name: "Notícias",
+      },
+      {
+        href: "/assemblies/cnsan6/f/21/",
+        name: "Perguntas frequentes",
+      },
+    ];
+
+    confConseaLinks.forEach((link) => {
+      let newAboutLinkMenu = document.createElement("a");
+      newAboutLinkMenu.className = "menu-item divider";
+      newAboutLinkMenu.href = link.href;
+      newAboutLinkMenu.innerHTML = `<span class="content">${link.name}</span>`;
+      let menuBody = document.querySelector("nav.menu-body");
+      menuBody.appendChild(newAboutLinkMenu);
+    });
+
+    const processHeader = document.querySelector(".process-header");
+    let menuConfConseaDesk = document.createElement("div");
+    menuConfConseaDesk.className = "row expanded";
+    menuConfConseaDesk.innerHTML = `<div class="row expanded">
+  <div class="process-nav" style="top: 142px">
+    <div class="row">
+      <div
+        class="row column process-nav__content"
+        id="process-nav-content"
+        data-toggler=".is-active"
+        data-is-active="k6ys6g-is-active"
+      >
+        <ul>
+          <li class=" ">
+            <a class="process-nav__link" href="/assemblies/cnsan6">
+              Início
+            </a>
+          </li>
+          <li class=" ">
+            <a class="process-nav__link" href="/assemblies/cnsan6/f/18/">
+              Etapas
+            </a>
+          </li>
+          <li class=" ">
+            <a class="process-nav__link" href="/assemblies/cnsan6/f/20/">
+              Notícias
+            </a>
+          </li>
+          <li class="">
+            <a class="process-nav__link" href="/assemblies/cnsan6/f/21/">
+              Perguntas Frequentes
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>`;
+    processHeader.appendChild(menuConfConseaDesk);
+  };
+
   const updateMenuConfJuv = () => {
     var menuBody = document.querySelector("nav.menu-body");
 
