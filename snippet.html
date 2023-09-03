@@ -234,7 +234,7 @@
       const ppaPageHTML = document.createElement("div");
       ppaPageHTML.classList.add("wrapper");
       ppaPageHTML.innerHTML = `
-          <section>
+          <section class="br-container-lg">
   <img src="https://brasilparticipativo.presidencia.gov.br/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBbHNyIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--fc0ad36146af41f6755918fcdef4be47c0dddcb5/SOBRE%20(Desktop)%20(1).jpg" alt="Banner do Brasil Participativo" />
   <h1 class="about-title">Sobre o Brasil Participativo</h1>
   <p class="about-text">
@@ -286,7 +286,7 @@
     ) {
       // Criar um novo elemento div
       const ppaPageHTML = document.createElement("div");
-      ppaPageHTML.classList.add("wrapper");
+      ppaPageHTML.classList.add("wrapper br-container-lg");
       ppaPageHTML.innerHTML = `
 <section class="home-section">
   <div class="hero__container__img"></div>
@@ -4865,6 +4865,8 @@
 
   .wrapper {
     background: var(---white);
+    /* max-height - header height - footer height */
+    min-height: calc(100vh - 140px - 214px);
   }
 
   .columns.section.view-side.mediumlarge-4.large-3 {
@@ -5466,6 +5468,10 @@
     display: none;
   }
 
+  .statistics-cell .statistic__data {
+    width: 300px;
+  }
+
   @media (min-width: 768px) {
     .hero__container__img {
       background-image: var(--banner-desktop);
@@ -5491,10 +5497,13 @@
       display: flex;
       flex-flow: row;
       justify-content: center;
-      min-width: auto;
-      flex-wrap: nowrap;
+      max-width: 650px;
+      flex-wrap: wrap;
       gap: 1.5rem;
       padding: 8px;
+    }
+    .ppa-process {
+      width: 630px;
     }
   }
 
