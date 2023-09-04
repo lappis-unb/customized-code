@@ -103,7 +103,7 @@
     }
 
     const confConseaLinks = [
-    {
+      {
         href: "/assemblies/cnsan6",
         name: "Início",
       },
@@ -1291,28 +1291,49 @@
       // if (conferencesLi) removeElement(conferencesLi.parentElement);
       // if (assembliesLi) removeElement(assembliesLi.parentElement);
       if (isOnConferenceDomain()) {
-        const items = [
-          {
-            label: "Início",
-            path: `/assemblies/confjuv4`,
-          },
-          {
-            label: "Etapa Digital",
-            path: `/assemblies/confjuv4/f/10/`,
-          },
-          {
-            label: "Etapas",
-            path: "/assemblies/confjuv4/f/14/",
-          },
-          {
-            label: "Notícias",
-            path: `/assemblies/confjuv4/f/9/posts`,
-          },
-          {
-            label: "Sobre",
-            path: `/assemblies/confjuv4/f/13/`,
-          },
-        ];
+        let items;
+        if (isJuventude())
+          items = [
+            {
+              label: "Início",
+              path: `/assemblies/confjuv4`,
+            },
+            {
+              label: "Etapa Digital",
+              path: `/assemblies/confjuv4/f/10/`,
+            },
+            {
+              label: "Etapas",
+              path: "/assemblies/confjuv4/f/14/",
+            },
+            {
+              label: "Notícias",
+              path: `/assemblies/confjuv4/f/9/posts`,
+            },
+            {
+              label: "Sobre",
+              path: `/assemblies/confjuv4/f/13/`,
+            },
+          ];
+        else if (isConsea())
+          items = [
+            {
+              label: "Início",
+              path: `/assemblies/cnsan6`,
+            },
+            {
+              label: "Etapas",
+              path: "/assemblies/cnsan6/f/18/",
+            },
+            {
+              label: "Notícias",
+              path: `/assemblies/cnsan6/f/20/`,
+            },
+            {
+              label: "Perguntas frequentes",
+              path: `/assemblies/cnsan6/f/21/`,
+            },
+          ];
         items.forEach((item) =>
           navbarUl.appendChild(createLi(item.label, item.path))
         );
