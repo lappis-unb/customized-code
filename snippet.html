@@ -182,7 +182,9 @@
 
   const updateMenuContext = () => {
     const aboutPPAMenu = document.querySelector("#ppa-sobre");
-    aboutPPAMenu.innerHTML = '<span class="content">Entenda o processo</span>';
+    if (aboutPPAMenu)
+      aboutPPAMenu.innerHTML =
+        '<span class="content">Entenda o processo</span>';
 
     let newAboutLinkMenu = document.createElement("a");
     newAboutLinkMenu.className = "menu-item divider";
@@ -195,9 +197,10 @@
     let reportLinkPPA = document.createElement("li");
     reportLinkPPA.innerHTML =
       '<a class="menu-item divider" href="/pages/relatoriodaplataforma"><span class="content">Relatórios</span>';
-    startPPA.append(reportLinkPPA);
+    if (startPPA) startPPA.append(reportLinkPPA);
 
-    startPPA.parentNode.insertBefore(reportLinkPPA, startPPA.nextSibling);
+    if (startPPA)
+      startPPA.parentNode.insertBefore(reportLinkPPA, startPPA.nextSibling);
   };
 
   const createHomePagePPA = () => {
@@ -1435,8 +1438,11 @@
   }
   function isOnConferenceCreate() {
     return window.location.pathname.includes(
-      "/assemblies/confjuv4/f/11/meetings"
+      "/assemblies/confjuv4/f/11/meetings/new"
     );
+  }
+  function isOnConferenceMeetings() {
+    return window.location.pathname === "/assemblies/confjuv4/f/11/meetings";
   }
   function isOnConferenceSendDoc() {
     return window.location.pathname === "/assemblies/confjuv4/f/12/surveys/1";
@@ -2934,6 +2940,21 @@
           element.nextSibling.textContent = newText.innerText;
         }
         newText.style.display = "none";
+      } else if (isOnConferenceMeetings()) {
+        const code = `<style>.with_any_type_check_boxes_tree_filter {display: none;} 
+          .with_any_date_collection_radio_buttons_filter{display:none;}
+          .with_any_scope_check_boxes_tree_filter {display:none}
+          .with_any_category_check_boxes_tree_filter {display:none}
+          .activity_collection_radio_buttons_filter {display:none}
+          `;
+        const item = document.createElement("div");
+        item.innerHTML = code;
+        const content = document.querySelector("#content");
+        content.after(item);
+
+        const header = content.querySelector(".title-action");
+        header.innerHTML = header.innerHTML.replace("reuniões", "conferências");
+        header.innerHTML = header.innerHTML.replace("reunião", "conferência");
       } else {
         if (hero) hero?.remove();
         if (hero__container) hero__container?.remove();
