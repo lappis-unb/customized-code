@@ -93,6 +93,19 @@
     }
   }
 
+
+  // Função para verificar se está em um ambiente de teste
+  function isDev() {
+    var url = window.location.href;
+    return url.indexOf('lab-decide.dataprev.gov.br') !== -1;
+  }
+
+  // Função para verificar se está em um ambiente de produção
+  function isProd() {
+    var url = window.location.href;
+    return url.indexOf('brasilparticipativo.presidencia.gov.br') !== -1;
+  }
+
   const updateMenuConfConsea = () => {
     var menuBody = document.querySelector("nav.menu-body");
 
@@ -102,25 +115,45 @@
       links[i].remove();
     }
 
-    const confConseaLinks = [
-      {
-        href: "/assemblies/cnsan6",
-        name: "Início",
-      },
-      {
-        href: "/assemblies/cnsan6/f/18/",
-        name: "Etapas",
-      },
-      {
-        href: "/assemblies/cnsan6/f/20/",
-        name: "Notícias",
-      },
-      {
-        href: "/assemblies/cnsan6/f/21/",
-        name: "Perguntas frequentes",
-      },
-    ];
-
+    let confConseaLinks;
+    if (isProd())
+      confConseaLinks = [
+        {
+          href: "/assemblies/cnsan6",
+          name: "Início",
+        },
+        {
+          href: "/assemblies/cnsan6/f/18/",
+          name: "Etapas",
+        },
+        {
+          href: "/assemblies/cnsan6/f/20/",
+          name: "Notícias",
+        },
+        {
+          href: "/assemblies/cnsan6/f/21/",
+          name: "Perguntas frequentes",
+        },
+      ];
+    else if (isDev())
+      confConseaLinks = [
+        {
+          href: "/assemblies/cnsan6",
+          name: "Início",
+        },
+        {
+          href: "/assemblies/cnsan6/f/122/",
+          name: "Etapas",
+        },
+        {
+          href: "/assemblies/cnsan6/f/121/",
+          name: "Notícias",
+        },
+        {
+          href: "/assemblies/cnsan6/f/120/",
+          name: "Perguntas frequentes",
+        },
+      ];
     confConseaLinks.forEach((link) => {
       let newAboutLinkMenu = document.createElement("a");
       newAboutLinkMenu.className = "menu-item divider";
@@ -1333,25 +1366,46 @@
               path: `/assemblies/confjuv4/f/13/`,
             },
           ];
-        else if (isConsea())
-          items = [
-            {
-              label: "Início",
-              path: `/assemblies/cnsan6`,
-            },
-            {
-              label: "Etapas",
-              path: "/assemblies/cnsan6/f/18/",
-            },
-            {
-              label: "Notícias",
-              path: `/assemblies/cnsan6/f/20/`,
-            },
-            {
-              label: "Perguntas frequentes",
-              path: `/assemblies/cnsan6/f/21/`,
-            },
-          ];
+        else if (isConsea()){
+          if (isProd())
+            items = [
+              {
+                label: "Início",
+                path: `/assemblies/cnsan6`,
+              },
+              {
+                label: "Etapas",
+                path: "/assemblies/cnsan6/f/18/",
+              },
+              {
+                label: "Notícias",
+                path: `/assemblies/cnsan6/f/20/`,
+              },
+              {
+                label: "Perguntas frequentes",
+                path: `/assemblies/cnsan6/f/21/`,
+              },
+            ];
+          else if (isDev())
+            items = [
+              {
+                label: "Início",
+                path: `/assemblies/cnsan6`,
+              },
+              {
+                label: "Etapas",
+                path: "/assemblies/cnsan6/f/122/",
+              },
+              {
+                label: "Notícias",
+                path: `/assemblies/cnsan6/f/121/`,
+              },
+              {
+                label: "Perguntas frequentes",
+                path: `/assemblies/cnsan6/f/120/`,
+              },
+            ]; 
+        }
         items.forEach((item) =>
           navbarUl.appendChild(createLi(item.label, item.path))
         );
