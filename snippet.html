@@ -93,6 +93,19 @@
     }
   }
 
+
+  // Função para verificar se está em um ambiente de teste
+  function isDev() {
+    var url = window.location.href;
+    return url.indexOf('lab-decide.dataprev.gov.br') !== -1;
+  }
+
+  // Função para verificar se está em um ambiente de produção
+  function isProd() {
+    var url = window.location.href;
+    return url.indexOf('brasilparticipativo.presidencia.gov.br') !== -1;
+  }
+
   const updateMenuConfConsea = () => {
     var menuBody = document.querySelector("nav.menu-body");
 
