@@ -1284,12 +1284,20 @@
       '.process-nav__link a[href="/assemblies"]'
     );
     function deleteLiProcessNav() {
-      const deleteLiList = document.querySelectorAll(
-        "li:has(a.process-nav__link)"
-      );
-      deleteLiList.forEach((el) => {
-        el.remove();
+      const deleteLiList = document.querySelectorAll('li');
+
+      deleteLiList.forEach(function(li) {
+        var link = li.querySelector('a.process-nav__link');
+        if (link) {
+          li.remove();
+        }
       });
+      // const deleteLiList = document.querySelectorAll(
+      //   "li a.process-nav__link"
+      // );
+      // deleteLiList.forEach((el) => {
+      //   el.remove();
+      // });
     }
     deleteLiProcessNav();
     if (navbarUl) {
@@ -6871,6 +6879,15 @@
       color: #555555;
       font-size: 1.2rem;
     }
+
+    .process-nav {
+      display: block;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      z-index: 1;
+    }
   }
 
   @media (min-width: 1284px) {
@@ -6886,15 +6903,6 @@
     .ppa-process {
       width: 630px;
     }
-  }
-
-  .process-nav {
-    display: block;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    z-index: 1;
   }
 
   .process-header__inner {
