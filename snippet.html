@@ -259,10 +259,20 @@
   };
 
   const updateMenuContext = () => {
+    const memoriesPPAMenu = document.querySelector("#ppa-inicio");
+    if (memoriesPPAMenu)
+      memoriesPPAMenu.innerHTML =
+        '<span class="content">Memória</span>';
+
     const aboutPPAMenu = document.querySelector("#ppa-sobre");
     if (aboutPPAMenu)
       aboutPPAMenu.innerHTML =
         '<span class="content">Entenda o processo</span>';
+
+    const proposesPPAMenu = document.querySelector("#ppa-propostas");
+    if (proposesPPAMenu)
+      proposesPPAMenu.innerHTML =
+        '<span class="content">Propostas priorizadas</span>';
 
     let newAboutLinkMenu = document.createElement("a");
     newAboutLinkMenu.className = "menu-item divider";
