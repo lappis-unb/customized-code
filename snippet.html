@@ -93,17 +93,16 @@
     }
   }
 
-
   // Função para verificar se está em um ambiente de teste
   function isDev() {
     var url = window.location.href;
-    return url.indexOf('lab-decide.dataprev.gov.br') !== -1;
+    return url.indexOf("lab-decide.dataprev.gov.br") !== -1;
   }
 
   // Função para verificar se está em um ambiente de produção
   function isProd() {
     var url = window.location.href;
-    return url.indexOf('brasilparticipativo.presidencia.gov.br') !== -1;
+    return url.indexOf("brasilparticipativo.presidencia.gov.br") !== -1;
   }
 
   const updateMenuConfConsea = () => {
@@ -294,8 +293,7 @@
   const updateMenuContext = () => {
     const memoriesPPAMenu = document.querySelector("#ppa-inicio");
     if (memoriesPPAMenu)
-      memoriesPPAMenu.innerHTML =
-        '<span class="content">Memória</span>';
+      memoriesPPAMenu.innerHTML = '<span class="content">Memória</span>';
 
     const aboutPPAMenu = document.querySelector("#ppa-sobre");
     if (aboutPPAMenu)
@@ -1317,10 +1315,10 @@
       '.process-nav__link a[href="/assemblies"]'
     );
     function deleteLiProcessNav() {
-      const deleteLiList = document.querySelectorAll('li');
+      const deleteLiList = document.querySelectorAll("li");
 
-      deleteLiList.forEach(function(li) {
-        var link = li.querySelector('a.process-nav__link');
+      deleteLiList.forEach(function (li) {
+        var link = li.querySelector("a.process-nav__link");
         if (link) {
           li.remove();
         }
@@ -1366,7 +1364,7 @@
               path: `/assemblies/confjuv4/f/13/`,
             },
           ];
-        else if (isConsea()){
+        else if (isConsea()) {
           if (isProd())
             items = [
               {
@@ -1404,7 +1402,7 @@
                 label: "Perguntas frequentes",
                 path: `/assemblies/cnsan6/f/120/`,
               },
-            ]; 
+            ];
         }
         items.forEach((item) =>
           navbarUl.appendChild(createLi(item.label, item.path))
@@ -1590,18 +1588,22 @@
     if (element) element.classList.add(cssClass);
   }
   function isOnConferenceLandingPage() {
-    return window.location.pathname === "/assemblies/confjuv4" ||
-    window.location.pathname === "/assemblies/cnsan6";
+    return (
+      window.location.pathname === "/assemblies/confjuv4" ||
+      window.location.pathname === "/assemblies/cnsan6"
+    );
   }
   function isOnConferenceDomain() {
-    return window.location.href.includes("assemblies/confjuv4") ||
-    window.location.href.includes("assemblies/cnsan6");
+    return (
+      window.location.href.includes("assemblies/confjuv4") ||
+      window.location.href.includes("assemblies/cnsan6")
+    );
   }
-  function isConsea(){
+  function isConsea() {
     return window.location.href.includes("assemblies/cnsan6");
   }
-  function isJuventude(){
-    return window.location.href.includes("assemblies/confjuv4")
+  function isJuventude() {
+    return window.location.href.includes("assemblies/confjuv4");
   }
   function isOnConferenceBlogPage() {
     return window.location.pathname.includes("/assemblies/confjuv4/f/9");
@@ -1610,8 +1612,7 @@
     return window.location.pathname === "/assemblies/confjuv4/f/13/";
   }
   function isOnConferenceSteps() {
-    return window.location.pathname === "/assemblies/confjuv4/f/14/" ||
-    window.location.pathname === "/assemblies/cnsan6/f/18/";
+    return window.location.pathname === "/assemblies/confjuv4/f/14/";
   }
   function isOnConferenceProposals() {
     return window.location.pathname.includes("/assemblies/confjuv4/f/10/");
@@ -1637,11 +1638,9 @@
       if (bar) bar.style.display = "none";
     }
     if (isOnConferenceDomain()) {
-      if (isJuventude())
-        updateMenuConfJuv();
-      else if (isConsea())
-        updateMenuConfConsea();
-      
+      if (isJuventude()) updateMenuConfJuv();
+      else if (isConsea()) updateMenuConfConsea();
+
       const originalMenu = document.querySelector(".process-nav");
       if (originalMenu) originalMenu.remove();
       const hero = document.querySelector(".extended");
@@ -1678,7 +1677,7 @@
           if (dateRow[dateRow.length - 1]) dateRow[dateRow.length - 1].remove();
         }
         let code;
-        if (isJuventude()){
+        if (isJuventude()) {
           code = `  <div class="conference">
     <span class="conferenceHero">
       <span class="conferenceHero__image"></span>
@@ -2840,7 +2839,7 @@
       }
     }
   </style>`;
-        } else if (isConsea()){
+        } else if (isConsea()) {
           code = `  <div class="conference">
     <span class="conferenceHero">
       <span class="conferenceHero__image"></span>
@@ -3971,9 +3970,8 @@
       }
     }
   </style>`;
-        
         }
-          
+
         const body = document.createElement("div");
         body.innerHTML = code;
         content.appendChild(body);
@@ -4102,9 +4100,7 @@
       } else if (isOnConferenceSteps()) {
         if (wrapper) wrapper.remove();
 
-        let code;
-        if (isJuventude()){
-          const code = `    <section class="conference-steps">
+        const code = `    <section class="conference-steps">
       <div class="conference-steps__list">
         <a
           href="/assemblies/confjuv4/f/11/meetings/new"
@@ -4201,106 +4197,6 @@
         }
       }
     </style>`;
-        } else if (isConsea()){
-          const code = `    <section class="conference-steps">
-      <div class="conference-steps__list">
-        <a
-          href="/assemblies/cnsan6/f/22/"
-          class="conference-steps__list__item"
-        >
-          <div
-            class="conference-steps__list__icon fa-solid fa-list-check"
-          ></div>
-          <div class="conference-steps__list__title">Agenda</div>
-          <div class="conference-steps__list__description">
-            Confira as etapas registradas
-          </div>
-          <span class="conference-steps__list__link">Leia mais</span>
-        </a>
-        <a
-          href="/assemblies/cnsan6/f/23/"
-          class="conference-steps__list__item"
-        >
-          <div
-            class="conference-steps__list__icon fa-solid fa-arrows-spin"
-          ></div>
-          <div class="conference-steps__list__title">
-            Envie a ata da sua etapa
-          </div>
-          <div class="conference-steps__list__description">
-            Registre o que ocorreu
-          </div>
-          <span class="conference-steps__list__link">Leia mais</span>
-        </a>
-      </div>
-    </section>
-    <style type="text/css">
-      .conference-steps {
-        font-family: Rawline;
-        width: 100%;
-        padding-top: 32px;
-      }
-
-      .conference-steps__list {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        width: 100%;
-      }
-
-      .conference-steps__list__item {
-        font: Rawline;
-        width: 286px;
-        height: 168px;
-        display: flex;
-        align-items: center;
-        justify-items: center;
-        flex-direction: column;
-        gap: 20px;
-        margin-bottom: 35px;
-        text-decoration: none;
-        color: #242020;
-      }
-
-      .conference-steps__list__title {
-        font-family: Rawline;
-        font-size: 20px;
-        font-weight: 600;
-        line-height: 20px;
-        letter-spacing: 0.25px;
-      }
-
-      .conference-steps__list__link {
-        justify-self: end;
-        align-self: flex-end;
-        color: #5c32fe;
-        font-weight: 600;
-        cursor: pointer;
-      }
-
-      .conference-steps__list__icon {
-        width: 48px;
-        height: 48px;
-        min-width: 48px;
-        min-height: 48px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background: #5c32fe;
-        border-radius: 50%;
-        color: white;
-        font-size: 24px;
-      }
-
-      @media (max-width: 1284px) {
-        .conference-steps__list {
-          flex-direction: column;
-          align-items: center;
-        }
-      }
-    </style>`;
-        
-        }
         const body = document.createElement("div");
         body.innerHTML = code;
         if (hero) hero?.remove();
