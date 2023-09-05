@@ -200,7 +200,7 @@
     </div>
   </div>
 </div>`;
-    processHeader.appendChild(menuConfConseaDesk);
+    if (processHeader) processHeader.appendChild(menuConfConseaDesk);
   };
 
   const updateMenuConfJuv = () => {
@@ -218,20 +218,20 @@
         name: "Início",
       },
       {
-        href: "/assemblies/confjuv4/f/14/",
+        href: `/assemblies/confjuv4/f/${isProd() ? "11" : "143"}`,
         name: "Etapas",
       },
       {
-        href: "/assemblies/confjuv4/f/10/",
+        href: `/assemblies/confjuv4/f/${isProd() ? "10" : "130"}`,
         name: "Etapa Digital",
       },
       {
-        href: "/assemblies/confjuv4/f/9/",
+        href: `/assemblies/confjuv4/f/${isProd() ? "9" : "144"}`,
         name: "Notícias",
       },
       {
-        href: "/assemblies/confjuv4/f/13/",
-        name: "Perguntas frequentes",
+        href: `/assemblies/confjuv4/f/${isProd() ? "13" : "145"}`,
+        name: "Sobre",
       },
     ];
 
@@ -287,7 +287,7 @@
     </div>
   </div>
 </div>`;
-    processHeader.appendChild(menuConfJuvDesk);
+    if (processHeader) processHeader.appendChild(menuConfJuvDesk);
   };
 
   const updateMenuContext = () => {
@@ -1344,24 +1344,25 @@
         if (isJuventude())
           items = [
             {
+              path: "/assemblies/confjuv4",
               label: "Início",
-              path: `/assemblies/confjuv4`,
             },
             {
+              path: `/assemblies/confjuv4/f/${isProd() ? "10" : "130"}`,
               label: "Etapa Digital",
-              path: `/assemblies/confjuv4/f/10/`,
             },
             {
+              path: `/assemblies/confjuv4/f/${isProd() ? "11" : "143"}`,
               label: "Etapas",
-              path: "/assemblies/confjuv4/f/14/",
             },
+
             {
+              path: `/assemblies/confjuv4/f/${isProd() ? "9" : "144"}`,
               label: "Notícias",
-              path: `/assemblies/confjuv4/f/9/posts`,
             },
             {
+              path: `/assemblies/confjuv4/f/${isProd() ? "13" : "145"}`,
               label: "Sobre",
-              path: `/assemblies/confjuv4/f/13/`,
             },
           ];
         else if (isConsea()) {
@@ -1606,27 +1607,48 @@
     return window.location.href.includes("assemblies/confjuv4");
   }
   function isOnConferenceBlogPage() {
-    return window.location.pathname.includes("/assemblies/confjuv4/f/9");
+    return window.location.pathname.includes(
+      `/assemblies/confjuv4/f/${isProd() ? "9" : "144"}`
+    );
   }
   function isOnConferenceAboutPage() {
-    return window.location.pathname === "/assemblies/confjuv4/f/13/";
+    return (
+      window.location.pathname ===
+      `/assemblies/confjuv4/f/${isProd() ? "13" : "145"}`
+    );
   }
   function isOnConferenceSteps() {
-    return window.location.pathname === "/assemblies/confjuv4/f/14/";
+    return (
+      window.location.pathname ===
+      `/assemblies/confjuv4/f/${isProd() ? "14" : "143"}`
+    );
   }
   function isOnConferenceProposals() {
-    return window.location.pathname.includes("/assemblies/confjuv4/f/10/");
+    return window.location.pathname.includes(
+      `/assemblies/confjuv4/f/${isProd() ? "10" : "130"}`
+    );
   }
   function isOnConferenceCreate() {
     return window.location.pathname.includes(
-      "/assemblies/confjuv4/f/11/meetings/new"
+      `/assemblies/confjuv4/f/${isProd() ? "11" : "131"}/meetings/new`
+    );
+  }
+  function isOnConferenceMeeting() {
+    return window.location.pathname.includes(
+      `/assemblies/confjuv4/f/${isProd() ? "11" : "131"}/meetings/`
     );
   }
   function isOnConferenceMeetings() {
-    return window.location.pathname === "/assemblies/confjuv4/f/11/meetings";
+    return (
+      window.location.pathname ===
+      `/assemblies/confjuv4/f/${isProd() ? "11" : "131"}`
+    );
   }
   function isOnConferenceSendDoc() {
-    return window.location.pathname === "/assemblies/confjuv4/f/12/surveys/1";
+    return (
+      window.location.pathname ===
+      `/assemblies/confjuv4/f/${isProd() ? "12" : "132"}/surveys/1`
+    );
   }
 
   function isOnPlatformLogin() {
@@ -4222,9 +4244,9 @@
         const form = document.querySelector(".meetings_form ");
         const select = form.querySelector("#meeting_type_of_meeting");
         select.value = "online";
-
         form.children[4].style.display = "none";
         form.children[9].style.display = "none";
+        form.children[12].style.display = "none";
         form.children[8].id = "vsf";
 
         createCssClass(".vsf {display: none !important;}", "vsf", "#vsf");
@@ -4233,9 +4255,12 @@
         var inputString10 = form.children[10].getElementsByTagName("label")[0];
         var inputString11 = form.children[11].getElementsByTagName("label")[0];
         form.children[7].querySelector(".help-text").style.display = "none";
+        form.children[7]
+          .querySelector("#meeting_location_hints")
+          .setAttribute("required", "required");
         inputString7.innerHTML = inputString7.innerHTML.replace(
           "Dicas de localização",
-          "Localização"
+          "Endereço"
         );
         inputString12.innerHTML = inputString12.innerHTML.replace(
           "Âmbito",
@@ -4249,6 +4274,69 @@
 
         form.children[8].required = false;
         form.children[8].style = "display: none;";
+
+        // const brazilianStates = [
+        //   "",
+        //   "Acre",
+        //   "Alagoas",
+        //   "Amapá",
+        //   "Amazonas",
+        //   "Bahia",
+        //   "Ceará",
+        //   "Distrito Federal",
+        //   "Espírito Santo",
+        //   "Goiás",
+        //   "Maranhão",
+        //   "Mato Grosso",
+        //   "Mato Grosso do Sul",
+        //   "Minas Gerais",
+        //   "Pará",
+        //   "Paraíba",
+        //   "Paraná",
+        //   "Pernambuco",
+        //   "Piauí",
+        //   "Rio de Janeiro",
+        //   "Rio Grande do Norte",
+        //   "Rio Grande do Sul",
+        //   "Rondônia",
+        //   "Roraima",
+        //   "Santa Catarina",
+        //   "São Paulo",
+        //   "Sergipe",
+        //   "Tocantins",
+        // ];
+
+        // const estadoLabel = document.createElement("label");
+        // estadoLabel.setAttribute("for", "meeting_estado");
+        // estadoLabel.textContent = "Estado*";
+
+        // const estadoSelect = document.createElement("select");
+        // estadoSelect.setAttribute("required", "required");
+        // estadoSelect.setAttribute("name", "meeting[estado]");
+        // estadoSelect.setAttribute("id", "meeting_estado");
+
+        // brazilianStates.forEach((state) => {
+        //   const option = document.createElement("option");
+        //   option.setAttribute("value", state);
+        //   option.textContent = state;
+        //   estadoSelect.appendChild(option);
+        // });
+
+        // const municipioLabel = document.createElement("label");
+        // municipioLabel.setAttribute("for", "meeting_municipio");
+        // municipioLabel.textContent = "Municipio*";
+
+        // const municipioInput = document.createElement("input");
+        // municipioInput.setAttribute("type", "text");
+        // municipioInput.setAttribute("required", "required");
+        // municipioInput.setAttribute("name", "meeting[municipio]");
+        // municipioInput.setAttribute("id", "meeting_municipio");
+
+        // // Add the new fields to the form
+        // form.insertBefore(estadoLabel, form.childNodes[7]);
+        // form.insertBefore(estadoSelect, form.childNodes[8]);
+        // form.insertBefore(municipioLabel, form.childNodes[9]);
+        // form.insertBefore(municipioInput, form.childNodes[10]);
       } else if (isOnConferenceSendDoc()) {
         const terms = document.querySelector(".tos-agreement");
         const tosAgreement = document.querySelector(".tos-agreement");
@@ -4273,6 +4361,10 @@
         const header = content.querySelector(".title-action");
         header.innerHTML = header.innerHTML.replace("reuniões", "conferências");
         header.innerHTML = header.innerHTML.replace("reunião", "conferência");
+      } else if (isOnConferenceMeeting()) {
+        document
+          .querySelector(".button_to")
+          .querySelector(".button").innerHTML = "Inscreva-se";
       } else {
         if (hero) hero?.remove();
         if (hero__container) hero__container?.remove();
