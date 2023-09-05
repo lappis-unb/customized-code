@@ -1366,25 +1366,46 @@
               path: `/assemblies/confjuv4/f/13/`,
             },
           ];
-        else if (isConsea())
-          items = [
-            {
-              label: "Início",
-              path: `/assemblies/cnsan6`,
-            },
-            {
-              label: "Etapas",
-              path: "/assemblies/cnsan6/f/18/",
-            },
-            {
-              label: "Notícias",
-              path: `/assemblies/cnsan6/f/20/`,
-            },
-            {
-              label: "Perguntas frequentes",
-              path: `/assemblies/cnsan6/f/21/`,
-            },
-          ];
+        else if (isConsea()){
+          if (isProd())
+            items = [
+              {
+                label: "Início",
+                path: `/assemblies/cnsan6`,
+              },
+              {
+                label: "Etapas",
+                path: "/assemblies/cnsan6/f/18/",
+              },
+              {
+                label: "Notícias",
+                path: `/assemblies/cnsan6/f/20/`,
+              },
+              {
+                label: "Perguntas frequentes",
+                path: `/assemblies/cnsan6/f/21/`,
+              },
+            ];
+          else if (isDev())
+            items = [
+              {
+                label: "Início",
+                path: `/assemblies/cnsan6`,
+              },
+              {
+                label: "Etapas",
+                path: "/assemblies/cnsan6/f/122/",
+              },
+              {
+                label: "Notícias",
+                path: `/assemblies/cnsan6/f/121/`,
+              },
+              {
+                label: "Perguntas frequentes",
+                path: `/assemblies/cnsan6/f/120/`,
+              },
+            ]; 
+        }
         items.forEach((item) =>
           navbarUl.appendChild(createLi(item.label, item.path))
         );
