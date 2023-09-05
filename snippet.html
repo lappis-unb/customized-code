@@ -115,25 +115,45 @@
       links[i].remove();
     }
 
-    const confConseaLinks = [
-      {
-        href: "/assemblies/cnsan6",
-        name: "Início",
-      },
-      {
-        href: "/assemblies/cnsan6/f/18/",
-        name: "Etapas",
-      },
-      {
-        href: "/assemblies/cnsan6/f/20/",
-        name: "Notícias",
-      },
-      {
-        href: "/assemblies/cnsan6/f/21/",
-        name: "Perguntas frequentes",
-      },
-    ];
-
+    let confConseaLinks;
+    if (isProd())
+      confConseaLinks = [
+        {
+          href: "/assemblies/cnsan6",
+          name: "Início",
+        },
+        {
+          href: "/assemblies/cnsan6/f/18/",
+          name: "Etapas",
+        },
+        {
+          href: "/assemblies/cnsan6/f/20/",
+          name: "Notícias",
+        },
+        {
+          href: "/assemblies/cnsan6/f/21/",
+          name: "Perguntas frequentes",
+        },
+      ];
+    else if (isDev())
+      confConseaLinks = [
+        {
+          href: "/assemblies/cnsan6",
+          name: "Início",
+        },
+        {
+          href: "/assemblies/cnsan6/f/122/",
+          name: "Etapas",
+        },
+        {
+          href: "/assemblies/cnsan6/f/121/",
+          name: "Notícias",
+        },
+        {
+          href: "/assemblies/cnsan6/f/120/",
+          name: "Perguntas frequentes",
+        },
+      ];
     confConseaLinks.forEach((link) => {
       let newAboutLinkMenu = document.createElement("a");
       newAboutLinkMenu.className = "menu-item divider";
