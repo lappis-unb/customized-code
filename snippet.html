@@ -1271,6 +1271,17 @@
     }
   }
   function doEverything() {
+    if (
+      window.location.pathname.includes(
+        "/processes/brasilparticipativo/f/26/posts/"
+      )
+    ) {
+      const endossosLink = document.querySelector('a[title="endossos"]');
+      if (endossosLink) {
+        endossosLink.remove();
+      }
+    }
+
     const createLi = (name, path) => {
       const li = document.createElement("li");
       li.classList.add("process-nav__link", "process-nav__link__color");
