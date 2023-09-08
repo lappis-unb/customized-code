@@ -58,6 +58,22 @@
       false
     );
   };
+  function setCookie(name, value) {
+    const expirationDate = new Date();
+    expirationDate.setTime(expirationDate.getTime() + (1 * 24 * 60 * 60 * 1000));
+    const cookieString = `${name}=${encodeURIComponent(value)}; expires=${expirationDate.toUTCString()}; path=/`;
+    document.cookie = cookieString;
+  }
+  function getCookie(name) {
+    const cookies = document.cookie.split(';');
+    for (let i = 0; i < cookies.length; i++) {
+      const cookie = cookies[i].trim();
+      if (cookie.startsWith(name + '=')) {
+        return decodeURIComponent(cookie.substring(name.length + 1));
+      }
+    }
+    return null;
+  }
   var ImportScriptFile = () => {
     let script = document.createElement("script");
     script.src = "https://vlibras.gov.br/app/vlibras-plugin.js";
@@ -190,11 +206,6 @@
               Notícias
             </a>
           </li>
-          <li class="">
-            <a class="process-nav__link" href="/assemblies/cnsan6/f/21/">
-              Perguntas Frequentes
-            </a>
-          </li>
         </ul>
       </div>
     </div>
@@ -205,13 +216,12 @@
 
   const updateMenuConfJuv = () => {
     var menuBody = document.querySelector("nav.menu-body");
-
+    const badgePath = `${getCookie('username')}/badges`
     // Remova todos os links existentes dentro do elemento <nav class="menu-body">
     var links = menuBody.querySelectorAll("a.menu-item");
     for (var i = links.length - 1; i >= 0; i--) {
       links[i].remove();
     }
-
     const confJuvLinks = [
       {
         href: "/assemblies/confjuv4",
@@ -233,6 +243,10 @@
         href: `/assemblies/confjuv4/f/${isProd() ? "13" : "145"}`,
         name: "Sobre",
       },
+      {
+        href: `${badgePath}`,
+        name: "Distintivos",
+      },
     ];
 
     confJuvLinks.forEach((link) => {
@@ -244,14 +258,22 @@
       menuBody.appendChild(newAboutLinkMenu);
     });
 
-    const processHeader = document.querySelector(".process-header");
+    let processHeader = document.querySelector(".process-header");
+    if (!processHeader) {
+      processHeader = document.createElement("span");
+      processHeader.className = "process-header";
+      processHeader.style.marginBottom = '50px'
+      let wrapper = document.querySelector(".wrapper");
+      wrapper.prepend(processHeader)
+      document.querySelector('.responsive-tab-block').remove()
+    }
     let menuConfJuvDesk = document.createElement("div");
     menuConfJuvDesk.className = "row expanded";
     menuConfJuvDesk.innerHTML = `<div class="row expanded">
   <div class="process-nav" style="top: 142px">
     <div class="row">
       <div
-        class="row column process-nav__content"
+        class="row teste column process-nav__content"
         id="process-nav-content"
         data-toggler=".is-active"
         data-is-active="k6ys6g-is-active"
@@ -279,7 +301,12 @@
           </li>
           <li class="">
             <a class="process-nav__link" href="/assemblies/confjuv4/f/13/">
-              Perguntas Frequentes
+              Sobre
+            </a>
+          </li>
+          <li class="">
+            <a class="process-nav__link" href="${badgePath}">
+              Distintivos
             </a>
           </li>
         </ul>
@@ -1351,7 +1378,8 @@
       // if (assembliesLi) removeElement(assembliesLi.parentElement);
       if (isOnConferenceDomain()) {
         let items;
-        if (isJuventude())
+        const badgePath = `${getCookie('username')}/badges`
+        if (isJuventude()) {
           items = [
             {
               path: "/assemblies/confjuv4",
@@ -1374,7 +1402,12 @@
               path: `/assemblies/confjuv4/f/${isProd() ? "13" : "145"}`,
               label: "Sobre",
             },
+            {
+              path: `${badgePath}`,
+              label: "Distintivos",
+            },
           ];
+        }
         else if (isConsea()) {
           if (isProd())
             items = [
@@ -1422,7 +1455,8 @@
           '.process-nav__link a[href="/assemblies"]'
         );
         if (assembliesLi) removeElement(assembliesLi.parentElement);
-      } else if (window.location.href.includes("/processes/ENGD")) {
+      }
+      else if (window.location.href.includes("/processes/ENGD")) {
         var allElements = document.querySelectorAll("*:not(script):not(style)");
 
         // Função para substituir o texto em um elemento
@@ -1479,7 +1513,8 @@
         navbarUl.appendChild(createLi("Início", "/processes/ENGD"));
         navbarUl.appendChild(createLi("Recomendações", `/processes/ENGD/f/3`));
         navbarUl.appendChild(createLi("Enquete", `/processes/ENGD/f/27`));
-      } else {
+      }
+      else {
         navbarUl.remove();
         // navbarUl.appendChild(createLi("Início", "/processes/programas/"));
         // navbarUl.appendChild(
@@ -1499,7 +1534,7 @@
         // );
         // navbarUl.appendChild(createLi("Sobre", "/pages/relatoriodaplataforma"));
       }
-    }
+    } else { updateMenuConfJuv(); }
 
     const programContentContainer =
       document.querySelector(".ql-editor-display");
@@ -1608,6 +1643,7 @@
   function isOnConferenceDomain() {
     return (
       window.location.href.includes("assemblies/confjuv4") ||
+      window.location.href.includes("/badges") ||
       window.location.href.includes("assemblies/cnsan6")
     );
   }
@@ -1615,7 +1651,7 @@
     return window.location.href.includes("assemblies/cnsan6");
   }
   function isJuventude() {
-    return window.location.href.includes("assemblies/confjuv4");
+    return window.location.href.includes("assemblies/confjuv4") || window.location.href.includes("/badges");
   }
   function isOnConferenceBlogPage() {
     return window.location.pathname.includes(
@@ -1661,11 +1697,22 @@
       `/assemblies/confjuv4/f/${isProd() ? "12" : "132"}/surveys/1`
     );
   }
+  function isOnConferenceBadges() {
+    const regex = /^\/profiles\/[a-zA-Z0-9_]+\/badges$/;
+    const pathname = window.location.pathname;
+    return regex.test(pathname);
+  }
+
+  function getUsernameFromProfile() {
+    const username = document.querySelector(".profile--sidebar--title").querySelector(".text-small")
+  }
 
   function isOnPlatformLogin() {
     return window.location.pathname === "/users/sign_in";
   }
   function insertConferenceElements() {
+    const username = document.querySelector(".br-list-dropdown").children[1].getAttribute("href");
+    setCookie('username', username)
     if (isOnPlatformLogin()) {
       const bar = document.getElementsByClassName("flash callout alert")[0];
       if (bar) bar.style.display = "none";
