@@ -1241,6 +1241,37 @@
     }
   };
 
+  // Salva o conteudo da pagina inicial e retorna a variavel
+  function saveContentPage() {
+    const qlEditorDisplays = document.querySelectorAll('.ql-editor-display');
+
+    function getHTMLContent(element) {
+      return element.innerHTML;
+    }
+
+    let combinedHTML = `
+    <div class="row">
+      <div class="centered-div">
+        <div class="ql-editor-display" style="text-align: justify">
+          `;
+    
+    combinedHTML += getHTMLContent(qlEditorDisplays[0]);
+    combinedHTML += getHTMLContent(qlEditorDisplays[1]);
+
+    // qlEditorDisplays.forEach(element => {
+    //   combinedHTML += getHTMLContent(element);
+    // });
+
+    combinedHTML += `
+    </div>
+    </div>
+    </div>`
+
+    console.log(combinedHTML);
+    return combinedHTML;
+  }
+
+
   (() => {
     replaceWrongUrl();
 
@@ -1702,8 +1733,8 @@
       }
 
       if (isOnConferenceLandingPage()) {
+        const contentInfo = saveContentPage();
         if (wrapper) wrapper.remove();
-
         if (hero) hero.classList.remove("hero");
         if (dateRow) {
           if (dateRow[0]) dateRow[0].remove();
@@ -2877,6 +2908,7 @@
     <span class="conferenceHero">
       <span class="conferenceHero__image"></span>
     </span>
+    ${contentInfo}
     <section class="conference-cards">
       <div class="conference-cards__items">
         <a
@@ -3673,6 +3705,14 @@
     </section>
   </div>
   <style type="text/css">
+    .centered-div {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin: 20px auto; 
+      max-width: 85%; 
+    }
     .conference {
       background-color: white;
       margin-top: 4rem;
