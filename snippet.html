@@ -1533,7 +1533,7 @@
         // );
         // navbarUl.appendChild(createLi("Sobre", "/pages/relatoriodaplataforma"));
       }
-    } else { updateMenuConfJuv(); }
+    } else if (isOnConferenceBadges()) { updateMenuConfJuv(); }
 
     const programContentContainer =
       document.querySelector(".ql-editor-display");
