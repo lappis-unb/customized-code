@@ -232,6 +232,10 @@
         href: `/assemblies/confjuv4/f/${isProd() ? "13" : "145"}`,
         name: "Sobre",
       },
+      {
+        href: "/conferences/confjuv4/media",
+        name: "Multimidia",
+      },
     ];
 
     confJuvLinks.forEach((link) => {
@@ -244,6 +248,15 @@
     });
 
     const processHeader = document.querySelector(".process-header");
+
+    if (!processHeader) {
+      processHeader = document.createElement("span");
+      processHeader.className = "process-header";
+      processHeader.style.marginBottom = '50px'
+      let wrapper = document.querySelector(".wrapper");
+      wrapper.prepend(processHeader)
+      document.querySelector('.responsive-tab-block').remove()
+    }
     let menuConfJuvDesk = document.createElement("div");
     menuConfJuvDesk.className = "row expanded";
     menuConfJuvDesk.innerHTML = `<div class="row expanded">
@@ -279,6 +292,11 @@
           <li class="">
             <a class="process-nav__link" href="/assemblies/confjuv4/f/13/">
               Perguntas Frequentes
+            </a>
+          </li>
+          <li class="">
+            <a class="process-nav__link" href="/conferences/confjuv4/media">
+              Multimidia
             </a>
           </li>
         </ul>
@@ -1253,7 +1271,7 @@
       <div class="centered-div">
         <div class="ql-editor-display" style="text-align: justify">
           `;
-    
+
     combinedHTML += getHTMLContent(qlEditorDisplays[0]);
     combinedHTML += getHTMLContent(qlEditorDisplays[1]);
 
@@ -1404,6 +1422,10 @@
               path: `/assemblies/confjuv4/f/${isProd() ? "13" : "145"}`,
               label: "Sobre",
             },
+            {
+              path: "/conferences/confjuv4/media",
+              label: "Multimidia",
+            }
           ];
         else if (isConsea()) {
           if (isProd())
@@ -1509,6 +1531,8 @@
         navbarUl.appendChild(createLi("Início", "/processes/ENGD"));
         navbarUl.appendChild(createLi("Recomendações", `/processes/ENGD/f/3`));
         navbarUl.appendChild(createLi("Avaliação da Oficina", `/processes/ENGD/f/27`));
+      } else if (isJuventude()) {
+        updateMenuConfJuv();
       } else {
         navbarUl.remove();
         // navbarUl.appendChild(createLi("Início", "/processes/programas/"));
@@ -1636,7 +1660,11 @@
     );
   }
   function isOnConferenceDomain() {
+    console.log(window.location.href.includes("conferences/confjuv4") ||
+      window.location.href.includes("assemblies/confjuv4") ||
+      window.location.href.includes("assemblies/cnsan6"))
     return (
+      window.location.href.includes("conferences/confjuv4") ||
       window.location.href.includes("assemblies/confjuv4") ||
       window.location.href.includes("assemblies/cnsan6")
     );
@@ -1645,14 +1673,18 @@
     return window.location.href.includes("assemblies/cnsan6");
   }
   function isJuventude() {
-    return window.location.href.includes("assemblies/confjuv4");
+    console.log(window.location.href.includes("conferences/confjuv4") ||
+      window.location.href.includes("assemblies/confjuv4") ||
+      window.location.href.includes("assemblies/cnsan6"))
+
+    return window.location.href.includes("assemblies/confjuv4") || window.location.href.includes("conferences/confjuv4");
   }
   function isOnConferenceBlogPage() {
     return window.location.pathname.includes(
       `/assemblies/confjuv4/f/${isProd() ? "9" : "144"}`
     );
   }
-  function isMeetingsConseaPage(){
+  function isMeetingsConseaPage() {
     const currentURL = window.location.href;
     const prod = 'https://brasilparticipativo.presidencia.gov.br/assemblies/cnsan6/f/23/'
     const dev = 'https://lab-decide.dataprev.gov.br/assemblies/cnsan6/f/124/'
@@ -4448,7 +4480,7 @@
     const cardText = document.querySelectorAll('.card__text--paragraph');
     const autorData = document.querySelectorAll('.author-data');
     const map = document.querySelector('.google-map');
-    const cardTitles = document.querySelectorAll('.card__title');  
+    const cardTitles = document.querySelectorAll('.card__title');
 
     cardText.forEach(element => {
       element.remove();
@@ -4471,7 +4503,7 @@
     if (pageContent && isOnConferenceAboutPage()) {
       buildInitialContent(pageContent);
     }
-    if (isMeetingsConseaPage()){
+    if (isMeetingsConseaPage()) {
       console.log("is meeting");
       organizeMeetingsConsea();
     }
