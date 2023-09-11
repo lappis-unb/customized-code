@@ -304,11 +304,17 @@
       proposesPPAMenu.innerHTML =
         '<span class="content">Propostas priorizadas</span>';
 
+    let newsLinkMenu = document.createElement("a");
+    newsLinkMenu.className = "menu-item divider";
+    newsLinkMenu.href = "/processes/brasilparticipativo/f/26/posts";
+    newsLinkMenu.innerHTML = '<span class="content">Novidades</span>';
+    let menuBody = document.querySelector("nav.menu-body");
+    menuBody.appendChild(newsLinkMenu);
+
     let newAboutLinkMenu = document.createElement("a");
     newAboutLinkMenu.className = "menu-item divider";
     newAboutLinkMenu.href = "/pages/brasil-participativo-sobre";
     newAboutLinkMenu.innerHTML = '<span class="content">Sobre</span>';
-    let menuBody = document.querySelector("nav.menu-body");
     menuBody.appendChild(newAboutLinkMenu);
 
     let startPPA = document.querySelector("#ppa-inicio");
@@ -426,7 +432,7 @@
       <a href="/processes/programas/f/1/">
         <div class="card-content">
           <div class="new-feature-icon-background">
-            <i class="fa fa-solid fa-arrows-up-to-line fa-2xl"></i>
+            <i class="fa fa-solid fa-star fa-2xl"></i>
           </div>
           <p class="card-name">Programas Priorizados</p>
           <p class="card-description">Conheça os programas mais votados</p>
