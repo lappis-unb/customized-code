@@ -98,7 +98,6 @@
     var url = window.location.href;
     return url.indexOf("lab-decide.dataprev.gov.br") !== -1;
   }
-
   // Função para verificar se está em um ambiente de produção
   function isProd() {
     var url = window.location.href;
@@ -1652,6 +1651,13 @@
     return window.location.pathname.includes(
       `/assemblies/confjuv4/f/${isProd() ? "9" : "144"}`
     );
+  }
+  function isMeetingsConseaPage(){
+    const currentURL = window.location.href;
+    const prod = 'https://brasilparticipativo.presidencia.gov.br/assemblies/cnsan6/f/23/'
+    const dev = 'https://lab-decide.dataprev.gov.br/assemblies/cnsan6/f/124/'
+
+    return currentURL === prod || currentURL === dev;
   }
   function isOnConferenceAboutPage() {
     return (
@@ -4438,12 +4444,38 @@
       window.location.replace("/assemblies/confjuv4");
     }
   }
+  function organizeMeetingsConsea() {
+    const cardText = document.querySelectorAll('.card__text--paragraph');
+    const autorData = document.querySelectorAll('.author-data');
+    const map = document.querySelector('.google-map');
+    const cardTitles = document.querySelectorAll('.card__title');  
+
+    cardText.forEach(element => {
+      element.remove();
+    });
+
+    autorData.forEach(element => {
+      element.remove();
+    });
+
+    map.remove();
+
+    cardTitles.forEach(title => {
+      title.style.textAlign = 'center';
+    });
+
+  }
   window.addEventListener("DOMContentLoaded", function () {
     doEverything();
     const pageContent = document.getElementById("aboutContent");
     if (pageContent && isOnConferenceAboutPage()) {
       buildInitialContent(pageContent);
     }
+    if (isMeetingsConseaPage()){
+      console.log("is meeting");
+      organizeMeetingsConsea();
+    }
+
   });
   const items = [
     {
