@@ -1290,28 +1290,19 @@
       });
   }
 
-  function getNoticias(url, hrefNoticiais) {
-    let originalHTML;
+  function getNoticias(url, hrefNoticiais, originalHTML) {
 
-    getHTML(url)
-      .then(html => {
-        originalHTML = html;
-      })
-      .catch(error => {
-        return "error";
-      });
-    
     const tempElement = document.createElement('div');
     tempElement.innerHTML = originalHTML;
 
     const originalNewsElements = tempElement.querySelectorAll('.card--post');
     const resultHTMLArray = [];
-    
     let count = 0;
     originalNewsElements.forEach(originalNewsElement => {
       const href_noticia = originalNewsElement.querySelector('.card__link').getAttribute('href');
       const titulo_noticia = originalNewsElement.querySelector('.card__title').textContent;
-      const url_img = originalNewsElement.querySelector('img').getAttribute('src');
+      const paiImagem = originalNewsElement.querySelector('.ql-editor-display');
+      const url_img = paiImagem.querySelector('img').getAttribute('src');
 
       const newHTML = `
         <a class="conference-carousel__list__item" href="${href_noticia}">
@@ -1323,13 +1314,14 @@
       `;
       count += 1;
       if (count == 3){
-        buttonMore = `<form class="conference-cta" action=${hrefNoticiais}>
+        buttonMore = ` </div></section>
+                      <form class="conference-cta" action=${hrefNoticiais}>
                         <button type="submit" class="conference-cta__button">
                           <span class="conference-cta__button__wrapper__label"
                             >Mais notíciais</span
                           >
                         </button>
-                      </form>`
+                      </form>`;
         resultHTMLArray.push(buttonMore);
 
         const resultHTML = resultHTMLArray.join('\n');
@@ -1343,9 +1335,42 @@
     if (count == 0)
       return "error";
 
-    const resultHTML = resultHTMLArray.join('\n');
-
+    let resultHTML = resultHTMLArray.join('\n');
+    resultHTML += "</div></section>";
     return resultHTML;
+  }
+
+  function gerenciaNoticias(url, hrefNoticiais){
+    requestHTML(url)
+      .then(html => {
+        return getNoticias(url, hrefNoticiais, html);
+      })
+      .then(responseNoticias => {
+        if (responseNoticias !== "error") {
+          let contentNoticiais = `<section class="conference-carousel">
+                                    <span class="conference-carousel__title"
+                                      >Saiba o que está rolando sobre a 6ª Conferência da Segurança Alimentar
+                                    </span>
+                                    <div class="conference-carousel__list">`;
+          contentNoticiais += responseNoticias;
+
+          // Encontre a div com id "confnoticias" na página
+          const confNoticias = document.querySelector('#confnoticias');
+
+          if (confNoticias) {
+            // Adicione o conteúdo ao elemento encontrado
+            console.log(contentNoticiais);
+            confNoticias.innerHTML = contentNoticiais;
+          } else {
+            console.error('Elemento com id "confnoticias" não encontrado.');
+          }
+        } else {
+          console.error('Erro ao buscar notícias.');
+        }
+      })
+      .catch(error => {
+        console.error('Erro:', error);
+      });
   }
 
   (() => {
@@ -1817,6 +1842,23 @@
 
       if (isOnConferenceLandingPage()) {
         const contentInfo = saveContentPage();
+
+        let url_source;
+        let href_noticia;
+
+        if (isConsea()){
+          if (isDev()){
+            url_source = "https://lab-decide.dataprev.gov.br/assemblies/cnsan6/f/121/";
+            href_noticia = "/assemblies/cnsan6/f/121/";
+          }
+          else if (isProd()){
+            url_source = "https://brasilparticipativo.presidencia.gov.br/assemblies/cnsan6/f/20/";
+            href_noticia = "/assemblies/cnsan6/f/20/";
+          }
+        }
+
+        gerenciaNoticias(url_source, href_noticia);
+        
         if (wrapper) wrapper.remove();
         if (hero) hero.classList.remove("hero");
         if (dateRow) {
@@ -3007,7 +3049,7 @@
             </div>
           </span>
           <span
-            href="assemblies/cnsan6/f/23/"
+            href="/assemblies/cnsan6/f/23/"
             class="conference-cards__items__item__link"
             >Ler mais</span
           >
@@ -3050,13 +3092,7 @@
         </a>
       </div>
     </section>
-    <section class="conference-carousel">
-      <span class="conference-carousel__title"
-        >Saiba o que está rolando sobre a 6ª Conferência da Segurança Alimentar
-      </span>
-      <div class="conference-carousel__list">
-      </div>
-    </section>
+    <div id="confnoticias"></div>
     <section class="conference-organizers">
       <span class="conference-organizers__title">Organizadores</span>
       <span class="conference-organizers__container">
