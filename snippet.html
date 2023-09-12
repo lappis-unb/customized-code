@@ -1272,10 +1272,82 @@
     </div>
     </div>`
 
-    console.log(combinedHTML);
     return combinedHTML;
   }
 
+  function requestHTML(url) {
+    return fetch(url)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`Erro ao buscar a página. Status de resposta: ${response.status}`);
+        }
+        return response.text();
+      })
+      .then(html => {
+        return html;
+      })
+      .catch(error => {
+        throw new Error(`Erro ao buscar a página: ${error.message}`);
+      });
+  }
+
+  function getNoticias(url, hrefNoticiais) {
+    let originalHTML;
+
+    getHTML(url)
+      .then(html => {
+        originalHTML = html;
+      })
+      .catch(error => {
+        return "error";
+      });
+    
+    const tempElement = document.createElement('div');
+    tempElement.innerHTML = originalHTML;
+
+    const originalNewsElements = tempElement.querySelectorAll('.card--post');
+    const resultHTMLArray = [];
+    
+    let count = 0;
+    originalNewsElements.forEach(originalNewsElement => {
+      const href_noticia = originalNewsElement.querySelector('.card__link').getAttribute('href');
+      const titulo_noticia = originalNewsElement.querySelector('.card__title').textContent;
+      const url_img = originalNewsElement.querySelector('img').getAttribute('src');
+
+      const newHTML = `
+        <a class="conference-carousel__list__item" href="${href_noticia}">
+          <img src="${url_img}" />
+          <div class="conference-carousel__list__item__overlay">
+            ${titulo_noticia}
+          </div>
+        </a>
+      `;
+      count += 1;
+      if (count == 3){
+        buttonMore = `<form class="conference-cta" action=${hrefNoticiais}>
+                        <button type="submit" class="conference-cta__button">
+                          <span class="conference-cta__button__wrapper__label"
+                            >Mais notíciais</span
+                          >
+                        </button>
+                      </form>`
+        resultHTMLArray.push(buttonMore);
+
+        const resultHTML = resultHTMLArray.join('\n');
+
+        return resultHTML;
+      }
+      else
+        resultHTMLArray.push(newHTML);
+    });
+
+    if (count == 0)
+      return "error";
+
+    const resultHTML = resultHTMLArray.join('\n');
+
+    return resultHTML;
+  }
 
   (() => {
     replaceWrongUrl();
@@ -4478,7 +4550,6 @@
       buildInitialContent(pageContent);
     }
     if (isMeetingsConseaPage()){
-      console.log("is meeting");
       organizeMeetingsConsea();
     }
 
