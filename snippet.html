@@ -247,15 +247,16 @@
       menuBody.appendChild(newAboutLinkMenu);
     });
 
-    const processHeader = document.querySelector(".process-header");
+    let processHeader = document.querySelector(".process-header");
 
     if (!processHeader) {
       processHeader = document.createElement("span");
       processHeader.className = "process-header";
-      processHeader.style.marginBottom = '50px'
+      processHeader.style.marginBottom = "50px";
       let wrapper = document.querySelector(".wrapper");
-      wrapper.prepend(processHeader)
-      document.querySelector('.responsive-tab-block').remove()
+      wrapper.prepend(processHeader);
+      const block = document.querySelector(".responsive-tab-block");
+      if (block) block.remove();
     }
     let menuConfJuvDesk = document.createElement("div");
     menuConfJuvDesk.className = "row expanded";
@@ -1266,7 +1267,7 @@
 
   // Salva o conteudo da pagina inicial e retorna a variavel
   function saveContentPage() {
-    const qlEditorDisplays = document.querySelectorAll('.ql-editor-display');
+    const qlEditorDisplays = document.querySelectorAll(".ql-editor-display");
 
     function getHTMLContent(element) {
       return element.innerHTML;
@@ -1288,12 +1289,11 @@
     combinedHTML += `
     </div>
     </div>
-    </div>`
+    </div>`;
 
     console.log(combinedHTML);
     return combinedHTML;
   }
-
 
   (() => {
     replaceWrongUrl();
@@ -1431,7 +1431,7 @@
             {
               path: "/conferences/confjuv4/media",
               label: "Multimidia",
-            }
+            },
           ];
         else if (isConsea()) {
           if (isProd())
@@ -1536,7 +1536,9 @@
         });
         navbarUl.appendChild(createLi("Início", "/processes/ENGD"));
         navbarUl.appendChild(createLi("Recomendações", `/processes/ENGD/f/3`));
-        navbarUl.appendChild(createLi("Avaliação da Oficina", `/processes/ENGD/f/27`));
+        navbarUl.appendChild(
+          createLi("Avaliação da Oficina", `/processes/ENGD/f/27`)
+        );
       } else if (isJuventude()) {
         updateMenuConfJuv();
       } else {
@@ -1648,7 +1650,7 @@
     });
 
     $(document).ready(function () {
-      $('input[type="checkbox"]').click(async function () { });
+      $('input[type="checkbox"]').click(async function () {});
     });
   }
   function createCssClass(innerHtml, cssClass, elementSelector) {
@@ -1666,9 +1668,11 @@
     );
   }
   function isOnConferenceDomain() {
-    console.log(window.location.href.includes("conferences/confjuv4") ||
-      window.location.href.includes("assemblies/confjuv4") ||
-      window.location.href.includes("assemblies/cnsan6"))
+    console.log(
+      window.location.href.includes("conferences/confjuv4") ||
+        window.location.href.includes("assemblies/confjuv4") ||
+        window.location.href.includes("assemblies/cnsan6")
+    );
     return (
       window.location.href.includes("conferences/confjuv4") ||
       window.location.href.includes("assemblies/confjuv4") ||
@@ -1679,11 +1683,16 @@
     return window.location.href.includes("assemblies/cnsan6");
   }
   function isJuventude() {
-    console.log(window.location.href.includes("conferences/confjuv4") ||
-      window.location.href.includes("assemblies/confjuv4") ||
-      window.location.href.includes("assemblies/cnsan6"))
+    console.log(
+      window.location.href.includes("conferences/confjuv4") ||
+        window.location.href.includes("assemblies/confjuv4") ||
+        window.location.href.includes("assemblies/cnsan6")
+    );
 
-    return window.location.href.includes("assemblies/confjuv4") || window.location.href.includes("conferences/confjuv4");
+    return (
+      window.location.href.includes("assemblies/confjuv4") ||
+      window.location.href.includes("conferences/confjuv4")
+    );
   }
   function isOnConferenceBlogPage() {
     return window.location.pathname.includes(
@@ -1692,8 +1701,9 @@
   }
   function isMeetingsConseaPage() {
     const currentURL = window.location.href;
-    const prod = 'https://brasilparticipativo.presidencia.gov.br/assemblies/cnsan6/f/23/'
-    const dev = 'https://lab-decide.dataprev.gov.br/assemblies/cnsan6/f/124/'
+    const prod =
+      "https://brasilparticipativo.presidencia.gov.br/assemblies/cnsan6/f/23/";
+    const dev = "https://lab-decide.dataprev.gov.br/assemblies/cnsan6/f/124/";
 
     return currentURL === prod || currentURL === dev;
   }
@@ -4460,6 +4470,8 @@
         document
           .querySelector(".button_to")
           .querySelector(".button").innerHTML = "Inscreva-se";
+        if (hero) hero?.remove();
+        if (hero__container) hero__container?.remove();
       } else {
         if (hero) hero?.remove();
         if (hero__container) hero__container?.remove();
@@ -4483,25 +4495,24 @@
     }
   }
   function organizeMeetingsConsea() {
-    const cardText = document.querySelectorAll('.card__text--paragraph');
-    const autorData = document.querySelectorAll('.author-data');
-    const map = document.querySelector('.google-map');
-    const cardTitles = document.querySelectorAll('.card__title');
+    const cardText = document.querySelectorAll(".card__text--paragraph");
+    const autorData = document.querySelectorAll(".author-data");
+    const map = document.querySelector(".google-map");
+    const cardTitles = document.querySelectorAll(".card__title");
 
-    cardText.forEach(element => {
+    cardText.forEach((element) => {
       element.remove();
     });
 
-    autorData.forEach(element => {
+    autorData.forEach((element) => {
       element.remove();
     });
 
     map.remove();
 
-    cardTitles.forEach(title => {
-      title.style.textAlign = 'center';
+    cardTitles.forEach((title) => {
+      title.style.textAlign = "center";
     });
-
   }
   window.addEventListener("DOMContentLoaded", function () {
     doEverything();
@@ -4513,7 +4524,6 @@
       console.log("is meeting");
       organizeMeetingsConsea();
     }
-
   });
   const items = [
     {
@@ -5224,8 +5234,14 @@
   }
 </script>
 
-<link rel="stylesheet" href="https://cdngovbr-ds.estaleiro.serpro.gov.br/design-system/fonts/rawline/css/rawline.css" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+<link
+  rel="stylesheet"
+  href="https://cdngovbr-ds.estaleiro.serpro.gov.br/design-system/fonts/rawline/css/rawline.css"
+/>
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+/>
 
 <style type="text/css">
   @import url("https://fonts.cdnfonts.com/css/rawline");
@@ -5703,8 +5719,10 @@
   }
 
   .button:hover {
-    background-image: linear-gradient(rgba(var(--interactive-rgb-primary-btn), var(--hover)),
-        rgba(var(--interactive-rgb-primary-btn), var(--hover)));
+    background-image: linear-gradient(
+      rgba(var(--interactive-rgb-primary-btn), var(--hover)),
+      rgba(var(--interactive-rgb-primary-btn), var(--hover))
+    );
   }
 
   .process-nav__link a,
@@ -5880,7 +5898,7 @@
     white-space: wrap;
   }
 
-  .process-nav ul>li:hover {
+  .process-nav ul > li:hover {
     background: rgba(51, 51, 51, var(--hover));
   }
 
@@ -5938,7 +5956,9 @@
   }
 
   .phase-current {
-    font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-normal) 9.72px/14.09px var(--unnamed-font-family-rawline);
+    font: var(--unnamed-font-style-normal) normal
+      var(--unnamed-font-weight-normal) 9.72px/14.09px
+      var(--unnamed-font-family-rawline);
     letter-spacing: var(--unnamed-character-spacing-0);
     color: var(---gray-80);
     text-align: left;
@@ -5950,7 +5970,8 @@
   }
 
   .phase-title {
-    font: var(--unnamed-font-style-normal) normal 600 var(--unnamed-font-size-14) / 19.32px var(--unnamed-font-family-rawline);
+    font: var(--unnamed-font-style-normal) normal 600
+      var(--unnamed-font-size-14) / 19.32px var(--unnamed-font-family-rawline);
     letter-spacing: var(--unnamed-character-spacing-0);
     color: var(---gray-80);
     text-align: left;
@@ -5969,7 +5990,7 @@
     opacity: 1;
   }
 
-  .process-header__phase>a {
+  .process-header__phase > a {
     font-family: "rawline", sans-serif;
     font-style: italic;
     font-weight: var(--unnamed-font-weight-normal);
@@ -5996,14 +6017,14 @@
     opacity: 1;
   }
 
-  .external-link-container>.external-link-indicator {
+  .external-link-container > .external-link-indicator {
     height: 0.75rem;
     width: 0.75rem;
     /* margin: 0 0 -3px 0.625rem; */
     margin: 0 4px -1px 0.175rem;
   }
 
-  .collapsible-list>* {
+  .collapsible-list > * {
     display: inline-flex;
     margin: 0;
   }
@@ -6176,13 +6197,13 @@
     padding-left: 36px;
   }
 
-  .author-data__extra>button,
-  .author-data__extra>span,
-  .author-data__extra>a {
+  .author-data__extra > button,
+  .author-data__extra > span,
+  .author-data__extra > a {
     margin-right: 0;
   }
 
-  .topbar .dropdown.menu>li.is-dropdown-submenu-parent>a {
+  .topbar .dropdown.menu > li.is-dropdown-submenu-parent > a {
     position: relative;
     padding-right: 5px 1.5rem 0 0;
     color: var(---blue-warm-vivid-70);
@@ -6204,7 +6225,7 @@
     margin-top: 6px;
   }
 
-  .topbar__dropmenu>ul>li>a::after {
+  .topbar__dropmenu > ul > li > a::after {
     border-top-color: var(---blue-warm-vivid-70) !important;
   }
 
@@ -6231,7 +6252,10 @@
     text-align: center;
   }
 
-  .topbar__user__logged .dropdown.menu>li.is-dropdown-submenu-parent>a::after {
+  .topbar__user__logged
+    .dropdown.menu
+    > li.is-dropdown-submenu-parent
+    > a::after {
     color: var(---blue-warm-vivid-70);
   }
 
@@ -6245,7 +6269,7 @@
     text-decoration: none;
   }
 
-  .topbar__admin__link~.topbar__admin__link {
+  .topbar__admin__link ~ .topbar__admin__link {
     margin: 0;
   }
 
@@ -6453,8 +6477,10 @@
 
   textarea:hover,
   input[type="text"]:hover:not(.input-group-field) {
-    background-image: linear-gradient(rgba(var(--color-rgb), var(--hover)),
-        rgba(var(--color-rgb), var(--hover)));
+    background-image: linear-gradient(
+      rgba(var(--color-rgb), var(--hover)),
+      rgba(var(--color-rgb), var(--hover))
+    );
   }
 
   textarea:focus,
@@ -6499,21 +6525,21 @@
     display: none;
   }
 
-  .side-panel__tabs .tabs-title.is-active>[role="tab"],
-  .side-panel__tabs .tabs-title.is-active>a {
+  .side-panel__tabs .tabs-title.is-active > [role="tab"],
+  .side-panel__tabs .tabs-title.is-active > a {
     color: var(---white);
     box-shadow: none;
     background: var(--primary);
   }
 
-  .side-panel__tabs .tabs-title>[role="tab"],
-  .side-panel__tabs .tabs-title>a {
+  .side-panel__tabs .tabs-title > [role="tab"],
+  .side-panel__tabs .tabs-title > a {
     color: var(---blue-warm-vivid-70);
     text-decoration: none;
   }
 
-  .side-panel__tabs .tabs-title>[role="tab"],
-  .side-panel__tabs .tabs-title>a:hover {
+  .side-panel__tabs .tabs-title > [role="tab"],
+  .side-panel__tabs .tabs-title > a:hover {
     color: var(---blue-warm-vivid-70);
     background: rgba(19, 81, 180, 0.16);
   }
@@ -6635,8 +6661,8 @@
     gap: 1rem;
   }
 
-  label>[type="checkbox"],
-  label>[type="radio"] {
+  label > [type="checkbox"],
+  label > [type="radio"] {
     margin-right: 0.5rem;
     border-radius: 4px;
     color: var(---gray-80);
@@ -6836,8 +6862,10 @@
   }
 
   a.button.primary.button--nomargin:hover {
-    background-image: linear-gradient(rgba(var(--interactive-rgb-primary-btn), var(--hover)),
-        rgba(var(--interactive-rgb-primary-btn), var(--hover)));
+    background-image: linear-gradient(
+      rgba(var(--interactive-rgb-primary-btn), var(--hover)),
+      rgba(var(--interactive-rgb-primary-btn), var(--hover))
+    );
   }
 
   /* ACESSIBILIDADE */
@@ -7055,7 +7083,10 @@
   }
 
   div.columns.large-12 div.section.images h3.section-heading,
-  div.columns.large-12 div.section.images .gallery.row .columns.small-6.medium-4.end {
+  div.columns.large-12
+    div.section.images
+    .gallery.row
+    .columns.small-6.medium-4.end {
     display: block;
   }
 </style>
