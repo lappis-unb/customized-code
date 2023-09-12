@@ -1663,7 +1663,7 @@
     const prod = 'https://brasilparticipativo.presidencia.gov.br/assemblies/cnsan6/f/23/'
     const dev = 'https://lab-decide.dataprev.gov.br/assemblies/cnsan6/f/124/'
 
-    return currentURL === prod || currentURL === dev;
+    return currentURL.indexOf(prod) !== -1 || currentURL.indexOf(dev) !== -1;
   }
   function isOnConferenceAboutPage() {
     return (
@@ -4453,7 +4453,7 @@
   function organizeMeetingsConsea() {
     const cardText = document.querySelectorAll('.card__text--paragraph');
     const autorData = document.querySelectorAll('.author-data');
-    const map = document.querySelector('.google-map');
+    const map = document.querySelector('#map');
     const cardTitles = document.querySelectorAll('.card__title');  
 
     cardText.forEach(element => {
