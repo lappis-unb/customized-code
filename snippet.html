@@ -1392,6 +1392,7 @@
       if (!(isConsea() || isJuventude())) updateMenuContext();
     });
   })();
+
   function capitalizarOnBlur(elementId) {
     let element = document.getElementById(elementId);
     if (element != undefined && element != null) {
@@ -1400,11 +1401,13 @@
       };
     }
   }
+
   function capitalizar(input) {
     if (input.value.length > 0) {
       input.value = input.value.charAt(0).toUpperCase() + input.value.slice(1);
     }
   }
+
   function doEverything() {
     if (
       window.location.pathname.includes(
@@ -1439,27 +1442,9 @@
       li.appendChild(a);
       return li;
     };
-    const removeElement = (element) => element.parentNode.removeChild(element);
+
     const navbarUl = document.querySelector(".process-nav ul");
-    const initLi = document.querySelector('.process-nav__link a[href="/"]');
-    const processesLi = document.querySelector(
-      '.process-nav__link a[href="/processes"]'
-    );
-    const pagesLi = document.querySelector(
-      '.process-nav__link a[href="/pages"]'
-    );
-    const initativesLi = document.querySelector(
-      '.process-nav__link a[href="/initiatives"]'
-    );
-    const calendarLi = document.querySelector(
-      '.process-nav__link a[href="/calendar"]'
-    );
-    const conferencesLi = document.querySelector(
-      '.process-nav__link a[href="/conferences"]'
-    );
-    const assembliesLi = document.querySelector(
-      '.process-nav__link a[href="/assemblies"]'
-    );
+
     function deleteLiProcessNav() {
       const deleteLiList = document.querySelectorAll("li");
 
@@ -1470,7 +1455,9 @@
         }
       });
     }
+
     deleteLiProcessNav();
+
     if (navbarUl) {
       if (isOnConferenceDomain()) {
         let items;
@@ -1544,6 +1531,9 @@
         const assembliesLi = document.querySelector(
           '.process-nav__link a[href="/assemblies"]'
         );
+
+        const removeElement = (element) =>
+          element.parentNode.removeChild(element);
         if (assembliesLi) removeElement(assembliesLi.parentElement);
       } else if (window.location.href.includes("/processes/ENGD")) {
         var allElements = document.querySelectorAll("*:not(script):not(style)");
