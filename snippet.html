@@ -21,8 +21,7 @@
 <script defer>
   // Variável referente ao ID do programa, utilizada no menu-tab "Escolher programas" da aplicação.
   const chooseProgramId = 1;
-  // Variável referente ao ID da proposta, utilizada no menu-tab "Fazer proposta ao governo" da aplicação.
-  const makeProposalId = 2;
+
   var CreateDOMObjects = () => {
     const DOM = `
           <div vw class="enabled">
@@ -154,7 +153,7 @@
           name: "Sobre",
         },
       ];
-  
+
     confConseaLinks.forEach((link) => {
       let newAboutLinkMenu = document.createElement("a");
       newAboutLinkMenu.className = "menu-item divider";
@@ -1251,7 +1250,7 @@
 
   // Salva o conteudo da pagina inicial e retorna a variavel
   function saveContentPage() {
-    const qlEditorDisplays = document.querySelectorAll('.ql-editor-display');
+    const qlEditorDisplays = document.querySelectorAll(".ql-editor-display");
 
     function getHTMLContent(element) {
       return element.innerHTML;
@@ -1262,7 +1261,7 @@
       <div class="centered-div">
         <div class="ql-editor-display" style="text-align: justify">
           `;
-    
+
     combinedHTML += getHTMLContent(qlEditorDisplays[0]);
 
     // qlEditorDisplays.forEach(element => {
@@ -1272,40 +1271,44 @@
     combinedHTML += `
     </div>
     </div>
-    </div>`
+    </div>`;
 
     return combinedHTML;
   }
 
   function requestHTML(url) {
     return fetch(url)
-      .then(response => {
+      .then((response) => {
         if (!response.ok) {
-          throw new Error(`Erro ao buscar a página. Status de resposta: ${response.status}`);
+          throw new Error(
+            `Erro ao buscar a página. Status de resposta: ${response.status}`
+          );
         }
         return response.text();
       })
-      .then(html => {
+      .then((html) => {
         return html;
       })
-      .catch(error => {
+      .catch((error) => {
         throw new Error(`Erro ao buscar a página: ${error.message}`);
       });
   }
 
   function getNoticias(url, hrefNoticiais, originalHTML) {
-
-    const tempElement = document.createElement('div');
+    const tempElement = document.createElement("div");
     tempElement.innerHTML = originalHTML;
 
-    const originalNewsElements = tempElement.querySelectorAll('.card--post');
+    const originalNewsElements = tempElement.querySelectorAll(".card--post");
     const resultHTMLArray = [];
     let count = 0;
-    originalNewsElements.forEach(originalNewsElement => {
-      const href_noticia = originalNewsElement.querySelector('.card__link').getAttribute('href');
-      const titulo_noticia = originalNewsElement.querySelector('.card__title').textContent;
-      const paiImagem = originalNewsElement.querySelector('.ql-editor-display');
-      const url_img = paiImagem.querySelector('img').getAttribute('src');
+    originalNewsElements.forEach((originalNewsElement) => {
+      const href_noticia = originalNewsElement
+        .querySelector(".card__link")
+        .getAttribute("href");
+      const titulo_noticia =
+        originalNewsElement.querySelector(".card__title").textContent;
+      const paiImagem = originalNewsElement.querySelector(".ql-editor-display");
+      const url_img = paiImagem.querySelector("img").getAttribute("src");
 
       const newHTML = `
         <a class="conference-carousel__list__item" href="${href_noticia}">
@@ -1316,7 +1319,7 @@
         </a>
       `;
       count += 1;
-      if (count == 3){
+      if (count == 3) {
         buttonMore = ` </div></section>
                       <form class="conference-cta" action=${hrefNoticiais}>
                         <button type="submit" class="conference-cta__button">
@@ -1327,28 +1330,25 @@
                       </form>`;
         resultHTMLArray.push(buttonMore);
 
-        const resultHTML = resultHTMLArray.join('\n');
+        const resultHTML = resultHTMLArray.join("\n");
 
         return resultHTML;
-      }
-      else
-        resultHTMLArray.push(newHTML);
+      } else resultHTMLArray.push(newHTML);
     });
 
-    if (count == 0)
-      return "error";
+    if (count == 0) return "error";
 
-    let resultHTML = resultHTMLArray.join('\n');
+    let resultHTML = resultHTMLArray.join("\n");
     resultHTML += "</div></section>";
     return resultHTML;
   }
 
-  function gerenciaNoticias(url, hrefNoticiais){
+  function gerenciaNoticias(url, hrefNoticiais) {
     requestHTML(url)
-      .then(html => {
+      .then((html) => {
         return getNoticias(url, hrefNoticiais, html);
       })
-      .then(responseNoticias => {
+      .then((responseNoticias) => {
         if (responseNoticias !== "error") {
           let contentNoticiais = `<section class="conference-carousel">
                                     <span class="conference-carousel__title"
@@ -1358,7 +1358,7 @@
           contentNoticiais += responseNoticias;
 
           // Encontre a div com id "confnoticias" na página
-          const confNoticias = document.querySelector('#confnoticias');
+          const confNoticias = document.querySelector("#confnoticias");
 
           if (confNoticias) {
             // Adicione o conteúdo ao elemento encontrado
@@ -1368,11 +1368,11 @@
             console.error('Elemento com id "confnoticias" não encontrado.');
           }
         } else {
-          console.error('Erro ao buscar notícias.');
+          console.error("Erro ao buscar notícias.");
         }
       })
-      .catch(error => {
-        console.error('Erro:', error);
+      .catch((error) => {
+        console.error("Erro:", error);
       });
   }
 
@@ -1389,8 +1389,7 @@
       insertConferenceElements();
       createHomePagePPA();
 
-      if (!(isConsea() || isJuventude()))
-        updateMenuContext();
+      if (!(isConsea() || isJuventude())) updateMenuContext();
     });
   })();
   function capitalizarOnBlur(elementId) {
@@ -1602,7 +1601,9 @@
         });
         navbarUl.appendChild(createLi("Início", "/processes/ENGD"));
         navbarUl.appendChild(createLi("Recomendações", `/processes/ENGD/f/3`));
-        navbarUl.appendChild(createLi("Avaliação da Oficina", `/processes/ENGD/f/27`));
+        navbarUl.appendChild(
+          createLi("Avaliação da Oficina", `/processes/ENGD/f/27`)
+        );
       } else {
         navbarUl.remove();
       }
@@ -1611,15 +1612,6 @@
     const programContentContainer =
       document.querySelector(".ql-editor-display");
     const url = window.location.href;
-    const linkToAllPrograms = document.createElement("p");
-    linkToAllPrograms.innerHTML =
-      'Conheça os <a href="/pages/lista_de_programas"><strong>90 programas</strong></a> dos ministérios.</p>';
-    if (
-      url.includes(`/processes/programas/f/${chooseProgramId}/`) &&
-      programContentContainer
-    ) {
-      programContentContainer.appendChild(linkToAllPrograms);
-    }
     const proposalTextNumber = document.querySelector("#proposals-count");
     if (
       url.includes(`/processes/programas/f/${chooseProgramId}/`) &&
@@ -1630,56 +1622,21 @@
         "programas"
       );
     }
-    const urlProgram = window.location.href;
-    const oldLink = document.querySelector(".ql-editor-display a");
-    if (
-      oldLink &&
-      urlProgram.includes(`/processes/programas/f/1/proposals/43`)
-    ) {
-      var newLink = document.createElement("a");
-      newLink.id = "id-new-link";
-      newLink.href = "/link?external_url=https://www.gov.br/mda/pt-br";
-      newLink.textContent = "https://www.gov.br/mda/pt-br";
-      oldLink.parentNode.replaceChild(newLink, oldLink);
-    }
 
-    const chatIcon = document.querySelector(
-      "use[href='/decidim-packs/media/images/icons-c4fd0f43651700b0c768.svg#icon-envelope-closed']"
-    );
-
-    if (chatIcon) {
-      chatIcon.href.baseVal =
-        "/decidim-packs/media/images/icons-c4fd0f43651700b0c768.svg#icon-chat";
-      chatIcon.href.animVal =
-        "/decidim-packs/media/images/icons-c4fd0f43651700b0c768.svg#icon-chat";
-    }
-
+    // Adiciona estilo em negrito ao gov.br
     const loginButton = document.querySelector(
       "a.button--govbr span.button--social__text"
     );
-
     if (loginButton) {
       loginButton.innerHTML = "Entrar com <strong>gov.br</strong>";
     }
 
+    // Remove opções de receber email
     const labelElements = document.querySelectorAll(
       'label[for^="user_notifications_sending_frequency_"]'
     );
     if (labelElements) {
       labelElements.forEach((e) => (e.style.display = "none"));
-    }
-
-    //remover denuncias
-    let flagModalButton = document.querySelector("[title=Denunciar]");
-    if (flagModalButton) flagModalButton.remove();
-    let flagModalContent = document.querySelector("#flagModal");
-    if (flagModalContent) flagModalContent.remove();
-
-    const inputsElements = document.querySelectorAll(
-      'input[name="user[notifications_sending_frequency]"]'
-    );
-    if (inputsElements) {
-      inputsElements.forEach((e) => (e.style.display = "none"));
     }
 
     const seeFrequencyProps = document.querySelectorAll(
@@ -1695,9 +1652,23 @@
     });
 
     $(document).ready(function () {
-      $('input[type="checkbox"]').click(async function () { });
+      $('input[type="checkbox"]').click(async function () {});
     });
+
+    // Remove denuncias
+    let flagModalButton = document.querySelector("[title=Denunciar]");
+    if (flagModalButton) flagModalButton.remove();
+    let flagModalContent = document.querySelector("#flagModal");
+    if (flagModalContent) flagModalContent.remove();
+
+    const inputsElements = document.querySelectorAll(
+      'input[name="user[notifications_sending_frequency]"]'
+    );
+    if (inputsElements) {
+      inputsElements.forEach((e) => (e.style.display = "none"));
+    }
   }
+
   function createCssClass(innerHtml, cssClass, elementSelector) {
     let style = document.createElement("style");
     style.type = "text/css";
@@ -1729,10 +1700,11 @@
       `/assemblies/confjuv4/f/${isProd() ? "9" : "144"}`
     );
   }
-  function isMeetingsConseaPage(){
+  function isMeetingsConseaPage() {
     const currentURL = window.location.href;
-    const prod = 'https://brasilparticipativo.presidencia.gov.br/assemblies/cnsan6/f/23/'
-    const dev = 'https://lab-decide.dataprev.gov.br/assemblies/cnsan6/f/124/'
+    const prod =
+      "https://brasilparticipativo.presidencia.gov.br/assemblies/cnsan6/f/23/";
+    const dev = "https://lab-decide.dataprev.gov.br/assemblies/cnsan6/f/124/";
 
     return currentURL.indexOf(prod) !== -1 || currentURL.indexOf(dev) !== -1;
   }
@@ -1824,17 +1796,18 @@
         let agenda;
         let sobre;
 
-        if (isConsea()){
-          if (isDev()){
-            url_source = "https://lab-decide.dataprev.gov.br/assemblies/cnsan6/f/121/";
+        if (isConsea()) {
+          if (isDev()) {
+            url_source =
+              "https://lab-decide.dataprev.gov.br/assemblies/cnsan6/f/121/";
             href_noticia = "/assemblies/cnsan6/f/121/";
-            
+
             envieSuaAta = "/assemblies/cnsan6/f/148/";
             agenda = "/assemblies/cnsan6/f/124/";
             sobre = "/assemblies/cnsan6/f/120/";
-          }
-          else if (isProd()){
-            url_source = "https://brasilparticipativo.presidencia.gov.br/assemblies/cnsan6/f/20/";
+          } else if (isProd()) {
+            url_source =
+              "https://brasilparticipativo.presidencia.gov.br/assemblies/cnsan6/f/20/";
             href_noticia = "/assemblies/cnsan6/f/20/";
 
             envieSuaAta = "/assemblies/cnsan6/f/23/";
@@ -1844,7 +1817,7 @@
         }
 
         gerenciaNoticias(url_source, href_noticia);
-        
+
         if (wrapper) wrapper.remove();
         if (hero) hero.classList.remove("hero");
         if (dateRow) {
@@ -3906,25 +3879,24 @@
     }
   }
   function organizeMeetingsConsea() {
-    const cardText = document.querySelectorAll('.card__text--paragraph');
-    const autorData = document.querySelectorAll('.author-data');
-    const map = document.querySelector('#map');
-    const cardTitles = document.querySelectorAll('.card__title');  
+    const cardText = document.querySelectorAll(".card__text--paragraph");
+    const autorData = document.querySelectorAll(".author-data");
+    const map = document.querySelector("#map");
+    const cardTitles = document.querySelectorAll(".card__title");
 
-    cardText.forEach(element => {
+    cardText.forEach((element) => {
       element.remove();
     });
 
-    autorData.forEach(element => {
+    autorData.forEach((element) => {
       element.remove();
     });
 
     map.remove();
 
-    cardTitles.forEach(title => {
-      title.style.textAlign = 'center';
+    cardTitles.forEach((title) => {
+      title.style.textAlign = "center";
     });
-
   }
   window.addEventListener("DOMContentLoaded", function () {
     doEverything();
@@ -3932,10 +3904,9 @@
     if (pageContent && isOnConferenceAboutPage()) {
       buildInitialContent(pageContent);
     }
-    if (isMeetingsConseaPage()){
+    if (isMeetingsConseaPage()) {
       organizeMeetingsConsea();
     }
-
   });
   const items = [
     {
@@ -4646,12 +4617,7 @@
   }
 </script>
 
-<link rel="stylesheet" href="https://cdngovbr-ds.estaleiro.serpro.gov.br/design-system/fonts/rawline/css/rawline.css" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-
 <style type="text/css">
-  @import url("https://fonts.cdnfonts.com/css/rawline");
-
   .conference-about {
     font-family: Rawline;
     padding: 48px 64px;
@@ -4924,7 +4890,10 @@
   }
 
   div.columns.large-12 div.section.images h3.section-heading,
-  div.columns.large-12 div.section.images .gallery.row .columns.small-6.medium-4.end {
+  div.columns.large-12
+    div.section.images
+    .gallery.row
+    .columns.small-6.medium-4.end {
     display: block;
   }
 
