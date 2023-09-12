@@ -1385,7 +1385,9 @@
       definirUrlLogOut();
       insertConferenceElements();
       createHomePagePPA();
-      updateMenuContext();
+
+      if (!(isConsea() || isJuventude()))
+        updateMenuContext();
     });
   })();
   function capitalizarOnBlur(elementId) {
