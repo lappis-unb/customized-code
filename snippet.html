@@ -1845,15 +1845,26 @@
 
         let url_source;
         let href_noticia;
+        let envieSuaAta;
+        let agenda;
+        let sobre;
 
         if (isConsea()){
           if (isDev()){
             url_source = "https://lab-decide.dataprev.gov.br/assemblies/cnsan6/f/121/";
             href_noticia = "/assemblies/cnsan6/f/121/";
+            
+            envieSuaAta = "/assemblies/cnsan6/f/148/";
+            agenda = "/assemblies/cnsan6/f/124/";
+            sobre = "/assemblies/cnsan6/f/120/";
           }
           else if (isProd()){
             url_source = "https://brasilparticipativo.presidencia.gov.br/assemblies/cnsan6/f/20/";
             href_noticia = "/assemblies/cnsan6/f/20/";
+
+            envieSuaAta = "/assemblies/cnsan6/f/23/";
+            agenda = "/assemblies/cnsan6/f/22/";
+            sobre = "/assemblies/cnsan6/f/21/";
           }
         }
 
@@ -3037,7 +3048,7 @@
     <section class="conference-cards">
       <div class="conference-cards__items">
         <a
-          href="/assemblies/cnsan6/f/23/"
+          href="${envieSuaAta}"
           class="conference-cards__items__item"
         >
           <span class="conference-cards__items__item__texts">
@@ -3049,14 +3060,14 @@
             </div>
           </span>
           <span
-            href="/assemblies/cnsan6/f/23/"
+            href="${envieSuaAta}"
             class="conference-cards__items__item__link"
             >Ler mais</span
           >
         </a>
         <div class="conference-cards__items__divider"></div>
         <a
-          href="/assemblies/cnsan6/f/22/"
+          href="${agenda}"
           class="conference-cards__items__item"
         >
           <span class="conference-cards__items__item__texts">
@@ -3066,14 +3077,14 @@
             <div class="conference-cards__item__texts__label">Agenda</div>
           </span>
           <span
-            href="/assemblies/cnsan6/f/22/"
+            href="${agenda}"
             class="conference-cards__items__item__link"
             >Ler mais</span
           >
         </a>
         <div class="conference-cards__items__divider"></div>
         <a
-          href="/assemblies/cnsan6/f/21/"
+          href="${sobre}"
           class="conference-cards__items__item"
         >
           <span class="conference-cards__items__item__texts">
@@ -3085,7 +3096,7 @@
             </div>
           </span>
           <span
-            href="/assemblies/cnsan6/f/21/"
+            href="${sobre}"
             class="conference-cards__items__item__link"
             >Ler mais</span
           >
