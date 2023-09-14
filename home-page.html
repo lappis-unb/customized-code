@@ -194,7 +194,7 @@
 </section>
 
 <section class="news-card">
-  <span class="home-section-title white">Novidades</span>
+  <span class="home-section-title">Novidades</span>
   <div class="news-card__list br-container-lg">
     <a
       class="news-card__list__item"
@@ -235,7 +235,7 @@
   </div>
   <div class="more-news-button-container">
     <a
-      class="br-button secondary mr-3 br-button-white"
+      class="br-button primary mr-3"
       type="button"
       href="/processes/brasilparticipativo/f/26/"
       >Mais Novidades</a
@@ -297,11 +297,11 @@
               <div class="row column">
                 <div class="statistics-cell">
                   <div class="statistic__data users_count">
-                    <span class="statistic__number">1.430.713</span>
+                    <span class="statistic__number">1.434.255</span>
                     <h4 class="statistic__title">Participantes</h4>
                   </div>
                   <div class="statistic__data proposals_accepted">
-                    <span class="statistic__number">4.305.943</span>
+                    <span class="statistic__number">4.335.517</span>
                     <h4 class="statistic__title">Acessos</h4>
                   </div>
                 </div>
@@ -705,13 +705,10 @@
     background-color: var(---white);
   }
   .home-section-title {
-    color: var(--default-black);
+    color: var(--color-primary-darken-01);
     text-align: center;
-    line-height: normal;
-    font-family: var(--unnamed-font-family-rawline);
-    font-style: var(--unnamed-font-style-normal);
     font-weight: 600 !important;
-    font-size: var(--unnamed-font-size-29-030000686645508);
+    font-size: 2rem;
   }
   .hero__container__img {
     background-image: var(--banner-mobile);
@@ -894,7 +891,7 @@
 
   /* fourth section of html */
   #statistics {
-    background: var(---gray-cool-05);
+    background: var(--gray-2);
     padding: 1.5rem 1rem;
   }
   .home-stats {
@@ -1061,11 +1058,7 @@
     #content {
       padding-top: 4rem;
     }
-    /* first block of html */
-    .home-section-title {
-      font-weight: 600 !important;
-      font-size: var(--unnamed-font-size-29-030000686645508);
-    }
+
     .hero__container__img {
       background-image: var(--banner-desktop);
       background-size: cover;
@@ -1110,7 +1103,7 @@
     }
 
     .card-name {
-      color: var(--default-black);
+      color: var(--color-secondary-07);
       font-family: Rawline;
       font-size: var(--unnamed-font-size-20-15999984741211);
       font-style: normal;
@@ -1189,7 +1182,7 @@
     align-items: center;
     max-width: 100%;
     overflow: auto;
-    background: var(--blue-warm-vivid-90);
+    background: var(--gray-2);
     padding: 2rem 0 3rem 0;
     gap: 2rem;
   }
@@ -1205,7 +1198,7 @@
 
   .news-card__list {
     display: flex;
-    height: 213px;
+    height: 380px;
     flex-direction: row;
     gap: 0 3rem;
     overflow: hidden;
@@ -1218,18 +1211,21 @@
   }
 
   .news-card__list__item__overlay {
-    background: #2420209f;
     position: absolute;
-    bottom: 0;
     width: 100%;
-    color: #fff;
-    text-align: center;
-    font-size: 1rem;
-    font-weight: 400;
+    color: var(--color-primary-darken-01);
+    text-align: left;
+    font-size: 1.3rem;
+    line-height: 1.4;
+    font-weight: 600;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0.5rem;
+    padding: 0.5rem 0;
+  }
+
+  .news-card__list__item__overlay:hover {
+    color: var(--color-primary-default);
   }
 
   /* Media queries */
@@ -1252,7 +1248,8 @@
     }
 
     .news-card__list__item__overlay {
-      font-size: 0.9rem;
+      font-size: 1rem;
+      position: initial;
     }
   }
 

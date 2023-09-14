@@ -292,44 +292,6 @@
     if (processHeader) processHeader.appendChild(menuConfJuvDesk);
   };
 
-  const updateMenuContext = () => {
-    const memoriesPPAMenu = document.querySelector("#ppa-inicio");
-    if (memoriesPPAMenu)
-      memoriesPPAMenu.innerHTML = '<span class="content">Memória</span>';
-
-    const aboutPPAMenu = document.querySelector("#ppa-sobre");
-    if (aboutPPAMenu)
-      aboutPPAMenu.innerHTML =
-        '<span class="content">Entenda o processo</span>';
-
-    const proposesPPAMenu = document.querySelector("#ppa-propostas");
-    if (proposesPPAMenu)
-      proposesPPAMenu.innerHTML =
-        '<span class="content">Propostas priorizadas</span>';
-
-    let newsLinkMenu = document.createElement("a");
-    newsLinkMenu.className = "menu-item divider";
-    newsLinkMenu.href = "/processes/brasilparticipativo/f/26/posts";
-    newsLinkMenu.innerHTML = '<span class="content">Novidades</span>';
-    let menuBody = document.querySelector("nav.menu-body");
-    menuBody.appendChild(newsLinkMenu);
-
-    let newAboutLinkMenu = document.createElement("a");
-    newAboutLinkMenu.className = "menu-item divider";
-    newAboutLinkMenu.href = "/pages/brasil-participativo-sobre";
-    newAboutLinkMenu.innerHTML = '<span class="content">Sobre</span>';
-    menuBody.appendChild(newAboutLinkMenu);
-
-    let startPPA = document.querySelector("#ppa-inicio");
-    let reportLinkPPA = document.createElement("li");
-    reportLinkPPA.innerHTML =
-      '<a class="menu-item divider" href="/pages/relatoriodaplataforma"><span class="content">Relatórios</span>';
-    if (startPPA) startPPA.append(reportLinkPPA);
-
-    if (startPPA)
-      startPPA.parentNode.insertBefore(reportLinkPPA, startPPA.nextSibling);
-  };
-
   const createHomePagePPA = () => {
     const wppButton = document.createElement("div");
     wppButton.innerHTML = `
@@ -1388,9 +1350,6 @@
       definirUrlLogOut();
       insertConferenceElements();
       createHomePagePPA();
-
-      if (!(isConsea() || isJuventude()))
-        updateMenuContext();
     });
   })();
   function capitalizarOnBlur(elementId) {
@@ -4651,6 +4610,10 @@
 
 <style type="text/css">
   @import url("https://fonts.cdnfonts.com/css/rawline");
+  :root {
+    --banner-mobile: url("https://brasilparticipativo.presidencia.gov.br/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBazByIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--78e4a5015530027f6d90a8ba9feb2689a6e5fd1f/ppa_mobile_text.jpg") !important;
+    --banner-desktop: url("https://brasilparticipativo.presidencia.gov.br/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBa3dyIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--f94aaf30ccd09d12cd4ead43ca7d9921f7d46db2/ppa_desktop_text.jpg") !important;
+  }
 
   .conference-about {
     font-family: Rawline;
