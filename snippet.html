@@ -3838,15 +3838,34 @@
         const header = content.querySelector(".title-action");
         header.innerHTML = header.innerHTML.replace("reuniões", "conferências");
         header.innerHTML = header.innerHTML.replace("reunião", "conferência");
+
       } else if (isOnConferenceMeeting()) {
         document
           .querySelector(".button_to")
           .querySelector(".button").innerHTML = "Inscreva-se";
+
+        modifyShareButton();
       } else {
         if (hero) hero?.remove();
         if (hero__container) hero__container?.remove();
       }
     }
+  }
+
+  function modifyShareButton() {
+    const button = document.querySelector(".share-link");
+    button.innerHTML = "<span class='fa-solid fa-share-nodes'></span>";
+    button.style.all = "unset";
+    const icon = document.querySelector(".fa-share-nodes");
+    icon.style.width = "40px";
+    icon.style.height = "40px";
+    icon.style.borderRadius = "50%";
+    icon.style.fontSize = "20px";
+    icon.style.padding = "10px";
+    icon.style.color = "#2378c3";
+    icon.style.cursor = "pointer";
+    icon.addEventListener("mouseover", (event) => event.target.style.backgroundColor = "#c5d4eb", false);
+    icon.addEventListener("mouseleave", (event) => event.target.style.backgroundColor = "unset", false);
   }
 
   function replaceLabel(component, newLabel) {
