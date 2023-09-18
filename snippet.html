@@ -154,7 +154,7 @@
           name: "Sobre",
         },
       ];
-  
+
     confConseaLinks.forEach((link) => {
       let newAboutLinkMenu = document.createElement("a");
       newAboutLinkMenu.className = "menu-item divider";
@@ -1224,7 +1224,7 @@
       <div class="centered-div">
         <div class="ql-editor-display" style="text-align: justify">
           `;
-    
+
     combinedHTML += getHTMLContent(qlEditorDisplays[0]);
 
     // qlEditorDisplays.forEach(element => {
@@ -1278,7 +1278,7 @@
         </a>
       `;
       count += 1;
-      if (count == 3){
+      if (count == 3) {
         buttonMore = ` </div></section>
                       <form class="conference-cta" action=${hrefNoticiais}>
                         <button type="submit" class="conference-cta__button">
@@ -1305,7 +1305,7 @@
     return resultHTML;
   }
 
-  function gerenciaNoticias(url, hrefNoticiais){
+  function gerenciaNoticias(url, hrefNoticiais) {
     requestHTML(url)
       .then(html => {
         return getNoticias(url, hrefNoticiais, html);
@@ -1688,7 +1688,7 @@
       `/assemblies/confjuv4/f/${isProd() ? "9" : "144"}`
     );
   }
-  function isMeetingsConseaPage(){
+  function isMeetingsConseaPage() {
     const currentURL = window.location.href;
     const prod = 'https://brasilparticipativo.presidencia.gov.br/assemblies/cnsan6/f/23/'
     const dev = 'https://lab-decide.dataprev.gov.br/assemblies/cnsan6/f/124/'
@@ -1783,16 +1783,16 @@
         let agenda;
         let sobre;
 
-        if (isConsea()){
-          if (isDev()){
+        if (isConsea()) {
+          if (isDev()) {
             url_source = "https://lab-decide.dataprev.gov.br/assemblies/cnsan6/f/121/";
             href_noticia = "/assemblies/cnsan6/f/121/";
-            
+
             envieSuaAta = "/assemblies/cnsan6/f/148/";
             agenda = "/assemblies/cnsan6/f/124/";
             sobre = "/assemblies/cnsan6/f/120/";
           }
-          else if (isProd()){
+          else if (isProd()) {
             url_source = "https://brasilparticipativo.presidencia.gov.br/assemblies/cnsan6/f/20/";
             href_noticia = "/assemblies/cnsan6/f/20/";
 
@@ -1803,7 +1803,7 @@
         }
 
         gerenciaNoticias(url_source, href_noticia);
-        
+
         if (wrapper) wrapper.remove();
         if (hero) hero.classList.remove("hero");
         if (dateRow) {
@@ -1831,7 +1831,7 @@
         >
           <span class="conference-cards__items__item__texts">
             <span
-              class="fa-solid fa-list conference-cards__items__item__texts__icon"
+              class="fa-solid fa-bullhorn conference-cards__items__item__texts__icon"
             ></span>
             <div class="conference-cards__items__item__texts__label">
               Organize uma etapa
@@ -1850,7 +1850,7 @@
         >
           <span class="conference-cards__items__item__texts">
             <span
-              class="fa-solid fa-calendar conference-cards__items__item__texts__icon"
+              class="fa-solid fa-calendar-days conference-cards__items__item__texts__icon"
             ></span>
             <div class="conference-cards__item__texts__label">Agenda</div>
           </span>
@@ -2671,7 +2671,7 @@
         >
           <span class="conference-cards__items__item__texts">
             <span
-              class="fa-solid fa-list conference-cards__items__item__texts__icon"
+              class="fa-solid fa-upload conference-cards__items__item__texts__icon"
             ></span>
             <div class="conference-cards__items__item__texts__label">
               Envie sua ata
@@ -2690,7 +2690,7 @@
         >
           <span class="conference-cards__items__item__texts">
             <span
-              class="fa-solid fa-calendar conference-cards__items__item__texts__icon"
+              class="fa-solid fa-calendar-days conference-cards__items__item__texts__icon"
             ></span>
             <div class="conference-cards__item__texts__label">Agenda</div>
           </span>
@@ -3247,7 +3247,7 @@
       min-width: 4rem;
       width: 4rem;
       height: 4rem;
-      background-color: #003aec;
+      background-color: #286846;
       color: white;
       font-size: 1.75rem;
       font-style: normal;
@@ -3264,7 +3264,7 @@
     }
 
     .conference-cards__items__item__link {
-      color: #003aec;
+      color: #286846;
       font-size: 1rem;
       font-weight: 600;
       left: 0;
@@ -3612,7 +3612,7 @@
           class="conference-steps__list__item"
         >
           <div
-            class="conference-steps__list__icon fa-solid fa-list-check"
+            class="conference-steps__list__icon fa-solid fa-bullhorn"
           ></div>
           <div class="conference-steps__list__title">Organize uma etapa</div>
           <div class="conference-steps__list__description">
@@ -3625,7 +3625,7 @@
           class="conference-steps__list__item"
         >
           <div
-            class="conference-steps__list__icon fa-solid fa-arrows-spin"
+            class="conference-steps__list__icon fa-solid fa-upload"
           ></div>
           <div class="conference-steps__list__title">
             Envie a ata da sua etapa
@@ -3676,7 +3676,7 @@
       .conference-steps__list__link {
         justify-self: end;
         align-self: flex-end;
-        color: #5c32fe;
+        color: #003aec;
         font-weight: 600;
         cursor: pointer;
       }
@@ -3689,7 +3689,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        background: #5c32fe;
+        background: #003aec;
         border-radius: 50%;
         color: white;
         font-size: 24px;
@@ -3893,7 +3893,7 @@
     const cardText = document.querySelectorAll('.card__text--paragraph');
     const autorData = document.querySelectorAll('.author-data');
     const map = document.querySelector('#map');
-    const cardTitles = document.querySelectorAll('.card__title');  
+    const cardTitles = document.querySelectorAll('.card__title');
 
     cardText.forEach(element => {
       element.remove();
@@ -3916,7 +3916,7 @@
     if (pageContent && isOnConferenceAboutPage()) {
       buildInitialContent(pageContent);
     }
-    if (isMeetingsConseaPage()){
+    if (isMeetingsConseaPage()) {
       organizeMeetingsConsea();
     }
 
@@ -4613,6 +4613,7 @@
 
 <style type="text/css">
   @import url("https://fonts.cdnfonts.com/css/rawline");
+
   :root {
     --banner-mobile: url("https://brasilparticipativo.presidencia.gov.br/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBazByIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--78e4a5015530027f6d90a8ba9feb2689a6e5fd1f/ppa_mobile_text.jpg") !important;
     --banner-desktop: url("https://brasilparticipativo.presidencia.gov.br/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBa3dyIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--f94aaf30ccd09d12cd4ead43ca7d9921f7d46db2/ppa_desktop_text.jpg") !important;
