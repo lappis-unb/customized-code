@@ -1,13 +1,8 @@
-<script defer>
-  (() => {
-    window.addEventListener("DOMContentLoaded", (e) => {
-      if (window.location.pathname === "/pages/brasil-participativo-sobre") {
-        // Criar um novo elemento div
-        const ppaPageHTML = document.createElement("div");
-        ppaPageHTML.classList.add("wrapper");
-        ppaPageHTML.innerHTML = `
-          <section class="br-container-lg">
-  <img src="https://brasilparticipativo.presidencia.gov.br/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBbHNyIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--fc0ad36146af41f6755918fcdef4be47c0dddcb5/SOBRE%20(Desktop)%20(1).jpg" alt="Banner do Brasil Participativo" />
+<section class="br-container-lg">
+  <img
+    src="https://brasilparticipativo.presidencia.gov.br/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBbHNyIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--fc0ad36146af41f6755918fcdef4be47c0dddcb5/SOBRE%20(Desktop)%20(1).jpg"
+    alt="Banner do Brasil Participativo"
+  />
   <h1 class="about-title">Sobre o Brasil Participativo</h1>
   <p class="about-text">
     A Plataforma Brasil Participativo é a nova plataforma de participação social
@@ -40,19 +35,15 @@
     digital é um importante aliado nesse processo.
     <a href="/users/sign_in">Crie seu perfil e participe!</a>
   </p>
-  <p>Informações: <a href="mailto:participacaosocial@presidencia.gov.br" data-mce-href="mailto:participacaosocial@presidencia.gov.br">participacaosocial@presidencia.gov.br</a></p>
+  <p class="about-text">
+    Informações:
+    <a
+      href="mailto:participacaosocial@presidencia.gov.br"
+      data-mce-href="mailto:participacaosocial@presidencia.gov.br"
+      >participacaosocial@presidencia.gov.br</a
+    >
+  </p>
 </section>
- 
-  `;
-        var wrapper = document.querySelector(".wrapper");
-        var content = document.querySelector("#content");
-
-        content.appendChild(ppaPageHTML);
-        wrapper.classList.add("none");
-      }
-    });
-  })();
-</script>
 
 <style>
   .about-title {
