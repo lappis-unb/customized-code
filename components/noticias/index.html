@@ -90,12 +90,9 @@
                                       <div class="news-card__list br-container-lg">`;
           contentNoticiais += responseNoticias;
 
-          // Encontre a div com id "confnoticias" na página
           const confNoticias = document.querySelector('#confnoticias');
 
           if (confNoticias) {
-            // Adicione o conteúdo ao elemento encontrado
-            console.log(contentNoticiais);
             confNoticias.innerHTML = contentNoticiais;
           } else {
             console.error('Elemento com id "confnoticias" não encontrado.');
