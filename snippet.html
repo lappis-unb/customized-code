@@ -107,14 +107,14 @@
   }
 
   const updateMenuContext = () => {
-    let newAboutLinkMenu = document.createElement("a");
-    newAboutLinkMenu.className = "menu-item divider";
-    newAboutLinkMenu.href = "/processes/brasilparticipativo/f/33/";
-    newAboutLinkMenu.innerHTML = '<span class="content">Sobre</span>';
-    menuBody.appendChild(newAboutLinkMenu);
+    const ppaInitialMenu = document.querySelector('#ppa-inicio')
+    if (ppaInitialMenu) ppaInitialMenu.href = '/processes/brasilparticipativo/f/35/';
 
+    const aboutMenu = document.querySelector('.menu-body a[href="/pages/brasil-participativo-sobre"]')
+    if (aboutMenu) aboutMenu.href = "/processes/brasilparticipativo/f/33/";
+    
     const confJuvMenu = document.querySelector("#juventude-inicio");
-    if (confJuv) confJuv.innerHTML = '<span class="content">Início</span>';
+    if (confJuvMenu) confJuvMenu.href = '/assemblies/confjuv4/f/34/';
   };
 
 
@@ -272,7 +272,7 @@
       >
         <ul>
           <li class=" ">
-            <a class="process-nav__link" href="/assemblies/confjuv4">
+            <a class="process-nav__link" href="/assemblies/confjuv4/f/34/">
               Início
             </a>
           </li>
@@ -574,7 +574,7 @@
         if (isJuventude())
           items = [
             {
-              path: "/assemblies/confjuv4",
+              path: "/assemblies/confjuv4/f/34/",
               label: "Início",
             },
             {
@@ -582,7 +582,7 @@
               label: "Etapa Digital",
             },
             {
-              path: `/assemblies/confjuv4/f/${isProd() ? "14" : "143"}`,
+              path: `/assemblies/confjuv4/f/${isProd() ? "14/" : "143"}`,
               label: "Etapas",
             },
 
