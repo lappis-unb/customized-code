@@ -1,14 +1,5 @@
 <script>
-    function setMenuApoio(titles, hrefs) {
-        if (titles.length !== hrefs.length) {
-            console.error("Os arrays não têm o mesmo comprimento.");
-            return;
-        }
-
-        const combinedArray = titles.map((titleItem, index) => ({
-            title: titleItem,
-            href: hrefs[index]
-        }));
+    function setMenuApoio(contentMenu) {
 
         let resultHTMLArray = [];
 
@@ -19,14 +10,14 @@
         
         resultHTMLArray.push(startHTML);
 
-        combinedArray.forEach((item) => {
-            const title = item.title;
+        contentMenu.forEach((item) => {
+            const label = item.label;
             const href = item.href;
             
             const newItem = `
                 <li class="tab-item">
                     <button type="button" data-href="${href}">
-                        <span class="name">${title}</span>
+                        <span class="name">${label}</span>
                     </button>
                 </li>
                 `;
@@ -46,8 +37,8 @@
         return resultHTML;
     }
 
-    function gerenciaMenuApoio(titles, hrefs){
-        const responseHTML = setMenuApoio(titles, hrefs);
+    function gerenciaMenuApoio(contentMenu){
+        const responseHTML = setMenuApoio(contentMenu);
 
         const localMenuApoio = document.querySelector('#menuapoio');
 
