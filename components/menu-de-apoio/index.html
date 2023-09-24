@@ -6,7 +6,7 @@
         const startHTML = `
         <div class="br-tab">
             <nav class="tab-nav">
-                <ul>`;
+                <ul class="ul-menu-apoio">`;
         
         resultHTMLArray.push(startHTML);
 
@@ -37,23 +37,38 @@
         return resultHTML;
     }
 
-    function gerenciaMenuApoio(contentMenu){
-        const responseHTML = setMenuApoio(contentMenu);
+    function gerenciaMenuApoio(contentMenu) {
+        const tryToFindMenuApoio = () => {
+            const localMenuApoio = document.querySelector('#menuapoio');
 
-        const localMenuApoio = document.querySelector('#menuapoio');
+            if (localMenuApoio) {
+                clearInterval(menuApoioInterval); // Para a tentativa de busca
+                localMenuApoio.innerHTML = setMenuApoio(contentMenu);
 
-        if (localMenuApoio){
-            localMenuApoio.innerHTML = responseHTML;
-            
-            const tabButtons = document.querySelectorAll('.tab-item button');
-            tabButtons.forEach(button => {
-                button.addEventListener('click', function () {
-                const href = this.getAttribute('data-href');
-                window.location.href = href;
+                const tabButtons = document.querySelectorAll('.tab-item button');
+                tabButtons.forEach(button => {
+                    button.addEventListener('click', function () {
+                        const href = this.getAttribute('data-href');
+                        window.location.href = href;
+                    });
                 });
-            });
-        } else
-            console.error('Elemento com id "menuapoio" não encontrado.');
+
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth' // Esta opção faz com que a rolagem seja suave
+                });
+            } else {
+                console.error('Elemento com id "menuapoio" não encontrado.');
+            }
+        };
+
+        // Inicia a tentativa de busca a cada 0,5 segundos
+        const menuApoioInterval = setInterval(tryToFindMenuApoio, 500);
+
+        // Define um limite de tempo máximo de 10 segundos
+        setTimeout(() => {
+            clearInterval(menuApoioInterval);
+        }, 10000);
     }
 
     // -- EXEMPLO DE USO -- 
