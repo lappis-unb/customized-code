@@ -154,7 +154,7 @@
           name: "Sobre",
         },
       ];
-  
+
     confConseaLinks.forEach((link) => {
       let newAboutLinkMenu = document.createElement("a");
       newAboutLinkMenu.className = "menu-item divider";
@@ -1213,7 +1213,7 @@
 
   // Salva o conteudo da pagina inicial e retorna a variavel
   function saveContentPage() {
-    const qlEditorDisplays = document.querySelectorAll('.ql-editor-display');
+    const qlEditorDisplays = document.querySelectorAll(".ql-editor-display");
 
     function getHTMLContent(element) {
       return element.innerHTML;
@@ -1224,7 +1224,7 @@
       <div class="centered-div">
         <div class="ql-editor-display" style="text-align: justify">
           `;
-    
+
     combinedHTML += getHTMLContent(qlEditorDisplays[0]);
 
     // qlEditorDisplays.forEach(element => {
@@ -1234,40 +1234,44 @@
     combinedHTML += `
     </div>
     </div>
-    </div>`
+    </div>`;
 
     return combinedHTML;
   }
 
   function requestHTML(url) {
     return fetch(url)
-      .then(response => {
+      .then((response) => {
         if (!response.ok) {
-          throw new Error(`Erro ao buscar a página. Status de resposta: ${response.status}`);
+          throw new Error(
+            `Erro ao buscar a página. Status de resposta: ${response.status}`
+          );
         }
         return response.text();
       })
-      .then(html => {
+      .then((html) => {
         return html;
       })
-      .catch(error => {
+      .catch((error) => {
         throw new Error(`Erro ao buscar a página: ${error.message}`);
       });
   }
 
   function getNoticias(url, hrefNoticiais, originalHTML) {
-
-    const tempElement = document.createElement('div');
+    const tempElement = document.createElement("div");
     tempElement.innerHTML = originalHTML;
 
-    const originalNewsElements = tempElement.querySelectorAll('.card--post');
+    const originalNewsElements = tempElement.querySelectorAll(".card--post");
     const resultHTMLArray = [];
     let count = 0;
-    originalNewsElements.forEach(originalNewsElement => {
-      const href_noticia = originalNewsElement.querySelector('.card__link').getAttribute('href');
-      const titulo_noticia = originalNewsElement.querySelector('.card__title').textContent;
-      const paiImagem = originalNewsElement.querySelector('.ql-editor-display');
-      const url_img = paiImagem.querySelector('img').getAttribute('src');
+    originalNewsElements.forEach((originalNewsElement) => {
+      const href_noticia = originalNewsElement
+        .querySelector(".card__link")
+        .getAttribute("href");
+      const titulo_noticia =
+        originalNewsElement.querySelector(".card__title").textContent;
+      const paiImagem = originalNewsElement.querySelector(".ql-editor-display");
+      const url_img = paiImagem.querySelector("img").getAttribute("src");
 
       const newHTML = `
         <a class="conference-carousel__list__item" href="${href_noticia}">
@@ -1278,7 +1282,7 @@
         </a>
       `;
       count += 1;
-      if (count == 3){
+      if (count == 3) {
         buttonMore = ` </div></section>
                       <form class="conference-cta" action=${hrefNoticiais}>
                         <button type="submit" class="conference-cta__button">
@@ -1289,28 +1293,25 @@
                       </form>`;
         resultHTMLArray.push(buttonMore);
 
-        const resultHTML = resultHTMLArray.join('\n');
+        const resultHTML = resultHTMLArray.join("\n");
 
         return resultHTML;
-      }
-      else
-        resultHTMLArray.push(newHTML);
+      } else resultHTMLArray.push(newHTML);
     });
 
-    if (count == 0)
-      return "error";
+    if (count == 0) return "error";
 
-    let resultHTML = resultHTMLArray.join('\n');
+    let resultHTML = resultHTMLArray.join("\n");
     resultHTML += "</div></section>";
     return resultHTML;
   }
 
-  function gerenciaNoticias(url, hrefNoticiais){
+  function gerenciaNoticias(url, hrefNoticiais) {
     requestHTML(url)
-      .then(html => {
+      .then((html) => {
         return getNoticias(url, hrefNoticiais, html);
       })
-      .then(responseNoticias => {
+      .then((responseNoticias) => {
         if (responseNoticias !== "error") {
           let contentNoticiais = `<section class="conference-carousel">
                                     <span class="conference-carousel__title"
@@ -1320,7 +1321,7 @@
           contentNoticiais += responseNoticias;
 
           // Encontre a div com id "confnoticias" na página
-          const confNoticias = document.querySelector('#confnoticias');
+          const confNoticias = document.querySelector("#confnoticias");
 
           if (confNoticias) {
             // Adicione o conteúdo ao elemento encontrado
@@ -1330,11 +1331,11 @@
             console.error('Elemento com id "confnoticias" não encontrado.');
           }
         } else {
-          console.error('Erro ao buscar notícias.');
+          console.error("Erro ao buscar notícias.");
         }
       })
-      .catch(error => {
-        console.error('Erro:', error);
+      .catch((error) => {
+        console.error("Erro:", error);
       });
   }
 
@@ -1561,7 +1562,9 @@
         });
         navbarUl.appendChild(createLi("Início", "/processes/ENGD"));
         navbarUl.appendChild(createLi("Recomendações", `/processes/ENGD/f/3`));
-        navbarUl.appendChild(createLi("Avaliação da Oficina", `/processes/ENGD/f/27`));
+        navbarUl.appendChild(
+          createLi("Avaliação da Oficina", `/processes/ENGD/f/27`)
+        );
       } else {
         navbarUl.remove();
       }
@@ -1654,7 +1657,7 @@
     });
 
     $(document).ready(function () {
-      $('input[type="checkbox"]').click(async function () { });
+      $('input[type="checkbox"]').click(async function () {});
     });
   }
   function createCssClass(innerHtml, cssClass, elementSelector) {
@@ -1688,10 +1691,11 @@
       `/assemblies/confjuv4/f/${isProd() ? "9" : "144"}`
     );
   }
-  function isMeetingsConseaPage(){
+  function isMeetingsConseaPage() {
     const currentURL = window.location.href;
-    const prod = 'https://brasilparticipativo.presidencia.gov.br/assemblies/cnsan6/f/23/'
-    const dev = 'https://lab-decide.dataprev.gov.br/assemblies/cnsan6/f/124/'
+    const prod =
+      "https://brasilparticipativo.presidencia.gov.br/assemblies/cnsan6/f/23/";
+    const dev = "https://lab-decide.dataprev.gov.br/assemblies/cnsan6/f/124/";
 
     return currentURL.indexOf(prod) !== -1 || currentURL.indexOf(dev) !== -1;
   }
@@ -1783,17 +1787,18 @@
         let agenda;
         let sobre;
 
-        if (isConsea()){
-          if (isDev()){
-            url_source = "https://lab-decide.dataprev.gov.br/assemblies/cnsan6/f/121/";
+        if (isConsea()) {
+          if (isDev()) {
+            url_source =
+              "https://lab-decide.dataprev.gov.br/assemblies/cnsan6/f/121/";
             href_noticia = "/assemblies/cnsan6/f/121/";
-            
+
             envieSuaAta = "/assemblies/cnsan6/f/148/";
             agenda = "/assemblies/cnsan6/f/124/";
             sobre = "/assemblies/cnsan6/f/120/";
-          }
-          else if (isProd()){
-            url_source = "https://brasilparticipativo.presidencia.gov.br/assemblies/cnsan6/f/20/";
+          } else if (isProd()) {
+            url_source =
+              "https://brasilparticipativo.presidencia.gov.br/assemblies/cnsan6/f/20/";
             href_noticia = "/assemblies/cnsan6/f/20/";
 
             envieSuaAta = "/assemblies/cnsan6/f/23/";
@@ -1803,7 +1808,7 @@
         }
 
         gerenciaNoticias(url_source, href_noticia);
-        
+
         if (wrapper) wrapper.remove();
         if (hero) hero.classList.remove("hero");
         if (dateRow) {
@@ -3844,7 +3849,6 @@
         const header = content.querySelector(".title-action");
         header.innerHTML = header.innerHTML.replace("reuniões", "conferências");
         header.innerHTML = header.innerHTML.replace("reunião", "conferência");
-
       } else if (isOnConferenceMeeting()) {
         document
           .querySelector(".button_to")
@@ -3870,8 +3874,16 @@
     icon.style.padding = "10px";
     icon.style.color = "#2378c3";
     icon.style.cursor = "pointer";
-    icon.addEventListener("mouseover", (event) => event.target.style.backgroundColor = "#c5d4eb", false);
-    icon.addEventListener("mouseleave", (event) => event.target.style.backgroundColor = "unset", false);
+    icon.addEventListener(
+      "mouseover",
+      (event) => (event.target.style.backgroundColor = "#c5d4eb"),
+      false
+    );
+    icon.addEventListener(
+      "mouseleave",
+      (event) => (event.target.style.backgroundColor = "unset"),
+      false
+    );
   }
 
   function replaceLabel(component, newLabel) {
@@ -3890,25 +3902,24 @@
     }
   }
   function organizeMeetingsConsea() {
-    const cardText = document.querySelectorAll('.card__text--paragraph');
-    const autorData = document.querySelectorAll('.author-data');
-    const map = document.querySelector('#map');
-    const cardTitles = document.querySelectorAll('.card__title');  
+    const cardText = document.querySelectorAll(".card__text--paragraph");
+    const autorData = document.querySelectorAll(".author-data");
+    const map = document.querySelector("#map");
+    const cardTitles = document.querySelectorAll(".card__title");
 
-    cardText.forEach(element => {
+    cardText.forEach((element) => {
       element.remove();
     });
 
-    autorData.forEach(element => {
+    autorData.forEach((element) => {
       element.remove();
     });
 
     map.remove();
 
-    cardTitles.forEach(title => {
-      title.style.textAlign = 'center';
+    cardTitles.forEach((title) => {
+      title.style.textAlign = "center";
     });
-
   }
   window.addEventListener("DOMContentLoaded", function () {
     doEverything();
@@ -3916,10 +3927,10 @@
     if (pageContent && isOnConferenceAboutPage()) {
       buildInitialContent(pageContent);
     }
-    if (isMeetingsConseaPage()){
+    if (isMeetingsConseaPage()) {
       organizeMeetingsConsea();
     }
-
+    renderFilter();
   });
   const items = [
     {
@@ -4630,8 +4641,14 @@
   }
 </script>
 
-<link rel="stylesheet" href="https://cdngovbr-ds.estaleiro.serpro.gov.br/design-system/fonts/rawline/css/rawline.css" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+<link
+  rel="stylesheet"
+  href="https://cdngovbr-ds.estaleiro.serpro.gov.br/design-system/fonts/rawline/css/rawline.css"
+/>
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+/>
 
 <style type="text/css">
   @import url("https://fonts.cdnfonts.com/css/rawline");
@@ -4912,7 +4929,10 @@
   }
 
   div.columns.large-12 div.section.images h3.section-heading,
-  div.columns.large-12 div.section.images .gallery.row .columns.small-6.medium-4.end {
+  div.columns.large-12
+    div.section.images
+    .gallery.row
+    .columns.small-6.medium-4.end {
     display: block;
   }
 
@@ -4924,3 +4944,190 @@
     fill: #333333;
   }
 </style>
+
+<!-- contrast -->
+<script defer>
+  const HEADER_SELECTORS = [
+    "h1",
+    "h2",
+    "h3",
+    "h4",
+    "h5",
+    "h6",
+    ".wsite-headline",
+    ".wsite-content-title",
+    "div",
+  ];
+  const SELECTORS = [
+    ...HEADER_SELECTORS,
+    "img",
+    "p",
+    "i",
+    "svg",
+    "a",
+    "button:not(.asw-btn)",
+    "label",
+    "li",
+    "ol",
+    "div",
+    "section",
+    "footer",
+    "header",
+  ];
+
+  const FILTERS = {
+    "dark-contrast": {
+      styles: {
+        color: "#FFF",
+        fill: "#FFF",
+        "background-color": "#000",
+      },
+      childrenSelector: SELECTORS,
+    },
+  };
+  const STORAGE_KEY = "contrast";
+
+  let contrastSettings = {
+    darkcontrast: false,
+  };
+
+  // ---------------- SETTINGS ----------------
+
+  function getSettings() {
+    const savedSettings = localStorage.getItem(STORAGE_KEY);
+    if (savedSettings) {
+      contrastSettings = JSON.parse(savedSettings);
+    } else {
+      contrastSettings = {
+        darkcontrast: false,
+      };
+    }
+    return contrastSettings;
+  }
+
+  function saveSettings() {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(contrastSettings));
+  }
+
+  // ---------------- MAIN ----------------
+  function renderFilter() {
+    let { darkcontrast } = getSettings();
+
+    let contrastCss = "";
+
+    let contrastFilter = false;
+
+    if (darkcontrast) {
+      contrastFilter = FILTERS["dark-contrast"];
+    }
+    if (contrastFilter) {
+      contrastCss = generateCSSFromConfig({
+        ...contrastFilter,
+        selector: `html.aws-filter`,
+      });
+    }
+
+    addStylesheet({
+      css: contrastCss,
+      id: "asw-filter-style",
+    });
+
+    document.documentElement.classList.toggle(
+      "aws-filter",
+      Boolean(darkcontrast)
+    );
+  }
+
+  // ---------------- CSSGENERATOR ----------------
+
+  function addStylesheet({ css, id }) {
+    if (css) {
+      let style =
+        document.getElementById(id || "") || document.createElement("style");
+      style.innerHTML = css;
+      if (!style.id) {
+        style.id = id;
+        document.head.appendChild(style);
+      }
+    }
+  }
+
+  const browserPrefixes = ["-o-", "-ms-", "-moz-", "-webkit-", ""];
+  const propertiesNeedPrefix = ["filter"];
+
+  function generateCSS(styles) {
+    let css = "";
+
+    if (styles) {
+      for (let key in styles) {
+        let prefixes = propertiesNeedPrefix.includes(key)
+          ? browserPrefixes
+          : [""];
+        prefixes.forEach((prefix) => {
+          css += `${prefix}${key}:${styles[key]} !important;`;
+        });
+      }
+    }
+
+    return css;
+  }
+  function wrapCSSToSelector({ selector, childrenSelector = [""], css }) {
+    let output = "";
+
+    childrenSelector.forEach((childSelector) => {
+      output += `${selector} ${childSelector}{${css}}`;
+    });
+
+    return output;
+  }
+
+  function generateCSSFromConfig(config) {
+    let output = "";
+
+    if (config) {
+      output += config.css ?? "";
+      output += generateCSS(config.styles);
+
+      if (output.length && config.selector) {
+        output = wrapCSSToSelector({
+          selector: config.selector,
+          childrenSelector: config.childrenSelector,
+          css: output,
+        });
+      }
+    }
+
+    return output;
+  }
+
+  function injectToolCSS(config) {
+    let { id = "", enable = false } = config;
+
+    let toolId = `asw-${id}`;
+
+    if (enable) {
+      let css = generateCSSFromConfig(config);
+
+      addStylesheet({
+        css,
+        id: toolId,
+      });
+    } else {
+      document.getElementById(toolId)?.remove();
+    }
+
+    document.documentElement.classList.toggle(toolId, enable);
+  }
+
+  // ----------------
+  document.addEventListener("DOMContentLoaded", function () {
+    var contrastButton = document.getElementById("contrast-button");
+    if (contrastButton) {
+      contrastButton.addEventListener("click", function () {
+        contrastSettings.darkcontrast = !contrastSettings.darkcontrast;
+        saveSettings();
+        renderFilter();
+      });
+    }
+  });
+</script>
