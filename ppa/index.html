@@ -7,7 +7,7 @@
   </div>
 </section>
 
-<section class="home-section new-features-container  br-container-lg">
+<section class="home-section new-features-container br-container-lg">
   <div class="new-features-content">
     <div class="new-feature-card">
       <a href="/processes/programas/f/1/">
@@ -56,7 +56,7 @@
   </div>
   <div class="ppa-process">
     <div id="empty-space"></div>
-    <div id="arrow-icon">
+    <div id="second-arrow-icon">
       <i class="fa-solid fa-arrow-down"></i>
     </div>
     <div class="ppa-process">
@@ -66,7 +66,7 @@
         Em agosto, o governo encaminhará ao Legislativo o Projeto de Lei
       </p>
     </div>
-    <div class="ppa-process-arrow-icon">
+    <div class="ppa-process-arrow-icon" id="third-arrow-icon">
       <i class="fa-solid fa-arrow-down"></i>
     </div>
     <div class="process-card">
@@ -850,6 +850,10 @@
       background-image: var(--banner-desktop);
       height: 300px;
     }
+    @media (min-width: 768px) {
+    #third-arrow-icon{
+      transform: rotate(90deg);
+    }
   }
 
   @media (min-width: 1284px) {
@@ -872,8 +876,27 @@
     width: 450px;
   }
 
-  #arrow-icon {
+  #second-arrow-icon {
     color: var(---blue-warm-vivid-70);
     margin-top: 6px;
+  }
+
+  #third-arrow-icon {
+    color: var(---blue-warm-vivid-70);
+    margin-top: 6px;
+  }
+
+  .new-features-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 3rem 1.25rem 3rem 1.25rem;
+    border-radius: 15px;
+  }
+
+  #statistics {
+    background: var(---gray-03);
+    padding: 1.5rem 1rem;
+    border-radius: 15px;
   }
 </style>
