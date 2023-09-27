@@ -4,7 +4,7 @@
 <section class="br-container">
     <div class="content-image-banner">
         <img class="image-banner"
-            src="https://ns-dtp-prd-df.s3-df-govcloud.dataprev.gov.br/gcc-decidim/gcc-decidim/27di5nmmll4erbgjqu26k6isaty8?response-content-disposition=inline%3B%20filename%3D%22logo-consea.jpg%22%3B%20filename%2A%3DUTF-8%27%27logo-consea.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=user_dec_prd_df%2F20230926%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230926T224326Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=4fb9100ac0d61af9260aa025525a4ad34c1319bc2f390bbf0ff741eeb500655d">
+            src="https://brasilparticipativo.presidencia.gov.br/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBc1V6IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--6c2823b147fe299162b4c9a994064d830544a189/34fd8398-f19f-4f1e-9306-fddfd15eb8d5.jfif">
     </div>
 </section>
 <section class="br-container">
@@ -20,14 +20,11 @@
                                 soberania e segurança alimentar e nutricional
                             </div>
                             <div class="bottom-text">
-                                Por um desenvolvimento socioeconômico sustentável,
-                                solidário e justo que enfrente os determinantes estruturais
-                                da(s) fome(s), promova Soberania e Segurança Alimentar e
-                                Nutricional, garanta a superação das desigualdades, dos racismos
-                                e do patriarcado, e promova...
-                                <a href="" style="color: #168821; font-size: 14px; padding: 0px;">
-                                    ver mais
-                                </a>.
+                                Por um desenvolvimento socioeconômico sustentável, solidário e justo que enfrente os
+                                determinantes estruturais da(s) fome(s), promova Soberania e Segurança Alimentar e
+                                Nutricional, garanta a superação das desigualdades, dos racismos e do patriarcado, e
+                                promova justiça socioambiental, econômica, política e cultural do âmbito local ao
+                                global.
                             </div>
                         </div>
                     </div>
@@ -41,13 +38,12 @@
                                 humano à alimentação adequada
                             </div>
                             <div class="bottom-text">
-                                Diretrizes para o fortalecimento e popularização do Sistema
-                                Nacional de Segurança Alimentar e Nutricional - SISAN enquanto
-                                sistema público intersetorial de fomento, pactuação, articulação,
-                                implementação, gestão federativa e controle...
-                                <a href="" style="color: #168821; font-size: 14px; padding: 0px;">
-                                    ver mais
-                                </a>.
+                                Diretrizes para o fortalecimento e popularização do Sistema Nacional de Segurança
+                                Alimentar e Nutricional - SISAN enquanto sistema público intersetorial de fomento,
+                                pactuação, articulação, implementação, gestão federativa e controle social de políticas
+                                públicas que garantam direitos e assegurem produção, abastecimento e acesso de todas as
+                                pessoas à Comida de Verdade e propostas para o Governo Federal para a elaboração do 3º
+                                Plano Nacional de Segurança Alimentar e Nutricional.
                             </div>
                         </div>
                     </div>
@@ -60,13 +56,13 @@
                             </div>
                             <div class="bottom-text">
                                 Aprofundar e ampliar a democracia por meio do controle e da participação social, do
-                                fortalecimento de estratégias de exigibilidade do Direito Humano à Alimentação Adequada
-                                - DHAA e do protagonismo dos sujeitos de direito e dos seus territórios na conformação
-                                de sistemas alimentares justos, equitativos, antirracistas, sustentáveis, promotores de
-                                saúde e livres de conflito de interesses, em...
-                                <a href="" style="color: #168821; font-size: 14px; padding: 0px;">
-                                    ver mais
-                                </a>.
+                                fortalecimento de estratégias de exigibilidade do Direito Humano à Alimentação
+                                Adequada
+                                - DHAA e do protagonismo dos sujeitos de direito e dos seus territórios na
+                                conformação
+                                de sistemas alimentares justos, equitativos, antirracistas, sustentáveis, promotores
+                                de
+                                saúde e livres de conflito de interesses, em âmbito nacional e global.
                             </div>
                         </div>
                     </div>
@@ -416,12 +412,14 @@
     }
 
     .box {
+        overflow-y: auto !important;
         width: 280px;
         height: 380px;
         background-color: #ffffff;
         border: 1px solid #ccc;
-        margin-right: 16px !important;
         overflow: hidden;
+        box-shadow: inset 0px -25px 55px -60px #000;
+        margin-right: 16px !important;
     }
 
     .box-content {
@@ -440,6 +438,10 @@
     .bottom-text {
         text-wrap: balance;
         font-size: 14px;
+    }
+
+    .tab-nav {
+        overflow-x: unset !important;
     }
 
     .br-tab .tab-nav {
@@ -464,16 +466,16 @@
         background: var(--gray-40);
     }
 
-    @media (max-width: 991px) {
-        .br-tab .tab-nav {
-            display: flex;
-            overflow-x: auto;
-            width: 100%;
-        }
+    .br-tab .box::-webkit-scrollbar {
+        display: none !important;
+        /* Safari and Chrome */
+    }
 
-        .br-tab::-webkit-scrollbar {
-            display: none;
-            /* Safari and Chrome */
+    @media (max-width: 991px) {
+        .br-tab {
+            display: flex;
+            overflow-x: auto !important;
+            width: 100%;
         }
 
         .br-tab .tab-nav::-webkit-scrollbar {
@@ -492,6 +494,10 @@
         .br-tab .tab-nav:hover::-webkit-scrollbar-thumb {
             background: var(--gray-40);
         }
+    }
+
+    .br-tab .tab-nav ul {
+        border-bottom: none !important;
     }
 
     @media (min-width: 890px) {
