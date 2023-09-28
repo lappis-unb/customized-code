@@ -247,6 +247,10 @@
         name: "Notícias",
       },
       {
+        href: `/assemblies/confjuv4/f/42/posts/${isProd() ? "44" : ""}`,
+        name: "Mobilização",
+      },
+      {
         href: `/assemblies/confjuv4/f/${isProd() ? "13" : "145"}`,
         name: "Sobre",
       },
@@ -292,6 +296,11 @@
           <li class="">
             <a class="process-nav__link" href="/assemblies/confjuv4/f/9/">
               Notícias
+            </a>
+          </li>
+          <li class="">
+            <a class="process-nav__link" href="/assemblies/confjuv4/f/42/posts/44">
+              Mobilização
             </a>
           </li>
           <li class="">
@@ -592,6 +601,10 @@
             {
               path: `/assemblies/confjuv4/f/${isProd() ? "9" : "144"}`,
               label: "Notícias",
+            },
+            {
+              path: `/assemblies/confjuv4/f/42/posts/${isProd() ? "44" : ""}`,
+              label: "Mobilização",
             },
             {
               path: `/assemblies/confjuv4/f/${isProd() ? "13" : "145"}`,
