@@ -791,41 +791,11 @@
       loginButton.innerHTML = "Entrar com <strong>gov.br</strong>";
     }
 
-    const labelElements = document.querySelectorAll(
-      'label[for^="user_notifications_sending_frequency_"]'
-    );
-    if (labelElements) {
-      labelElements.forEach((e) => (e.style.display = "none"));
-    }
-
     //remover denuncias
     let flagModalButton = document.querySelector("[title=Denunciar]");
     if (flagModalButton) flagModalButton.remove();
     let flagModalContent = document.querySelector("#flagModal");
     if (flagModalContent) flagModalContent.remove();
-
-    const inputsElements = document.querySelectorAll(
-      'input[name="user[notifications_sending_frequency]"]'
-    );
-    if (inputsElements) {
-      inputsElements.forEach((e) => (e.style.display = "none"));
-    }
-
-    const seeFrequencyProps = document.querySelectorAll(
-      ".tabs-content.vertical form p strong"
-    );
-    seeFrequencyProps.forEach((a) => {
-      if (
-        a.textContent ===
-        "Com que freqüência você deseja receber as notificações por e-mail?"
-      ) {
-        a.style.display = "none";
-      }
-    });
-
-    $(document).ready(function () {
-      $('input[type="checkbox"]').click(async function () {});
-    });
   }
   function createCssClass(innerHtml, cssClass, elementSelector) {
     let style = document.createElement("style");
