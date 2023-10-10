@@ -197,7 +197,7 @@
     let menuConfConseaDesk = document.createElement("div");
     menuConfConseaDesk.className = "row expanded";
     menuConfConseaDesk.innerHTML = `<div class="row expanded">
-  <div class="process-nav" style="top: 142px">
+  <div class="process-nav" style="top: 117px">
     <div class="row">
       <div
         class="row column process-nav__content"
@@ -283,7 +283,7 @@
     let menuConfJuvDesk = document.createElement("div");
     menuConfJuvDesk.className = "row expanded";
     menuConfJuvDesk.innerHTML = `<div class="row expanded">
-  <div class="process-nav" style="top: 142px">
+  <div class="process-nav" style="top: 117px">
     <div class="row">
       <div
         class="row column process-nav__content"
@@ -501,117 +501,132 @@
   }
 
   function getDataForm() {
-    const processId = 149;
-    const surveyId = 25;
-    const inputId = 117;
+    const processId = 56; // lab 149
+    const surveyId = 20; // lab 25
+    const inputId = 358; // lab 117
     const process_url = `/assemblies/cnsan6/f/${processId}/surveys/${surveyId}`;
 
-    if (window.location.href.includes(process_url)) {
+    const choosedInput = document.querySelector(
+      `[data-question-id="${inputId}"]`
+    );
+    if (choosedInput && window.location.href.includes(process_url)) {
       let dataList = [];
       let dataInEdition = null;
 
-      const choosedInput = document.querySelector(`[data-question-id="${inputId}"]`);
       const newForm = document.createElement("proposal-form");
       newForm.classList.add("form-container");
       newForm.innerHTML = `
-<section id="form-container">
-<label class="questionnaire-question">3. Cadastro das propostas</label>
-  <div class="br-input">
-    <label for="input-default">Título da proposta:</label>
-    <input
-      type="text"
-      id="title"
-      maxlength="50"
-      placeholder="Título da proposta"
-    />
-  </div>
+  <section id="form-container">
+    <div class="br-input">
+      <label class="questionnaire-question" for="input-default">1. Título da proposta:</label>
+      <input
+        type="text"
+        id="title"
+        maxlength="50"
+        placeholder="Título da proposta"
+      />
+    </div>
 
-  <div class="br-textarea">
-    <label for="identify-challenge">
-      Identificar de forma objetiva e sintética qual o principal desafio a ser
-      superado:
+    <div class="br-textarea">
+      <label class="questionnaire-question" for="identify-challenge">
+        2. Identificar de forma objetiva e sintética qual o principal desafio a ser
+        superado:
+      </label>
+      <textarea id="identify-challenge" rows="4" maxlength="200"></textarea>
+    </div>
+
+    <div class="br-textarea">
+      <label class="questionnaire-question" for="describe">
+        3. Descrever de forma objetiva e sintética qual principal medida a ser tomada
+        para sua superação do desafio identificado:
+      </label>
+      <textarea id="describe" rows="4" maxlength="250"></textarea>
+    </div>
+
+    <div class="br-input">
+      <label class="questionnaire-question" for="identify-entity">
+        4. Identificar qual principal ente público federal deve deflagrar e liderar
+        essa medida:
+      </label>
+      <input
+        type="text"
+        id="identify-entity"
+        maxlength="50"
+        placeholder="Texto"
+      />
+    </div>
+
+    <label class="questionnaire-question">
+      5. Qual eixo temático da 6 Conferência Nacional de Segurança Alimentar e
+      Nutricional a proposta está relacionada?
     </label>
-    <textarea id="identify-challenge" rows="4" maxlength="200"></textarea>
+    <div class="br-radio">
+      <input id="op-1" type="radio" name="radio" value="op-1" checked="checked" />
+      <label for="op-1">Eixo 1 - Determinantes estruturais e macro desafios para e soberania e Segurança Alimentar e Nutricional</label>
+    </div>
+    <div class="br-radio">
+      <input id="op-2" type="radio" name="radio" value="op-2" />
+      <label for="op-2">Eixo 2 - Sistema Nacional de Segurança Alimentar e Nutricional e Políticas Públicas garantidoras do Direito Humano à Alimentação Adequada</label>
+    </div>
+    <div class="br-radio">
+      <input id="op-3" type="radio" name="radio" value="op-3" />
+      <label for="op-3">Eixo 3 - Democracia e Participação Social</label>
+    </div>
+    <div class="add-button-container">
+      <button class="br-button secondary" id="add-proposal" type="button" disabled>
+        <i class="fas fa-plus mr3" aria-hidden="true"></i>
+        Adicionar Proposta
+      </button>
+    </div>
+  </section>
+
+  <div id="lista-propostas">
+    <p>
+      <strong>Propostas adicionadas:</strong>
+      <span id="data-list-total">0</span>
+    </p>
+    <ul id="proposal-ul"></ul>
   </div>
 
-  <div class="br-textarea">
-    <label for="describe">
-      Descrever de forma objetiva e sintética qual principal medida a ser tomada
-      para sua superação do desafio identificado:
-    </label>
-    <textarea id="describe" rows="4" maxlength="250"></textarea>
-  </div>
+  <style>
+    .form-container {
+      margin: 1rem 0;
+    }
+    .form-title {
+      flex: 1;
+    }
+    .add-list {
+      border-bottom: 1px solid #ccc;
+      list-style: none;
+      padding: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+    }
 
-  <div class="br-input">
-    <label for="identify-entity">
-      Identificar qual principal ente público federal deve deflagrar e liderar
-      essa medida:
-    </label>
-    <input
-      type="te xt"
-      id="identify-entity"
-      maxlength="50"
-      placeholder="Texto"
-    />
-  </div>
-
-  <label>
-    Qual eixo temático da 6 Conferência Nacional de Segurança Alimentar e
-    Nutricional a proposta está relacionada?
-  </label>
-  <div class="br-radio">
-    <input id="op-1" type="radio" name="radio" value="op-1" checked="checked" />
-    <label for="op-1">Eixo 1 - Determinantes estruturais e macro desafios para e soberania e Segurança Alimentar e Nutricional</label>
-  </div>
-  <div class="br-radio">
-    <input id="op-2" type="radio" name="radio" value="op-2" />
-    <label for="op-2">Eixo 2 - Sistema Nacional de Segurança Alimentar e Nutricional e Políticas Públicas garantidoras do Direito Humano à Alimentação Adequada</label>
-  </div>
-  <div class="br-radio">
-    <input id="op-3" type="radio" name="radio" value="op-3" />
-    <label for="op-3">Eixo 3 - Democracia e Participação Social</label>
-  </div>
-  <div class="add-button-container">
-  <button class="br-button primary" id="add-proposal" type="button" disabled>
-    Adicionar Proposta
-  </button>
-</div>
-</section>
-
-<div id="lista-propostas">
-  <p>
-    <strong>Propostas adicionadas:</strong>
-    <span id="data-list-total">0</span>
-  </p>
-  <ul id="proposal-ul"></ul>
-</div>
-
-<style>
-  .form-container {
-    margin: 1rem 0;
-  }
-  .form-title {
-    flex: 1;
-  }
-  .add-list {
-    border-bottom: 1px solid #ccc;
-    list-style: none;
-    padding: 6px;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-  }
-
-  .add-button-container {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    margin: 1.5rem 0;
-  }
-</style>
-`;
+    .add-button-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 1.5rem 0;
+      gap: 1rem;
+    }
+  </style>
+  `;
       choosedInput.parentNode.insertBefore(newForm, choosedInput.nextSibling);
-      //choosedInput.style = "display: none;";
+      choosedInput.style = "display: none;";
+
+      const contadorEixo1 = document.createElement("p");
+      contadorEixo1.textContent = "Propostas no Eixo 1: 0";
+      const contadorEixo2 = document.createElement("p");
+      contadorEixo2.textContent = "Propostas no Eixo 2: 0";
+      const contadorEixo3 = document.createElement("p");
+      contadorEixo3.textContent = "Propostas no Eixo 3: 0";
+
+      const listaPropostas = document.getElementById("lista-propostas");
+      listaPropostas.appendChild(contadorEixo1);
+      listaPropostas.appendChild(contadorEixo2);
+      listaPropostas.appendChild(contadorEixo3);
 
       function updateList() {
         const ul = document.getElementById("proposal-ul");
@@ -620,9 +635,7 @@
         dataList.forEach((proposta, index) => {
           const li = document.createElement("li");
           li.classList = ["add-list li"];
-          li.innerHTML = `<label class="form-title">Proposta ${
-            index + 1
-          }</label>`;
+          li.innerHTML = `<label class="form-title">${proposta.title}</label>`;
 
           const editButton = document.createElement("button");
           const formContainer = document.getElementById("title");
@@ -661,6 +674,32 @@
           if (inputFieldData) {
             inputFieldData.value = JSON.stringify(dataList);
           }
+        }
+
+        const addProposalButton = document.getElementById("add-proposal");
+        if (dataList.length >= 25) {
+          addProposalButton.disabled = true;
+          alert("Você atingiu o limite máximo de 25 propostas.");
+        } else {
+          addProposalButton.disabled = false;
+        }
+
+        const eixo1Count = dataList.filter(
+          (proposal) => proposal.axle === "op-1"
+        ).length;
+        const eixo2Count = dataList.filter(
+          (proposal) => proposal.axle === "op-2"
+        ).length;
+        const eixo3Count = dataList.filter(
+          (proposal) => proposal.axle === "op-3"
+        ).length;
+
+        contadorEixo1.textContent = `Quantidade de propostas relacionadas ao Eixo 1: ${eixo1Count}`;
+        contadorEixo2.textContent = `Quantidade de propostas relacionadas ao Eixo 2: ${eixo2Count}`;
+        contadorEixo3.textContent = `Quantidade de propostas relacionadas ao Eixo 3: ${eixo3Count}`;
+
+        if (eixo1Count >= 3 && eixo2Count >= 3 && eixo3Count >= 3) {
+          console.log("tá valido");
         }
       }
 
@@ -708,7 +747,8 @@
         document.getElementById("op-1").checked = true;
 
         const addBtn = document.getElementById("add-proposal");
-        addBtn.textContent = "Adicionar Proposta";
+        addBtn.innerHTML =
+          '<i class="fas fa-plus mr3" aria-hidden="true"></i>Adicionar Proposta';
         addBtn.disabled = true;
       }
 
@@ -727,7 +767,8 @@
         ).checked = true;
 
         const addBtn = document.getElementById("add-proposal");
-        addBtn.textContent = "Salvar Edição";
+        addBtn.innerHTML =
+          '<i class="fas fa-pen mr3" aria-hidden="true"></i> Salvar Edição';
         addBtn.disabled = false;
 
         updateList();
@@ -748,15 +789,30 @@
         addData();
       });
 
-      document.getElementById("title").addEventListener("input", () => {
-        const addBtn = document.getElementById("add-proposal");
-        addBtn.disabled = document.getElementById("title").value === "";
-      });
+      const formFields = [
+        "title",
+        "identify-challenge",
+        "describe",
+        "identify-entity",
+        "op-1",
+      ];
+      const formFieldsElements = formFields.map((field) =>
+        document.getElementById(field)
+      );
+      const addProposalButton = document.getElementById("add-proposal");
 
-      document.getElementById("title").addEventListener("input", () => {
-        const addBtn = document.getElementById("add-proposal");
-        addBtn.textContent =
-          dataInEdition !== null ? "Salvar Edição" : "Adicionar Proposta";
+      formFieldsElements.forEach((field) => {
+        field.addEventListener("input", () => {
+          const allFieldsFilled = formFieldsElements.every(
+            (input) => input.value.trim() !== ""
+          );
+          addProposalButton.disabled = !allFieldsFilled;
+          const addBtn = document.getElementById("add-proposal");
+          addBtn.innerHTML =
+            dataInEdition !== null
+              ? '<i class="fas fa-pen mr3" aria-hidden="true"></i> Salvar Edição'
+              : '<i class="fas fa-plus mr3" aria-hidden="true"></i> Adicionar Proposta';
+        });
       });
 
       updateList();
@@ -1036,17 +1092,6 @@
       oldLink.parentNode.replaceChild(newLink, oldLink);
     }
 
-    const chatIcon = document.querySelector(
-      "use[href='/decidim-packs/media/images/icons-c4fd0f43651700b0c768.svg#icon-envelope-closed']"
-    );
-
-    if (chatIcon) {
-      chatIcon.href.baseVal =
-        "/decidim-packs/media/images/icons-c4fd0f43651700b0c768.svg#icon-chat";
-      chatIcon.href.animVal =
-        "/decidim-packs/media/images/icons-c4fd0f43651700b0c768.svg#icon-chat";
-    }
-
     const loginButton = document.querySelector(
       "a.button--govbr span.button--social__text"
     );
@@ -1056,10 +1101,10 @@
     }
 
     //remover denuncias
-    let flagModalButton = document.querySelector("[title=Denunciar]");
-    if (flagModalButton) flagModalButton.remove();
-    let flagModalContent = document.querySelector("#flagModal");
-    if (flagModalContent) flagModalContent.remove();
+    // let flagModalButton = document.querySelector("[title=Denunciar]");
+    //if (flagModalButton) flagModalButton.remove();
+    //let flagModalContent = document.querySelector("#flagModal");
+    //if (flagModalContent) flagModalContent.remove();
   }
   function createCssClass(innerHtml, cssClass, elementSelector) {
     let style = document.createElement("style");

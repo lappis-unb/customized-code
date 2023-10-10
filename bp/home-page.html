@@ -198,13 +198,27 @@
   <div class="news-card__list br-container-lg">
     <a
       class="news-card__list__item"
+      href="/processes/brasilparticipativo/f/26/posts/60"
+    >
+      <img
+        src="https://brasilparticipativo.presidencia.gov.br/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBbFE4IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--653b3d2835fc016b6de8d326df004b7c6847b20d/Conf%20Juv%201.png"
+      />
+      <div class="news-card__list__item__overlay">
+        As autoras e autores das 60 propostas mais votadas da 4ª Conferência
+        Nacional da Juventude irão para Brasília defender suas ideias.
+        Participe!
+      </div>
+    </a>
+    <a
+      class="news-card__list__item"
       href="/processes/brasilparticipativo/f/26/posts/41"
     >
       <img
         src="https://brasilparticipativo.presidencia.gov.br/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBbFEwIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--73beeff88924cdd06dff6d453318d2e94e828d9d/image1_resized.jpg"
       />
       <div class="news-card__list__item__overlay">
-        Code For All - Summit 23: Governo brasileiro compartilha com o mundo a experiência do Brasil Participativo durante evento internacional
+        Code For All - Summit 23: Governo brasileiro compartilha com o mundo a
+        experiência do Brasil Participativo durante evento internacional
       </div>
     </a>
     <a
@@ -215,18 +229,8 @@
         src="https://brasilparticipativo.presidencia.gov.br/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBbFUwIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--662e1a160d00cf066f867761324f47a3475cb2d0/image3_resized.png"
       />
       <div class="news-card__list__item__overlay">
-        Após o PPA Participativo, plataforma de Participação Social do governo federal abre novos processos para contribuição do povo
-      </div>
-    </a>
-    <a
-      class="news-card__list__item"
-      href="/processes/brasilparticipativo/f/26/posts/39"
-    >
-      <img
-        src="https://brasilparticipativo.presidencia.gov.br/rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBbEl0IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--868c698d74cf1b9bb2cd92092e5b7d6068b7e491/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lKYW5CbFp3WTZCa1ZVT2hSeVpYTnBlbVZmZEc5ZmJHbHRhWFJiQnpCcEF1Z0QiLCJleHAiOm51bGwsInB1ciI6InZhcmlhdGlvbiJ9fQ==--5c7da9007dc77c9591b84e9376857808a7a3e5ab/image.jpeg"
-      />
-      <div class="news-card__list__item__overlay">
-        Brasil Participativo concentra e organiza todos os processos participativos do governo federal
+        Após o PPA Participativo, plataforma de Participação Social do governo
+        federal abre novos processos para contribuição do povo
       </div>
     </a>
   </div>
@@ -235,8 +239,7 @@
       class="br-button primary mr-3"
       type="button"
       href="/processes/brasilparticipativo/f/26/"
-      >Mais Novidades</a
-    >
+      >Mais Novidades</a>
   </div>
 </section>
 
@@ -705,7 +708,7 @@
     color: var(--color-primary-darken-01);
     text-align: center;
     font-weight: 600 !important;
-    font-size: 2rem;
+    font-size: 1.8rem !important;
   }
   .hero__container__img {
     background-image: var(--banner-mobile);
@@ -777,7 +780,7 @@
     display: flex;
     width: 290px;
     height: 210px;
-    max-width: 380px;
+    max-width: 410px;
     padding: 24px 16px;
     flex-direction: column;
     justify-content: center;
@@ -1205,20 +1208,21 @@
     position: relative;
     cursor: pointer;
     max-width: 620px;
+    text-align: center;
   }
 
   .news-card__list__item__overlay {
     position: absolute;
-    width: 100%;
     color: var(--color-primary-darken-01);
     text-align: left;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     line-height: 1.4;
     font-weight: 600;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 0.5rem 0;
+    max-width: 350px;
   }
 
   .news-card__list__item__overlay:hover {
@@ -1226,7 +1230,7 @@
   }
 
   /* Media queries */
-  @media (max-width: 1284px) {
+  @media (max-width: 768px) {
     .news-card__list {
       display: flex;
       flex-direction: column;
@@ -1274,5 +1278,9 @@
     background-color: var(--blue-warm-vivid-70) !important;
     color: var(--blue-vivid-5) !important;
     border: 1px solid var(--blue-warm-vivid-70) !important;
+  }
+  .news-card__list a img {
+    width: 350px;
+    height: 230px;
   }
 </style>
