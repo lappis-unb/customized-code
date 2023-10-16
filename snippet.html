@@ -197,7 +197,7 @@
     let menuConfConseaDesk = document.createElement("div");
     menuConfConseaDesk.className = "row expanded";
     menuConfConseaDesk.innerHTML = `<div class="row expanded">
-    <div class="process-nav" style="top: 117px">
+    <div class="process-nav">
       <div class="row">
         <div
           class="row column process-nav__content"
@@ -283,7 +283,7 @@
     let menuConfJuvDesk = document.createElement("div");
     menuConfJuvDesk.className = "row expanded";
     menuConfJuvDesk.innerHTML = `<div class="row expanded">
-    <div class="process-nav" style="top: 117px">
+    <div class="process-nav">
       <div class="row">
         <div
           class="row column process-nav__content"
@@ -501,7 +501,9 @@
   }
 
   function showCreateProfileLink() {
-    const loginButton = document.querySelector('.sign-in-button .br-sign-in span');
+    const loginButton = document.querySelector(
+      ".sign-in-button .br-sign-in span"
+    );
     if (!loginButton) {
       const link = document.getElementById("create-profile-container");
       if (link) link.remove();
@@ -1200,16 +1202,33 @@
 
   function insertProfileFormsButtons() {
     const row = document.getElementsByClassName("title-action")[0];
-    let button1HTML = `
-            <button onclick="window.location.href='/assemblies/confjuv4/f/32/?share_token=1b6ec339fb84049bf6782e9ae3cecb1c1676947b76a360cdebb1c7c946fdddff';" class="br-button secondary" type="button">Responder questionário 1</button>
-            `;
+    let button1HTML = `<button onclick="window.location.href='/assemblies/confjuv4/f/32/?share_token=1b6ec339fb84049bf6782e9ae3cecb1c1676947b76a360cdebb1c7c946fdddff';" class="br-button secondary" type="button">Responder questionário 1</button>`;
     row.innerHTML += button1HTML;
-    let button2HTML = `
-            <button onclick="window.location.href='/assemblies/confjuv4/f/44/?share_token=4f8f6ee5145ee6700993a0982a6291d098f4873c90c34e7dd6883e640ff9c162';" class="br-button secondary" type="button">Responder questionário 2</button>
-
-            `;
+    let button2HTML = `<button onclick="window.location.href='/assemblies/confjuv4/f/44/?share_token=4f8f6ee5145ee6700993a0982a6291d098f4873c90c34e7dd6883e640ff9c162';" class="br-button secondary" type="button">Responder questionário 2</button>`;
     row.innerHTML += button2HTML;
-   }
+  }
+
+  function updateContentMarginTop() {
+    const header = document.querySelector("#br-header");
+    const menu = document.querySelector(".process-nav");
+    const content = document.querySelector("#content");
+    const banner = document.querySelector(".omnipresent-banner");
+
+    let marginTotal = "";
+    if (menu) {
+      marginTotal = header.offsetHeight + menu.offsetHeight;
+      menu.style.top = header.offsetHeight + "px";
+    } else {
+      marginTotal = header.offsetHeight;
+    }
+
+    if (banner) {
+      banner.style.marginTop = marginTotal + "px";
+    } else if (content) {
+      content.style.marginTop = marginTotal + "px";
+    }
+  }
+
   function insertConferenceElements() {
     if (isOnPlatformLogin()) {
       const bar = document.getElementsByClassName("flash callout alert")[0];
@@ -1218,6 +1237,8 @@
     if (isOnConferenceDomain()) {
       if (isJuventude()) updateMenuConfJuv();
       else if (isConsea()) updateMenuConfConsea();
+
+      updateContentMarginTop();
 
       const originalMenu = document.querySelector(".process-nav");
       if (originalMenu) originalMenu.remove();
