@@ -500,20 +500,9 @@
       });
   }
 
-  function getCookieValue(name) {
-    const cookie_value = document.cookie.replace(
-      new RegExp(
-        "(?:(?:^|.*;)\\s*" +
-          name.replace(/[\-[\]{}()*+?.,\\\^$|#\s]/g, "\\$&") +
-          "\\s*\\=\\s*([^;]*).*$)|^.*$"
-      ),
-      "$1"
-    );
-    return cookie_value;
-  }
-
   function showCreateProfileLink() {
-    if (getCookieValue("_pk_ref.18.6b4c")) {
+    const loginButton = document.querySelector('.sign-in-button .br-sign-in span');
+    if (!loginButton) {
       const link = document.getElementById("create-profile-container");
       if (link) link.remove();
     }
