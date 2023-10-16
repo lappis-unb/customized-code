@@ -1197,6 +1197,19 @@
   function isOnPlatformLogin() {
     return window.location.pathname === "/users/sign_in";
   }
+
+  function insertProfileFormsButtons() {
+    const row = document.getElementsByClassName("title-action")[0];
+    let button1HTML = `
+            <button onclick="window.location.href='/assemblies/confjuv4/f/32/?share_token=1b6ec339fb84049bf6782e9ae3cecb1c1676947b76a360cdebb1c7c946fdddff';" class="br-button secondary" type="button">Responder questionário 1</button>
+            `;
+    row.innerHTML += button1HTML;
+    let button2HTML = `
+            <button onclick="window.location.href='/assemblies/confjuv4/f/44/?share_token=4f8f6ee5145ee6700993a0982a6291d098f4873c90c34e7dd6883e640ff9c162';" class="br-button secondary" type="button">Responder questionário 2</button>
+
+            `;
+    row.innerHTML += button2HTML;
+   }
   function insertConferenceElements() {
     if (isOnPlatformLogin()) {
       const bar = document.getElementsByClassName("flash callout alert")[0];
@@ -3168,6 +3181,7 @@
         if (hero__container) hero__container?.remove();
         content.appendChild(body);
       } else if (isOnConferenceProposals()) {
+        insertProfileFormsButtons();
         const code = `<style>.with_any_scope_check_boxes_tree_filter {display: none;}
             .with_any_category_check_boxes_tree_filter{display:none;}
             .activity_collection_radio_buttons_filter {display:none;}</style>`;
