@@ -1126,10 +1126,7 @@
     if (element) element.classList.add(cssClass);
   }
   function isOnConferenceLandingPage() {
-    return (
-      window.location.pathname === "/assemblies/confjuv4" ||
-      window.location.pathname === "/assemblies/cnsan6/f/41/"
-    );
+    return window.location.pathname === "/assemblies/confjuv4";
   }
   function isOnConferenceDomain() {
     return (
@@ -1237,8 +1234,6 @@
     if (isOnConferenceDomain()) {
       if (isJuventude()) updateMenuConfJuv();
       else if (isConsea()) updateMenuConfConsea();
-
-      updateContentMarginTop();
 
       const originalMenu = document.querySelector(".process-nav");
       if (originalMenu) originalMenu.remove();
@@ -3215,7 +3210,9 @@
         body.innerHTML =
           "Aqui você poderá participar, criando propostas, votar e comentando em outras ideias. As propostas e os participantes com maior relevância serão eleitos para a Etapa Nacional da Conferência de Juventude.";
         body.style.marginBottom = "20px";
-        filters.after(body);
+        if (filters) {
+          filters.after(body);
+        }
       } else if (isOnConferenceCreate()) {
         const element = document.querySelector(".section-heading");
         if (element) element.innerHTML = "Organize uma etapa";
@@ -3350,6 +3347,7 @@
         if (hero__container) hero__container?.remove();
       }
     }
+    updateContentMarginTop();
   }
 
   function modifyShareButton() {
