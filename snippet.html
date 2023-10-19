@@ -1235,6 +1235,22 @@
       if (isJuventude()) updateMenuConfJuv();
       else if (isConsea()) updateMenuConfConsea();
 
+      if (isJuventude()) {
+        const header_title_conjuv = document.querySelector(".header-title");
+        const header_link = document.querySelector(".header-info a");
+
+        header_title_conjuv.textContent = "Conferência Nacional de Juventude"
+        header_link.href = "https://brasilparticipativo.presidencia.gov.br/assemblies/confjuv4/f/34/"
+      }
+
+      if (isConsea()) {
+        const header_title_consea = document.querySelector(".header-title");
+        const header_link = document.querySelector(".header-info a");
+
+        header_title_consea.textContent = "Conferência Nacional de Segurança Alimentar e Nutricional"
+        header_link.href = "https://brasilparticipativo.presidencia.gov.br/assemblies/cnsan6/f/41/"
+      }
+
       const originalMenu = document.querySelector(".process-nav");
       if (originalMenu) originalMenu.remove();
       const hero = document.querySelector(".extended");
@@ -4150,14 +4166,8 @@
   }
 </script>
 
-<link
-  rel="stylesheet"
-  href="https://cdngovbr-ds.estaleiro.serpro.gov.br/design-system/fonts/rawline/css/rawline.css"
-/>
-<link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-/>
+<link rel="stylesheet" href="https://cdngovbr-ds.estaleiro.serpro.gov.br/design-system/fonts/rawline/css/rawline.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
 <style type="text/css">
   @import url("https://fonts.cdnfonts.com/css/rawline");
@@ -4389,10 +4399,7 @@
   }
 
   div.columns.large-12 div.section.images h3.section-heading,
-  div.columns.large-12
-    div.section.images
-    .gallery.row
-    .columns.small-6.medium-4.end {
+  div.columns.large-12 div.section.images .gallery.row .columns.small-6.medium-4.end {
     display: block;
   }
 
