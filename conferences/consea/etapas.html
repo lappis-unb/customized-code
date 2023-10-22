@@ -1,59 +1,182 @@
 <section class="br-container">
-    <h1>6ª Conferência Nacional de Segurança Alimentar e Nutricional</h1>
-    <p>A 6ª Conferência Nacional de Segurança Alimentar e Nutricional será precedida de Conferências Estaduais e do
-        Distrito Federal, Municipais e/ou Regionais ou Territoriais, Conferências Livres Nacionais.</p>
-    <p>As etapas da 6ª CNSAN serão realizadas nos seguintes períodos:</p>
+    <p class="title-container">
+        A 6ª Conferência Nacional de Segurança Alimentar e Nutricional será
+        precedida de Conferências Estaduais e do Distrito Federal, Municipais
+        e/ou Regionais ou Territoriais, Conferências Livres Nacionais.
+    </p>
+    <p class="subtitle-container">
+        As etapas da 6ª CNSAN serão realizadas nos seguintes períodos:
+    </p>
     <ul>
-        <li>Conferências Municipais e/ou Regionais ou Territoriais – até 30 de agosto de 2023;</li>
-        <li>Conferências Estaduais e do Distrito Federal – até 30 de outubro de 2023;</li>
+        <li>
+            Conferências Municipais e/ou Regionais ou Territoriais – até 30 de
+            agosto de 2023;
+        </li>
+        <li>
+            Conferências Estaduais e do Distrito Federal – até 30 de outubro de
+            2023;
+        </li>
         <li>Conferências Livres Nacionais – até 30 de outubro de 2023;</li>
         <li>Encontros Temáticos Nacionais - até 30 de outubro de 2023;</li>
         <li>Conferência Nacional - 11 a 14 de dezembro de 2023.</li>
     </ul>
-    <p>Para cadastro de delegados(as) e para preencher o relatório das conferências, acessar os seguintes formulários:
+
+    <!-- <p>
+        Para cadastro de delegados(as) e para preencher o relatório das
+        conferências, acessar os seguintes formulários:
     </p>
     <ul>
-        <li><a href="https://brasilparticipativo.presidencia.gov.br/assemblies/cnsan6/f/56/">Relatório da Conferência
-                estadual / Distrital</a></li>
-        <li><a href="https://brasilparticipativo.presidencia.gov.br/assemblies/cnsan6/f/54/">Cadastro de Delegados da
-                Sociedade Civil das UFs</a></li>
-        <li><a href="https://brasilparticipativo.presidencia.gov.br/assemblies/cnsan6/f/55/">Cadastro de Delegados da
-                Conferência estadual / Distrital (Governo)</a></li>
-        <li><a href="https://brasilparticipativo.presidencia.gov.br/assemblies/cnsan6/f/53/">Relatório da Conferência
-                Nacional Livre</a></li>
-        <li><a href="https://brasilparticipativo.presidencia.gov.br/assemblies/cnsan6/f/57/">Cadastro de Delegados da
-                Conferência Nacional Livre</a></li>
+        <li>
+            <a
+                href="https://brasilparticipativo.presidencia.gov.br/assemblies/cnsan6/f/56/"
+                >Relatório da Conferência estadual / Distrital</a
+            >
+        </li>
+        <li>
+            <a
+                href="https://brasilparticipativo.presidencia.gov.br/assemblies/cnsan6/f/54/"
+                >Cadastro de Delegados da Sociedade Civil das UFs</a
+            >
+        </li>
+        <li>
+            <a
+                href="https://brasilparticipativo.presidencia.gov.br/assemblies/cnsan6/f/55/"
+                >Cadastro de Delegados da Conferência estadual / Distrital
+                (Governo)</a
+            >
+        </li>
+        <li>
+            <a
+                href="https://brasilparticipativo.presidencia.gov.br/assemblies/cnsan6/f/53/"
+                >Relatório da Conferência Nacional Livre</a
+            >
+        </li>
+        <li>
+            <a
+                href="https://brasilparticipativo.presidencia.gov.br/assemblies/cnsan6/f/57/"
+                >Cadastro de Delegados da Conferência Nacional Livre</a
+            >
+        </li>
     </ul>
 
-    <p>Quer saber a data, local e mais informações sobre a etapa da 6ª CNSAN mais próximo de você?</p>
-    <p>Confira na agenda:</p>
+    <p>
+        Quer saber a data, local e mais informações sobre a etapa da 6ª CNSAN
+        mais próximo de você?
+    </p>
+    <p>Confira na agenda:</p> -->
+
+    <p>
+        Envie os relatório das etapas livres ou estaduais clicando nas opções
+        abaixo:
+    </p>
+
+    <div class="action-card-container">
+        <button class="action-card" id="openModalButton">
+            <div class="action-icon-background">
+                <i class="fa-solid fa-users fa-xl"></i>
+            </div>
+            <p class="action-card-text">Cadastro de Delegados</p>
+        </button>
+        <button class="action-card" id="openReportModalButton">
+            <div class="action-icon-background">
+                <i class="fa-solid fa-file-signature fa-xl"></i>
+            </div>
+            <p class="action-card-text">Relatório de Etapas</p>
+        </button>
+    </div>
+
+    <div class="modal" id="signModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p>Selecione:</p>
+                <button id="closeModalButton">
+                    <i class="fa-solid fa-xmark fa-xl"></i>
+                </button>
+            </div>
+            <div class="modal-steps">
+                <button class="modal-steps-button">
+                    <p class="modal-steps-text">Etapa Livre</p>
+                    <i class="fa-solid fa-chevron-right fa-xl"></i>
+                </button>
+                <div class="divider"></div>
+                <button class="modal-steps-button">
+                    <p class="modal-steps-text">Etapa Estadual</p>
+                    <i class="fa-solid fa-chevron-right fa-xl"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="reportModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p>Selecione:</p>
+                <button id="closeReportModalButton">
+                    <i class="fa-solid fa-xmark fa-xl"></i>
+                </button>
+            </div>
+            <div class="modal-steps">
+                <button class="modal-steps-button">
+                    <p class="modal-steps-text">Governo</p>
+                    <i class="fa-solid fa-chevron-right fa-xl"></i>
+                </button>
+                <div class="divider"></div>
+                <button class="modal-steps-button">
+                    <p class="modal-steps-text">Sociedade Civil</p>
+                    <i class="fa-solid fa-chevron-right fa-xl"></i>
+                </button>
+                <div class="divider"></div>
+                <button class="modal-steps-button">
+                    <p class="modal-steps-text">Conferências Livres</p>
+                    <i class="fa-solid fa-chevron-right fa-xl"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <p>
+        Quer saber a data, local e mais informações sobre a etapa da 6ª CNSAN
+        mais próximo de você? Confira na agenda:
+    </p>
 </section>
 <section class="actions-section br-container">
-    <a class="action-container"
-        href="https://app.powerbi.com/view?r=eyJrIjoiYzY3NmYyMDQtM2M0NC00NmEwLTkzMDUtZTRjZTI0ZDE4OTZjIiwidCI6ImNmODQ1NGQzLWUwMTItNGE5ZC05NWIzLTcwYmRiNmY0NTlkNSJ9">
-        <div class="action-icon-background"><i class="fa fa-solid fa-calendar fa-2xl"></i></div>
+    <a
+        class="action-container"
+        href="https://app.powerbi.com/view?r=eyJrIjoiYzY3NmYyMDQtM2M0NC00NmEwLTkzMDUtZTRjZTI0ZDE4OTZjIiwidCI6ImNmODQ1NGQzLWUwMTItNGE5ZC05NWIzLTcwYmRiNmY0NTlkNSJ9"
+    >
+        <div class="action-icon-background">
+            <i class="fa fa-solid fa-calendar fa-2xl"></i>
+        </div>
         <p class="action-text">Agenda</p>
-        <div class="arrow-action-icon-background"><i class="fa fa-solid fa-arrow-circle-right fa-2xl"></i></div>
+        <div class="arrow-action-icon-background">
+            <i class="fa fa-solid fa-arrow-circle-right fa-2xl"></i>
+        </div>
     </a>
 </section>
 
 <style>
+    .divider {
+        width: 100%;
+        border-top: 1px solid #ccc;
+        margin: 10px 0;
+    }
+
     .actions-section {
         display: flex;
         gap: 16px;
         justify-content: center;
         padding: 2.5rem 0;
         flex-flow: column;
-        align-items: center
+        align-items: center;
     }
 
-    @media (min-width:1284px) {
+    @media (min-width: 1284px) {
         .actions-section {
             display: flex;
             gap: 2.5rem;
             justify-content: space-evenly;
             padding: 2.5rem 0;
-            flex-flow: row
+            flex-flow: row;
         }
     }
 
@@ -66,7 +189,7 @@
         align-items: center;
         padding: 8px;
         justify-content: flex-start;
-        width: 312px
+        width: 312px;
     }
 
     .action-icon-background {
@@ -78,7 +201,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        color: #fff
+        color: #fff;
     }
 
     .action-text {
@@ -86,10 +209,146 @@
         line-height: 1.2;
         width: 184px;
         margin: 0 0 4px 0;
-        color: var(--color-secondary-08)
+        color: var(--color-secondary-08);
     }
 
     .arrow-action-icon-background {
-        color: var(--gray-60)
+        color: var(--gray-60);
+    }
+    .title-container {
+        font-size: 18px;
+    }
+    .subtitle-container {
+        font-weight: bold;
+    }
+
+    .action-card-container {
+        display: flex;
+        gap: 16px;
+        justify-content: center;
+        align-items: center;
+        margin: 16px 0;
+    }
+    .action-card {
+        display: flex;
+        flex-direction: column;
+        border-radius: 16px;
+        background-color: #e3f5e1;
+        width: 100%;
+        align-items: center;
+        text-align: center;
+        padding: 24px;
+    }
+    .action-card-text {
+        font-weight: bold;
+        font-size: 16px;
+        line-height: 1.2;
+    }
+
+    .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .modal-content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #fff;
+        width: 80%;
+        padding: 0 0 8px 0;
+    }
+
+    @media (min-width: 1284px) {
+        .modal-content {
+            width: 50%;
+        }
+    }
+
+    .modal-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 16px;
+    }
+    .modal-header p {
+        display: inline-flex;
+        align-items: center;
+        font-weight: bold;
+        font-size: 16px;
+        margin: 0;
+    }
+
+    .modal-header button {
+        cursor: pointer;
+    }
+
+    .modal-steps {
+        display: flex;
+        flex-direction: column;
+    }
+    .modal-steps-button {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-direction: row;
+        padding: 16px;
+        color: var(--gree-60);
+        cursor: pointer;
+        outline: none;
+    }
+    .modal-steps-text {
+        font-size: 16px;
+        line-height: 1.2;
+        margin: 0;
     }
 </style>
+
+<script>
+    const openModalButton = document.getElementById("openModalButton");
+    const closeModalButton = document.getElementById("closeModalButton");
+
+    const signModal = document.getElementById("signModal");
+    const reportModal = document.getElementById("reportModal");
+
+    openModalButton.addEventListener("click", () => {
+        signModal.style.display = "block";
+    });
+
+    closeModalButton.addEventListener("click", () => {
+        signModal.style.display = "none";
+    });
+
+    window.addEventListener("click", (event) => {
+        if (event.target === signModal) {
+            signModal.style.display = "none";
+        }
+    });
+
+    const openReportModalButton = document.getElementById(
+        "openReportModalButton"
+    );
+    const closeReportModalButton = document.getElementById(
+        "closeReportModalButton"
+    );
+
+    openReportModalButton.addEventListener("click", () => {
+        reportModal.style.display = "block";
+    });
+
+    closeReportModalButton.addEventListener("click", () => {
+        reportModal.style.display = "none";
+    });
+
+    window.addEventListener("click", (event) => {
+        if (event.target === reportModal) {
+            reportModal.style.display = "none";
+        }
+    });
+</script>
