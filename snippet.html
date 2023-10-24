@@ -762,6 +762,25 @@
     }
   }
 
+  function removeSecondProductionLogin() {
+    if (
+      window.location.href ===
+      "https://brasilparticipativo.presidencia.gov.br/users/sign_in"
+    ) {
+      const cardContent = document.querySelector(".card__content");
+      const registerSeparator = document.querySelector(".register__separator");
+      const loginText = document.querySelector('.columns.large-8.large-centered.text-center.page-title p');
+      const shadowRow = document.querySelector(
+        ".columns.large-6.medium-centered"
+      );
+
+      if (shadowRow) shadowRow.remove();
+      if (cardContent) cardContent.remove();
+      if (loginText) loginText.remove();
+      if (registerSeparator) registerSeparator.remove();
+    }
+  }
+
   (() => {
     replaceWrongUrl();
 
@@ -778,6 +797,7 @@
 
       getDataForm();
       showCreateProfileLink();
+      removeSecondProductionLogin();
     });
   })();
 
@@ -4318,5 +4338,10 @@
 
   .participacao-social-logo {
     fill: #333333;
+  }
+  .results-per-page__dropdown {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
   }
 </style>
