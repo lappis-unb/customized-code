@@ -1,0 +1,56 @@
+<script>
+    // API
+    const apiUrl = "https://brasilparticipativo.presidencia.gov.br/api";
+
+    // Query
+    const graphqlQuery = `
+      query GetBlogComponent($idBlog: ID!) {
+        component(id: $idBlog) {
+          ...on Blogs {
+            name {
+              translation(locale: "pt-BR")
+            }
+            posts {
+              nodes {
+                body {
+                  translation(locale: "pt-BR")
+                }
+              }
+            }
+          }
+        }
+      }
+    `;
+
+    // Variáveis da query
+    const graphqlVariables = {
+        idBlog: 26,
+    };
+
+    // Requisição usando fetch
+    fetch(apiUrl, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            query: graphqlQuery,
+            variables: graphqlVariables,
+        }),
+    })
+        .then((response) => response.json())
+        .then((data) => {
+            // Acessa apenas o campo "data" na resposta
+            const responseData = data.data;
+
+            // Verifica se a resposta contém dados
+            if (responseData) {
+                console.log(responseData);
+            } else {
+                console.error("Resposta vazia ou sem o campo 'data'.");
+            }
+        })
+        .catch((error) => {
+            console.error("Ocorreu um erro na requisição:", error);
+        });
+</script>
