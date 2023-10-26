@@ -333,106 +333,6 @@
     return combinedHTML;
   }
 
-  function requestHTML(url) {
-    return fetch(url)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(
-            `Erro ao buscar a página. Status de resposta: ${response.status}`
-          );
-        }
-        return response.text();
-      })
-      .then((html) => {
-        return html;
-      })
-      .catch((error) => {
-        throw new Error(`Erro ao buscar a página: ${error.message}`);
-      });
-  }
-
-  function getNoticias(url, hrefNoticiais, originalHTML) {
-    const tempElement = document.createElement("div");
-    tempElement.innerHTML = originalHTML;
-
-    const originalNewsElements = tempElement.querySelectorAll(".card--post");
-    const resultHTMLArray = [];
-    let count = 0;
-    originalNewsElements.forEach((originalNewsElement) => {
-      const href_noticia = originalNewsElement
-        .querySelector(".card__link")
-        .getAttribute("href");
-      const titulo_noticia =
-        originalNewsElement.querySelector(".card__title").textContent;
-      const paiImagem = originalNewsElement.querySelector(".ql-editor-display");
-      const url_img = paiImagem.querySelector("img").getAttribute("src");
-
-      const newHTML = `
-          <a class="conference-carousel__list__item" href="${href_noticia}">
-            <img src="${url_img}" />
-            <div class="conference-carousel__list__item__overlay">
-              ${titulo_noticia}
-            </div>
-          </a>
-        `;
-      count += 1;
-      if (count == 3) {
-        buttonMore = ` </div></section>
-                        <form class="conference-cta" action=${hrefNoticiais}>
-                          <button type="submit" class="conference-cta__button">
-                            <span class="conference-cta__button__wrapper__label"
-                              >Mais notíciais</span
-                            >
-                          </button>
-                        </form>`;
-        resultHTMLArray.push(buttonMore);
-
-        const resultHTML = resultHTMLArray.join("\n");
-
-        return resultHTML;
-      } else resultHTMLArray.push(newHTML);
-    });
-
-    if (count == 0) return "error";
-
-    let resultHTML = resultHTMLArray.join("\n");
-    resultHTML += "</div></section>";
-    return resultHTML;
-  }
-
-  function gerenciaNoticias(url, hrefNoticiais) {
-    requestHTML(url)
-      .then((html) => {
-        return getNoticias(url, hrefNoticiais, html);
-      })
-      .then((responseNoticias) => {
-        if (responseNoticias !== "error") {
-          let contentNoticiais = `<section class="conference-carousel">
-                                      <span class="conference-carousel__title"
-                                        >Saiba o que está rolando sobre a 6ª Conferência da Segurança Alimentar
-                                      </span>
-                                      <div class="conference-carousel__list">`;
-          contentNoticiais += responseNoticias;
-
-          // Encontre a div com id "confnoticias" na página
-          const confNoticias = document.querySelector("#confnoticias");
-
-          if (confNoticias) {
-            // Adicione o conteúdo ao elemento encontrado
-            console.log(contentNoticiais);
-            confNoticias.innerHTML = contentNoticiais;
-          } else {
-            console.error('Elemento com id "confnoticias" não encontrado.');
-          }
-        } else {
-          console.error("Erro ao buscar notícias.");
-        }
-      })
-      .catch((error) => {
-        console.error("Erro:", error);
-      });
-  }
-
   function showCreateProfileLink() {
     const loginButton = document.querySelector(
       ".sign-in-button .br-sign-in span"
@@ -1209,10 +1109,6 @@
         const blogs = document.querySelector("#blogs");
         blogs.classList.remove(...blogs.classList);
 
-        const code = `<style>#blogs {display: flex; flex-direction: column; justify-content: center; align-items: center; width: 100%; }</style>`;
-        const item = document.createElement("div");
-        item.innerHTML = code;
-
         blogs.after(item);
         blogs.firstElementChild.style.minWidth = "60%";
         blogs.firstElementChild.style.maxWidth = "80%";
@@ -1246,8 +1142,6 @@
             sobre = "/assemblies/cnsan6/f/36/";
           }
         }
-
-        gerenciaNoticias(url_source, href_noticia);
 
         if (wrapper) wrapper.remove();
         if (hero) hero.classList.remove("hero");
@@ -3205,69 +3099,6 @@
 
         form.children[8].required = false;
         form.children[8].style = "display: none;";
-
-        // const brazilianStates = [
-        //   "",
-        //   "Acre",
-        //   "Alagoas",
-        //   "Amapá",
-        //   "Amazonas",
-        //   "Bahia",
-        //   "Ceará",
-        //   "Distrito Federal",
-        //   "Espírito Santo",
-        //   "Goiás",
-        //   "Maranhão",
-        //   "Mato Grosso",
-        //   "Mato Grosso do Sul",
-        //   "Minas Gerais",
-        //   "Pará",
-        //   "Paraíba",
-        //   "Paraná",
-        //   "Pernambuco",
-        //   "Piauí",
-        //   "Rio de Janeiro",
-        //   "Rio Grande do Norte",
-        //   "Rio Grande do Sul",
-        //   "Rondônia",
-        //   "Roraima",
-        //   "Santa Catarina",
-        //   "São Paulo",
-        //   "Sergipe",
-        //   "Tocantins",
-        // ];
-
-        // const estadoLabel = document.createElement("label");
-        // estadoLabel.setAttribute("for", "meeting_estado");
-        // estadoLabel.textContent = "Estado*";
-
-        // const estadoSelect = document.createElement("select");
-        // estadoSelect.setAttribute("required", "required");
-        // estadoSelect.setAttribute("name", "meeting[estado]");
-        // estadoSelect.setAttribute("id", "meeting_estado");
-
-        // brazilianStates.forEach((state) => {
-        //   const option = document.createElement("option");
-        //   option.setAttribute("value", state);
-        //   option.textContent = state;
-        //   estadoSelect.appendChild(option);
-        // });
-
-        // const municipioLabel = document.createElement("label");
-        // municipioLabel.setAttribute("for", "meeting_municipio");
-        // municipioLabel.textContent = "Municipio*";
-
-        // const municipioInput = document.createElement("input");
-        // municipioInput.setAttribute("type", "text");
-        // municipioInput.setAttribute("required", "required");
-        // municipioInput.setAttribute("name", "meeting[municipio]");
-        // municipioInput.setAttribute("id", "meeting_municipio");
-
-        // // Add the new fields to the form
-        // form.insertBefore(estadoLabel, form.childNodes[7]);
-        // form.insertBefore(estadoSelect, form.childNodes[8]);
-        // form.insertBefore(municipioLabel, form.childNodes[9]);
-        // form.insertBefore(municipioInput, form.childNodes[10]);
       } else if (isOnConferenceSendDoc()) {
         const terms = document.querySelector(".tos-agreement");
         const tosAgreement = document.querySelector(".tos-agreement");
