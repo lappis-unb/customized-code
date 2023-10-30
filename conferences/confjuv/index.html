@@ -7,6 +7,44 @@
   </div>
 </section>
 
+<section class="news-card br-container-lg" id="statistics">
+  <div class="row column text-center">
+    <h3 class="heading3">Etapa Digital da 4ª Conferência da Juventude</h3>
+  </div>
+  <div class="row">
+    <div class="columns">
+      <div class="home-stats">
+        <div class="home-stats__highlight">
+          <section class="row section-statistics">
+            <div class="statistics-cell">
+              <div class="statistic__data users_count">
+                <span class="statistic__number">201.479</span>
+                <h4 class="statistic__title">Visitas</h4>
+              </div>
+              <div class="statistic__data proposals_count">
+                <span class="statistic__number">29.375</span>
+                <h4 class="statistic__title">Participantes</h4>
+              </div>
+              <div class="statistic__data proposals_accepted">
+                <span class="statistic__number">2.140</span>
+                <h4 class="statistic__title">Propostas</h4>
+              </div>
+              <div class="statistic__data proposals_accepted">
+                <span class="statistic__number">21.737</span>
+                <h4 class="statistic__title">Comentários</h4>
+              </div>
+              <div class="statistic__data proposals_accepted">
+                <span class="statistic__number">74.408</span>
+                <h4 class="statistic__title">Votos</h4>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="actions-section br-container">
   <a class="action-container" href="/assemblies/confjuv4/f/11/meetings/new">
     <div class="action-icon-background">
@@ -620,6 +658,12 @@
     width: 300px;
   }
 
+  .statistics-cell .statistic__data {
+    text-align: center;
+    width: auto;
+    position: relative;
+  }
+
   @media (min-width: 768px) {
     .news-card__list__item {
       position: relative;
@@ -694,6 +738,14 @@
   }
 
   @media (min-width: 768px) {
+    .home-stats .section-statistics .statistics-cell {
+      justify-content: center;
+      min-width: 680px;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      padding: 2px;
+      overflow-x: hidden;
+    }
     .bp-logo {
       width: 350px;
       margin: 0 auto;
