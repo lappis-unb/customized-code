@@ -3048,9 +3048,6 @@
         content.appendChild(body);
       } else if (isOnConferenceProposals()) {
         insertProfileFormsButtons();
-        const item = document.createElement("div");
-        const content = document.querySelector("#content");
-        content.after(item);
         const filters = document.querySelector(".collection-sort-controls");
         const body = document.createElement("div");
         body.innerHTML =
