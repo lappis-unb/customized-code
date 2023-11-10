@@ -3117,13 +3117,6 @@
         content.appendChild(body);
       } else if (isOnConferenceProposals()) {
         insertProfileFormsButtons();
-        const code = `<style>.with_any_scope_check_boxes_tree_filter {display: none;}
-            .with_any_category_check_boxes_tree_filter{display:none;}
-            .activity_collection_radio_buttons_filter {display:none;}</style>`;
-        const item = document.createElement("div");
-        item.innerHTML = code;
-        const content = document.querySelector("#content");
-        content.after(item);
         const filters = document.querySelector(".collection-sort-controls");
         const body = document.createElement("div");
         body.innerHTML =
