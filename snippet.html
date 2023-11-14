@@ -348,19 +348,14 @@
     const surveyId = 20; // lab 25
     const inputId = 358; // lab 117
     const process_url = `/assemblies/cnsan6/f/${processId}`;
-
     const choosedInput = document.querySelector(
       `[data-question-id="${inputId}"]`
     );
-    let existingDataList = document.querySelector(
-      `[data-question-id="${inputId}"] textarea`
-    ).textContent
-    existingDataList = existingDataList === '' ? [] : JSON.parse(existingDataList) 
     if (choosedInput && window.location.href.includes(process_url)) {
-      let dataList = existingDataList || [];
+      let dataList = [];
       let dataInEdition = null;
 
-    const newForm = document.createElement("proposal-form");
+      const newForm = document.createElement("proposal-form");
       newForm.classList.add("form-container");
       newForm.innerHTML = `
     <section id="form-container">
@@ -478,44 +473,22 @@
       // Função para preencher o formulário com os dados existentes
       function populateForm(data) {
         document.getElementById("title").value = data.title;
-        document.getElementById("identify-challenge").value = data.identify_challenge;
+        document.getElementById("identify-challenge").value =
+          data.identify_challenge;
         document.getElementById("describe").value = data.describe;
         document.getElementById("identify-entity").value = data.identify_entity;
 
-        document.querySelector(`input[name="radio"][value="${data.axle}"]`).checked = true;
+        document.querySelector(
+          `input[name="radio"][value="${data.axle}"]`
+        ).checked = true;
 
         const addBtn = document.getElementById("add-proposal");
-        addBtn.innerHTML = '<i class="fas fa-pen mr3" aria-hidden="true"></i> Salvar Edição';
+        addBtn.innerHTML =
+          '<i class="fas fa-pen mr3" aria-hidden="true"></i> Salvar Edição';
         addBtn.disabled = false;
 
         updateList();
       }
-
-      // Adicionar um evento de clique para cada item na lista existente
-      existingDataList.forEach((data, index) => {
-        const li = document.createElement("li");
-        li.classList = ["add-list li"];
-        li.innerHTML = `<label class="form-title">${data.title}</label>`;
-
-        const editButton = document.createElement("button");
-        editButton.classList = ["br-button circle terciary"];
-        editButton.innerHTML = '<i class="fas fa-pen fa-solid" aria-hidden="true">';
-        editButton.addEventListener("click", () => {
-          if (confirm("Deseja parar de criar uma nova proposta e editar uma existente?")) {
-            dataInEdition = index;
-            populateForm(data);
-          }
-        });
-
-        const deleteButton = document.createElement("button");
-        deleteButton.classList = ["br-button circle terciary"];
-        deleteButton.innerHTML = '<i class="fas fa-xmark fa-solid" aria-hidden="true">';
-        deleteButton.addEventListener("click", () => confirmsDeletion(index));
-
-        li.appendChild(editButton);
-        li.appendChild(deleteButton);
-        ul.appendChild(li);
-      });
 
       function updateList() {
         const ul = document.getElementById("proposal-ul");
@@ -715,7 +688,9 @@
     ) {
       const cardContent = document.querySelector(".card__content");
       const registerSeparator = document.querySelector(".register__separator");
-      const loginText = document.querySelector('.columns.large-8.large-centered.text-center.page-title p');
+      const loginText = document.querySelector(
+        ".columns.large-8.large-centered.text-center.page-title p"
+      );
       const shadowRow = document.querySelector(
         ".columns.large-6.medium-centered"
       );
@@ -892,28 +867,37 @@
         if (assembliesLi) removeElement(assembliesLi.parentElement);
       } else if (window.location.href.includes("/processes/ENGD")) {
         var allElements = document.querySelectorAll("*:not(script):not(style)");
-        var respond_comment_button = document.querySelectorAll('.comment__reply.muted-link');
-        respond_comment_button.forEach(btn => btn.remove());
+        var respond_comment_button = document.querySelectorAll(
+          ".comment__reply.muted-link"
+        );
+        respond_comment_button.forEach((btn) => btn.remove());
 
-        var targetNodes = document.querySelectorAll('.comments');
+        var targetNodes = document.querySelectorAll(".comments");
 
         if (targetNodes.length) {
-            var config = { childList: true, subtree: true, characterData: true, attributes: true };
-            var observers = [];
+          var config = {
+            childList: true,
+            subtree: true,
+            characterData: true,
+            attributes: true,
+          };
+          var observers = [];
 
-            targetNodes.forEach(function (targetNode) {
-                var observer = new MutationObserver(function (mutations) {
-                    mutations.forEach(function (mutation) {
-                        var respondCommentButtons = targetNode.querySelectorAll('.comment__reply.muted-link');
-                        if (respondCommentButtons.length) {
-                            respondCommentButtons.forEach(btn => btn.remove());
-                        }
-                    });
-                });
-
-                observer.observe(targetNode, config);
-                observers.push(observer);
+          targetNodes.forEach(function (targetNode) {
+            var observer = new MutationObserver(function (mutations) {
+              mutations.forEach(function (mutation) {
+                var respondCommentButtons = targetNode.querySelectorAll(
+                  ".comment__reply.muted-link"
+                );
+                if (respondCommentButtons.length) {
+                  respondCommentButtons.forEach((btn) => btn.remove());
+                }
+              });
             });
+
+            observer.observe(targetNode, config);
+            observers.push(observer);
+          });
         }
 
         // Função para substituir o texto em um elemento
@@ -1148,16 +1132,19 @@
         const header_title_conjuv = document.querySelector(".header-title");
         const header_link = document.querySelector(".header-info a");
 
-        header_title_conjuv.textContent = "Conferência Nacional de Juventude"
-        header_link.href = "https://brasilparticipativo.presidencia.gov.br/assemblies/confjuv4/f/34/"
+        header_title_conjuv.textContent = "Conferência Nacional de Juventude";
+        header_link.href =
+          "https://brasilparticipativo.presidencia.gov.br/assemblies/confjuv4/f/34/";
       }
 
       if (isConsea()) {
         const header_title_consea = document.querySelector(".header-title");
         const header_link = document.querySelector(".header-info a");
 
-        header_title_consea.textContent = "Conferência Nacional de Segurança Alimentar e Nutricional"
-        header_link.href = "https://brasilparticipativo.presidencia.gov.br/assemblies/cnsan6/f/41/"
+        header_title_consea.textContent =
+          "Conferência Nacional de Segurança Alimentar e Nutricional";
+        header_link.href =
+          "https://brasilparticipativo.presidencia.gov.br/assemblies/cnsan6/f/41/";
       }
 
       const originalMenu = document.querySelector(".process-nav");
@@ -3999,8 +3986,14 @@
   }
 </script>
 
-<link rel="stylesheet" href="https://cdngovbr-ds.estaleiro.serpro.gov.br/design-system/fonts/rawline/css/rawline.css" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+<link
+  rel="stylesheet"
+  href="https://cdngovbr-ds.estaleiro.serpro.gov.br/design-system/fonts/rawline/css/rawline.css"
+/>
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+/>
 
 <style type="text/css">
   @import url("https://fonts.cdnfonts.com/css/rawline");
@@ -4232,7 +4225,10 @@
   }
 
   div.columns.large-12 div.section.images h3.section-heading,
-  div.columns.large-12 div.section.images .gallery.row .columns.small-6.medium-4.end {
+  div.columns.large-12
+    div.section.images
+    .gallery.row
+    .columns.small-6.medium-4.end {
     display: block;
   }
 
