@@ -1,9 +1,9 @@
 <section class="br-container-lg">
-  <img
+  <img class="full-width-image"
     src="https://brasilparticipativo.presidencia.gov.br/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBbHNyIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--fc0ad36146af41f6755918fcdef4be47c0dddcb5/SOBRE%20(Desktop)%20(1).jpg"
     alt="Banner do Brasil Participativo"
   />
-  <h1 class="about-title">Sobre o Brasil Participativo</h1>
+  <br>
   <p class="about-text">
     A Plataforma Brasil Participativo é a nova plataforma de participação social
     do governo federal, construída para que a população possa contribuir com a
@@ -46,12 +46,22 @@
 </section>
 
 <style>
-  .about-title {
-    margin-top: 1.5rem;
+  .br-container-lg {
+    position: relative;
+    width: 100vw;
+    height: auto;
+  }
+  .full-width-image {
+    max-width: 120%;
+    width: 200%;
+    margin-left: -10%; 
+    height: auto;
+    display: block;
   }
   .about-text {
     color: #555555;
     font-size: 1.2rem;
+    margin-top: 1.5rem;
   }
   .none {
     display: none;
