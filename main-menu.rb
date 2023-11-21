@@ -33,7 +33,7 @@
         {
           "id"=> "ppa-propostas",
           "href"=> "/processes/programas/f/2/",
-          "label"=> "Propostas priorizadas",
+          "label"=> "Propostas mais votadas",
           "is_visible"=> true
         },
         {

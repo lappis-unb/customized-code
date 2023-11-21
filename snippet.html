@@ -865,7 +865,8 @@
           '.process-nav__link a[href="/assemblies"]'
         );
         if (assembliesLi) removeElement(assembliesLi.parentElement);
-      } else if (window.location.href.includes("/processes/ENGD")) {
+      }
+      else if (window.location.href.includes("/processes/ENGD")) {
         var allElements = document.querySelectorAll("*:not(script):not(style)");
         var respond_comment_button = document.querySelectorAll(
           ".comment__reply.muted-link"
@@ -956,6 +957,43 @@
         navbarUl.appendChild(
           createLi("Avaliação da Oficina", `/processes/ENGD/f/27`)
         );
+      } else if (window.location.href.includes("/processes/YYY") {
+        var allElements = document.querySelectorAll("*:not(script):not(style)");
+        function replaceText(node) {
+          if (node.nodeType === Node.TEXT_NODE) {
+            node.textContent = node.textContent.replace(
+              /propostas/g,
+              "recomendações"
+            );
+            node.textContent = node.textContent.replace(
+              /proposta/g,
+              "recomendação"
+            );
+            node.textContent = node.textContent.replace(
+              /Propostas/g,
+              "Recomendações"
+            );
+            node.textContent = node.textContent.replace(
+              /Proposta/g,
+              "Recomendação"
+            );
+          }
+        }
+
+        // Itera sobre todos os elementos de texto e substitui o conteúdo
+        for (var i = 0; i < allElements.length; i++) {
+          var walker = document.createTreeWalker(
+            allElements[i],
+            NodeFilter.SHOW_TEXT,
+            null,
+            false
+          );
+          var node;
+
+          while ((node = walker.nextNode())) {
+            replaceText(node);
+          }
+        }
       } else {
         navbarUl.remove();
       }
