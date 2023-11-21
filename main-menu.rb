@@ -106,6 +106,12 @@
               "is_visible"=> true
             },
             {
+              "id"=> "seguranca-alimentar-comunicados",
+              "href"=> "/assemblies/cnsan6/f/62/",
+              "label"=> "Comunicados",
+              "is_visible"=> true
+            },
+            {
               "id"=> "seguranca-alimentar-etapas",
               "href"=> "/assemblies/cnsan6/f/18",
               "label"=> "Etapas",
