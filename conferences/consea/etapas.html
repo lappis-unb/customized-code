@@ -1,27 +1,26 @@
 <section class="br-container">
-    <p class="title-container">
-        A 6ª Conferência Nacional de Segurança Alimentar e Nutricional será
-        precedida de Conferências Estaduais e do Distrito Federal, Municipais
-        e/ou Regionais ou Territoriais, Conferências Livres Nacionais.
-    </p>
-    <p class="subtitle-container">
-        As etapas da 6ª CNSAN serão realizadas nos seguintes períodos:
-    </p>
-    <ul>
-        <li>
-            Conferências Municipais e/ou Regionais ou Territoriais – até 30 de
-            agosto de 2023;
-        </li>
-        <li>
-            Conferências Estaduais e do Distrito Federal – até 30 de outubro de
-            2023;
-        </li>
-        <li>Conferências Livres Nacionais – até 30 de outubro de 2023;</li>
-        <li>Encontros Temáticos Nacionais - até 30 de outubro de 2023;</li>
-        <li>Conferência Nacional - 11 a 14 de dezembro de 2023.</li>
-    </ul>
+  <p class="title-container">
+    A 6ª Conferência Nacional de Segurança Alimentar e Nutricional será
+    precedida de Conferências Estaduais e do Distrito Federal, Municipais e/ou
+    Regionais ou Territoriais, Conferências Livres Nacionais.
+  </p>
+  <p class="subtitle-container">
+    As etapas da 6ª CNSAN serão realizadas nos seguintes períodos:
+  </p>
+  <ul>
+    <li>
+      Conferências Municipais e/ou Regionais ou Territoriais – até 30 de agosto
+      de 2023;
+    </li>
+    <li>
+      Conferências Estaduais e do Distrito Federal – até 30 de outubro de 2023;
+    </li>
+    <li>Conferências Livres Nacionais – até 30 de outubro de 2023;</li>
+    <li>Encontros Temáticos Nacionais - até 30 de outubro de 2023;</li>
+    <li>Conferência Nacional - 11 a 14 de dezembro de 2023.</li>
+  </ul>
 
-    <!-- <p>
+  <!-- <p>
         Para cadastro de delegados(as) e para preencher o relatório das
         conferências, acessar os seguintes formulários:
     </p>
@@ -65,349 +64,320 @@
     </p>
     <p>Confira na agenda:</p> -->
 
-    <p>
-        Envie os relatório das etapas livres ou estaduais clicando nas opções
-        abaixo:
-    </p>
+  <p>
+    Envie os relatório das etapas livres ou estaduais clicando nas opções
+    abaixo:
+  </p>
 
-    <div class="br-scrim-util foco" id="scrimutilexample" data-scrim="true">
-      <div class="br-modal">
-        <div class="br-modal-header">Modal com scrim</div>
-        <div class="br-modal-body">
-          <p>Exemplo utilizando o componente scrim com FOCO</p>
-        </div>
-        <div class="br-modal-footer justify-content-center">
-          <button class="br-button secondary" type="button" id="scrimfechar" data-dismiss="scrimexample">Cancelar
-          </button>
-          <button class="br-button primary mt-3 mt-sm-0 ml-sm-3" type="button">Retornar
-          </button>
-        </div>
+  <section class="actions-section">
+    <button class="action-container" id="SignOpenModal" type="button">
+      <div class="action-icon-background">
+        <i class="fa-solid fa-users fa-xl"></i>
       </div>
-    </div>
+      <p class="action-text">Cadastro de Delegados</p>
+    </button>
 
-    <div class="br-scrim-util foco" id="gugabalatensa" data-scrim="true">
-      <div class="br-modal">
-        <div class="br-modal-header">Modal com scrim</div>
-        <div class="br-modal-body">
-          <p>Exemplo utilizando o componente scrim com FOCO</p>
-        </div>
-        <div class="br-modal-footer justify-content-center">
-          <button class="br-button secondary" type="button" id="scrimfechar" data-dismiss="gugabalatensa">Cancelar
-          </button>
-          <button class="br-button primary mt-3 mt-sm-0 ml-sm-3" type="button">Retornar
-          </button>
-        </div>
+    <button class="action-container" id="SignOpenReportModal" type="button">
+      <div class="action-icon-background">
+        <i class="fa-solid fa-file-signature fa-xl"></i>
       </div>
-    </div>
+      <p class="action-text">Relatório de Etapas</p>
+    </button>
+  </section>
 
-    <section class="actions-section br-container">
-            <button class="action-container" id="openReportModalButton">
-              <div class="action-icon-background">
-                  <i class="fa-solid fa-users fa-xl"></i>
-              </div>
-              <p class="action-text">Cadastro de Delegados</p>
-          </button>
-            <button class="action-container" id="openModalButton">
-                <div class="action-icon-background">
-                    <i class="fa-solid fa-file-signature fa-xl"></i>
-                </div>
-                <p class="action-text">Relatório de Etapas</p>
-          </div>
-    </section>
-
-
-
-<div class="modal" id="signModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <p>Selecione</p>
-                <button id="closeModalButton">
-                    <i class="fa-solid fa-xmark fa-xl"></i>
-                </button>
-            </div>
-            <div>
-                <a class="modal-steps" href="/assemblies/cnsan6/f/53/">
-                    <button class="modal-steps-button">
-                        <p class="modal-steps-text">Etapa Livre</p>
-                        <i class="fa-solid fa-chevron-right fa-xl"></i>
-                    </button>
-                </a>
-                <div class="divider"></div>
-                <a href="/assemblies/cnsan6/f/56/" class="modal-steps">
-                    <button class="modal-steps-button">
-                        <p class="modal-steps-text">Etapa Estadual</p>
-                        <i class="fa-solid fa-chevron-right fa-xl"></i>
-                    </button>
-                </a>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal" id="reportModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <p>Selecione:</p>
-                <button id="closeReportModalButton">
-                    <i class="fa-solid fa-xmark fa-xl"></i>
-                </button>
-            </div>
-            <div>
-                <a class="modal-steps" href="/assemblies/cnsan6/f/55/">
-                    <button class="modal-steps-button">
-                        <p class="modal-steps-text">Governo</p>
-                        <i class="fa-solid fa-chevron-right fa-xl"></i>
-                    </button>
-                </a>
-                <div class="divider"></div>
-                <a class="modal-steps" href="/assemblies/cnsan6/f/54/">
-                    <button class="modal-steps-button">
-                        <p class="modal-steps-text">Sociedade Civil</p>
-                        <i class="fa-solid fa-chevron-right fa-xl"></i>
-                    </button>
-                </a>
-                <div class="divider"></div>
-                <a class="modal-steps" href="/assemblies/cnsan6/f/57/">
-                    <button class="modal-steps-button">
-                        <p class="modal-steps-text">Conferências Livres</p>
-                        <i class="fa-solid fa-chevron-right fa-xl"></i>
-                    </button>
-                </a>
-            </div>
-        </div>
-    </div>
-
-    <p>
-        Quer saber a data, local e mais informações sobre a etapa da 6ª CNSAN
-        mais próximo de você? Confira na agenda:
-    </p>
+  <p>
+    Quer saber a data, local e mais informações sobre a etapa da 6ª CNSAN mais
+    próximo de você? Confira na agenda:
+  </p>
 </section>
+
+<section class="br-scrim-util foco" id="SignModal" data-scrim="true">
+  <div class="modal-content">
+    <div class="modal-header">
+      <p>Selecione</p>
+      <button id="closeModalButton">
+        <i class="fa-solid fa-xmark fa-xl"></i>
+      </button>
+    </div>
+    <div>
+      <a class="modal-steps" href="/assemblies/cnsan6/f/53/">
+        <button class="modal-steps-button">
+          <p class="modal-steps-text">Etapa Livre</p>
+          <i class="fa-solid fa-chevron-right fa-xl"></i>
+        </button>
+      </a>
+      <div class="divider"></div>
+      <a href="/assemblies/cnsan6/f/56/" class="modal-steps">
+        <button class="modal-steps-button">
+          <p class="modal-steps-text">Etapa Estadual</p>
+          <i class="fa-solid fa-chevron-right fa-xl"></i>
+        </button>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="br-scrim-util foco" id="ReportModal" data-scrim="true">
+  <div class="modal-content">
+    <div class="modal-header">
+      <p>Selecione:</p>
+      <button id="closeReportModalButton">
+        <i class="fa-solid fa-xmark fa-xl"></i>
+      </button>
+    </div>
+    <div>
+      <a class="modal-steps" href="/assemblies/cnsan6/f/55/">
+        <button class="modal-steps-button">
+          <p class="modal-steps-text">Governo</p>
+          <i class="fa-solid fa-chevron-right fa-xl"></i>
+        </button>
+      </a>
+      <div class="divider"></div>
+      <a class="modal-steps" href="/assemblies/cnsan6/f/54/">
+        <button class="modal-steps-button">
+          <p class="modal-steps-text">Sociedade Civil</p>
+          <i class="fa-solid fa-chevron-right fa-xl"></i>
+        </button>
+      </a>
+      <div class="divider"></div>
+      <a class="modal-steps" href="/assemblies/cnsan6/f/57/">
+        <button class="modal-steps-button">
+          <p class="modal-steps-text">Conferências Livres</p>
+          <i class="fa-solid fa-chevron-right fa-xl"></i>
+        </button>
+      </a>
+    </div>
+  </div>
+</section>
+
 <section class="actions-section br-container">
-    <a
-        class="action-container-gray"
-        href="https://app.powerbi.com/view?r=eyJrIjoiYzY3NmYyMDQtM2M0NC00NmEwLTkzMDUtZTRjZTI0ZDE4OTZjIiwidCI6ImNmODQ1NGQzLWUwMTItNGE5ZC05NWIzLTcwYmRiNmY0NTlkNSJ9"
-    > 
-        <div class="action-container-gray-container">
-          <div class="action-icon-background">
-              <i class="fa fa-solid fa-calendar fa-2xl"></i>
-          </div>
-          <p class="action-text">Agenda</p>
-        </div>
-      
-        <div class="arrow-action-icon-background">
-            <i class="fa fa-solid fa-arrow-circle-right fa-2xl"></i>
-        </div>
-    </a>
+  <a
+    class="action-container-gray"
+    href="https://app.powerbi.com/view?r=eyJrIjoiYzY3NmYyMDQtM2M0NC00NmEwLTkzMDUtZTRjZTI0ZDE4OTZjIiwidCI6ImNmODQ1NGQzLWUwMTItNGE5ZC05NWIzLTcwYmRiNmY0NTlkNSJ9"
+  >
+    <div class="action-container-gray-container">
+      <div class="action-icon-background">
+        <i class="fa fa-solid fa-calendar fa-2xl"></i>
+      </div>
+      <p class="action-text">Agenda</p>
+    </div>
+
+    <div class="arrow-action-icon-background">
+      <i class="fa fa-solid fa-arrow-circle-right fa-2xl"></i>
+    </div>
+  </a>
 </section>
 
 <style>
-    
+  .divider {
+    width: 100%;
+    border-top: 1px solid #ccc;
+    margin: 10px 0;
+  }
 
-    .divider {
-        width: 100%;
-        border-top: 1px solid #ccc;
-        margin: 10px 0;
-    }
+  .actions-section {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    text-align: center;
+    flex-wrap: wrap;
+  }
 
+  @media (min-width: 1284px) {
     .actions-section {
-        display: flex;
-        gap: 16px;
-        justify-content: center;
-        flex-direction: row;
-        align-items: center;
-        text-align: center;
-        flex-wrap: wrap;
-    }
-
-    @media (min-width: 1284px) {
-        .actions-section {
-            display: flex;
-            gap: 16px;
-            justify-content: center;
-            flex-direction: row;
-            align-items: center;
-            height: 140px;
-            text-align: center;
-        }
-    }
-
-    .action-container {
-        display: flex;
-        flex-direction: column;
-        border-radius: 16px;
-        background-color: var(--green-cool-vivid-5);
-          height: 100%;
-        align-items: center;
-        justify-content: start;
-        gap: 8px;
-        text-align: center;
-        padding: 16px;
-        flex-grow: 1;
-        margin : 1rem 0;
-        width:250px;
-    }
-    
-    .action-container-gray {
-        display: flex;
-        flex-direction: row;
-        border-radius: 16px;
-        background-color: var(--gray-4);
-        max-width: 500px;
-        height: 80px;
-        align-items: center;
-        justify-content: space-between;
-        gap: 8px;
-        text-align: start;
-        padding: 16px;
-        flex-grow: 1;
-    }
-
-    .action-container-gray-container{
       display: flex;
+      gap: 16px;
+      justify-content: center;
       flex-direction: row;
       align-items: center;
-      gap: 8px;
+      height: 140px;
+      text-align: center;
     }
-    .action-container-gray-container p{
-      font-size: 1.26rem;
-      font-weight: 600;
+  }
 
-    }
-    .action-icon-background {
-        background-color: var(--green-cool-vivid-50);
-        color: #fff;
-        text-align: left;
-        width: 60px;
-        height: 60px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 50%;
-    }
+  .action-container {
+    display: flex;
+    flex-direction: column;
+    border-radius: 16px;
+    background-color: var(--green-cool-vivid-5);
+    width: 180px;
+    height: 100%;
+    align-items: center;
+    justify-content: start;
+    gap: 8px;
+    text-align: center;
+    padding: 16px;
+    flex-grow: 1;
+    margin: 1em, 0;
+    width: 250px;
+    max-width: 250px;
+  }
 
-    .action-text {
-        color: var(--color-secondary-08);
-        margin: 0px;
-        font-weight: 600;
-        text-align: left;
-    }
+  .action-container-gray {
+    display: flex;
+    flex-direction: row;
+    border-radius: 16px;
+    background-color: var(--gray-4);
+    max-width: 500px;
+    height: 80px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    text-align: start;
+    padding: 16px;
+    flex-grow: 1;
+  }
 
-    .arrow-action-icon-background {
-        color: var(--gray-60);
-    }
-    .title-container {
-        font-size: 18px;
-    }
-    .subtitle-container {
-        font-weight: bold;
-    }
-    .modal {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
-    }
+  .action-container-gray-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+  }
+  .action-container-gray-container p {
+    font-size: 1.26rem;
+    font-weight: 600;
+  }
+  .action-icon-background {
+    background-color: var(--green-cool-vivid-50);
+    color: #fff;
+    text-align: left;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+  }
 
+  .action-text {
+    color: var(--color-secondary-08);
+    margin: 0px;
+    font-weight: 600;
+    text-align: left;
+  }
+
+  .arrow-action-icon-background {
+    color: var(--gray-60);
+  }
+  .title-container {
+    font-size: 18px;
+  }
+  .subtitle-container {
+    font-weight: bold;
+  }
+  .modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  .modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    width: 80%;
+    padding: 0 0 8px 0;
+  }
+
+  @media (min-width: 1284px) {
     .modal-content {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background-color: #fff;
-        width: 80%;
-        padding: 0 0 8px 0;
+      width: 50%;
     }
+  }
 
-    @media (min-width: 1284px) {
-        .modal-content {
-            width: 50%;
-        }
-    }
+  .modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px;
+  }
+  .modal-header p {
+    display: inline-flex;
+    align-items: center;
+    font-weight: bold;
+    font-size: 16px;
+    margin: 0;
+  }
 
-    .modal-header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 16px;
-    }
-    .modal-header p {
-        display: inline-flex;
-        align-items: center;
-        font-weight: bold;
-        font-size: 16px;
-        margin: 0;
-    }
+  .modal-header button {
+    cursor: pointer;
+  }
 
-    .modal-header button {
-        cursor: pointer;
-    }
+  .modal-steps {
+    display: flex;
+    flex-direction: column;
+  }
+  .modal-steps-button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    padding: 16px;
+    color: var(--gree-60);
+    cursor: pointer;
+    outline: none;
+  }
+  .modal-steps-button i {
+    color: var(--green-vivid-60);
+  }
 
-    .modal-steps {
-        display: flex;
-        flex-direction: column;
-    }
-    .modal-steps-button {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        flex-direction: row;
-        padding: 16px;
-        color: var(--gree-60);
-        cursor: pointer;
-        outline: none;
-    }
-    .modal-steps-button i {
-        color: var(--green-vivid-60);
-    }
-
-    .modal-steps-text {
-        font-size: 16px;
-        line-height: 1.2;
-        margin: 0;
-    }
+  .modal-steps-text {
+    font-size: 16px;
+    line-height: 1.2;
+    margin: 0;
+  }
 </style>
 
 <script>
-    const openModalButton = document.getElementById("openModalButton");
-    const closeModalButton = document.getElementById("closeModalButton");
-
-    const signModal = document.getElementById("signModal");
-    const reportModal = document.getElementById("reportModal");
-
-    openModalButton.addEventListener("click", () => {
-        signModal.style.display = "block";
+  const modal = window.document.getElementById("SignModal");
+  for (const openSignModalButton of window.document.querySelectorAll(
+    "#SignOpenModal"
+  )) {
+    openSignModalButton.addEventListener("click", () => {
+      modal.style.display = "block";
     });
-
-    closeModalButton.addEventListener("click", () => {
-        signModal.style.display = "none";
+  }
+  for (const closeSignModalButton of window.document.querySelectorAll(
+    "#closeModalButton"
+  )) {
+    closeSignModalButton.addEventListener("click", () => {
+      modal.style.display = "none";
     });
+  }
+  window.addEventListener("click", (event) => {
+    if (event.target === SignModal) {
+      SignModal.style.display = "none";
+    }
+  });
 
-    window.addEventListener("click", (event) => {
-        if (event.target === signModal) {
-            signModal.style.display = "none";
-        }
-    });
-
-    const openReportModalButton = document.getElementById(
-        "openReportModalButton"
-    );
-    const closeReportModalButton = document.getElementById(
-        "closeReportModalButton"
-    );
-
+  const reportModal = window.document.getElementById("ReportModal");
+  for (const openReportModalButton of window.document.querySelectorAll(
+    "#SignOpenReportModal"
+  )) {
     openReportModalButton.addEventListener("click", () => {
-        reportModal.style.display = "block";
+      reportModal.style.display = "block";
     });
+  }
 
+  for (const closeReportModalButton of window.document.querySelectorAll(
+    "#closeReportModalButton"
+  )) {
     closeReportModalButton.addEventListener("click", () => {
-        reportModal.style.display = "none";
+      reportModal.style.display = "none";
     });
-
-    window.addEventListener("click", (event) => {
-        if (event.target === reportModal) {
-            reportModal.style.display = "none";
-        }
-    });
+  }
+  window.addEventListener("click", (event) => {
+    if (event.target === ReportModal) {
+      ReportModal.style.display = "none";
+    }
+  });
 </script>
