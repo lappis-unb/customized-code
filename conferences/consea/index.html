@@ -138,6 +138,96 @@
   </p>
 </section>
 
+<section class="actions-section-button br-container">
+  <a class="action-container-button" href="/assemblies/delegacnsan6/f/65/">
+      <div class="action-icon-background-button">
+          <i class="fa-solid fa-users fa-2xl"></i>
+      </div>
+      <p class="action-text-button">Área de Delegados</p>
+  </a>
+  <a class="action-container-button" href="#">
+      <div class="action-icon-background-button">
+          <i class="fa-solid fa-address-card fa-2xl"></i>
+      </div>
+      <p class="action-text-button">Credenciamento</p>
+  </a>
+  <a class="action-container-button" href="/assemblies/cnsan6/f/39/">
+      <div class="action-icon-background-button">
+          <i class="fa-solid fa-bullhorn fa-2xl"></i>
+      </div>
+      <p class="action-text-button">Documento</p>
+  </a>
+  <a class="action-container-button" href="/assemblies/cnsan6/f/40/">
+      <div class="action-icon-background-button">
+          <i class="fa-solid fa-question fa-2xl"></i>
+      </div>
+      <p class="action-text-button">Perguntas frequentes</p>
+  </a>
+</section>
+
+<style>
+  .actions-section-button {
+      display: flex;
+      gap: 16px;
+      flex-direction: row;
+      align-items: center;
+      text-align: center;
+      flex-wrap: wrap;
+      margin: 2rem auto;
+  }
+
+  @media (min-width: 1284px) {
+      .actions-section-button {
+          display: flex;
+          gap: 16px;
+          justify-content: center;
+          flex-direction: row;
+          align-items: center;
+          height: 140px;
+          margin: 2rem auto;
+          text-align: center;
+      }
+  }
+
+  .action-container-button {
+      display: flex;
+      flex-direction: column;
+      border-radius: 16px;
+      background-color: var(--green-cool-vivid-5);
+      width: 180px;
+      height: 100%;
+      align-items: center;
+      justify-content: start;
+      gap: 8px;
+      text-align: center;
+      padding: 16px;
+      flex-grow: 1;
+  }
+
+  .action-container-button:hover {
+    background-color: var(--green-cool-vivid-10);
+  }
+
+  .action-icon-background-button {
+      background-color: var(--green-cool-vivid-50);
+      color: #fff;
+      text-align: left;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+  }
+
+  .action-text-button {
+      color: var(--color-secondary-08);
+      margin: 0px;
+      font-weight: 600;
+      text-align: left;
+  }
+</style>
+
 <section class="br-container">
   <h1>Eixos Temáticos</h1>
   <div class="br-tab">
@@ -809,7 +899,7 @@
 
   .news-card__list {
     display: flex;
-    height: 410px;
+    height: 350px;
     flex-direction: row;
     gap: 0 3rem;
     overflow: hidden;

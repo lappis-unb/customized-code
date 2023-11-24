@@ -722,6 +722,11 @@
     });
   })();
 
+  function removeHelperFloating() {
+    const helper = document.querySelector(".floating-helper-container");
+    if (helper) helper.remove();
+  }
+
   function capitalizarOnBlur(elementId) {
     let element = document.getElementById(elementId);
     if (element != undefined && element != null) {
@@ -865,8 +870,43 @@
           '.process-nav__link a[href="/assemblies"]'
         );
         if (assembliesLi) removeElement(assembliesLi.parentElement);
-      }
-      else if (window.location.href.includes("/processes/ENGD")) {
+      } else if (window.location.pathname === "/assemblies/mercosulsocial") {
+        function addImageInWrapper() {
+          var imgElement = document.createElement("img");
+          imgElement.src =
+            "https://brasilparticipativo.presidencia.gov.br/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBdUJUIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--ab7ba193c3d5b5145861d9228d18bd7cd3ea5bc2/mercosul_img.jpeg";
+          imgElement.alt = "Mercosul Banner";
+
+          var containerDiv = document.createElement("div");
+          containerDiv.classList.add("br-container-lg");
+
+          containerDiv.style.marginBottom = "32px";
+          containerDiv.style.display = "flex";
+          containerDiv.style.justifyContent = "center";
+
+          containerDiv.appendChild(imgElement);
+
+          var wrapperElement = document.querySelector(".wrapper");
+
+          if (wrapperElement) {
+            wrapperElement.insertBefore(
+              containerDiv,
+              wrapperElement.firstChild
+            );
+          } else {
+            console.error("Elemento wrapper não encontrado.");
+          }
+
+          const images = document.querySelector(".section.images");
+          images.remove();
+          const menu_nav = document.querySelector(".process-nav");
+          if (menu_nav) {
+            menu_nav.remove();
+          }
+        }
+
+        addImageInWrapper();
+      } else if (window.location.href.includes("/processes/ENGD")) {
         var allElements = document.querySelectorAll("*:not(script):not(style)");
         var respond_comment_button = document.querySelectorAll(
           ".comment__reply.muted-link"
@@ -957,26 +997,59 @@
         navbarUl.appendChild(
           createLi("Avaliação da Oficina", `/processes/ENGD/f/27`)
         );
-      } else if (window.location.href.includes("/processes/YYY") {
+      } else if (window.location.pathname === "/amends/new") {
+        const title_form = document.querySelector(
+          'label[for="amendment_emendation_params_title"]'
+        );
+        if (title_form) {
+          title_form.remove();
+        }
+      } else if (window.location.href.includes("/assemblies/delegacnsan6")) {
+        if (window.location.pathname === "/assemblies/delegacnsan6") {
+          window.location.href =
+            "https://brasilparticipativo.presidencia.gov.br/assemblies/delegacnsan6/f/65/";
+        } else if (
+          window.location.pathname === "/assemblies/delegacnsan6/f/68/proposals"
+        ) {
+          var novoElementoHTML =
+            '<div class="header-container br-container-lg"><div class="m-bottom"><a class="small hollow" href="/assemblies/delegacnsan6/f/65/" data-asw-orgfontsize="16" style="font-size:16px"><svg aria-label="chevron-left" role="img" aria-hidden="true" class="icon--chevron-left icon icon--small"><title>chevron-left</title><use href="/decidim-packs/media/images/icons-c4fd0f43651700b0c768.svg#icon-chevron-left"></use></svg>Voltar</a></div></div>';
+
+          var wrapperElement = document.querySelector(".wrapper");
+
+          if (wrapperElement) {
+            wrapperElement.innerHTML =
+              novoElementoHTML + wrapperElement.innerHTML;
+          }
+        } else if (
+          window.location.pathname ===
+            "/assemblies/delegacnsan6/f/66/proposals" ||
+          window.location.pathname === "/assemblies/delegacnsan6/f/68/proposals"
+        ) {
+          const comments_card = document.querySelector(
+            ".add-comment .section-heading"
+          );
+          if (comments_card) {
+            comments_card.textContent =
+              "Comente para indicar se deseja ser co-autor/a desta moção";
+          }
+          var novoElementoHTML =
+            '<div class="header-container br-container-lg"><div class="m-bottom"><a class="small hollow" href="/assemblies/delegacnsan6/f/65/" data-asw-orgfontsize="16" style="font-size:16px"><svg aria-label="chevron-left" role="img" aria-hidden="true" class="icon--chevron-left icon icon--small"><title>chevron-left</title><use href="/decidim-packs/media/images/icons-c4fd0f43651700b0c768.svg#icon-chevron-left"></use></svg>Voltar</a></div></div>';
+
+          var wrapperElement = document.querySelector(".wrapper");
+
+          if (wrapperElement) {
+            wrapperElement.innerHTML =
+              novoElementoHTML + wrapperElement.innerHTML;
+          }
+        }
+
         var allElements = document.querySelectorAll("*:not(script):not(style)");
         function replaceText(node) {
           if (node.nodeType === Node.TEXT_NODE) {
-            node.textContent = node.textContent.replace(
-              /propostas/g,
-              "recomendações"
-            );
-            node.textContent = node.textContent.replace(
-              /proposta/g,
-              "recomendação"
-            );
-            node.textContent = node.textContent.replace(
-              /Propostas/g,
-              "Recomendações"
-            );
-            node.textContent = node.textContent.replace(
-              /Proposta/g,
-              "Recomendação"
-            );
+            node.textContent = node.textContent.replace(/propostas/g, "moções");
+            node.textContent = node.textContent.replace(/proposta/g, "moção");
+            node.textContent = node.textContent.replace(/Propostas/g, "Moções");
+            node.textContent = node.textContent.replace(/Proposta/g, "Moção");
           }
         }
 
@@ -993,6 +1066,14 @@
           while ((node = walker.nextNode())) {
             replaceText(node);
           }
+        }
+        const metric_filter = document.querySelector(".filter-container");
+        if (metric_filter) {
+          metric_filter.remove();
+        }
+        const menu_nav = document.querySelector(".process-nav");
+        if (menu_nav) {
+          menu_nav.remove();
         }
       } else {
         navbarUl.remove();
@@ -4283,5 +4364,9 @@
   #statistics {
     background: var(--gray-2);
     padding: 1.5rem 1rem;
+  }
+
+  .see-index-container {
+    justify-content: flex-start;
   }
 </style>
