@@ -873,6 +873,11 @@
         );
         respond_comment_button.forEach((btn) => btn.remove());
 
+        respond_comment_button.forEach((btn) => btn.remove());
+
+        var opinionToggleButton = document.querySelector(".opinion-toggle"); 
+        if (opinionToggleButton) { opinionToggleButton.remove(); }
+
         var targetNodes = document.querySelectorAll(".comments");
 
         if (targetNodes.length) {
@@ -892,6 +897,10 @@
                 );
                 if (respondCommentButtons.length) {
                   respondCommentButtons.forEach((btn) => btn.remove());
+                }
+                var voteCommentButton = targetNode.querySelectorAll( ".comment__footer" ); 
+                if (voteCommentButton.length) { 
+                  voteCommentButton.forEach((btn) => btn.remove()); 
                 }
               });
             });
@@ -957,7 +966,7 @@
         navbarUl.appendChild(
           createLi("Avaliação da Oficina", `/processes/ENGD/f/27`)
         );
-      } else if (window.location.href.includes("/processes/YYY") {
+      } else if (window.location.href.includes("/processes/YYY")) {
         var allElements = document.querySelectorAll("*:not(script):not(style)");
         function replaceText(node) {
           if (node.nodeType === Node.TEXT_NODE) {
@@ -994,6 +1003,8 @@
             replaceText(node);
           }
         }
+      } else if(window.location.href.includes("/processes/ENGD/f/71")) {
+        handleCommentsByParagraph();
       } else {
         navbarUl.remove();
       }
@@ -3975,6 +3986,35 @@
       wrapper.appendChild(item);
       pageContent.appendChild(wrapper);
     });
+  }
+  function handleCommentsByParagraph() {
+    const text = document.getElementById("proposals-text");
+    const textChildren = Array.from(text.children);
+
+    console.log(textChildren);
+
+    if (textChildren.length > 0) {
+        textChildren.forEach(child => {
+            // Verificar si el hijo es un enlace "a"
+            if (child.tagName.toLowerCase() === 'a') {
+                const editorDisplay = child.querySelector('.ql-editor-display');
+                
+                if (editorDisplay) {
+                    const paragraph = editorDisplay.querySelector('p');
+
+                    // Verificar si el párrafo existe y el texto no comienza con "$" o "Art"
+                    if (paragraph && !paragraph.textContent.startsWith('$') && !paragraph.textContent.startsWith('Art')) {
+                        const itemActions = editorDisplay.querySelector('.item-actions');
+                        
+                        // Verificar si la "div" con la clase "item-actions" existe y eliminarla
+                        if (itemActions) {
+                            itemActions.remove();
+                        }
+                    }
+                }
+            }
+        });
+    }
   }
   function onContentClick(arrayitem, element, pageContent) {
     const result = getItemById(arrayitem.id, element.srcElement.id);
