@@ -206,17 +206,17 @@
       </div>
     </div>
   </div>`;
-    if (processHeader) processHeader.appendChild(menuConfConseaDesk);
+    //if (processHeader) processHeader.appendChild(menuConfConseaDesk);
   };
 
   const updateMenuConfJuv = () => {
     var menuBody = document.querySelector("nav.menu-body");
 
     // Remova todos os links existentes dentro do elemento <nav class="menu-body">
-    var links = menuBody.querySelectorAll("a.menu-item");
-    for (var i = links.length - 1; i >= 0; i--) {
-      links[i].remove();
-    }
+    // var links = menuBody.querySelectorAll("a.menu-item");
+    // for (var i = links.length - 1; i >= 0; i--) {
+    //   links[i].remove();
+    // }
 
     const confJuvLinks = [
       {
@@ -245,14 +245,14 @@
       },
     ];
 
-    confJuvLinks.forEach((link) => {
-      let newAboutLinkMenu = document.createElement("a");
-      newAboutLinkMenu.className = "menu-item divider";
-      newAboutLinkMenu.href = link.href;
-      newAboutLinkMenu.innerHTML = `<span class="content">${link.name}</span>`;
-      let menuBody = document.querySelector("nav.menu-body");
-      menuBody.appendChild(newAboutLinkMenu);
-    });
+    // confJuvLinks.forEach((link) => {
+    //   let newAboutLinkMenu = document.createElement("a");
+    //   newAboutLinkMenu.className = "menu-item divider";
+    //   newAboutLinkMenu.href = link.href;
+    //   newAboutLinkMenu.innerHTML = `<span class="content">${link.name}</span>`;
+    //   let menuBody = document.querySelector("nav.menu-body");
+    //   menuBody.appendChild(newAboutLinkMenu);
+    // });
 
     const processHeader = document.querySelector(".process-header");
     let menuConfJuvDesk = document.createElement("div");
@@ -302,7 +302,7 @@
       </div>
     </div>
   </div>`;
-    if (processHeader) processHeader.appendChild(menuConfJuvDesk);
+  // if (processHeader) processHeader.appendChild(menuConfJuvDesk);
   };
 
   // Salva o conteudo da pagina inicial e retorna a variavel
@@ -719,6 +719,25 @@
       getDataForm();
       showCreateProfileLink();
       removeSecondProductionLogin();
+
+      function updateContentMarginTop() {
+        const header = document.querySelector("#br-header");
+        const menu = document.querySelector("#process-nav-content");
+        const content = document.querySelector("#content");
+        const wrapper = document.querySelector("#content > .wrapper");
+        if (header) {
+          if (content) {
+            content.style.marginTop = (header.offsetHeight - 2) + "px";
+          }
+          if (menu && content) {
+            menu.style.top = (header.offsetHeight - 2) + "px";
+            wrapper.style.marginTop = menu.offsetHeight + "px";
+          }
+        }
+      }
+
+      updateContentMarginTop();
+      window.addEventListener("resize", updateContentMarginTop);
     });
   })();
 
@@ -791,7 +810,15 @@
         }
       });
     }
-    deleteLiProcessNav();
+    //deleteLiProcessNav();
+    if (window.location.pathname === "/amends/new") {
+      const title_form = document.querySelector(
+        'label[for="amendment_emendation_params_title"]'
+      );
+      if (title_form) {
+        title_form.remove();
+      }
+    }
     if (navbarUl) {
       if (isOnConferenceDomain()) {
         let items;
@@ -1006,33 +1033,18 @@
         navbarUl.appendChild(
           createLi("Avaliação da Oficina", `/processes/ENGD/f/27`)
         );
-      } else if (window.location.pathname === "/amends/new") {
-        const title_form = document.querySelector(
-          'label[for="amendment_emendation_params_title"]'
-        );
-        if (title_form) {
-          title_form.remove();
-        }
       } else if (window.location.href.includes("/assemblies/delegacnsan6")) {
+        const id0 = '65';
+        const id1 = '66';
+        const id2 = '68';
+        
         if (window.location.pathname === "/assemblies/delegacnsan6") {
           window.location.href =
-            "https://brasilparticipativo.presidencia.gov.br/assemblies/delegacnsan6/f/65/";
-        } else if (
-          window.location.pathname === "/assemblies/delegacnsan6/f/68/proposals"
-        ) {
-          var novoElementoHTML =
-            '<div class="header-container br-container-lg"><div class="m-bottom"><a class="small hollow" href="/assemblies/delegacnsan6/f/65/" data-asw-orgfontsize="16" style="font-size:16px"><svg aria-label="chevron-left" role="img" aria-hidden="true" class="icon--chevron-left icon icon--small"><title>chevron-left</title><use href="/decidim-packs/media/images/icons-c4fd0f43651700b0c768.svg#icon-chevron-left"></use></svg>Voltar</a></div></div>';
-
-          var wrapperElement = document.querySelector(".wrapper");
-
-          if (wrapperElement) {
-            wrapperElement.innerHTML =
-              novoElementoHTML + wrapperElement.innerHTML;
-          }
+            `https://brasilparticipativo.presidencia.gov.br/assemblies/delegacnsan6/f/${id0}/`;
         } else if (
           window.location.pathname ===
-            "/assemblies/delegacnsan6/f/66/proposals" ||
-          window.location.pathname === "/assemblies/delegacnsan6/f/68/proposals"
+            `/assemblies/delegacnsan6/f/${id1}/proposals` ||
+          window.location.pathname === `/assemblies/delegacnsan6/f/${id2}/proposals`
         ) {
           const comments_card = document.querySelector(
             ".add-comment .section-heading"
@@ -1042,7 +1054,7 @@
               "Comente para indicar se deseja ser co-autor/a desta moção";
           }
           var novoElementoHTML =
-            '<div class="header-container br-container-lg"><div class="m-bottom"><a class="small hollow" href="/assemblies/delegacnsan6/f/65/" data-asw-orgfontsize="16" style="font-size:16px"><svg aria-label="chevron-left" role="img" aria-hidden="true" class="icon--chevron-left icon icon--small"><title>chevron-left</title><use href="/decidim-packs/media/images/icons-c4fd0f43651700b0c768.svg#icon-chevron-left"></use></svg>Voltar</a></div></div>';
+            `<div class="header-container br-container-lg"><div class="m-bottom"><a class="small hollow" href="/assemblies/delegacnsan6/f/${id0}/" data-asw-orgfontsize="16" style="font-size:16px"><svg aria-label="chevron-left" role="img" aria-hidden="true" class="icon--chevron-left icon icon--small"><title>chevron-left</title><use href="/decidim-packs/media/images/icons-c4fd0f43651700b0c768.svg#icon-chevron-left"></use></svg>Voltar</a></div></div>`;
 
           var wrapperElement = document.querySelector(".wrapper");
 
@@ -1085,7 +1097,7 @@
           menu_nav.remove();
         }
       } else {
-        navbarUl.remove();
+        //navbarUl.remove();
       }
     }
 
@@ -1226,35 +1238,14 @@
     row.innerHTML += button2HTML;
   }
 
-  function updateContentMarginTop() {
-    const header = document.querySelector("#br-header");
-    const menu = document.querySelector(".process-nav");
-    const content = document.querySelector("#content");
-    const banner = document.querySelector(".omnipresent-banner");
-
-    let marginTotal = "";
-    if (menu) {
-      marginTotal = header.offsetHeight + menu.offsetHeight;
-      menu.style.top = header.offsetHeight + "px";
-    } else {
-      marginTotal = header.offsetHeight;
-    }
-
-    if (banner) {
-      banner.style.marginTop = marginTotal + "px";
-    } else if (content) {
-      content.style.marginTop = marginTotal + "px";
-    }
-  }
-
   function insertConferenceElements() {
     if (isOnPlatformLogin()) {
       const bar = document.getElementsByClassName("flash callout alert")[0];
       if (bar) bar.style.display = "none";
     }
     if (isOnConferenceDomain()) {
-      if (isJuventude()) updateMenuConfJuv();
-      else if (isConsea()) updateMenuConfConsea();
+      // if (isJuventude()) updateMenuConfJuv();
+      // else if (isConsea()) updateMenuConfConsea();
 
       if (isJuventude()) {
         const header_title_conjuv = document.querySelector(".header-title");
@@ -1275,8 +1266,8 @@
           "https://brasilparticipativo.presidencia.gov.br/assemblies/cnsan6/f/41/";
       }
 
-      const originalMenu = document.querySelector(".process-nav");
-      if (originalMenu) originalMenu.remove();
+      // const originalMenu = document.querySelector(".process-nav");
+      // if (originalMenu) originalMenu.remove();
       const hero = document.querySelector(".extended");
       const hero__container = document.querySelector(".hero__container");
       const dateRow = hero__container?.getElementsByClassName("row");
@@ -3311,7 +3302,6 @@
         if (hero__container) hero__container?.remove();
       }
     }
-    updateContentMarginTop();
   }
 
   function modifyShareButton() {
@@ -4235,11 +4225,6 @@
     .main-container__content {
       padding: 0 1.5rem;
     }
-
-    .process-nav ul {
-      white-space: wrap;
-      flex-grow: 0;
-    }
   }
 
   /* INICIAL PAGE */
@@ -4247,14 +4232,6 @@
   .wrapper {
     background: var(---white);
     min-height: calc(100vh - 140px - 214px);
-  }
-
-  .process-nav li {
-    padding: 8px 24px;
-  }
-
-  .process-nav {
-    display: block;
   }
 
   .suporters_container,
@@ -4342,15 +4319,7 @@
     margin: 0 auto;
   }
 
-  #content .process-header {
-    display: none;
-  }
-
   @media (min-width: 768px) {
-    #content .process-header {
-      display: block;
-    }
-
     .about-title {
       margin-top: 1.5rem;
       font-size: 2rem;
@@ -4359,15 +4328,6 @@
     .about-text {
       color: #555555;
       font-size: 1.2rem;
-    }
-
-    .process-nav {
-      display: block;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      z-index: 1;
     }
   }
 
@@ -4378,7 +4338,7 @@
   }
 
   .process-header__inner {
-    display: none;
+    display: none !important;
   }
 
   div.columns.large-12 div.section.images h3.section-heading,
@@ -4406,5 +4366,9 @@
 
   .see-index-container {
     justify-content: flex-start;
+  }
+
+  .tab-item a span {
+    font-size: 16px;
   }
 </style>
