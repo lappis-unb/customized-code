@@ -222,12 +222,18 @@
     });
   }
 
-  function removeMenuItem(itemName, navbar) {
-    const item = navbar.querySelector(`span[name="${itemName}"]`);
+  function removeMenuItem(itemName) {
+    const navbar = document.querySelector(".space-menu");
+    const menuItems = navbar.querySelectorAll(".tab-item");
 
-    if (item) {
-      item.remove();
-    }
+    menuItems.forEach((liElement) => {
+      const span = liElement.querySelector("span");
+      if (span) {
+        if (span.textContent.trim() === itemName) {
+          liElement.remove();
+        }
+      }
+    });
   }
 
   // Salva o conteudo da pagina inicial e retorna a variavel
@@ -652,10 +658,10 @@
         const wrapper = document.querySelector("#content > .wrapper");
         if (header) {
           if (content) {
-            content.style.marginTop = (header.offsetHeight - 2) + "px";
+            content.style.marginTop = header.offsetHeight - 2 + "px";
           }
           if (menu && content) {
-            menu.style.top = (header.offsetHeight - 2) + "px";
+            menu.style.top = header.offsetHeight - 2 + "px";
             wrapper.style.marginTop = menu.offsetHeight + "px";
           }
         }
@@ -697,8 +703,10 @@
     } else if (
       window.location.pathname.includes(
         "/processes/brasilparticipativo/"
+      ) ||  window.location.pathname.includes(
+        "/processes/programas/"
       )) {
-        removeMenuItem("O processo", navbarUl);
+        removeMenuItem("O processo");
       }
 
     const createTabItem = (name, path) => {
@@ -709,12 +717,12 @@
       a.setAttribute("href", path);
       a.textContent = name;
 
-      const isActive = (name === "Início" && window.location.pathname === path);
+      const isActive = name === "Início" && window.location.pathname === path;
       li.classList.toggle("active", isActive);
 
       li.appendChild(a);
       return li;
-    }
+    };
 
     const createLi = (name, path) => {
       const li = document.createElement("li");
@@ -834,8 +842,10 @@
 
         respond_comment_button.forEach((btn) => btn.remove());
 
-        var opinionToggleButton = document.querySelector(".opinion-toggle"); 
-        if (opinionToggleButton) { opinionToggleButton.remove(); }
+        var opinionToggleButton = document.querySelector(".opinion-toggle");
+        if (opinionToggleButton) {
+          opinionToggleButton.remove();
+        }
 
         var targetNodes = document.querySelectorAll(".comments");
 
@@ -857,9 +867,10 @@
                 if (respondCommentButtons.length) {
                   respondCommentButtons.forEach((btn) => btn.remove());
                 }
-                var voteCommentButton = targetNode.querySelectorAll( ".comment__footer" ); 
-                if (voteCommentButton.length) { 
-                  voteCommentButton.forEach((btn) => btn.remove()); 
+                var voteCommentButton =
+                  targetNode.querySelectorAll(".comment__footer");
+                if (voteCommentButton.length) {
+                  voteCommentButton.forEach((btn) => btn.remove());
                 }
               });
             });
@@ -921,7 +932,9 @@
           }
         });
 
-        const homeSections = document.querySelectorAll('.section.row.collapse.highlighted_proposals');
+        const homeSections = document.querySelectorAll(
+          ".section.row.collapse.highlighted_proposals"
+        );
         homeSections.forEach((section) => {
           section.remove();
         });
@@ -936,7 +949,9 @@
 
         navbarUl.appendChild(createTabItem("Início", "/processes/ENGD"));
         navbarUl.appendChild(createTabItem("Decreto", `/processes/ENGD/f/71`));
-        navbarUl.appendChild(createTabItem("Recomendações", `/processes/ENGD/f/67`));
+        navbarUl.appendChild(
+          createTabItem("Recomendações", `/processes/ENGD/f/67`)
+        );
       } else if (window.location.pathname === "/amends/new") {
         const title_form = document.querySelector(
           'label[for="amendment_emendation_params_title"]'
@@ -951,12 +966,12 @@
         const id3 = '75';
         
         if (window.location.pathname === "/assemblies/delegacnsan6") {
-          window.location.href =
-            `https://brasilparticipativo.presidencia.gov.br/assemblies/delegacnsan6/f/${id0}/`;
+          window.location.href = `https://brasilparticipativo.presidencia.gov.br/assemblies/delegacnsan6/f/${id0}/`;
         } else if (
           window.location.pathname ===
             `/assemblies/delegacnsan6/f/${id1}/proposals` ||
-          window.location.pathname === `/assemblies/delegacnsan6/f/${id2}/proposals`
+          window.location.pathname ===
+            `/assemblies/delegacnsan6/f/${id2}/proposals`
         ) {
           const comments_card = document.querySelector(
             ".add-comment .section-heading"
@@ -965,8 +980,7 @@
             comments_card.textContent =
               "Comente para indicar se deseja ser co-autor/a desta moção";
           }
-          var novoElementoHTML =
-            `<div class="header-container br-container-lg"><div class="m-bottom"><a class="small hollow" href="/assemblies/delegacnsan6/f/${id0}/" data-asw-orgfontsize="16" style="font-size:16px"><svg aria-label="chevron-left" role="img" aria-hidden="true" class="icon--chevron-left icon icon--small"><title>chevron-left</title><use href="/decidim-packs/media/images/icons-c4fd0f43651700b0c768.svg#icon-chevron-left"></use></svg>Voltar</a></div></div>`;
+          var novoElementoHTML = `<div class="header-container br-container-lg"><div class="m-bottom"><a class="small hollow" href="/assemblies/delegacnsan6/f/${id0}/" data-asw-orgfontsize="16" style="font-size:16px"><svg aria-label="chevron-left" role="img" aria-hidden="true" class="icon--chevron-left icon icon--small"><title>chevron-left</title><use href="/decidim-packs/media/images/icons-c4fd0f43651700b0c768.svg#icon-chevron-left"></use></svg>Voltar</a></div></div>`;
 
           var wrapperElement = document.querySelector(".wrapper");
 
@@ -1006,28 +1020,41 @@
           }
         }
 
-        var allElements = document.querySelectorAll("*:not(script):not(style)");
-        function replaceText(node) {
-          if (node.nodeType === Node.TEXT_NODE) {
-            node.textContent = node.textContent.replace(/propostas/g, "moções");
-            node.textContent = node.textContent.replace(/proposta/g, "moção");
-            node.textContent = node.textContent.replace(/Propostas/g, "Moções");
-            node.textContent = node.textContent.replace(/Proposta/g, "Moção");
-          }
-        }
-
-        // Itera sobre todos os elementos de texto e substitui o conteúdo
-        for (var i = 0; i < allElements.length; i++) {
-          var walker = document.createTreeWalker(
-            allElements[i],
-            NodeFilter.SHOW_TEXT,
-            null,
-            false
+        if (
+          window.location.pathname ===
+          `/assemblies/delegacnsan6/f/${id2}/proposals`
+        ) {
+          var allElements = document.querySelectorAll(
+            "*:not(script):not(style)"
           );
-          var node;
+          function replaceText(node) {
+            if (node.nodeType === Node.TEXT_NODE) {
+              node.textContent = node.textContent.replace(
+                /propostas/g,
+                "moções"
+              );
+              node.textContent = node.textContent.replace(/proposta/g, "moção");
+              node.textContent = node.textContent.replace(
+                /Propostas/g,
+                "Moções"
+              );
+              node.textContent = node.textContent.replace(/Proposta/g, "Moção");
+            }
+          }
 
-          while ((node = walker.nextNode())) {
-            replaceText(node);
+          // Itera sobre todos os elementos de texto e substitui o conteúdo
+          for (var i = 0; i < allElements.length; i++) {
+            var walker = document.createTreeWalker(
+              allElements[i],
+              NodeFilter.SHOW_TEXT,
+              null,
+              false
+            );
+            var node;
+
+            while ((node = walker.nextNode())) {
+              replaceText(node);
+            }
           }
         }
         const metric_filter = document.querySelector(".filter-container");
@@ -4005,26 +4032,30 @@
     console.log(textChildren);
 
     if (textChildren.length > 0) {
-        textChildren.forEach(child => {
-            // Verificar si el hijo es un enlace "a"
-            if (child.tagName.toLowerCase() === 'a') {
-                const editorDisplay = child.querySelector('.ql-editor-display');
-                
-                if (editorDisplay) {
-                    const paragraph = editorDisplay.querySelector('p');
+      textChildren.forEach((child) => {
+        // Verificar si el hijo es un enlace "a"
+        if (child.tagName.toLowerCase() === "a") {
+          const editorDisplay = child.querySelector(".ql-editor-display");
 
-                    // Verificar si el párrafo existe y el texto no comienza con "$" o "Art"
-                    if (paragraph && !paragraph.textContent.startsWith('$') && !paragraph.textContent.startsWith('Art')) {
-                        const itemActions = editorDisplay.querySelector('.item-actions');
-                        
-                        // Verificar si la "div" con la clase "item-actions" existe y eliminarla
-                        if (itemActions) {
-                            itemActions.remove();
-                        }
-                    }
-                }
+          if (editorDisplay) {
+            const paragraph = editorDisplay.querySelector("p");
+
+            // Verificar si el párrafo existe y el texto no comienza con "$" o "Art"
+            if (
+              paragraph &&
+              !paragraph.textContent.startsWith("$") &&
+              !paragraph.textContent.startsWith("Art")
+            ) {
+              const itemActions = editorDisplay.querySelector(".item-actions");
+
+              // Verificar si la "div" con la clase "item-actions" existe y eliminarla
+              if (itemActions) {
+                itemActions.remove();
+              }
             }
-        });
+          }
+        }
+      });
     }
   }
   function onContentClick(arrayitem, element, pageContent) {
