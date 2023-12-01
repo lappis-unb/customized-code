@@ -207,103 +207,28 @@
     </div>
   </div>`;
     //if (processHeader) processHeader.appendChild(menuConfConseaDesk);
-  };
+  }
 
-  const updateMenuConfJuv = () => {
-    var menuBody = document.querySelector("nav.menu-body");
+  function updateMenu(tabs, navbar) {
+    const spaceMenu = navbar.querySelectorAll(".tab-item");
 
-    // Remova todos os links existentes dentro do elemento <nav class="menu-body">
-    // var links = menuBody.querySelectorAll("a.menu-item");
-    // for (var i = links.length - 1; i >= 0; i--) {
-    //   links[i].remove();
-    // }
+    spaceMenu.forEach((liElement) => {
+      const span = liElement.querySelector("span");
+      if (span) {
+        if (!tabs.includes(span.textContent.trim())) {
+          liElement.remove();
+        }
+      }
+    });
+  }
 
-    const confJuvLinks = [
-      {
-        href: "/assemblies/confjuv4/f/34/",
-        name: "Início",
-      },
-      {
-        href: `/assemblies/confjuv4/f/${isProd() ? "14/" : "143"}`,
-        name: "Etapas",
-      },
-      {
-        href: `/assemblies/confjuv4/f/${isProd() ? "10" : "130"}`,
-        name: "Etapa Digital",
-      },
-      {
-        href: `/assemblies/confjuv4/f/${isProd() ? "9" : "144"}`,
-        name: "Notícias",
-      },
-      {
-        href: `/assemblies/confjuv4/f/42/posts/${isProd() ? "44" : ""}`,
-        name: "Mobilização",
-      },
-      {
-        href: `/assemblies/confjuv4/f/${isProd() ? "13" : "145"}`,
-        name: "Sobre",
-      },
-    ];
+  function removeMenuItem(itemName, navbar) {
+    const item = navbar.querySelector(`span[name="${itemName}"]`);
 
-    // confJuvLinks.forEach((link) => {
-    //   let newAboutLinkMenu = document.createElement("a");
-    //   newAboutLinkMenu.className = "menu-item divider";
-    //   newAboutLinkMenu.href = link.href;
-    //   newAboutLinkMenu.innerHTML = `<span class="content">${link.name}</span>`;
-    //   let menuBody = document.querySelector("nav.menu-body");
-    //   menuBody.appendChild(newAboutLinkMenu);
-    // });
-
-    const processHeader = document.querySelector(".process-header");
-    let menuConfJuvDesk = document.createElement("div");
-    menuConfJuvDesk.className = "row expanded";
-    menuConfJuvDesk.innerHTML = `<div class="row expanded">
-    <div class="process-nav">
-      <div class="row">
-        <div
-          class="row column process-nav__content"
-          id="process-nav-content"
-          data-toggler=".is-active"
-          data-is-active="k6ys6g-is-active"
-        >
-          <ul>
-            <li class=" ">
-              <a class="process-nav__link" href="/assemblies/confjuv4/f/34/">
-                Início
-              </a>
-            </li>
-            <li class=" ">
-              <a class="process-nav__link" href="/assemblies/confjuv4/f/14/">
-                Etapas
-              </a>
-            </li>
-            <li class=" ">
-              <a class="process-nav__link" href="/assemblies/confjuv4/f/10/">
-                Etapa Digital
-              </a>
-            </li>
-            <li class="">
-              <a class="process-nav__link" href="/assemblies/confjuv4/f/9/">
-                Notícias
-              </a>
-            </li>
-            <li class="">
-              <a class="process-nav__link" href="/assemblies/confjuv4/f/42/posts/44">
-                Mobilização
-              </a>
-            </li>
-            <li class="">
-              <a class="process-nav__link" href="/assemblies/confjuv4/f/13/">
-                Perguntas Frequentes
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>`;
-  // if (processHeader) processHeader.appendChild(menuConfJuvDesk);
-  };
+    if (item) {
+      item.remove();
+    }
+  }
 
   // Salva o conteudo da pagina inicial e retorna a variavel
   function saveContentPage() {
@@ -769,7 +694,12 @@
       if (endossosLink) {
         endossosLink.remove();
       }
-    }
+    } else if (
+      window.location.pathname.includes(
+        "/processes/brasilparticipativo/"
+      )) {
+        removeMenuItem("O processo", navbarUl);
+      }
 
     const createTabItem = (name, path) => {
       const li = document.createElement("li");
@@ -836,78 +766,25 @@
     }
     if (navbarUl) {
       if (isOnConferenceDomain()) {
-        let items;
+        let tabs;
         if (isJuventude()) {
-          items = [
-            {
-              path: "/assemblies/confjuv4/f/34/",
-              label: "Início",
-            },
-            {
-              path: `/assemblies/confjuv4/f/${isProd() ? "10" : "130"}`,
-              label: "Etapa Digital",
-            },
-            {
-              path: `/assemblies/confjuv4/f/${isProd() ? "14/" : "143"}`,
-              label: "Etapas",
-            },
-
-            {
-              path: `/assemblies/confjuv4/f/${isProd() ? "9" : "144"}`,
-              label: "Notícias",
-            },
-            {
-              path: `/assemblies/confjuv4/f/42/posts/${isProd() ? "44" : ""}`,
-              label: "Mobilização",
-            },
-            {
-              path: `/assemblies/confjuv4/f/${isProd() ? "13" : "145"}`,
-              label: "Sobre",
-            },
+          tabs = [
+            "Início", 
+            "Etapas", 
+            "Etapa Digital", 
+            "Notícias", 
+            "Mobilização", 
+            "Sobre"
           ];
         } else if (isConsea()) {
-          if (isProd())
-            items = [
-              {
-                label: "Início",
-                path: `/assemblies/cnsan6/f/41/`,
-              },
-              {
-                label: "Etapas",
-                path: "/assemblies/cnsan6/f/18/",
-              },
-              {
-                label: "Notícias",
-                path: `/assemblies/cnsan6/f/20/`,
-              },
-              {
-                label: "Sobre",
-                path: `/assemblies/cnsan6/f/36/`,
-              },
-            ];
-          else if (isDev())
-            items = [
-              {
-                label: "Início",
-                path: `/assemblies/cnsan6/f/41/`,
-              },
-              {
-                label: "Etapas",
-                path: "/assemblies/cnsan6/f/122/",
-              },
-              {
-                label: "Notícias",
-                path: `/assemblies/cnsan6/f/121/`,
-              },
-              {
-                label: "Sobre",
-                path: `/assemblies/cnsan6/f/120/`,
-              },
+            tabs = [
+              "Início", 
+              "Etapas", 
+              "Notícias", 
+              "Sobre"
             ];
         }
-        items.forEach((item) =>
-          navbarUl.appendChild(createLi(item.label, item.path))
-        );
+        updateMenu(tabs, navbarUl);
         const assembliesLi = document.querySelector(
           '.process-nav__link a[href="/assemblies"]'
         );
@@ -1254,7 +1131,7 @@
   function isOnConferenceAboutPage() {
     return (
       window.location.pathname ===
-      `/assemblies/confjuv4/f/${isProd() ? "13" : "145"}`
+      `/assemblies/confjuv4/f/${isProd() ? "13" : "145"}/`
     );
   }
   function isOnConferenceSteps() {
