@@ -960,11 +960,11 @@
           title_form.remove();
         }
       } else if (window.location.href.includes("/assemblies/delegacnsan6")) {
-        const id0 = '65';
-        const id1 = '66';
-        const id2 = '68';
-        const id3 = '75';
-        
+        const id0 = "65";
+        const id1 = "66";
+        const id2 = "68";
+        const id3 = "75";
+
         if (window.location.pathname === "/assemblies/delegacnsan6") {
           window.location.href = `https://brasilparticipativo.presidencia.gov.br/assemblies/delegacnsan6/f/${id0}/`;
         } else if (
@@ -988,12 +988,17 @@
             wrapperElement.innerHTML =
               novoElementoHTML + wrapperElement.innerHTML;
           }
-        } else if ( window.location.pathname === `/assemblies/delegacnsan6/f/${id3}/`) {
-          const participatoryList = document.querySelector(".participatory-text-list");
+        } else if (
+          window.location.pathname ===
+          `/assemblies/delegacnsan6/f/${id3}/proposals`
+        ) {
+          const participatoryList = document.querySelector(
+            ".participatory-text-list"
+          );
 
           if (participatoryList) {
             const participatoryItems = participatoryList.querySelectorAll(
-              ".participatory-text-item",
+              ".participatory-text-item"
             );
 
             participatoryItems.forEach((item) => {
@@ -1018,11 +1023,25 @@
               }
             });
           }
+          // var seeIndexElement = document.querySelector(".see-index-container");
+          // if (seeIndexElement) {
+          //   seeIndexElement.remove()
+          // }
+
+          // var novoElementoHTML = `<div class="header-container br-container-lg"><div class="m-bottom"><a class="small hollow" href="/assemblies/delegacnsan6/f/${id0}/" data-asw-orgfontsize="16" style="font-size:16px"><svg aria-label="chevron-left" role="img" aria-hidden="true" class="icon--chevron-left icon icon--small"><title>chevron-left</title><use href="/decidim-packs/media/images/icons-c4fd0f43651700b0c768.svg#icon-chevron-left"></use></svg>Voltar</a></div></div>`;
+
+          // var wrapperElement = document.querySelector(".wrapper");
+
+          // if (wrapperElement) {
+          //   wrapperElement.innerHTML =
+          //     novoElementoHTML + wrapperElement.innerHTML;
+          // }
         }
 
         if (
-          window.location.pathname ===
-          `/assemblies/delegacnsan6/f/${id2}/proposals`
+          window.location.pathname.includes(
+            `/assemblies/delegacnsan6/f/${id2}/`
+          )
         ) {
           var allElements = document.querySelectorAll(
             "*:not(script):not(style)"

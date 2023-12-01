@@ -1,6 +1,185 @@
-<section class="home-sections-container">
-  <button></button>
-</section>
+<div class="home-sections-content bp-banner-container">
+  <!-- <img
+    class="topbar-banner"
+    src="https://brasilparticipativo.presidencia.gov.br/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBbUJWIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--565e3c591c0c718cf1889508394952dbabafebfc/topbar-banner.png"
+  /> -->
+  <div class="bp-banner-content">
+    <img
+      class="bp-logo-banner"
+      src="https://brasilparticipativo.presidencia.gov.br/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBa3BWIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--00759a1a957baa16b8dda85ba989ed7125c3a642/BP-Logo-Banner.png"
+    />
+    <h3 class="bp-banner-text">
+      A PLATAFORMA DE PARTICIPAÇÃO DIGITAL DO GOVERNO FEDERAL
+    </h3>
+
+    <a href="/users/sign_in" class="create-profile-link is-desktop">
+      <div class="create-profile-link-icon">
+        <i class="fa-solid fa-user"></i>
+      </div>
+      <span class="create-profile-link-text">Criar perfil</span>
+    </a>
+  </div>
+  <div class="bp-banner-image-container">
+    <img
+      class="bp-banner-image"
+      src="https://brasilparticipativo.presidencia.gov.br/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBa3RWIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--c84a6d7fc692aa07ad93a36293bd6422e01767f4/Pessoas%201.png"
+    />
+  </div>
+  <div class="signin-container is-mobile">
+    <a href="/users/sign_in" class="create-profile-link">
+      <div class="create-profile-link-icon">
+        <i class="fa-solid fa-user"></i>
+      </div>
+      <span class="create-profile-link-text">Criar perfil</span>
+    </a>
+  </div>
+</div>
+<style>
+  .is-desktop {
+    display: none !important;
+  }
+  .is-mobile {
+    display: block !important;
+  }
+  .section-card svg {
+    width: 50px !important;
+    height: 50px !important;
+  }
+  @media (min-width: 768px) {
+    .is-mobile {
+      display: none !important;
+    }
+    .is-desktop {
+      display: flex !important;
+    }
+    .section-card svg {
+      width: 64px !important;
+      height: 64px !important;
+    }
+  }
+  .topbar-banner {
+    display: flex;
+    flex: 1;
+    align-self: start;
+  }
+  .signin-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    margin-top: -40px;
+  }
+  .bp-banner-container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 0;
+    width: 100%;
+    height: 215px;
+    background-image: url("https://brasilparticipativo.presidencia.gov.br/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBanRWIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--aba086b152d7b062ae1f59bc8db2255ea72893e9/background_mobile.png");
+    background-size: cover;
+    background-repeat: repeat;
+  }
+  .bp-banner-image {
+    width: 150px;
+  }
+  .bp-banner-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 40%;
+    gap: 12px;
+  }
+  .bp-logo-banner {
+    width: 100px;
+    flex: 1;
+    min-width: 0;
+  }
+  .bp-banner-text {
+    font-weight: 800;
+    font-size: 10px;
+    color: #3c3c3c;
+    margin: 0;
+    width: 90%;
+  }
+  .create-profile-link,
+  .create-profile-link:hover {
+    display: flex;
+    padding: 2px 20px;
+    gap: 0.5rem;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+    border-radius: 100px;
+    background: var(--blue-warm-vivid-80);
+    color: var(--pure-0);
+    font-size: var(--unnamed-font-size-16-799999237060547);
+    font-weight: 600;
+    max-width: 120px;
+    margin: 0;
+  }
+  .create-profile-link:hover {
+    background-color: var(--blue-warm-vivid-70);
+    text-decoration: none;
+  }
+  .create-profile-link-icon {
+    color: var(--pure-0);
+    font-size: 12px;
+  }
+  .create-profile-link-text {
+    font-size: 10px;
+  }
+
+  @media (min-width: 768px) {
+    .bp-banner-container {
+      padding: 4rem 1.5rem;
+      height: 400px;
+      gap: 0rem;
+      justify-content: center;
+    }
+    .bp-banner-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      width: 50%;
+      gap: 40px;
+      max-width: 380px;
+    }
+    .bp-logo-banner {
+      width: 200px;
+    }
+    .bp-banner-image {
+      min-width: 340px;
+    }
+    .bp-banner-text {
+      font-size: 20px;
+    }
+    .create-profile-link,
+    .create-profile-link:hover {
+      display: flex;
+      padding: 8px 48px;
+      gap: 0.5rem;
+      align-items: center;
+      flex-direction: row;
+      justify-content: center;
+      border-radius: 100px;
+      background: var(--blue-warm-vivid-80);
+      color: var(--pure-0);
+      font-size: var(--unnamed-font-size-16-799999237060547);
+      font-weight: 600;
+      max-width: 210px;
+      margin: 0;
+    }
+    .create-profile-link-text {
+      font-size: 16px;
+    }
+    .create-profile-link-icon {
+      font-size: 16px;
+    }
+  }
+</style>
 
 <% =begin%>
 <section id="participatory-process-section" class="home-sections-container">
