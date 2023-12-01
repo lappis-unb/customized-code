@@ -1071,6 +1071,7 @@
         const id0 = '65';
         const id1 = '66';
         const id2 = '68';
+        const id3 = '75';
         
         if (window.location.pathname === "/assemblies/delegacnsan6") {
           window.location.href =
@@ -1095,6 +1096,36 @@
           if (wrapperElement) {
             wrapperElement.innerHTML =
               novoElementoHTML + wrapperElement.innerHTML;
+          }
+        } else if ( window.location.pathname === `/assemblies/delegacnsan6/f/${id3}/`) {
+          const participatoryList = document.querySelector(".participatory-text-list");
+
+          if (participatoryList) {
+            const participatoryItems = participatoryList.querySelectorAll(
+              ".participatory-text-item",
+            );
+
+            participatoryItems.forEach((item) => {
+              const textItems = item.querySelector("a");
+              const firstTextItem = textItems.firstElementChild;
+
+              if (
+                firstTextItem &&
+                (firstTextItem.textContent.startsWith("Apresentação") ||
+                  firstTextItem.textContent.startsWith("CAPÍTULO") ||
+                  firstTextItem.textContent.startsWith("ANEXO"))
+              ) {
+                const itemActionsDiv = item.querySelector(".item-actions");
+                itemActionsDiv.remove();
+
+                const newDiv = document.createElement("div");
+                newDiv.innerHTML = textItems.innerHTML;
+                newDiv.style = textItems.style;
+                textItems.parentNode.replaceChild(newDiv, textItems);
+
+                item.style.pointerEvents = "none";
+              }
+            });
           }
         }
 
