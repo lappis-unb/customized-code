@@ -752,6 +752,21 @@
       }
     }
 
+    const createTabItem = (name, path) => {
+      const li = document.createElement("li");
+      li.classList.add("tab-item");
+
+      const a = document.createElement("a");
+      a.setAttribute("href", path);
+      a.textContent = name;
+
+      const isActive = (name === "Início" && window.location.pathname === path);
+      li.classList.toggle("active", isActive);
+
+      li.appendChild(a);
+      return li;
+    }
+
     const createLi = (name, path) => {
       const li = document.createElement("li");
       li.classList.add("process-nav__link", "process-nav__link__color");
@@ -1001,11 +1016,23 @@
             element.remove();
           }
         });
-        navbarUl.appendChild(createLi("Início", "/processes/ENGD"));
-        navbarUl.appendChild(createLi("Recomendações", `/processes/ENGD/f/3`));
-        navbarUl.appendChild(
-          createLi("Avaliação da Oficina", `/processes/ENGD/f/27`)
-        );
+
+        const homeSections = document.querySelectorAll('.section.row.collapse.highlighted_proposals');
+        homeSections.forEach((section) => {
+          section.remove();
+        });
+
+        const spaceMenu = navbarUl.querySelectorAll("li");
+
+        if (spaceMenu.length) {
+          spaceMenu.forEach((liElement) => {
+            liElement.remove();
+          });
+        }
+
+        navbarUl.appendChild(createTabItem("Início", "/processes/ENGD"));
+        navbarUl.appendChild(createTabItem("Decreto", `/processes/ENGD/f/71`));
+        navbarUl.appendChild(createTabItem("Recomendações", `/processes/ENGD/f/67`));
       } else if (window.location.pathname === "/amends/new") {
         const title_form = document.querySelector(
           'label[for="amendment_emendation_params_title"]'
