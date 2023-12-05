@@ -993,10 +993,7 @@
             wrapperElement.innerHTML =
               novoElementoHTML + wrapperElement.innerHTML;
           }
-        } else if (
-          window.location.pathname ===
-          `/assemblies/delegacnsan6/f/${id3}/proposals`
-        ) {
+        } else if (window.location.href.includes(`/assemblies/delegacnsan6/f/${id3}`)) {
           const participatoryList = document.querySelector(
             ".participatory-text-list"
           );
