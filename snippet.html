@@ -207,7 +207,7 @@
     </div>
   </div>`;
     //if (processHeader) processHeader.appendChild(menuConfConseaDesk);
-  }
+  };
 
   function updateMenu(tabs, navbar) {
     const spaceMenu = navbar.querySelectorAll(".tab-item");
@@ -663,6 +663,8 @@
           if (menu && content) {
             menu.style.top = header.offsetHeight - 2 + "px";
             wrapper.style.marginTop = menu.offsetHeight + "px";
+          } else {
+            wrapper.style.marginTop = header.offsetHeight + "px";
           }
         }
       }
@@ -701,13 +703,11 @@
         endossosLink.remove();
       }
     } else if (
-      window.location.pathname.includes(
-        "/processes/brasilparticipativo/"
-      ) ||  window.location.pathname.includes(
-        "/processes/programas/"
-      )) {
-        removeMenuItem("O processo");
-      }
+      window.location.pathname.includes("/processes/brasilparticipativo/") ||
+      window.location.pathname.includes("/processes/programas/")
+    ) {
+      removeMenuItem("O processo");
+    }
 
     const createTabItem = (name, path) => {
       const li = document.createElement("li");
@@ -777,20 +777,15 @@
         let tabs;
         if (isJuventude()) {
           tabs = [
-            "Início", 
-            "Etapas", 
-            "Etapa Digital", 
-            "Notícias", 
-            "Mobilização", 
-            "Sobre"
+            "Início",
+            "Etapas",
+            "Etapa Digital",
+            "Notícias",
+            "Mobilização",
+            "Sobre",
           ];
         } else if (isConsea()) {
-            tabs = [
-              "Início", 
-              "Etapas", 
-              "Notícias", 
-              "Sobre"
-            ];
+          tabs = ["Início", "Etapas", "Notícias", "Sobre"];
         }
         updateMenu(tabs, navbarUl);
         const assembliesLi = document.querySelector(
@@ -993,7 +988,9 @@
             wrapperElement.innerHTML =
               novoElementoHTML + wrapperElement.innerHTML;
           }
-        } else if (window.location.href.includes(`/assemblies/delegacnsan6/f/${id3}`)) {
+        } else if (
+          window.location.href.includes(`/assemblies/delegacnsan6/f/${id3}`)
+        ) {
           const participatoryList = document.querySelector(
             ".participatory-text-list"
           );
@@ -1240,13 +1237,21 @@
       if (isJuventude()) {
         // const header_title_conjuv = document.querySelector(".header-title");
         // const header_link = document.querySelector(".header-info a");
-
         // header_title_conjuv.textContent = "Conferência Nacional de Juventude";
-        // header_link.href =
-        //   "https://brasilparticipativo.presidencia.gov.br/assemblies/confjuv4/f/34/";
+        // "https://brasilparticipativo.presidencia.gov.br/assemblies/confjuv4/f/34/";
       }
 
       if (isConsea()) {
+        var credenciamento_button = document.getElementById(
+          "consea-credenciamento-id"
+        );
+
+        if (credenciamento_button) {
+          credenciamento_button.addEventListener("click", function (event) {
+            event.preventDefault();
+            window.open("https://consea.inscrever.me/home", "_blank");
+          });
+        }
         // const header_title_consea = document.querySelector(".header-title");
         // const header_link = document.querySelector(".header-info a");
 
