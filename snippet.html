@@ -651,13 +651,48 @@
       showCreateProfileLink();
       removeSecondProductionLogin();
 
+      if (
+        window.location.pathname === "/assemblies/" ||
+        window.location.pathname === "/assemblies"
+      ) {
+        const buttons = $(".card__button.button.button--sc.small");
+        const links = $(".card__link");
+
+        buttons
+          .eq(0)
+          .attr(
+            "href",
+            buttons.eq(0).attr("href").replace("/confjuv4", "/confjuv4/f/34/")
+          );
+        links
+          .eq(0)
+          .attr(
+            "href",
+            links.eq(0).attr("href").replace("/confjuv4", "/confjuv4/f/34/")
+          );
+        buttons
+          .eq(2)
+          .attr(
+            "href",
+            buttons.eq(2).attr("href").replace("/cnsan6", "/cnsan6/f/41/")
+          );
+        links
+          .eq(2)
+          .attr(
+            "href",
+            links.eq(2).attr("href").replace("/cnsan6", "/cnsan6/f/41/")
+          );
+      }
+
       if (window.location.pathname === "/") {
         const sign_in_button = document.querySelector(
           "#avatar-dropdown-trigger.br-sign-in"
         );
         if (sign_in_button) {
           const banner_button = document.querySelector("#sign-in-btn");
-          const banner_button_mobile = document.querySelector("#sign-in-btn-mobile");
+          const banner_button_mobile = document.querySelector(
+            "#sign-in-btn-mobile"
+          );
           if (banner_button) {
             banner_button.style = "visibility: hidden;";
           }
