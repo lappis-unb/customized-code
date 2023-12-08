@@ -1,8 +1,5 @@
 <div class="home-sections-content bp-banner-container">
-  <!-- <img
-    class="topbar-banner"
-    src="https://brasilparticipativo.presidencia.gov.br/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBbUJWIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--565e3c591c0c718cf1889508394952dbabafebfc/topbar-banner.png"
-  /> -->
+  <div class="banner-topbar"></div>
   <div class="bp-banner-content">
     <img
       class="bp-logo-banner"
@@ -12,7 +9,11 @@
       A PLATAFORMA DE PARTICIPAÇÃO DIGITAL DO GOVERNO FEDERAL
     </h3>
 
-    <a href="/users/sign_in" class="create-profile-link is-desktop">
+    <a
+      href="/users/sign_in"
+      id="sign-in-btn"
+      class="create-profile-link is-desktop"
+    >
       <div class="create-profile-link-icon">
         <i class="fa-solid fa-user"></i>
       </div>
@@ -26,7 +27,7 @@
     />
   </div>
   <div class="signin-container is-mobile">
-    <a href="/users/sign_in" class="create-profile-link">
+    <a id="sign-in-btn-mobile" href="/users/sign_in" class="create-profile-link">
       <div class="create-profile-link-icon">
         <i class="fa-solid fa-user"></i>
       </div>
@@ -45,7 +46,7 @@
     width: 50px !important;
     height: 50px !important;
   }
-  @media (min-width: 768px) {
+  @media (min-width: 400px) {
     .is-mobile {
       display: none !important;
     }
@@ -61,6 +62,7 @@
     display: flex;
     flex: 1;
     align-self: start;
+    height: 18px;
   }
   .signin-container {
     display: flex;
@@ -83,14 +85,16 @@
     background-repeat: repeat;
   }
   .bp-banner-image {
-    width: 150px;
+    width: 160px;
+    margin-top: -50px;
   }
   .bp-banner-content {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    width: 40%;
+    width: 180px;
     gap: 12px;
+    margin-top: -40px;
   }
   .bp-logo-banner {
     width: 100px;
@@ -131,10 +135,34 @@
     font-size: 10px;
   }
 
-  @media (min-width: 768px) {
+  .banner-topbar {
+    display: flex;
+    width: 100%;
+    height: 10px;
+    background-image: url("https://brasilparticipativo.presidencia.gov.br/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBcU5XIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--0695acd28de9d94867be9e6fbe28351b5b466595/Elementos-banner%20(1).png");
+    background-size: cover;
+    background-repeat: repeat;
+    margin-top: -40px;
+  }
+
+  @media (min-width: 400px) {
+    .banner-topbar {
+      margin-top: -50px;
+    }
+  }
+
+  @media (min-width: 840px) {
+    .banner-topbar {
+      display: flex;
+      width: 100%;
+      height: 35px;
+      background-image: url("https://brasilparticipativo.presidencia.gov.br/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBcU5XIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--0695acd28de9d94867be9e6fbe28351b5b466595/Elementos-banner%20(1).png");
+      background-size: cover;
+      background-repeat: repeat;
+      margin-top: -4px;
+    }
     .bp-banner-container {
-      padding: 4rem 1.5rem;
-      height: 400px;
+      height: 440px;
       gap: 0rem;
       justify-content: center;
     }
@@ -144,13 +172,16 @@
       justify-content: flex-start;
       width: 50%;
       gap: 40px;
-      max-width: 380px;
+      max-width: 330px;
+      padding: 4rem 1.5rem;
+      margin: 0;
     }
     .bp-logo-banner {
       width: 200px;
+      margin: 0;
     }
     .bp-banner-image {
-      min-width: 340px;
+      min-width: 440px;
     }
     .bp-banner-text {
       font-size: 20px;
@@ -169,7 +200,26 @@
       font-size: 16px;
     }
   }
+  .white-divider {
+    display: flex;
+    width: 100%;
+    height: 35px;
+    background-image: url("https://brasilparticipativo.presidencia.gov.br/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBbDVXIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--057c192d3fe1e615a252b7269b8a8e87fb38f13b/faixa-branca.png");
+    background-size: cover;
+    background-repeat: repeat;
+    background-color: var(--blue-3);
+  }
+  .blue-divider {
+    display: flex;
+    width: 100%;
+    height: 35px;
+    background-image: url("https://brasilparticipativo.presidencia.gov.br/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBcTVXIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--958ded6942dd87524d5b1852502383e4a10bbd3c/faixa-azul%20(1).png");
+    background-size: cover;
+    background-repeat: repeat;
+  }
 </style>
+
+<div class="white-divider"></div>
 
 <section id="participatory-process-section" class="home-sections-container">
   <h2>Processos participativos</h2>
@@ -243,40 +293,29 @@
   </div>
 </section>
 
+<div class="white-divider"></div>
+
 <section id="news-home-section" class="home-sections-container">
   <h2>Notícias</h2>
   <div class="home-sections-content">
-    <a href="#" class="main-news-card">
+    <a href="/processes/brasilparticipativo/f/26/posts/99" class="main-news-card">
       <img
         class="main-news-img"
-        src="https://brasilparticipativo.presidencia.gov.br/rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBck5PIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--5fe6db6f8c59bdfaa962a9c3b747128b9dd9b836/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJY0c1bkJqb0dSVlE2RkhKbGMybDZaVjkwYjE5c2FXMXBkRnNITUdrQzZBTT0iLCJleHAiOm51bGwsInB1ciI6InZhcmlhdGlvbiJ9fQ==--64bc4c4a355cc6a5184f6bcffc380675f1050437/Captura%20de%20Tela%202023-11-07%20a%CC%80s%2017.55.57.png"
+        src="https://brasilparticipativo.presidencia.gov.br/rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBaE5UIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--0c256c8b83bd064e7147ca94b238271343382ae4/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lKYW5CbFp3WTZCa1ZVT2hSeVpYTnBlbVZmZEc5ZmJHbHRhWFJiQnpCcEF1Z0QiLCJleHAiOm51bGwsInB1ciI6InZhcmlhdGlvbiJ9fQ==--5c7da9007dc77c9591b84e9376857808a7a3e5ab/photo1699625224%20(2).jpeg"
       />
       <div class="main-news-content">
         <h3 class="news-title main-news-title">
-          Brasil Participativo concentra documentos e informações na construção
-          da 6ª Conferência Nacional de Segurança Alimentar e Nutricional
+          Brasil Participativo é destaque de participação digital social
+          bem-sucedida em Semana de Inovação 2023
         </h3>
         <p class="main-news-subtitle">
-          Plataforma digital do governo federal é fundamental no processo de
-          reconstrução da participação social no país
+          Maior evento da temática na América Latina aplaude plataforma inovadora do governo federal
         </p>
       </div>
     </a>
     <div class="news-container">
       <span class="br-divider my-3"></span>
-      <a href="#" class="news-card">
-        <img
-          class="news-img"
-          src="https://brasilparticipativo.presidencia.gov.br/rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBaE5UIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--0c256c8b83bd064e7147ca94b238271343382ae4/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lKYW5CbFp3WTZCa1ZVT2hSeVpYTnBlbVZmZEc5ZmJHbHRhWFJiQnpCcEF1Z0QiLCJleHAiOm51bGwsInB1ciI6InZhcmlhdGlvbiJ9fQ==--5c7da9007dc77c9591b84e9376857808a7a3e5ab/photo1699625224%20(2).jpeg"
-          alt=""
-        />
-        <span class="news-title">
-          Brasil Participativo é destaque de participação digital social
-          bem-sucedida em Semana de Inovação 2023
-        </span>
-      </a>
-      <span class="br-divider my-3"></span>
-      <a href="#" class="news-card">
+      <a href="/processes/brasilparticipativo/f/26/posts/98" class="news-card">
         <img
           class="news-img"
           src="https://brasilparticipativo.presidencia.gov.br/rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBc0pTIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--37bdb41ac822e01fde3ab16148a1c5ebab48b01f/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJY0c1bkJqb0dSVlE2RkhKbGMybDZaVjkwYjE5c2FXMXBkRnNITUdrQzZBTT0iLCJleHAiOm51bGwsInB1ciI6InZhcmlhdGlvbiJ9fQ==--64bc4c4a355cc6a5184f6bcffc380675f1050437/Captura%20de%20Tela%202023-11-16%20a%CC%80s%2015.36.29.png"
@@ -288,7 +327,7 @@
         </span>
       </a>
       <span class="br-divider my-3"></span>
-      <a href="#" class="news-card">
+      <a href="/processes/brasilparticipativo/f/26/posts/97" class="news-card">
         <img
           class="news-img"
           src="https://brasilparticipativo.presidencia.gov.br/rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBcDFSIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--1cefafacf348c503072ce3606fac0dae8dce6574/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJY0c1bkJqb0dSVlE2RkhKbGMybDZaVjkwYjE5c2FXMXBkRnNITUdrQzZBTT0iLCJleHAiOm51bGwsInB1ciI6InZhcmlhdGlvbiJ9fQ==--64bc4c4a355cc6a5184f6bcffc380675f1050437/Captura%20de%20Tela%202023-11-16%20a%CC%80s%2013.04.52.png"
@@ -299,9 +338,26 @@
           com grande volume de participação e expressivo número de propostas
         </span>
       </a>
+      <span class="br-divider my-3"></span>
+      <a href="/processes/brasilparticipativo/f/26/posts/96" class="news-card">
+        <img
+          class="news-img"
+          src="https://brasilparticipativo.presidencia.gov.br/rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBaFJRIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--237af165a184c9314ef773fe23a7fe47fc25694f/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJY0c1bkJqb0dSVlE2RkhKbGMybDZaVjkwYjE5c2FXMXBkRnNITUdrQzZBTT0iLCJleHAiOm51bGwsInB1ciI6InZhcmlhdGlvbiJ9fQ==--64bc4c4a355cc6a5184f6bcffc380675f1050437/Captura%20de%20Tela%202023-11-06%20a%CC%80s%2017.54.04.png"
+          alt=""
+        />
+        <span class="news-title">
+          Caso de sucesso do Brasil Participativo é destaque na agenda principal da Python Brasil 2023
+        </span>
+      </a>
     </div>
     <div class="centered-content">
-      <a href="#" class="br-button secondary" type="button"> Mais novidades </a>
+      <a
+        href="/processes/brasilparticipativo/f/26/"
+        class="br-button secondary"
+        type="button"
+      >
+        Mais novidades
+      </a>
     </div>
   </div>
 </section>
@@ -440,10 +496,12 @@
   }
 </style>
 
+<div class="blue-divider"></div>
+
 <section id="service-channels-home-section" class="home-sections-container">
   <h2 class="title-secondary">Canais de Atendimento</h2>
   <div class="home-sections-content service-channels-container">
-    <a class="section-card" href="#">
+    <a class="section-card" href="https://falabr.cgu.gov.br/web/home">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="64"
@@ -458,7 +516,10 @@
       </svg>
       <h3 class="section-card-title">Fale conosco</h3>
     </a>
-    <a class="section-card" href="#">
+    <a
+      class="section-card"
+      href="https://falabr.cgu.gov.br/web/home?modoOuvidoria=1"
+    >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="46"
@@ -480,7 +541,10 @@
       </svg>
       <h3 class="section-card-title">Ouvidoria</h3>
     </a>
-    <a class="section-card" href="#">
+    <a
+      class="section-card"
+      href="https://www.gov.br/planalto/pt-br/acompanhe-o-planalto/area-de-imprensa"
+    >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="64"
@@ -495,7 +559,7 @@
       </svg>
       <h3 class="section-card-title">Área de imprensa</h3>
     </a>
-    <a class="section-card" href="#">
+    <a class="section-card" href="https://falabr.cgu.gov.br/web/home">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="64"
@@ -515,25 +579,23 @@
   </div>
 </section>
 
+<div class="blue-divider"></div>
+
 <section id="stats-home-section" class="home-sections-container">
   <h2>Já somos</h2>
   <div class="home-sections-content stats-container">
     <div class="stats-card">
-      <h2>000.000.000</h2>
+      <h2>1.498.541</h2>
       <h5>Participantes</h5>
     </div>
     <div class="stats-card">
-      <h2>000.000.000</h2>
+      <h2>4.628.967</h2>
       <h5>Acessos</h5>
     </div>
   </div>
 </section>
 
 <style>
-  :root {
-    --blue-warm-vivid-05: #edf5ff;
-  }
-
   .home-sections-container h1,
   .home-sections-container h2,
   .home-sections-container h3,
@@ -545,11 +607,11 @@
   }
 
   #participatory-process-section {
-    background-color: var(--blue-warm-vivid-05);
+    background-color: var(--blue-3);
   }
 
   .home-sections-container {
-    padding: 3rem 0;
+    padding: 1.5rem 0;
     display: flex;
     flex-direction: column;
     gap: 2rem;
@@ -600,7 +662,7 @@
     display: flex;
     flex-direction: column;
     gap: 1.125rem;
-    background-color: var(--blue-warm-vivid-05);
+    background-color: var(--blue-3);
     align-items: center;
     justify-content: center;
     padding: 1.5rem;
@@ -632,7 +694,7 @@
     }
 
     .home-sections-container {
-      padding: 4rem 0;
+      padding: 3.5rem 0;
       gap: 2.5rem;
     }
 
@@ -753,6 +815,7 @@
     }
   }
 </style>
+
 <section class="logos__section">
   <div class="logos__container">
     <a href="https://www.unb.br/">
@@ -1121,8 +1184,8 @@
 
 <style>
   .logos__section {
-    background-color: var(--blue-warm-vivid-05);
-    padding: 2rem 1rem;
+    background-color: var(--blue-3);
+    padding: 4rem 1rem;
   }
   .logos__container {
     max-width: 900px;
@@ -1137,7 +1200,6 @@
 
   @media (min-width: 870px) {
     .logos__section {
-      background-color: var(--blue-warm-vivid-05);
       padding: 7rem 1rem;
     }
     .logos__container {

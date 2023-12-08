@@ -651,6 +651,22 @@
       showCreateProfileLink();
       removeSecondProductionLogin();
 
+      if (window.location.pathname === "/") {
+        const sign_in_button = document.querySelector(
+          "#avatar-dropdown-trigger.br-sign-in"
+        );
+        if (sign_in_button) {
+          const banner_button = document.querySelector("#sign-in-btn");
+          const banner_button_mobile = document.querySelector("#sign-in-btn-mobile");
+          if (banner_button) {
+            banner_button.style = "visibility: hidden;";
+          }
+          if (banner_button_mobile) {
+            banner_button_mobile.style = "visibility: hidden;";
+          }
+        }
+      }
+
       function updateContentMarginTop() {
         const header = document.querySelector("#br-header");
         const menu = document.querySelector("#process-nav-content");
@@ -664,7 +680,7 @@
             menu.style.top = header.offsetHeight - 2 + "px";
             wrapper.style.marginTop = menu.offsetHeight + "px";
           } else {
-            wrapper.style.marginTop = header.offsetHeight + "px";
+            //wrapper.style.marginTop = header.offsetHeight + "px";
           }
         }
       }
