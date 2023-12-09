@@ -999,10 +999,43 @@
         }
 
         navbarUl.appendChild(createTabItem("Início", "/processes/ENGD"));
-        navbarUl.appendChild(createTabItem("Decreto", `/processes/ENGD/f/71`));
+        navbarUl.appendChild(createTabItem("Decreto", `/processes/ENGD/f/77`));
         navbarUl.appendChild(
           createTabItem("Recomendações", `/processes/ENGD/f/67`)
         );
+
+        if(window.location.href.includes('/processes/ENGD/f/77')) {
+          const participatoryList = document.querySelector(
+            ".participatory-text-list"
+          );
+
+          if (participatoryList) {
+            const participatoryItems = participatoryList.querySelectorAll(
+              ".participatory-text-item"
+            );
+
+            participatoryItems.forEach((item) => {
+              const textItems = item.querySelector("a");
+              const firstTextItem = textItems.firstElementChild;
+
+              if (
+                firstTextItem &&
+                (firstTextItem.textContent.startsWith("CAPÍTULO") ||
+                  firstTextItem.textContent.startsWith("Seção"))
+              ) {
+                const itemActionsDiv = item.querySelector(".item-actions");
+                itemActionsDiv.remove();
+
+                const newDiv = document.createElement("div");
+                newDiv.innerHTML = textItems.innerHTML;
+                newDiv.style = textItems.style;
+                textItems.parentNode.replaceChild(newDiv, textItems);
+
+                item.style.pointerEvents = "none";
+              }
+            });
+          }
+        }
       } else if (window.location.pathname === "/amends/new") {
         const title_form = document.querySelector(
           'label[for="amendment_emendation_params_title"]'
