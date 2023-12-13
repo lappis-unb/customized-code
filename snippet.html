@@ -713,7 +713,7 @@
           }
           if (menu && content) {
             menu.style.top = header.offsetHeight - 2 + "px";
-            wrapper.style.marginTop = menu.offsetHeight + "px";
+            //wrapper.style.marginTop = menu.offsetHeight + "px";
           } else {
             //wrapper.style.marginTop = header.offsetHeight + "px";
           }
@@ -1167,6 +1167,12 @@
             while ((node = walker.nextNode())) {
               replaceText(node);
             }
+          }
+
+          const proposal_body = document.querySelector(`#proposal_body`);
+          if (proposal_body) {
+            //proposal_body.textContent = proposal_body.textContent.replace('<p>', '').replace('</p>', '');
+            proposal_body.placeholder = 'Crie um título de até 50 caracteres e um resumo/ementa de até 500 caracteres. Você pode anexar sua moção em PDF se preferir.' 
           }
         }
         const metric_filter = document.querySelector(".filter-container");
