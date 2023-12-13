@@ -1004,6 +1004,16 @@
           createTabItem("Recomendações", `/processes/ENGD/f/67`)
         );
 
+        if (window.location.href.includes('/processes/ENGD/f/67')) {
+          const filters = document.querySelector(
+            ".filters"
+          ); 
+
+          if (filters) {
+              filters.style.maxWidth = "500px";
+          }
+        }
+
         if(window.location.href.includes('/processes/ENGD/f/77')) {
           const participatoryList = document.querySelector(
             ".participatory-text-list"
