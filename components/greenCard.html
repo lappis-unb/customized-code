@@ -1,0 +1,91 @@
+<section class="actions-section br-container">
+    <a class="action-container" href="#">
+        <div class="action-icon-background">
+            <i class="fa-solid fa-file-alt fa-2xl"></i>
+        </div>
+        <p class="action-text">Teste</p>
+    </a>
+    <a class="action-container" href="#">
+        <div class="action-icon-background">
+            <i class="fa-solid fa-bullhorn fa-2xl"></i>
+        </div>
+        <p class="action-text">Teste</p>
+    </a>
+
+    <a class="action-container" href="#">
+        <div class="action-icon-background">
+            <i class="fa-solid fa-question fa-2xl"></i>
+        </div>
+        <p class="action-text">Teste</p>
+    </a>
+    <a class="action-container" href="#">
+        <div class="action-icon-background">
+            <i class="fa-solid fa-check-circle fa-2xl"></i>
+        </div>
+        <p class="action-text">Teste</p>
+    </a>
+
+    <a class="action-container" href="#">
+        <div class="action-icon-background">
+            <i class="fa-solid fa-user-friends fa-2xl"></i>
+        </div>
+        <p class="action-text">Teste</p>
+    </a>
+</section>
+
+<style>
+    .actions-section {
+        display: flex;
+        gap: 16px;
+        flex-direction: row;
+        align-items: center;
+        text-align: center;
+        flex-wrap: wrap;
+    }
+
+    @media (min-width: 1284px) {
+        .actions-section {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-direction: row;
+            align-items: center;
+            height: 140px;
+            text-align: center;
+        }
+    }
+
+    .action-container {
+        display: flex;
+        flex-direction: column;
+        border-radius: 16px;
+        background-color: var(--green-cool-vivid-5);
+        width: 180px;
+        height: 100%;
+        align-items: center;
+        justify-content: start;
+        gap: 8px;
+        text-align: center;
+        padding: 16px;
+        flex-grow: 1;
+    }
+
+    .action-icon-background {
+        background-color: var(--green-cool-vivid-50);
+        color: #fff;
+        text-align: left;
+        width: 60px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+    }
+
+    .action-text {
+        color: var(--color-secondary-08);
+        margin: 0px;
+        font-weight: 600;
+        text-align: left;
+    }
+</style>

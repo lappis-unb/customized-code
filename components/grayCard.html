@@ -1,0 +1,71 @@
+<section class="actions-section br-container">
+    <a
+        class="action-container-gray"
+        href="https://app.powerbi.com/view?r=eyJrIjoiYzY3NmYyMDQtM2M0NC00NmEwLTkzMDUtZTRjZTI0ZDE4OTZjIiwidCI6ImNmODQ1NGQzLWUwMTItNGE5ZC05NWIzLTcwYmRiNmY0NTlkNSJ9"
+    >
+        <div class="action-container-gray-container">
+            <div class="action-icon-background">
+                <i class="fa fa-solid fa-calendar fa-2xl"></i>
+            </div>
+            <p>Agenda</p>
+        </div>
+
+        <div class="arrow-action-icon-background">
+            <i class="fa fa-solid fa-arrow-circle-right fa-2xl"></i>
+        </div>
+    </a>
+</section>
+
+<style>
+    .actions-section {
+        display: flex;
+        gap: 16px;
+        justify-content: center;
+        flex-direction: row;
+        align-items: center;
+        text-align: center;
+        flex-wrap: wrap;
+    }
+
+    @media (min-width: 1284px) {
+        .actions-section {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-direction: row;
+            align-items: center;
+            height: 140px;
+            text-align: center;
+        }
+    }
+    .action-container-gray {
+        display: flex;
+        flex-direction: row;
+        border-radius: 16px;
+        background-color: var(--gray-4);
+        max-width: 500px;
+        height: 80px;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        text-align: start;
+        padding: 16px;
+        flex-grow: 1;
+    }
+
+    .action-container-gray-container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 8px;
+    }
+    .action-container-gray-container p {
+        font-size: 1.26rem;
+        font-weight: 600;
+        color: var(--color-secondary-08);
+        text-align: left;
+    }
+    .arrow-action-icon-background {
+        color: var(--gray-60);
+    }
+</style>

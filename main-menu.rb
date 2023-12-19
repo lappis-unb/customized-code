@@ -9,7 +9,7 @@
     },
     {
       "id"=> "ppa",
-      "href"=> "javascript=> void(0)",
+      "href"=> "javascript:void(0)",
       "label"=> "PPA Participativo",
       "sub_items"=> [
         {
@@ -33,7 +33,7 @@
         {
           "id"=> "ppa-propostas",
           "href"=> "/processes/programas/f/2/",
-          "label"=> "Propostas priorizadas",
+          "label"=> "Propostas mais votadas",
           "is_visible"=> true
         },
         {
@@ -47,12 +47,12 @@
     },
     {
       "id"=> "conferencias",
-      "href"=> "javascript=> void(0)",
+      "href"=> "javascript:void(0)",
       "label"=> "Conferências",
       "sub_items"=> [
         {
           "id"=> "juventude",
-          "href"=> "javascript=> void(0)",
+          "href"=> "javascript:void(0)",
           "label"=> "Juventude",
           "sub_items"=> [
             {
@@ -96,7 +96,7 @@
         },
         {
           "id"=> "seguranca-alimentar",
-          "href"=> "javascript=> void(0)",
+          "href"=> "javascript:void(0)",
           "label"=> "Segurança alimentar",
           "sub_items"=> [
             {
