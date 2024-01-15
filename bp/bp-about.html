@@ -48,12 +48,28 @@
 <style>
   .about-title {
     margin-top: 1.5rem;
+    font-weight: var(--font-weight-semi-bold);
+    color: var(--blue-warm-vivid-80);
+    font-size: 20px;
+    
+        
   }
   .about-text {
     color: #555555;
     font-size: 1.2rem;
+    font-size: var(--font-size-scale-base);
   }
   .none {
     display: none;
   }
+
+  @media (min-width: 768px) {
+        .about-title {
+          font-size: 32px;
+        }
+        .about-text {
+          font-size: 16px;
+        }
+      }
+   
 </style>
