@@ -614,8 +614,7 @@
 
   function removeSecondProductionLogin() {
     if (
-      window.location.href ===
-      "https://brasilparticipativo.presidencia.gov.br/users/sign_in"
+      window.location.pathname.includes('/users/sign_in')
     ) {
       const cardContent = document.querySelector(".card__content");
       const registerSeparator = document.querySelector(".register__separator");
@@ -713,9 +712,9 @@
           }
           if (menu && content) {
             menu.style.top = header.offsetHeight - 2 + "px";
-            //wrapper.style.marginTop = menu.offsetHeight + "px";
+            wrapper.style.marginTop = menu.offsetHeight + "px";
           } else {
-            //wrapper.style.marginTop = header.offsetHeight + "px";
+            wrapper.style.marginTop = header.offsetHeight + "px";
           }
         }
       }
