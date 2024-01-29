@@ -1,13 +1,20 @@
 <section class="home-section br-container-lg">
   <div class="hero__container__img"></div>
-  <div class="hero-button-container">
-    <a href="/pages/relatoriodaplataforma" class="hero-link">
-      <span class="hero-link-text">Relatórios do PPA Participativo</span>
-    </a>
-  </div>
 </section>
 
 <section class="actions-section br-container">
+  <a class="action-container" href="/pages/devolutiva">
+    <div class="action-icon-background">
+      <i class="fa-solid fa-hand-holding-heart fa-2xl"></i>
+    </div>
+    <p class="action-text">Devolutiva do PPA</p>
+  </a>
+  <a class="action-container" href="/pages/relatoriodaplataforma">
+    <div class="action-icon-background">
+      <i class="fa-solid fa-file-lines fa-2xl"></i>
+    </div>
+    <p class="action-text">Relatório do PPA Participativo</p>
+  </a>
   <a class="action-container" href="/processes/programas/f/1/">
     <div class="action-icon-background">
       <i class="fa-solid fa-star fa-2xl"></i>
@@ -30,8 +37,8 @@
         As propostas do povo serão analisadas pelos ministérios
       </p>
     </div>
-    <div class="ppa-process-arrow-icon">
-      <i class="fa-solid fa-arrow-down"></i>
+    <div class="ppa-process-arrow-icons" id="first-arrow-icon">
+      <i class="fa-solid fa-arrow-right"></i>
     </div>
     <div class="process-card">
       <div class="process-icon"><i class="fa fa-users fa-3x"></i></div>
@@ -42,7 +49,7 @@
   </div>
   <div class="ppa-process">
     <div id="empty-space"></div>
-    <div id="second-arrow-icon">
+    <div class="ppa-process-arrow-icons" id="second-arrow-icon">
       <i class="fa-solid fa-arrow-down"></i>
     </div>
     <div class="process-card">
@@ -51,7 +58,7 @@
         Em agosto, o governo encaminhará ao Legislativo o Projeto de Lei
       </p>
     </div>
-    <div class="ppa-process-arrow-icon" id="third-arrow-icon">
+    <div class="ppa-process-arrow-icons" id="third-arrow-icon">
       <i class="fa-solid fa-arrow-down"></i>
     </div>
     <div class="process-card">
@@ -83,11 +90,14 @@
 
 <section class="br-container-lg">
   <div class="br-divider md"></div>
-  <div class="colect-proposals info-centered">
+  <div class="br-ppa-info-container">
     <p class="ppa-info-text">
       A coleta de propostas e votos da população encerrou no dia 16 de julho de
-      2023. Você ainda pode criar seu perfil na plataforma para participar de
-      futuras iniciativas.
+      2023.
+    </p>
+    <p class="ppa-info-text">
+      Você ainda pode criar seu perfil na plataforma para participar de futuras
+      iniciativas.
     </p>
   </div>
 
@@ -96,39 +106,27 @@
 
 <section class="extended home-section br-container-lg" id="statistics">
   <div class="row column text-center">
-    <h3 id="results-heading" class="heading3">
+    <h3 id="results-heading" class="br-heading-3">
       Resultado da mobilização do PPA
     </h3>
   </div>
-  <div class="row">
-    <div class="columns small-centered mediumlarge-10 large-8">
-      <div class="home-stats">
-        <div class="home-stats__highlight">
-          <section class="row section-statistics">
-            <div class="columns">
-              <div class="row column">
-                <div class="statistics-cell">
-                  <div class="statistic__data users_count">
-                    <span class="statistic__number">1.419.729</span>
-                    <p class="statistic__title">Participantes</p>
-                  </div>
-                  <div class="statistic__data proposals_count">
-                    <span class="statistic__number">8.254</span>
-                    <p class="statistic__title">Propostas</p>
-                  </div>
-                  <div class="statistic__data proposals_accepted">
-                    <span class="statistic__number">1.529.826</span>
-                    <p class="statistic__title">Votos</p>
-                  </div>
-                  <div class="statistic__data proposals_accepted">
-                    <span class="statistic__number">4.087.540</span>
-                    <p class="statistic__title">Acessos</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-        </div>
+  <div class="row column">
+    <div class="home-sections-content stats-container ppa-results-container">
+      <div class="stats-card">
+        <h2>1.419.729</h2>
+        <h5>Participantes</h5>
+      </div>
+      <div class="stats-card">
+        <h2>8.254</h2>
+        <h5>Propostas</h5>
+      </div>
+      <div class="stats-card">
+        <h2>1.529.826</h2>
+        <h5>Votos</h5>
+      </div>
+      <div class="stats-card">
+        <h2>4.087.540</h2>
+        <h5>Propostas</h5>
       </div>
     </div>
   </div>
@@ -819,7 +817,7 @@
     --banner-desktop: url("https://brasilparticipativo.presidencia.gov.br/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBa3dyIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--f94aaf30ccd09d12cd4ead43ca7d9921f7d46db2/ppa_desktop_text.jpg") !important;
   }
 
-  .home-stats .section-statistics .statistics-cell {
+  .home-stats .section-statistics {
     min-width: auto;
     justify-content: center;
     gap: 1.2rem;
@@ -828,9 +826,10 @@
 
   .hero__container__img {
     background-image: var(--banner-mobile);
+    position: static;
   }
 
-  .statistics-cell .statistic__data {
+  .statistic__data {
     width: 300px;
     background-color: var(--blue-3);
     border-radius: 15px;
@@ -866,10 +865,20 @@
       .ppa-process {
         width: 630px;
       }
+
+      .actions-section {
+        display: flex;
+        gap: 16px;
+        justify-content: center;
+        flex-direction: row;
+        align-items: center;
+        height: 150px;
+        text-align: center;
+      }
     }
 
     #empty-space {
-      width: 450px;
+      width: 315px;
     }
 
     #second-arrow-icon {
@@ -897,7 +906,8 @@
   }
 
   .actions-section {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(2, 0fr);
     gap: 16px;
     flex-direction: row;
     align-items: center;
@@ -905,6 +915,7 @@
     flex-wrap: wrap;
     width: 100%;
     justify-content: center;
+    margin-top: 2rem;
   }
 
   @media (min-width: 1284px) {
@@ -914,7 +925,7 @@
       justify-content: center;
       flex-direction: row;
       align-items: center;
-      height: 140px;
+      height: 150px;
       text-align: center;
     }
   }
@@ -923,8 +934,8 @@
     display: flex;
     flex-direction: column;
     border-radius: 8px;
-    max-width: 160px;
-    height: 100%;
+    width: 150px;
+    height: 140px;
     align-items: center;
     justify-content: center;
     gap: 8px;
@@ -934,9 +945,9 @@
     background-color: var(--blue-3);
   }
 
-  @media (min-width: 1284px) {
+  @media (min-width: 768px) {
     .action-container {
-      max-width: 300px;
+      width: 250px;
     }
   }
 
@@ -981,5 +992,82 @@
 
   .statistic__data:hover {
     background-color: var(--blue-10);
+  }
+
+  .stats-card {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1.125rem;
+    background-color: var(--blue-3);
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    min-width: 300px;
+    height: 175px;
+    border-radius: 8px;
+  }
+
+  @media (min-width: 768px) {
+    .stats-card {
+      min-width: 350px;
+      max-width: 400px;
+    }
+  }
+
+  .stats-card:hover {
+    background-color: var(--blue-10);
+  }
+
+  .stats-card h2 {
+    font-weight: 400;
+    font-size: 1.75rem;
+  }
+
+  .stats-card h5 {
+    color: var(--blue-warm-vivid-80);
+    text-transform: capitalize;
+    font-weight: 500;
+    font-size: 1rem;
+  }
+
+  .ppa-results-container {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    grid-template-columns: repeat(1, 0fr);
+    grid-auto-rows: minmax(100px, auto);
+  }
+
+  @media (min-width: 768px) {
+    .ppa-results-container {
+      grid-template-columns: repeat(2, 0fr);
+    }
+  }
+  .ppa-process-arrow-icons {
+    color: var(--blue-warm-vivid-70);
+  }
+
+  @media (max-width: 768px) {
+    #first-arrow-icon {
+      transform: rotate(90deg);
+    }
+  }
+
+  .br-heading-3 {
+    font-size: 1.8rem;
+    margin: 32px 0;
+  }
+  .br-ppa-info-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 16px;
+    padding: 24px 0;
+  }
+  .br-ppa-info-container p {
+    margin: 0 !important;
   }
 </style>
