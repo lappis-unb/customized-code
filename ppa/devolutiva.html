@@ -310,17 +310,29 @@
 
 <section class="br-container-lg ppa-footer">
   <p>Importante destacar que o PPA, instituído pela Constituição de 1988, é um plano de médio prazo que organiza a ação governamental e serve de orientação, juntamente com a Lei de Diretrizes Orçamentárias – LDO, para a elaboração da Lei do Orçamento Anual (LOA). Portanto, ele não é executado diretamente, mas através dos orçamentos anuais, e na sequência, tem a previsão do seu monitoramento todos os anos. Por isso, faz-se necessário a participação social na elaboração do orçamento público anual, definindo prioridades das políticas públicas de investimentos e serviços dos programas e ações.</pp>
+
+  <div class="ppa-footer-image"></div>
 </section>
 
 <style type="text/css">
   :root {
     --banner-mobile: url("https://brasilparticipativo.presidencia.gov.br/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBazByIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--78e4a5015530027f6d90a8ba9feb2689a6e5fd1f/ppa_mobile_text.jpg") !important;
     --banner-desktop: url("https://brasilparticipativo.presidencia.gov.br/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBa3dyIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--f94aaf30ccd09d12cd4ead43ca7d9921f7d46db2/ppa_desktop_text.jpg") !important;
+    --ppa-footer-img: url("https://brasilparticipativo.presidencia.gov.br/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBbHlQIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--eae494e0c8b16cf881bb44e45cd34c617adbb472/logo_snps.png") !important;
   }
 
   .hero__container__img {
     background-image: var(--banner-mobile);
     position: static;
+  }
+
+  .ppa-footer-image{
+    background-image: var(--ppa-footer-img);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    width: 200px;
+    height: 200px;
   }
 
   @media (min-width: 768px) {
@@ -433,6 +445,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
   }
   .ppa-total-table{
     background-color: #FFF2CC;
