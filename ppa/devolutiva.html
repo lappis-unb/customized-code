@@ -299,10 +299,9 @@
       </h4>
     </div>
   </div>
-  <div class="ppa-button">
-    <div class="hero-button-container">
-      <a href="" class="hero-link">
-        <span class="hero-link-text">ACESSAR DOCUMENTOS EM ANEXOS</span>
+    <div class="ppa-button">
+      <a href="" class="br-button primary active" type="button">
+        ACESSAR DOCUMENTOS EM ANEXOS
       </a>
     </div>
   </div>
@@ -319,6 +318,9 @@
     --banner-mobile: url("https://brasilparticipativo.presidencia.gov.br/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBazByIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--78e4a5015530027f6d90a8ba9feb2689a6e5fd1f/ppa_mobile_text.jpg") !important;
     --banner-desktop: url("https://brasilparticipativo.presidencia.gov.br/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBa3dyIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--f94aaf30ccd09d12cd4ead43ca7d9921f7d46db2/ppa_desktop_text.jpg") !important;
     --ppa-footer-img: url("https://brasilparticipativo.presidencia.gov.br/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBbHlQIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--eae494e0c8b16cf881bb44e45cd34c617adbb472/logo_snps.png") !important;
+  }
+  .subtitle-blog {
+    font-size: 1rem;
   }
 
   .hero__container__img {
@@ -365,8 +367,8 @@
     padding: 0;
   }
   .presentation-title {
-    font-size: 2rem;
-    color: #000;
+    font-size: 1.25rem;
+    color: var(--gray-90);
     font-weight: 400;
   }
   .presentation-subtitle {
@@ -382,6 +384,9 @@
   }
 
   @media (min-width: 1024px) {
+    .presentation-title {
+      font-size: 2rem;
+    }
     .ppa-attachments {
       display: flex;
     }
@@ -395,10 +400,9 @@
     display: flex;
     flex-direction: column;
     width: 300px;
-    height: 250px;
     padding: 24px;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     gap: 0.5rem;
     align-self: stretch;
     background-color: var(--blue-3);
@@ -406,6 +410,8 @@
 
   .ppa-attachment-title {
     font-size: 1rem;
+    padding: 0;
+    margin: 0;
   }
 
   .accordion-ppa-text {
@@ -450,5 +456,11 @@
   .ppa-total-table{
     background-color: #FFF2CC;
   }
-  
+  .ppa-button {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    padding: 40px 0;
+  }
+
 </style>
