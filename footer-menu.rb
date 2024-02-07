@@ -9,14 +9,6 @@
       "is_topic"=> true
     },
     {
-      "id"=> "inicio",
-      "href"=> "/",
-      "label"=> "Teste",
-      "sub_items"=> [],
-      "is_visible"=> true,
-      "is_topic"=> true
-    },
-    {
       "id"=> "noticia",
       "href"=> "/processes/brasilparticipativo/f/26/",
       "label"=> "Notícias",
