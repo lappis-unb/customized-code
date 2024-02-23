@@ -89,15 +89,8 @@
           "is_visible" => true
         },
         {
-          "id" => "O que fazemos",
-          "href" => "/processes/programas/f/33/",
-          "label" => "O que fazemos",
-          "sub_items" => [],
-          "is_visible" => true
-        },
-        {
           "id" => "Termos e Condições de Uso",
-          "href" => "/pages/terms-and-conditions",
+          "href" => "/processes/brasilparticipativo/f/78/",
           "label" => "Termos e Condições de Uso",
           "sub_items" => [],
           "is_visible" => true
