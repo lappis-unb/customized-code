@@ -271,22 +271,21 @@
       <h4 class="ppa-attachment-title">
         Propostas finais com a indicação da incorporação e atributo
       </h4>
-      <p>
-        Tabela das 307 Propostas Incorporadas; Tabela das 93 Propostas
-        Parcialmente Incorporadas; Tabela das 28 Propostas com Incorporação
-        Condicionada; Tabela das 80 Propostas Não Incorporadas
+      <p class="ppa-attachment-subtitle">
+        Lista das propostas, com o seu status de incorporação, indicação da do programa ao 
+        qual qual está incorporada, o atributo e a justificativa nos casos de não incorporação.
       </p>
     </div>
     <div class="br-card">
       <h4 class="ppa-attachment-title">Propostas mais votadas por estado</h4>
-      <p>
-        Os 10 programas e as 10 propostas mais votadas por unidade da federação; as 10 propostas
-        mais votadas por unidade da federação, com indicação do parecer e das incorporações.
+      <p class="ppa-attachment-subtitle">
+        Os 10 programas e as 10 propostas mais votadas por unidade da federação, com indicação 
+        do parecer e das incorporações.
       </p>
     </div>
     <div class="br-card">
       <h4 class="ppa-attachment-title">
-        Dimensão estratégica, com visão de futuro, para o PPA Participativo 2024-2027
+        Dimensão estratégica, com visão de futuro, para o PPA Participativo 2024-2027.
       </h4>
     </div>
   </div>
@@ -385,20 +384,32 @@
     }
   }
 
+  .br-card {
+    text-align: center;
+    border-radius: 1rem;
+    margin: 0px;
+  }
+
   .ppa-attachments .br-card {
     display: flex;
     flex-direction: column;
     width: 300px;
     padding: 24px;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: center;
     gap: 0.5rem;
-    align-self: stretch;
-    background-color: var(--blue-3);
+    background-color: var(--blue-10);
   }
 
   .ppa-attachment-title {
     font-size: 1rem;
+    padding: 0;
+    margin: 0;
+  }
+
+  .ppa-attachment-subtitle {
+    font-size: var(--font-size-scale-up-01);
+    color: var(--blue-warm-vivid-80);
     padding: 0;
     margin: 0;
   }
