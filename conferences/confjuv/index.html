@@ -2,45 +2,42 @@
   <div class="hero__conf__container__img"></div>
 </section>
 
-<section class="news-card br-container-lg" id="statistics">
+<section
+  class="extended home-section br-container-lg max-section-size"
+  id="statistics"
+>
   <div class="row column text-center">
-    <h3 class="heading3">Etapa Digital da 4ª Conferência da Juventude</h3>
+    <h3 id="results-heading" class="br-heading-3">
+      Etapa Digital da 4ª Conferência da Juventude
+    </h3>
   </div>
-  <div class="row">
-    <div class="columns">
-      <div class="home-stats">
-        <div class="home-stats__highlight">
-          <section class="row section-statistics">
-            <div class="statistics-cell">
-              <div class="statistic__data users_count">
-                <span class="statistic__number">209.756</span>
-                <h4 class="statistic__title">Visitas</h4>
-              </div>
-              <div class="statistic__data proposals_count">
-                <span class="statistic__number">62.024</span>
-                <h4 class="statistic__title">Participantes</h4>
-              </div>
-              <div class="statistic__data proposals_accepted">
-                <span class="statistic__number">2.288</span>
-                <h4 class="statistic__title">Propostas</h4>
-              </div>
-              <div class="statistic__data proposals_accepted">
-                <span class="statistic__number">25.464</span>
-                <h4 class="statistic__title">Comentários</h4>
-              </div>
-              <div class="statistic__data proposals_accepted">
-                <span class="statistic__number">262.076</span>
-                <h4 class="statistic__title">Votos</h4>
-              </div>
-            </div>
-          </section>
-        </div>
+  <div class="row column">
+    <div class="home-sections-content stats-container ppa-results-container">
+      <div class="stats-card">
+        <h2>209.756</h2>
+        <h5>Visitas</h5>
+      </div>
+      <div class="stats-card">
+        <h2>62.024</h2>
+        <h5>Participantes</h5>
+      </div>
+      <div class="stats-card">
+        <h2>2.288</h2>
+        <h5>Propostas</h5>
+      </div>
+      <div class="stats-card">
+        <h2>25.464</h2>
+        <h5>Comentários</h5>
+      </div>
+      <div class="stats-card">
+        <h2>262.076</h2>
+        <h5>Votos</h5>
       </div>
     </div>
   </div>
 </section>
 
-<section class="actions-section br-container">
+<section class="actions-section br-container max-section-size">
   <a class="action-container" href="/assemblies/confjuv4/f/11/meetings/new">
     <div class="action-icon-background">
       <i class="fa fa-solid fa-bullhorn fa-2xl"></i>
@@ -70,7 +67,7 @@
   </a>
 </section>
 
-<section class="news-card br-container">
+<section class="news-card br-container max-section-size">
   <span class="home-section-title news-conf-title">
     Saiba o que está rolando sobre a 4ª Conferência da Juventude
   </span>
@@ -594,7 +591,6 @@
     align-items: center;
     /* max-width: 100%; */
     overflow: auto;
-    background: var(--gray-2);
     padding: 2rem 0 3rem 0;
     gap: 2rem;
     border-radius: 16px;
@@ -625,6 +621,8 @@
     position: relative;
     cursor: pointer;
     max-width: 620px;
+    border-radius: 8px;
+    overflow: hidden;
   }
 
   .news-card__list__item__overlay {
@@ -662,26 +660,6 @@
     text-align: center;
     width: auto;
     position: relative;
-  }
-
-  @media (min-width: 768px) {
-    .news-card__list__item {
-      position: relative;
-      cursor: pointer;
-    }
-    .news-conf-title {
-      width: auto;
-    }
-  }
-
-  @media (min-width: 1284px) {
-    .actions-section {
-      display: flex;
-      gap: 2.5rem;
-      justify-content: space-evenly;
-      padding: 2.5rem 0;
-      flex-flow: row;
-    }
   }
 
   /* Media queries */
@@ -765,11 +743,89 @@
       margin-top: 2.5rem;
       gap: 2.5rem;
     }
+    .stats-card {
+      min-width: 350px;
+      max-width: 400px;
+    }
+    .ppa-results-container {
+      grid-template-columns: repeat(2, 0fr) !important;
+    }
+
+    .news-card__list__item {
+      position: relative;
+      cursor: pointer;
+    }
+    .news-conf-title {
+      width: auto;
+    }
   }
   img.bb-logo {
     width: 96px;
   }
+
+  .stats-card {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1.125rem;
+    background-color: var(--blue-3);
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    min-width: 300px;
+    height: 175px;
+    border-radius: 8px;
+  }
+
+  .stats-card:hover {
+    background-color: var(--blue-10);
+  }
+
+  .stats-card h2 {
+    font-weight: 400;
+    font-size: 1.75rem;
+  }
+
+  .stats-card h5 {
+    color: var(--blue-warm-vivid-80);
+    text-transform: capitalize;
+    font-weight: 500;
+    font-size: 1rem;
+  }
+
+  .ppa-results-container {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    grid-template-columns: repeat(1, 0fr);
+    grid-auto-rows: minmax(100px, auto);
+  }
+
+  @media (min-width: 1024px) {
+    .ppa-results-container {
+      grid-template-columns: repeat(3, 0fr) !important;
+    }
+  }
+
+  @media (min-width: 1284px) {
+    .ppa-results-container {
+      grid-template-columns: repeat(3, 0fr) !important;
+    }
+    .actions-section {
+      display: flex;
+      gap: 2.5rem;
+      justify-content: space-evenly;
+      padding: 2.5rem 0;
+      flex-flow: row;
+    }
+  }
+
   #statistics {
-    margin: 3rem auto;
+    background-color: white;
+  }
+
+  .max-section-size {
+    max-width: 1152px;
   }
 </style>
