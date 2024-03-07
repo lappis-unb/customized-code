@@ -227,7 +227,7 @@
     const menuItems = navbar.querySelectorAll(".tab-item");
 
     menuItems.forEach((liElement) => {
-      const span = liElement.querySelector("span");
+      const span = liElement.querySelector("spafn");
       if (span) {
         if (span.textContent.trim() === itemName) {
           liElement.remove();
@@ -613,9 +613,7 @@
   }
 
   function removeSecondProductionLogin() {
-    if (
-      window.location.pathname.includes('/users/sign_in')
-    ) {
+    if (window.location.pathname.includes("/users/sign_in")) {
       const cardContent = document.querySelector(".card__content");
       const registerSeparator = document.querySelector(".register__separator");
       const loginText = document.querySelector(
@@ -648,7 +646,6 @@
 
       getDataForm();
       showCreateProfileLink();
-      removeSecondProductionLogin();
 
       var linkElement = document.querySelector('link[rel="icon"]');
       if (linkElement) {
@@ -1020,17 +1017,15 @@
           createTabItem("Recomendações", `/processes/ENGD/f/67`)
         );
 
-        if (window.location.href.includes('/processes/ENGD/f/67')) {
-          const filters = document.querySelector(
-            ".filters"
-          ); 
+        if (window.location.href.includes("/processes/ENGD/f/67")) {
+          const filters = document.querySelector(".filters");
 
           if (filters) {
-              filters.style.maxWidth = "500px";
+            filters.style.maxWidth = "500px";
           }
         }
 
-        if(window.location.href.includes('/processes/ENGD/f/77')) {
+        if (window.location.href.includes("/processes/ENGD/f/77")) {
           const participatoryList = document.querySelector(
             ".participatory-text-list"
           );
@@ -1188,7 +1183,8 @@
           const proposal_body = document.querySelector(`#proposal_body`);
           if (proposal_body) {
             //proposal_body.textContent = proposal_body.textContent.replace('<p>', '').replace('</p>', '');
-            proposal_body.placeholder = 'Crie um título de até 50 caracteres e um resumo/ementa de até 500 caracteres. Você pode anexar sua moção em PDF se preferir.' 
+            proposal_body.placeholder =
+              "Crie um título de até 50 caracteres e um resumo/ementa de até 500 caracteres. Você pode anexar sua moção em PDF se preferir.";
           }
         }
         const metric_filter = document.querySelector(".filter-container");

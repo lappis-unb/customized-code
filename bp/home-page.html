@@ -27,7 +27,11 @@
     />
   </div>
   <div class="signin-container is-mobile">
-    <a id="sign-in-btn-mobile" href="/users/sign_in" class="create-profile-link">
+    <a
+      id="sign-in-btn-mobile"
+      href="/users/sign_in"
+      class="create-profile-link"
+    >
       <div class="create-profile-link-icon">
         <i class="fa-solid fa-user"></i>
       </div>
@@ -124,7 +128,10 @@
     margin: 0;
   }
   .create-profile-link:hover {
-    background-color: var(--blue-warm-vivid-70);
+    background-image: linear-gradient(
+      rgba(var(--interactive-rgb), var(--pressed)),
+      rgba(var(--interactive-rgb), var(--pressed))
+    );
     text-decoration: none;
   }
   .create-profile-link-icon {
@@ -139,7 +146,7 @@
     display: flex;
     width: 100%;
     height: 10px;
-    background-image: url("https://brasilparticipativo.presidencia.gov.br/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBcU5XIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--0695acd28de9d94867be9e6fbe28351b5b466595/Elementos-banner%20(1).png");
+    background-image: url("https://brasilparticipativo.presidencia.gov.br/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBbm1QIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--e2602ede12bc8bad23ab690911b972aaf5bd15a9/Elementos-Coloridos.png");
     background-size: cover;
     background-repeat: repeat;
     margin-top: -40px;
@@ -156,7 +163,7 @@
       display: flex;
       width: 100%;
       height: 35px;
-      background-image: url("https://brasilparticipativo.presidencia.gov.br/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBcU5XIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--0695acd28de9d94867be9e6fbe28351b5b466595/Elementos-banner%20(1).png");
+      background-image: url("https://brasilparticipativo.presidencia.gov.br/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBbm1QIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--e2602ede12bc8bad23ab690911b972aaf5bd15a9/Elementos-Coloridos.png");
       background-size: cover;
       background-repeat: repeat;
       margin-top: -4px;
@@ -260,24 +267,69 @@
       <h3 class="section-card-title">Conferências</h3>
     </a>
     <a class="section-card" href="/processes/ENGD">
-      <svg xmlns="http://www.w3.org/2000/svg" width="63" height="48" viewBox="0 0 63 48" fill="none">
-        <mask id="mask0_5034_5831" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="41" y="22" width="22" height="26">
-          <path d="M41.002 22.8787H62.7213V47.3887H41.002V22.8787Z" fill="white"/>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="63"
+        height="48"
+        viewBox="0 0 63 48"
+        fill="none"
+      >
+        <mask
+          id="mask0_5034_5831"
+          style="mask-type: luminance"
+          maskUnits="userSpaceOnUse"
+          x="41"
+          y="22"
+          width="22"
+          height="26"
+        >
+          <path
+            d="M41.002 22.8787H62.7213V47.3887H41.002V22.8787Z"
+            fill="white"
+          />
         </mask>
         <g mask="url(#mask0_5034_5831)">
-          <path d="M51.8616 35.1336C55.2896 35.1336 58.0666 32.3927 58.0666 29.0092C58.0666 25.6269 55.2896 22.8848 51.8616 22.8848C48.4337 22.8848 45.6554 25.6269 45.6554 29.0092C45.6554 32.3927 48.4337 35.1336 51.8616 35.1336ZM56.2053 36.6644H55.3958C54.3189 37.1529 53.1221 37.4304 51.8616 37.4304C50.6011 37.4304 49.4081 37.1529 48.3275 36.6644H47.518C43.9202 36.6644 41.002 39.5447 41.002 43.0947V45.0856C41.002 46.3537 42.0438 47.3824 43.328 47.3824H60.394C61.6795 47.3824 62.7213 46.3537 62.7213 45.0856V43.0947C62.7213 39.5447 59.8031 36.6644 56.2053 36.6644Z" fill="#0C326F"/>
+          <path
+            d="M51.8616 35.1336C55.2896 35.1336 58.0666 32.3927 58.0666 29.0092C58.0666 25.6269 55.2896 22.8848 51.8616 22.8848C48.4337 22.8848 45.6554 25.6269 45.6554 29.0092C45.6554 32.3927 48.4337 35.1336 51.8616 35.1336ZM56.2053 36.6644H55.3958C54.3189 37.1529 53.1221 37.4304 51.8616 37.4304C50.6011 37.4304 49.4081 37.1529 48.3275 36.6644H47.518C43.9202 36.6644 41.002 39.5447 41.002 43.0947V45.0856C41.002 46.3537 42.0438 47.3824 43.328 47.3824H60.394C61.6795 47.3824 62.7213 46.3537 62.7213 45.0856V43.0947C62.7213 39.5447 59.8031 36.6644 56.2053 36.6644Z"
+            fill="#0C326F"
+          />
         </g>
-        <mask id="mask1_5034_5831" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="14" width="29" height="34">
-          <path d="M0 14.9802H28.6414V47.5032H0V14.9802Z" fill="white"/>
+        <mask
+          id="mask1_5034_5831"
+          style="mask-type: luminance"
+          maskUnits="userSpaceOnUse"
+          x="0"
+          y="14"
+          width="29"
+          height="34"
+        >
+          <path d="M0 14.9802H28.6414V47.5032H0V14.9802Z" fill="white" />
         </mask>
         <g mask="url(#mask1_5034_5831)">
-          <path d="M14.3213 31.2416C18.8411 31.2416 22.5039 27.6027 22.5039 23.1152C22.5039 18.6264 18.8411 14.9888 14.3213 14.9888C9.80033 14.9888 6.13754 18.6264 6.13754 23.1152C6.13754 27.6027 9.80033 31.2416 14.3213 31.2416ZM20.0491 33.2732H18.981C17.5619 33.9208 15.9828 34.2884 14.3213 34.2884C12.6586 34.2884 11.0858 33.9208 9.66041 33.2732H8.59231C3.84892 33.2732 0 37.0946 0 41.8055V44.4464C0 46.1289 1.37417 47.4944 3.06815 47.4944H25.5733C27.2673 47.4944 28.6414 46.1289 28.6414 44.4464V41.8055C28.6414 37.0946 24.7925 33.2732 20.0491 33.2732Z" fill="#0C326F"/>
+          <path
+            d="M14.3213 31.2416C18.8411 31.2416 22.5039 27.6027 22.5039 23.1152C22.5039 18.6264 18.8411 14.9888 14.3213 14.9888C9.80033 14.9888 6.13754 18.6264 6.13754 23.1152C6.13754 27.6027 9.80033 31.2416 14.3213 31.2416ZM20.0491 33.2732H18.981C17.5619 33.9208 15.9828 34.2884 14.3213 34.2884C12.6586 34.2884 11.0858 33.9208 9.66041 33.2732H8.59231C3.84892 33.2732 0 37.0946 0 41.8055V44.4464C0 46.1289 1.37417 47.4944 3.06815 47.4944H25.5733C27.2673 47.4944 28.6414 46.1289 28.6414 44.4464V41.8055C28.6414 37.0946 24.7925 33.2732 20.0491 33.2732Z"
+            fill="#0C326F"
+          />
         </g>
-        <mask id="mask2_5034_5831" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="21" y="0" width="27" height="22">
-          <path d="M21.0063 0.959961H47.5003V21.4857H21.0063V0.959961Z" fill="white"/>
+        <mask
+          id="mask2_5034_5831"
+          style="mask-type: luminance"
+          maskUnits="userSpaceOnUse"
+          x="21"
+          y="0"
+          width="27"
+          height="22"
+        >
+          <path
+            d="M21.0063 0.959961H47.5003V21.4857H21.0063V0.959961Z"
+            fill="white"
+          />
         </mask>
         <g mask="url(#mask2_5034_5831)">
-          <path d="M40.141 8.38187C40.141 4.39513 35.8586 1.16455 30.5731 1.16455C25.2888 1.16455 21.0063 4.39513 21.0063 8.38187C21.0063 9.92993 21.6547 11.3546 22.754 12.5327C22.1382 13.8945 21.1213 14.9775 21.1075 14.9911C21.0063 15.0947 20.9789 15.2476 21.0388 15.3833C21.0988 15.519 21.2275 15.6004 21.3749 15.6004C23.0576 15.6004 24.4518 15.0453 25.4537 14.4717C26.9353 15.1798 28.688 15.6004 30.5731 15.6004C35.8586 15.6004 40.141 12.3698 40.141 8.38187ZM45.7526 18.3068C46.852 17.1337 47.5003 15.704 47.5003 14.156C47.5003 11.1388 45.0393 8.55332 41.5527 7.47523C41.5939 7.77374 41.6126 8.07595 41.6126 8.38187C41.6126 13.1593 36.6594 17.0436 30.5731 17.0436C30.0771 17.0436 29.5937 17.0079 29.1152 16.9573C30.5643 19.5514 33.9685 21.3745 37.9324 21.3745C39.8187 21.3745 41.5714 20.9588 43.0518 20.2458C44.0549 20.8194 45.4491 21.3745 47.1318 21.3745C47.2792 21.3745 47.4129 21.2882 47.4679 21.1574C47.5278 21.0267 47.5003 20.8737 47.3991 20.7652C47.3854 20.7516 46.3685 19.6735 45.7526 18.3068Z" fill="#0C326F"/>
+          <path
+            d="M40.141 8.38187C40.141 4.39513 35.8586 1.16455 30.5731 1.16455C25.2888 1.16455 21.0063 4.39513 21.0063 8.38187C21.0063 9.92993 21.6547 11.3546 22.754 12.5327C22.1382 13.8945 21.1213 14.9775 21.1075 14.9911C21.0063 15.0947 20.9789 15.2476 21.0388 15.3833C21.0988 15.519 21.2275 15.6004 21.3749 15.6004C23.0576 15.6004 24.4518 15.0453 25.4537 14.4717C26.9353 15.1798 28.688 15.6004 30.5731 15.6004C35.8586 15.6004 40.141 12.3698 40.141 8.38187ZM45.7526 18.3068C46.852 17.1337 47.5003 15.704 47.5003 14.156C47.5003 11.1388 45.0393 8.55332 41.5527 7.47523C41.5939 7.77374 41.6126 8.07595 41.6126 8.38187C41.6126 13.1593 36.6594 17.0436 30.5731 17.0436C30.0771 17.0436 29.5937 17.0079 29.1152 16.9573C30.5643 19.5514 33.9685 21.3745 37.9324 21.3745C39.8187 21.3745 41.5714 20.9588 43.0518 20.2458C44.0549 20.8194 45.4491 21.3745 47.1318 21.3745C47.2792 21.3745 47.4129 21.2882 47.4679 21.1574C47.5278 21.0267 47.5003 20.8737 47.3991 20.7652C47.3854 20.7516 46.3685 19.6735 45.7526 18.3068Z"
+            fill="#0C326F"
+          />
         </g>
       </svg>
       <h3 class="section-card-title">Consultas Públicas</h3>
@@ -317,21 +369,39 @@
 <section id="news-home-section" class="home-sections-container">
   <h2>Notícias</h2>
   <div class="home-sections-content">
-    <a href="/processes/brasilparticipativo/f/26/posts/110" class="main-news-card">
+    <a
+      href="/processes/brasilparticipativo/f/26/posts/111"
+      class="main-news-card"
+    >
       <img
         class="main-news-img"
-        src="https://brasilparticipativo.presidencia.gov.br/rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBbUNQIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--6c1e00c9889ec9d11e7c7ee812ede02eb60193e8/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJYW5CbkJqb0dSVlE2RkhKbGMybDZaVjkwYjE5c2FXMXBkRnNITUdrQzZBTT0iLCJleHAiOm51bGwsInB1ciI6InZhcmlhdGlvbiJ9fQ==--fbe5059557ad20e7c4072077b96e45b553394ff9/photo_2024-01-30_18-54-02.jpg"
+        src="https://brasilparticipativo.presidencia.gov.br/rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBbk9RIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--3dc907c23383372d0308823f6dd748fb85c96f16/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJYW5CbkJqb0dSVlE2RkhKbGMybDZaVjkwYjE5c2FXMXBkRnNITUdrQzZBTT0iLCJleHAiOm51bGwsInB1ciI6InZhcmlhdGlvbiJ9fQ==--fbe5059557ad20e7c4072077b96e45b553394ff9/Decidim.jpg"
       />
       <div class="main-news-content">
         <h3 class="news-title main-news-title">
-          Secretaria Nacional da Juventude e o Conselho Nacional da Juventude divulgam as resoluções e moções da 4ª Conferência Nacional de Juventude
+          Livro sobre plataformas digitais no mundo mostra Brasil Participativo
         </h3>
         <p class="main-news-subtitle">
-          O objetivo é apresentar o saldo da grande experiência que foi a #4ConfJuv, além de facilitar e qualificar o acompanhamento e monitoramento do cumprimento das resoluções aprovadas
+          A plataforma digital do governo federal ganhou destaque em publicação
+          que reúne experiências bem sucedidas do uso do Decidim no ambiente
+          internacional
         </p>
       </div>
     </a>
     <div class="news-container">
+      <span class="br-divider my-3"></span>
+      <a href="/processes/brasilparticipativo/f/26/posts/110" class="news-card">
+        <img
+          class="news-img"
+          src="https://brasilparticipativo.presidencia.gov.br/rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBbUNQIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--6c1e00c9889ec9d11e7c7ee812ede02eb60193e8/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJYW5CbkJqb0dSVlE2RkhKbGMybDZaVjkwYjE5c2FXMXBkRnNITUdrQzZBTT0iLCJleHAiOm51bGwsInB1ciI6InZhcmlhdGlvbiJ9fQ==--fbe5059557ad20e7c4072077b96e45b553394ff9/photo_2024-01-30_18-54-02.jpg"
+          alt=""
+        />
+        <span class="news-title">
+          Secretaria Nacional da Juventude e o Conselho Nacional da Juventude
+          divulgam as resoluções e moções da 4ª Conferência Nacional de
+          Juventude
+        </span>
+      </a>
       <span class="br-divider my-3"></span>
       <a href="/processes/brasilparticipativo/f/26/posts/108" class="news-card">
         <img
@@ -340,7 +410,8 @@
           alt=""
         />
         <span class="news-title">
-          Gestão recebe mais de 400 contribuições para a Estratégia Nacional de Governo Digital
+          Gestão recebe mais de 400 contribuições para a Estratégia Nacional de
+          Governo Digital
         </span>
       </a>
       <span class="br-divider my-3"></span>
@@ -351,18 +422,8 @@
           alt=""
         />
         <span class="news-title">
-          Importância do Decidim para o Brasil Participativo é destaque em entrevista
-        </span>
-      </a>
-      <span class="br-divider my-3"></span>
-      <a href="/processes/brasilparticipativo/f/26/posts/106" class="news-card">
-        <img
-          class="news-img"
-          src="https://brasilparticipativo.presidencia.gov.br/rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBdjFZIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--0b95c49307e081e92201df4e391834ecf33e854c/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJY0c1bkJqb0dSVlE2RkhKbGMybDZaVjkwYjE5c2FXMXBkRnNITUdrQzZBTT0iLCJleHAiOm51bGwsInB1ciI6InZhcmlhdGlvbiJ9fQ==--64bc4c4a355cc6a5184f6bcffc380675f1050437/Consulta%20Publica.png"
-          alt=""
-        />
-        <span class="news-title">
-          Gestão prorroga consulta da Estratégia Nacional de Governo Digital até 12 de janeiro
+          Importância do Decidim para o Brasil Participativo é destaque em
+          entrevista
         </span>
       </a>
     </div>
