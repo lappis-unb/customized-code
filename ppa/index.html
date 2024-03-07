@@ -734,6 +734,7 @@
   }
   .card-name {
     color: var(--gray-90);
+    font-size: 16px;
   }
   .stats-title {
     text-align: center;
@@ -772,7 +773,19 @@
     font-size: 1.25rem;
   }
   .process-card {
-    box-shadow: none !important;
+    box-shadow: none;
+    display: flex;
+    width: 290px;
+    height: 140px;
+    max-width: 380px;
+    padding: 12px 8px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    flex-shrink: 0;
+    background: var(---white);
+    text-align: center;
   }
   #participatory-process-section {
     display: flex;
@@ -789,7 +802,7 @@
   .section-card {
     display: flex;
     width: 150px;
-    height: 175px;
+    height: 140px;
     gap: 16px;
     flex-direction: column;
     justify-content: flex-start;
@@ -810,7 +823,7 @@
     margin: 0;
     color: var(--blue-warm-vivid-80);
     text-align: center;
-    font-size: 1rem;
+    font-size: 0.75rem;
     font-style: normal;
     font-weight: 600;
     line-height: normal;
@@ -840,6 +853,24 @@
     margin-top: 6px;
   }
   @media (min-width: 768px) {
+    .card-name {
+      font-size: 22px;
+    }
+    .process-card {
+      box-shadow: none;
+      display: flex;
+      width: 290px;
+      height: 210px;
+      max-width: 380px;
+      padding: 24px 16px;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 24px;
+      flex-shrink: 0;
+      background: var(---white);
+      text-align: center;
+    }
     .section-card {
       display: flex;
       width: 250px;
