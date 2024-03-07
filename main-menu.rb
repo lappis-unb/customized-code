@@ -19,12 +19,6 @@
           "is_visible"=> true
         },
         {
-          "id"=> "ppa-relatorios",
-          "href"=> "/pages/relatoriodaplataforma",
-          "label"=> "Relatórios",
-          "is_visible"=> true
-        },
-        {
           "id"=> "ppa-programas",
           "href"=> "/processes/programas/f/1/",
           "label"=> "Programas priorizados",
@@ -38,8 +32,14 @@
         },
         {
           "id"=> "ppa-sobre",
-          "href"=> "/pages",
+          "href"=> "/pages/relatoriodaplataforma",
           "label"=> "Entenda o processo",
+          "is_visible"=> true
+        },
+        {
+          "id"=> "ppa-devolutiva",
+          "href"=> "/processes/programas/f/3/",
+          "label"=> "Devolutiva",
           "is_visible"=> true
         }
       ],

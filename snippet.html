@@ -647,6 +647,15 @@
       getDataForm();
       showCreateProfileLink();
 
+      var linkElement = document.querySelector('link[rel="icon"]');
+      if (linkElement) {
+          var currentHref = linkElement.getAttribute('href');
+          var newHref = currentHref.replace('http://', 'https://');
+          linkElement.setAttribute('href', newHref);
+      }
+
+      document.querySelector('.cc-badge').remove()
+
       if (
         window.location.pathname === "/assemblies/" ||
         window.location.pathname === "/assemblies"
@@ -654,30 +663,38 @@
         const buttons = $(".card__button.button.button--sc.small");
         const links = $(".card__link");
 
-        buttons
-          .eq(0)
-          .attr(
-            "href",
-            buttons.eq(0).attr("href").replace("/confjuv4", "/confjuv4/f/34/")
-          );
-        links
-          .eq(0)
-          .attr(
-            "href",
-            links.eq(0).attr("href").replace("/confjuv4", "/confjuv4/f/34/")
-          );
-        buttons
-          .eq(2)
-          .attr(
-            "href",
-            buttons.eq(2).attr("href").replace("/cnsan6", "/cnsan6/f/41/")
-          );
-        links
-          .eq(2)
-          .attr(
-            "href",
-            links.eq(2).attr("href").replace("/cnsan6", "/cnsan6/f/41/")
-          );
+        function replaceUrlPart(originalUrl, oldPart, newPart) {
+          return originalUrl.replace(oldPart, newPart);
+        }
+
+        if (buttons.eq(0).attr('href')) {
+            buttons.eq(0).attr(
+                'href',
+                replaceUrlPart(buttons.eq(0).attr('href'), '/confjuv4', '/confjuv4/f/34/')
+            );
+        }
+
+        if (links.eq(0).attr('href')) {
+            links.eq(0).attr(
+                'href',
+                replaceUrlPart(links.eq(0).attr('href'), '/confjuv4', '/confjuv4/f/34/')
+            );
+        }
+
+        // Substituição para o segundo conjunto de elementos
+        if (buttons.eq(2).attr('href')) {
+            buttons.eq(2).attr(
+                'href',
+                replaceUrlPart(buttons.eq(2).attr('href'), '/cnsan6', '/cnsan6/f/41/')
+            );
+        }
+
+        if (links.eq(2).attr('href')) {
+            links.eq(2).attr(
+                'href',
+                replaceUrlPart(links.eq(2).attr('href'), '/cnsan6', '/cnsan6/f/41/')
+            );
+        }
       }
 
       if (window.location.pathname === "/") {
