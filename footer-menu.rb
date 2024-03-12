@@ -18,11 +18,11 @@
     },
     {
       "id"=> "Processos Participativos",
-      "href"=> "javascript:void(0)",
+      "href"=> "#conferencias",
       "label"=> "Processos Participativos",
       "sub_items"=> [
         {
-          "id" => "Conferencias",
+          "id" => "conferencias",
           "href" => "/assemblies/",
           "label" => "Conferências",
           "sub_items" => [],
@@ -41,11 +41,11 @@
     },
     {
       "id"=> "Canais de Atendimento",
-      "href"=> "javascript:void(0)",
+      "href"=> "#fale_conosco",
       "label"=> "Canais de Atendimento",
       "sub_items"=> [
         {
-          "id" => "Fale Conosco",
+          "id" => "fale_conosco",
           "href" => "https://falabr.cgu.gov.br/web/home",
           "label" => "Fale Conosco",
           "sub_items" => [],
