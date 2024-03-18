@@ -2,7 +2,7 @@
   "menu"=> [
     {
       "id"=> "ppa",
-      "href"=> "/processes/programas/f/45/",
+      "href"=> "/processes/programas/",
       "label"=> "PPA Participativo",
       "sub_items"=> [],
       "is_visible"=> true
