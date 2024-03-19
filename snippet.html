@@ -1205,7 +1205,7 @@
     const url = window.location.href;
     const linkToAllPrograms = document.createElement("p");
     linkToAllPrograms.innerHTML =
-      'Conheça os <a href="/pages/lista_de_programas"><strong>90 programas</strong></a> dos ministérios.</p>';
+      'Conheça os <a href="/pages/lista_de_programas"><strong>89 programas</strong></a> dos ministérios.</p>';
     if (
       url.includes(`/processes/programas/f/${chooseProgramId}/`) &&
       programContentContainer
@@ -1233,6 +1233,28 @@
       newLink.href = "/link?external_url=https://www.gov.br/mda/pt-br";
       newLink.textContent = "https://www.gov.br/mda/pt-br";
       oldLink.parentNode.replaceChild(newLink, oldLink);
+    }
+    if (
+      url.includes(`/processes/programas/f/${chooseProgramId}/`)
+    ) {
+      const filters = document.querySelector(".filters");
+      filters.remove();
+      const votingRules = document.querySelector(".voting-rules");
+      votingRules.remove();
+    }
+    if (
+      url.includes(`/processes/programas/f/${makeProposalId}/`)
+    ) {
+      const votingRules = document.querySelector(".voting-rules");
+      votingRules.remove();
+    }
+    if (
+      url.includes(`/processes/programas/`)
+    ) {
+      const spaceMenu = document.querySelector(".space-menu");
+      const spaceMenuItems = spaceMenu.children
+      const mobilizaItem = spaceMenuItems[spaceMenuItems.length - 1]
+      mobilizaItem.remove();
     }
 
     const loginButton = document.querySelector(
