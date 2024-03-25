@@ -20,14 +20,7 @@
 <!-- End Matomo Code -->
 
 <script defer>
-  // Variável referente ao ID do programa, utilizada no menu-tab "Escolher programas" da aplicação.
-  const chooseProgramId = 1;
-  // Variável referente ao ID da proposta, utilizada no menu-tab "Fazer proposta ao governo" da aplicação.
-  const makeProposalId = 2;
-
   (() => {
-    replaceWrongUrl();
-
     window.addEventListener("DOMContentLoaded", (e) => {
       ImportScriptFile();
       CreateDOMObjects();
@@ -37,22 +30,37 @@
       capitalizarOnBlur("proposal_body");
 
       definirUrlLogOut();
-      insertConferenceElements();
 
       showCreateProfileLink();
       removeSecondProductionLogin();
 
-      addLinksToButtons();
+      removeBPMenu();
+
       updateContentMarginTop();
+      convertIconsToHttps();
+      window.addEventListener("resize", updateContentMarginTop);
 
       doEverything();
-      if (isMeetingsConseaPage()) {
-        organizeMeetingsConsea();
-      }
-
-      window.addEventListener("resize", updateContentMarginTop);
     });
   })();
+
+  const removeBPMenu = () => {
+    if (window.location.pathname.includes("/processes/brasilparticipativo")) {
+      const processHeader = document.querySelector(".process-header");
+      if (processHeader) {
+        processHeader.remove();
+      }
+    }
+  }
+
+  const convertIconsToHttps = () => {
+    const icons = document.querySelectorAll("link");
+    icons.forEach((icon) => {
+      if (icon.src.includes("http://")) {
+        icon.src = icon.src.replace("http://", "https://");
+      }
+    });
+  }
 
   // --------------------------- vlibras ---------------------------
   var CreateDOMObjects = () => {
@@ -116,236 +124,6 @@
     }
   }
 
-  // ------------------ conteudo das conferencias -----------------
-
-  function insertConferenceElements() {
-    if (isOnPlatformLogin()) {
-      const bar = document.getElementsByClassName("flash callout alert")[0];
-      if (bar) bar.style.display = "none";
-    }
-    if (isOnConferenceDomain()) {
-      if (isConsea()) {
-        var credenciamento_button = document.getElementById(
-          "consea-credenciamento-id"
-        );
-
-        if (credenciamento_button) {
-          credenciamento_button.addEventListener("click", function (event) {
-            event.preventDefault();
-            window.open("https://consea.inscrever.me/home", "_blank");
-          });
-        }
-      }
-
-      const hero = document.querySelector(".extended");
-      const hero__container = document.querySelector(".hero__container");
-
-      if (isOnConferenceBlogPage()) {
-        const author = document.querySelector(".card__author");
-        const authorData = document.querySelector(".author-data");
-        if (author) author.style.display = "none";
-        if (authorData) authorData.style.display = "none";
-
-        const blogs = document.querySelector("#blogs");
-        blogs.classList.remove(...blogs.classList);
-
-        blogs.after(item);
-        blogs.firstElementChild.style.minWidth = "60%";
-        blogs.firstElementChild.style.maxWidth = "80%";
-      }
-
-      if (isOnConferenceLandingPage()) {
-        if (isConsea()) {
-          const redirect_path = "/assemblies/cnsan6/f/41";
-          window.local.href = redirect_path;
-        } else {
-          const redirect_path = "/assemblies/confjuv4/f/34";
-          window.local.href = redirect_path;
-        }
-      } else if (isOnConferenceProposals()) {
-        insertProfileFormsButtons();
-        const filters = document.querySelector(".collection-sort-controls");
-        const body = document.createElement("div");
-        body.innerHTML =
-          "Aqui você poderá participar, criando propostas, votar e comentando em outras ideias. As propostas e os participantes com maior relevância serão eleitos para a Etapa Nacional da Conferência de Juventude.";
-        body.style.marginBottom = "20px";
-        if (filters) {
-          filters.after(body);
-        }
-      } else if (isOnConferenceCreate()) {
-        const element = document.querySelector(".section-heading");
-        if (element) element.innerHTML = "Organize uma etapa";
-        const form = document.querySelector(".meetings_form ");
-        const select = form.querySelector("#meeting_type_of_meeting");
-        select.value = "online";
-        form.children[4].style.display = "none";
-        form.children[9].style.display = "none";
-        form.children[13].style.display = "none";
-        form.children[8].id = "vsf";
-
-        createCssClass(".vsf {display: none !important;}", "vsf", "#vsf");
-        var inputString7 = form.children[7].getElementsByTagName("label")[0];
-        var inputString12 = form.children[12].getElementsByTagName("label")[0];
-        var inputString10 = form.children[10].getElementsByTagName("label")[0];
-        var inputString11 = form.children[11].getElementsByTagName("label")[0];
-        form.children[7].querySelector(".help-text").style.display = "none";
-        form.children[7]
-          .querySelector("#meeting_location_hints")
-          .setAttribute("required", "required");
-        inputString7.innerHTML = inputString7.innerHTML.replace(
-          "Dicas de localização",
-          "Endereço"
-        );
-        inputString12.innerHTML = inputString12.innerHTML.replace(
-          "Âmbito",
-          "Estado"
-        );
-
-        replaceLabel(inputString10, "Data e hora de início*");
-        replaceLabel(inputString11, "Data e hora de término*");
-        form.children[8].querySelector("#meeting_online_meeting_url").value =
-          "https://www.teste.com";
-
-        form.children[8].required = false;
-        form.children[8].style = "display: none;";
-      } else if (isOnConferenceSendDoc()) {
-        const tosAgreement = document.querySelector(".tos-agreement");
-        const newText = tosAgreement.querySelector(`.help-text`);
-        var element = document.getElementById("questionnaire_tos_agreement");
-        if (element) {
-          element.nextSibling.textContent = newText.innerText;
-        }
-        newText.style.display = "none";
-      } else if (isOnConferenceMeetings()) {
-        const code = `<style>.with_any_type_check_boxes_tree_filter {display: none;}
-            .with_any_date_collection_radio_buttons_filter{display:none;}
-            .with_any_scope_check_boxes_tree_filter {display:none}
-            .with_any_category_check_boxes_tree_filter {display:none}
-            .activity_collection_radio_buttons_filter {display:none}
-            `;
-        const item = document.createElement("div");
-        item.innerHTML = code;
-        const content = document.querySelector("#content");
-        content.after(item);
-
-        const header = content.querySelector(".title-action");
-        header.innerHTML = header.innerHTML.replace("reuniões", "conferências");
-        header.innerHTML = header.innerHTML.replace("reunião", "conferência");
-      } else if (isOnConferenceMeeting()) {
-        document
-          .querySelector(".button_to")
-          .querySelector(".button").innerHTML = "Inscreva-se";
-
-        modifyShareButton();
-      } else {
-        if (hero) hero?.remove();
-        if (hero__container) hero__container?.remove();
-      }
-    }
-  }
-
-  function isOnPlatformLogin() {
-    return window.location.pathname === "/users/sign_in";
-  }
-
-  function isOnConferenceBlogPage() {
-    return window.location.pathname.includes(
-      `/assemblies/confjuv4/f/${isProd() ? "9" : "144"}`
-    );
-  }
-
-  function isOnConferenceLandingPage() {
-    return (
-      window.location.pathname === "/assemblies/confjuv4" ||
-      window.location.pathname === "/assemblies/confjuv4/" ||
-      window.location.pathname === "/assemblies/cnsan6" ||
-      window.location.pathname === "/assemblies/cnsan6/"
-    );
-  }
-
-  function isOnConferenceProposals() {
-    return window.location.pathname.includes(
-      `/assemblies/confjuv4/f/${isProd() ? "10" : "130"}`
-    );
-  }
-
-  function isOnConferenceCreate() {
-    return window.location.pathname.includes(
-      `/assemblies/confjuv4/f/${isProd() ? "11" : "131"}/meetings/new`
-    );
-  }
-
-  function createCssClass(innerHtml, cssClass, elementSelector) {
-    let style = document.createElement("style");
-    style.type = "text/css";
-    style.innerHTML = innerHtml;
-    document.getElementsByTagName("head")[0].appendChild(style);
-    const element = document.querySelector(elementSelector);
-    if (element) element.classList.add(cssClass);
-  }
-
-  function replaceLabel(component, newLabel) {
-    var regex = /^(.*?<span[^>]*>[^<]*)/;
-    var replacementText = newLabel;
-    var result = component.innerHTML.replace(regex, replacementText);
-    if (result.includes("Dicas de localização")) {
-      // Replace the text with an empty string
-      result = result.replace("Dicas de localização", "");
-    }
-    component.innerHTML = result;
-  }
-
-  function isOnConferenceSendDoc() {
-    return (
-      window.location.pathname ===
-      `/assemblies/confjuv4/f/${isProd() ? "12" : "132"}/surveys/1`
-    );
-  }
-
-  function isOnConferenceMeetings() {
-    return (
-      window.location.pathname ===
-      `/assemblies/confjuv4/f/${isProd() ? "11" : "131"}`
-    );
-  }
-  function isOnConferenceMeeting() {
-    return window.location.pathname.includes(
-      `/assemblies/confjuv4/f/${isProd() ? "11" : "131"}/meetings/`
-    );
-  }
-
-  function modifyShareButton() {
-    const button = document.querySelector(".share-link");
-    button.innerHTML = "<span class='fa-solid fa-share-nodes'></span>";
-    button.style.all = "unset";
-    const icon = document.querySelector(".fa-share-nodes");
-    icon.style.width = "40px";
-    icon.style.height = "40px";
-    icon.style.borderRadius = "50%";
-    icon.style.fontSize = "20px";
-    icon.style.padding = "10px";
-    icon.style.color = "#2378c3";
-    icon.style.cursor = "pointer";
-    icon.addEventListener(
-      "mouseover",
-      (event) => (event.target.style.backgroundColor = "#c5d4eb"),
-      false
-    );
-    icon.addEventListener(
-      "mouseleave",
-      (event) => (event.target.style.backgroundColor = "unset"),
-      false
-    );
-  }
-
-  function insertProfileFormsButtons() {
-    const row = document.getElementsByClassName("title-action")[0];
-    let button1HTML = `<button onclick="window.location.href='/assemblies/confjuv4/f/32/?share_token=1b6ec339fb84049bf6782e9ae3cecb1c1676947b76a360cdebb1c7c946fdddff';" class="br-button secondary" type="button">Responder questionário 1</button>`;
-    row.innerHTML += button1HTML;
-    let button2HTML = `<button onclick="window.location.href='/assemblies/confjuv4/f/44/?share_token=4f8f6ee5145ee6700993a0982a6291d098f4873c90c34e7dd6883e640ff9c162';" class="br-button secondary" type="button">Responder questionário 2</button>`;
-    row.innerHTML += button2HTML;
-  }
-
   // --------------------------- logout ---------------------------
 
   function definirUrlLogOut() {
@@ -376,6 +154,7 @@
   }
 
   // --------------------------- create profile link---------------------------
+  
   function showCreateProfileLink() {
     const loginButton = document.querySelector(
       ".sign-in-button .br-sign-in span"
@@ -409,60 +188,6 @@
     }
   }
 
-  // --------------------------- add links to buttons ---------------------------
-  function addLinksToButtons() {
-    if (
-      window.location.pathname === "/assemblies/" ||
-      window.location.pathname === "/assemblies"
-    ) {
-      const buttons = $(".card__button.button.button--sc.small");
-      const links = $(".card__link");
-
-      buttons
-        .eq(0)
-        .attr(
-          "href",
-          buttons.eq(0).attr("href").replace("/confjuv4", "/confjuv4/f/34/")
-        );
-      links
-        .eq(0)
-        .attr(
-          "href",
-          links.eq(0).attr("href").replace("/confjuv4", "/confjuv4/f/34/")
-        );
-      buttons
-        .eq(2)
-        .attr(
-          "href",
-          buttons.eq(2).attr("href").replace("/cnsan6", "/cnsan6/f/41/")
-        );
-      links
-        .eq(2)
-        .attr(
-          "href",
-          links.eq(2).attr("href").replace("/cnsan6", "/cnsan6/f/41/")
-        );
-    }
-
-    if (window.location.pathname === "/") {
-      const sign_in_button = document.querySelector(
-        "#avatar-dropdown-trigger.br-sign-in"
-      );
-      if (sign_in_button) {
-        const banner_button = document.querySelector("#sign-in-btn");
-        const banner_button_mobile = document.querySelector(
-          "#sign-in-btn-mobile"
-        );
-        if (banner_button) {
-          banner_button.style = "visibility: hidden;";
-        }
-        if (banner_button_mobile) {
-          banner_button_mobile.style = "visibility: hidden;";
-        }
-      }
-    }
-  }
-
   // --------------------------- content margin top ---------------------------
   function updateContentMarginTop() {
     const header = document.querySelector("#br-header");
@@ -478,90 +203,9 @@
     }
   }
 
-  // --------------------------- replace wrong url ---------------------------
-  function replaceWrongUrl() {
-    if (window.location.href.includes("conferences/4confjuv")) {
-      window.location.replace("/assemblies/confjuv4/f/34/");
-    } else if (window.location.href.includes("6cnsan")) {
-      window.location.replace("/assemblies/cnsan6/f/41");
-    }
-  }
-
-  // --------------------------- organizeMeetingsConsea ---------------------------
-  function organizeMeetingsConsea() {
-    const cardText = document.querySelectorAll(".card__text--paragraph");
-    const autorData = document.querySelectorAll(".author-data");
-    const map = document.querySelector("#map");
-    const cardTitles = document.querySelectorAll(".card__title");
-
-    cardText.forEach((element) => {
-      element.remove();
-    });
-
-    autorData.forEach((element) => {
-      element.remove();
-    });
-
-    map.remove();
-
-    cardTitles.forEach((title) => {
-      title.style.textAlign = "center";
-    });
-  }
-
-  // --------------------------- validations ---------------------------
-
-  // Função para verificar se está em um ambiente de produção
-  function isProd() {
-    var url = window.location.href;
-    return url.indexOf("brasilparticipativo.presidencia.gov.br") !== -1;
-  }
-
-  function isOnConferenceDomain() {
-    return (
-      window.location.href.includes("assemblies/confjuv4") ||
-      window.location.href.includes("assemblies/cnsan6")
-    );
-  }
-  function isConsea() {
-    return window.location.href.includes("assemblies/cnsan6");
-  }
-  function isJuventude() {
-    return window.location.href.includes("assemblies/confjuv4");
-  }
-
-  function isMeetingsConseaPage() {
-    const currentURL = window.location.href;
-    const prod =
-      "https://brasilparticipativo.presidencia.gov.br/assemblies/cnsan6/f/23/";
-    const dev = "https://lab-decide.dataprev.gov.br/assemblies/cnsan6/f/124/";
-
-    return currentURL.indexOf(prod) !== -1 || currentURL.indexOf(dev) !== -1;
-  }
-  function isOnConferenceAboutPage() {
-    return (
-      window.location.pathname ===
-      `/assemblies/confjuv4/f/${isProd() ? "13" : "145"}/`
-    );
-  }
-  function isOnConferenceSteps() {
-    return (
-      window.location.pathname ===
-      `/assemblies/confjuv4/f/${isProd() ? "14" : "143"}`
-    );
-  }
-
   // --------------- doEverything ----------------
   function doEverything() {
-    if (window.location.pathname.includes("/processes/programas/")) {
-      removeMenuItem("O processo");
-    }
-    if (window.location.pathname.includes("/processes/brasilparticipativo")) {
-      const processHeader = document.querySelector(".process-header");
-      if (processHeader) {
-        processHeader.remove();
-      }
-    }
+
 
     const createTabItem = (name, path) => {
       const li = document.createElement("li");
@@ -590,26 +234,7 @@
       }
     }
     if (navbarUl) {
-      if (isOnConferenceDomain()) {
-        let tabs;
-        if (isJuventude()) {
-          tabs = [
-            "Início",
-            "Etapas",
-            "Etapa Digital",
-            "Notícias",
-            "Mobilização",
-            "Sobre",
-          ];
-        } else if (isConsea()) {
-          tabs = ["Início", "Etapas", "Notícias", "Sobre"];
-        }
-        updateMenu(tabs, navbarUl);
-        const assembliesLi = document.querySelector(
-          '.process-nav__link a[href="/assemblies"]'
-        );
-        if (assembliesLi) removeElement(assembliesLi.parentElement);
-      } else if (window.location.pathname === "/assemblies/mercosulsocial") {
+      if (window.location.pathname === "/assemblies/mercosulsocial") {
         var imgElement = document.createElement("img");
         imgElement.src =
           "https://brasilparticipativo.presidencia.gov.br/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBdUJUIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--ab7ba193c3d5b5145861d9228d18bd7cd3ea5bc2/mercosul_img.jpeg";
@@ -730,11 +355,6 @@
         const elements = document.querySelectorAll(
           ".callout.alert.callout--full"
         );
-        const onibanner = document.querySelectorAll(".omnipresent-banner");
-
-        onibanner.forEach((element) => {
-          element.remove();
-        });
 
         elements.forEach((element) => {
           if (element.textContent.includes("Este é um processo privado")) {
@@ -803,130 +423,6 @@
             });
           }
         }
-      } else if (window.location.pathname === "/amends/new") {
-        const title_form = document.querySelector(
-          'label[for="amendment_emendation_params_title"]'
-        );
-        if (title_form) {
-          title_form.remove();
-        }
-      } else if (window.location.href.includes("/assemblies/delegacnsan6")) {
-        const id0 = "65";
-        const id1 = "66";
-        const id2 = "68";
-        const id3 = "75";
-
-        if (window.location.pathname === "/assemblies/delegacnsan6") {
-          window.location.href = `https://brasilparticipativo.presidencia.gov.br/assemblies/delegacnsan6/f/${id0}/`;
-        } else if (
-          window.location.pathname ===
-            `/assemblies/delegacnsan6/f/${id1}/proposals` ||
-          window.location.pathname ===
-            `/assemblies/delegacnsan6/f/${id2}/proposals`
-        ) {
-          const comments_card = document.querySelector(
-            ".add-comment .section-heading"
-          );
-          if (comments_card) {
-            comments_card.textContent =
-              "Comente para indicar se deseja ser co-autor/a desta moção";
-          }
-          var novoElementoHTML = `<div class="header-container br-container-lg"><div class="m-bottom"><a class="small hollow" href="/assemblies/delegacnsan6/f/${id0}/" data-asw-orgfontsize="16" style="font-size:16px"><svg aria-label="chevron-left" role="img" aria-hidden="true" class="icon--chevron-left icon icon--small"><title>chevron-left</title><use href="/decidim-packs/media/images/icons-c4fd0f43651700b0c768.svg#icon-chevron-left"></use></svg>Voltar</a></div></div>`;
-
-          var wrapperElement = document.querySelector(".wrapper");
-
-          if (wrapperElement) {
-            wrapperElement.innerHTML =
-              novoElementoHTML + wrapperElement.innerHTML;
-          }
-        } else if (
-          window.location.href.includes(`/assemblies/delegacnsan6/f/${id3}`)
-        ) {
-          const participatoryList = document.querySelector(
-            ".participatory-text-list"
-          );
-
-          if (participatoryList) {
-            const participatoryItems = participatoryList.querySelectorAll(
-              ".participatory-text-item"
-            );
-
-            participatoryItems.forEach((item) => {
-              const textItems = item.querySelector("a");
-              const firstTextItem = textItems.firstElementChild;
-
-              if (
-                firstTextItem &&
-                (firstTextItem.textContent.startsWith("Apresentação") ||
-                  firstTextItem.textContent.startsWith("CAPÍTULO") ||
-                  firstTextItem.textContent.startsWith("ANEXO"))
-              ) {
-                const itemActionsDiv = item.querySelector(".item-actions");
-                itemActionsDiv.remove();
-
-                const newDiv = document.createElement("div");
-                newDiv.innerHTML = textItems.innerHTML;
-                newDiv.style = textItems.style;
-                textItems.parentNode.replaceChild(newDiv, textItems);
-
-                item.style.pointerEvents = "none";
-              }
-            });
-          }
-        }
-
-        if (
-          window.location.pathname.includes(
-            `/assemblies/delegacnsan6/f/${id2}/`
-          )
-        ) {
-          var allElements = document.querySelectorAll(
-            "*:not(script):not(style)"
-          );
-          function replaceText(node) {
-            if (node.nodeType === Node.TEXT_NODE) {
-              node.textContent = node.textContent.replace(
-                /propostas/g,
-                "moções"
-              );
-              node.textContent = node.textContent.replace(/proposta/g, "moção");
-              node.textContent = node.textContent.replace(
-                /Propostas/g,
-                "Moções"
-              );
-              node.textContent = node.textContent.replace(/Proposta/g, "Moção");
-            }
-          }
-
-          // Itera sobre todos os elementos de texto e substitui o conteúdo
-          for (var i = 0; i < allElements.length; i++) {
-            var walker = document.createTreeWalker(
-              allElements[i],
-              NodeFilter.SHOW_TEXT,
-              null,
-              false
-            );
-            var node;
-
-            while ((node = walker.nextNode())) {
-              replaceText(node);
-            }
-          }
-
-          const proposal_body = document.querySelector(`#proposal_body`);
-          if (proposal_body) {
-            proposal_body.placeholder =
-              "Crie um título de até 50 caracteres e um resumo/ementa de até 500 caracteres. Você pode anexar sua moção em PDF se preferir.";
-          }
-        }
-        const metric_filter = document.querySelector(".filter-container");
-        if (metric_filter) {
-          metric_filter.remove();
-        }
-        const menu_nav = document.querySelector(".process-nav");
-        if (menu_nav) {
-          menu_nav.remove();
-        }
       }
     }
 
@@ -936,22 +432,10 @@
     const linkToAllPrograms = document.createElement("p");
     linkToAllPrograms.innerHTML =
       'Conheça os <a href="/pages/lista_de_programas"><strong>90 programas</strong></a> dos ministérios.</p>';
-    if (
-      url.includes(`/processes/programas/f/${chooseProgramId}/`) &&
-      programContentContainer
-    ) {
+    if (url.includes(`/processes/programas/f/1/`) && programContentContainer) {
       programContentContainer.appendChild(linkToAllPrograms);
     }
-    const proposalTextNumber = document.querySelector("#proposals-count");
-    if (
-      url.includes(`/processes/programas/f/${chooseProgramId}/`) &&
-      proposalTextNumber
-    ) {
-      proposalTextNumber.textContent = proposalTextNumber.textContent.replace(
-        "propostas",
-        "programas"
-      );
-    }
+
     const urlProgram = window.location.href;
     const oldLink = document.querySelector(".ql-editor-display a");
     if (
@@ -970,33 +454,6 @@
     if (loginButton) {
       loginButton.innerHTML = "Entrar com <strong>gov.br</strong>";
     }
-  }
-
-  function updateMenu(tabs, navbar) {
-    const spaceMenu = navbar.querySelectorAll(".tab-item");
-
-    spaceMenu.forEach((liElement) => {
-      const span = liElement.querySelector("span");
-      if (span) {
-        if (!tabs.includes(span.textContent.trim())) {
-          liElement.remove();
-        }
-      }
-    });
-  }
-
-  function removeMenuItem(itemName) {
-    const navbar = document.querySelector(".space-menu");
-    const menuItems = navbar.querySelectorAll(".tab-item");
-
-    menuItems.forEach((liElement) => {
-      const span = liElement.querySelector("span");
-      if (span) {
-        if (span.textContent.trim() === itemName) {
-          liElement.remove();
-        }
-      }
-    });
   }
 
   function convertIconsToHttps() {
