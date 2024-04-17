@@ -36,26 +36,30 @@
     font-style: normal;
     font-weight: 700;
     line-height: normal;
+    text-align: center;
   }
   .home-sections-container p {
-    width: 340px;
+    width: auto;
     text-align: center;
     font-size: 1.125rem;
     font-style: normal;
     font-weight: 400;
     line-height: 160%; /* 28.8px */
   }
+  .video-text-card {
+    flex: 1;
+  }
 
   @media (min-width: 1045px) {
     .home-sections-container {
-      padding: 64px;
+      padding: 64px 40px;
     }
     .home-sections-container p {
       width: auto;
     }
     .home-sections-container .home-sections-content {
       margin: 0 auto;
-      max-width: 1152px;
+      max-width: 1470px;
     }
   }
 
@@ -127,25 +131,32 @@
       transform: rotate(-90deg);
     }
   }
+  .white-divider {
+    display: flex;
+    width: 100%;
+    height: 35px;
+    background-image: url("https://brasilparticipativo.presidencia.gov.br/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBbDVXIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--057c192d3fe1e615a252b7269b8a8e87fb38f13b/faixa-branca.png");
+    background-size: cover;
+    background-repeat: repeat;
+    background-color: var(--blue-3);
+  }
 </style>
 
 <section class="extended home-section" id="html-block">
   <div class="white-divider"></div>
   <section id="participatory-process-section" class="home-sections-container">
-    <h2>Propostas no Plano Clima</h2>
-    <p>
-      Entenda o Plano Clima, são apenas três etapas para um mundo mais
-      sustentável. Participe já!
-    </p>
-    <div class="home-sections-content participatory-items">
+    <h2>Etapas digitais do Plano Clima</h2>
+    <p>Entenda e acompanhe aqui a trilha de participação digital.</p>
+    <div class="home-sections-content br-container-lg participatory-items">
       <div class="step-process-container">
         <div class="step-process-card">
           <div class="step-process-card__content">
             <i class="fa-solid fa-check-to-slot fa-2xl"></i>
-            <h3>Envio de Propostas e Votação</h3>
+            <h3>Envio das Propostas e Votação</h3>
             <p>
-              Durante esta fase, os participantes podem enviar suas propostas e
-              votar nas ideias que consideram mais relevantes.
+              Durante esta fase, os participantes podem enviar suas propostas,
+              além de votar e interagir com aquelas que consideram mais
+              relevantes.
             </p>
           </div>
           <div class="step-process-card__footer">Etapa 1</div>
@@ -158,8 +169,9 @@
             <i class="fa-solid fa-square-poll-vertical fa-2xl"></i>
             <h3>Resultado da votação</h3>
             <p>
-              Após a conclusão da votação, as 10 propostas mais votadas de cada
-              tema serão avaliadas.
+              As 10 propostas mais votadas de cada tema seguirão para análise do
+              Ministério do Meio Ambiente, podendo ou não ser incorporadas ao
+              Plano Clima.
             </p>
           </div>
           <div class="step-process-card__footer">Etapa 2</div>
@@ -174,7 +186,8 @@
             <i class="fa-solid fa-folder-open fa-2xl"></i>
             <h3>Proposta incorporada no Plano Clima</h3>
             <p>
-              As propostas são consolidadas para serem apresentadas na COP 30.
+              As propostas são consolidadas para serem apresentadas na COP 29,
+              no Azerbaijão.
             </p>
           </div>
           <div class="step-process-card__footer">Etapa 3</div>
@@ -186,24 +199,21 @@
 </section>
 
 <style>
-  .left-content {
-    flex: 1;
-  }
   .text-content {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     gap: 24px;
   }
   .text-content h2 {
     text-align: left;
+    font-size: 1.75rem;
   }
   .text-content p {
     text-align: justify;
   }
   .right-content {
     border-radius: 8px;
-    flex: 1;
   }
   .video-content {
     width: 328px;
@@ -212,7 +222,6 @@
 
   .information-section {
     display: flex;
-    flex-wrap: wrap;
     gap: 48px;
     justify-content: center;
     flex-direction: column;
@@ -222,19 +231,19 @@
   }
   .image-content {
     border-radius: 8px;
-    width: 328px;
-    height: 195.638px;
+    width: 100%;
+    height: 100%;
   }
-
   .information-section-inverse-desktop {
     flex-direction: column-reverse;
   }
   @media (min-width: 1045px) {
-    .subtext-content {
-      padding-left: 54px;
+    .text-content h2 {
+      font-size: 2rem;
     }
-    .subtext-content-inverse {
-      padding-right: 54px;
+    .about-btn {
+      width: fit-content;
+      align-self: flex-end;
     }
     .information-section {
       flex-direction: row;
@@ -243,11 +252,12 @@
     .video-content {
       height: 330px;
       min-width: 380px;
+      flex: 1;
     }
     .image-content {
       border-radius: 8px;
-      width: 508px;
-      height: 303px;
+      width: 100%;
+      height: 100%;
     }
     .information-section-inverse-desktop {
       flex-direction: row;
@@ -262,8 +272,8 @@
 </style>
 
 <section class="home-sections-container">
-  <div class="home-sections-content information-section">
-    <div class="left-content text-content">
+  <div class="home-sections-content br-container-lg information-section">
+    <div class="text-content video-text-card">
       <h2>Conheça o Plano Clima</h2>
       <p>
         O Plano Clima é uma estratégia governamental adotada pelo Brasil para
@@ -273,7 +283,9 @@
         transição para uma economia de baixo carbono e aumentar a resiliência
         das comunidades brasileiras aos impactos das mudanças climáticas.
       </p>
-      <a href="/processes/planoclima/f/285/" class="br-button primary active"
+      <a
+        href="/processes/planoclima/f/285/"
+        class="br-button primary active about-btn"
         >Saiba mais</a
       >
     </div>
@@ -293,36 +305,9 @@
 
 <section class="home-sections-container subcontent-section">
   <div
-    class="home-sections-content information-section information-section-inverse-desktop"
+    class="home-sections-content br-container-lg information-section information-section-inverse-desktop"
   >
-    <div class="left-content text-content subtext-content">
-      <h2>Mitigação</h2>
-      <p>
-        A Mitigação é uma parte fundamental do Plano Clima, pois se refere às
-        ações destinadas a reduzir as emissões de gases de efeito estufa. Isso é
-        crucial para conter o aumento da temperatura global e evitar
-        consequências graves para o clima e o meio ambiente. O Brasil se
-        compromete a cumprir metas ambiciosas de redução de emissões, liderando
-        pelo exemplo e incentivando outros países a agir de forma semelhante.
-      </p>
-    </div>
-    <div class="right-content">
-      <img
-        alt="Texto: Mitigação"
-        class="image-content"
-        src="https://lab-decide.dataprev.gov.br/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBb2dGIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--fb711ba388987a2566ed4c431a4f6ed5048b2b7c/Banner_Plano_Clima_Mitiga%C3%A7%C3%A3o_MOBILE_(3480%20px%202030%20px).png"
-      />
-    </div>
-  </div>
-  <div class="home-sections-content information-section">
-    <div class="left-content">
-      <img
-        alt="Texto: Mitigação"
-        class="image-content"
-        src="https://lab-decide.dataprev.gov.br/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBb2NGIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--37dadacadf9c2a9940f91e6573afbe793323e8aa/Banner_Plano_Clima_Adapta%C3%A7%C3%A3o_MOBILE_(3480%20px%202030%20px).png"
-      />
-    </div>
-    <div class="right-content text-content subtext-content-inverse">
+    <div class="left-content text-content">
       <h2>Adaptação</h2>
       <p>
         A Adaptação também desempenha um papel crucial no Plano Clima. Refere-se
@@ -333,12 +318,39 @@
         desenvolvimento de práticas e infraestruturas mais resilientes.
       </p>
     </div>
+    <div class="right-content">
+      <img
+        alt="Texto: Adaptação"
+        class="image-content"
+        src="https://lab-decide.dataprev.gov.br/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBb2NGIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--37dadacadf9c2a9940f91e6573afbe793323e8aa/Banner_Plano_Clima_Adapta%C3%A7%C3%A3o_MOBILE_(3480%20px%202030%20px).png"
+      />
+    </div>
+  </div>
+  <div class="home-sections-content br-container-lg information-section">
+    <div>
+      <img
+        alt="Texto: Mitigação"
+        class="image-content"
+        src="https://lab-decide.dataprev.gov.br/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBb2dGIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--fb711ba388987a2566ed4c431a4f6ed5048b2b7c/Banner_Plano_Clima_Mitiga%C3%A7%C3%A3o_MOBILE_(3480%20px%202030%20px).png"
+      />
+    </div>
+    <div class="right-content text-content">
+      <h2>Mitigação</h2>
+      <p>
+        A Mitigação é uma parte fundamental do Plano Clima, pois se refere às
+        ações destinadas a reduzir as emissões de gases de efeito estufa. Isso é
+        crucial para conter o aumento da temperatura global e evitar
+        consequências graves para o clima e o meio ambiente. O Brasil se
+        compromete a cumprir metas ambiciosas de redução de emissões, liderando
+        pelo exemplo e incentivando outros países a agir de forma semelhante.
+      </p>
+    </div>
   </div>
 </section>
 
 <section id="news-home-section" class="home-sections-container">
   <h2>Notícias</h2>
-  <div class="home-sections-content">
+  <div class="home-sections-content br-container-lg">
     <div class="news-container">
       <a href="/processes/brasilparticipativo/f/26/posts/111" class="news-card">
         <img
@@ -421,6 +433,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     color: var(--blue-warm-vivid-80);
+    text-align: left;
   }
 
   .news-card .news-title:hover {
