@@ -62,7 +62,11 @@
       max-width: 1470px;
     }
   }
-
+  .current .stage-text,
+  .step-process-card__content.current i,
+  .step-process-card__content.current h3 {
+    color: var(--blue-warm-vivid-80);
+  }
   .step-process-container {
     display: flex;
     flex-direction: column;
@@ -75,10 +79,12 @@
     flex-direction: column;
     background-color: var(--pure-0);
     height: 100%;
+    border-radius: 4px;
+    border: 1px solid #a3b3cc;
   }
   .step-process-card__content {
     display: flex;
-    width: 293px;
+    width: 210px;
     height: 180px;
     padding: 16px;
     flex-direction: column;
@@ -89,16 +95,21 @@
     padding: 16px;
     border-radius: 4px;
   }
+  .stage-text {
+    font-size: 12px;
+  }
   .step-process-card__content i {
-    color: var(--blue-warm-vivid-80);
+    color: var(--gray-90);
     height: 14px;
   }
   .step-process-card__content h3 {
-    color: var(--blue-warm-vivid-80);
+    color: var(--gray-90);
     text-align: center;
-    font-size: 16.8px !important;
+    font-variant-numeric: lining-nums proportional-nums;
+    font-family: Rawline;
+    font-size: 16.8px;
     font-style: normal;
-    font-weight: 400;
+    font-weight: 700;
     line-height: normal;
   }
   .step-process-card__content p {
@@ -111,6 +122,17 @@
     font-weight: 400;
     line-height: normal;
     width: 260px;
+  }
+  .step-process-card__content .step-date {
+    color: var(--gray-70);
+    text-align: center;
+    font-variant-numeric: lining-nums proportional-nums;
+    font-family: Rawline;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    width: auto;
   }
   .step-process-card__footer {
     display: flex;
@@ -140,58 +162,125 @@
     background-repeat: repeat;
     background-color: var(--blue-3);
   }
-</style>
 
+  .hero-info-content {
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .hero-info-img {
+    flex: 1;
+    border-radius: 8px;
+    max-width: 558px;
+    height: 241px;
+  }
+
+  .hero-info-right-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1;
+    gap: 16px;
+  }
+  .hero-info-right-content h2 {
+    text-align: start;
+  }
+  .hero-info-actions {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 12px;
+    align-self: stretch;
+  }
+  .process-home-container {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  .hero-info-right-content p {
+    text-align: left;
+  }
+  .hero-info-actions a {
+    width: 100%;
+  }
+  @media (min-width: 768px) {
+    .hero-info-actions {
+      flex-direction: row;
+    }
+    .hero-info-actions a {
+      width: fit-content;
+    }
+  }
+</style>
+<section class="home-sections-container br-container-lg">
+  <h2 class="page-subtitle"></h2>
+  <div class="hero-info-content">
+    <img
+      alt="Hero image"
+      class="hero-info-img"
+      src="https://brasilparticipativo.presidencia.gov.br/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBaGFjIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--057e8181e7e1f6b647a974ccb4af6a9a9df158ae/celular.jpeg"
+    />
+    <div class="hero-info-right-content">
+      <h2 class="page-subtitle">Crie e vote em propostas!</h2>
+      <p>
+        Sua participação é fundamental. Este espaço é dedicado para que você
+        proponha ideias ao governo federal e/ou vote em propostas que se
+        identifique. O governo valoriza sua voz e oferece este espaço para
+        garantir que suas ideias também tenham lugar e possam contribuir para o
+        desenvolvimento do país.
+      </p>
+      <div class="hero-info-actions">
+        <a href="/processes/planoclima/f/14/" class="br-button secondary">Criar proposta</a>
+        <a href="/processes/planoclima/f/31/" class="br-button primary active">Acessar propostas</a>
+      </div>
+    </div>
+  </div>
+</section>
 <section class="extended home-section" id="html-block">
   <div class="white-divider"></div>
   <section id="participatory-process-section" class="home-sections-container">
     <h2>Etapas digitais do Plano Clima</h2>
-    <p>Entenda e acompanhe aqui a trilha de participação digital.</p>
+    <p>
+      Entenda o Plano Clima, são apenas três etapas para um mundo mais
+      sustentável. Participe já!
+    </p>
     <div class="home-sections-content br-container-lg participatory-items">
       <div class="step-process-container">
-        <div class="step-process-card">
+        <a href="#" class="step-process-card">
+          <div class="step-process-card__content current">
+            <i class="fa-solid fa-check-to-slot fa-2xl"></i>
+            <p class="stage-text">Etapa 1</p>
+            <h3>[Nome da etapa 1]</h3>
+            <p class="step-date">1 de Junho a 10 de Agosto de 2024</p>
+          </div>
+        </a>
+        <a href="#" class="step-process-card">
           <div class="step-process-card__content">
             <i class="fa-solid fa-check-to-slot fa-2xl"></i>
-            <h3>Envio das Propostas e Votação</h3>
-            <p>
-              Durante esta fase, os participantes podem enviar suas propostas,
-              além de votar e interagir com aquelas que consideram mais
-              relevantes.
-            </p>
+            <p class="stage-text">Etapa 2</p>
+            <h3>[Nome da etapa 2]</h3>
+            <p class="step-date">11 de Agosto a 20 de Setembro de 2024</p>
           </div>
-          <div class="step-process-card__footer">Etapa 1</div>
-        </div>
-        <div class="step-arrow">
-          <i class="fa-solid fa-arrow-down"></i>
-        </div>
-        <div class="step-process-card">
+        </a>
+        <a href="#" class="step-process-card">
           <div class="step-process-card__content">
-            <i class="fa-solid fa-square-poll-vertical fa-2xl"></i>
-            <h3>Resultado da votação</h3>
-            <p>
-              As 10 propostas mais votadas de cada tema seguirão para análise do
-              Ministério do Meio Ambiente, podendo ou não ser incorporadas ao
-              Plano Clima.
-            </p>
+            <i class="fa-solid fa-check-to-slot fa-2xl"></i>
+            <p class="stage-text">Etapa 3</p>
+            <h3>[Nome da etapa 3]</h3>
+            <p class="step-date">21 de Setembro a 1 de Outubro de 2024</p>
           </div>
-          <div class="step-process-card__footer">Etapa 2</div>
-        </div>
-
-        <div class="step-arrow">
-          <i class="fa-solid fa-arrow-down"></i>
-        </div>
-
-        <div class="step-process-card">
+        </a>
+        <a href="#" class="step-process-card">
           <div class="step-process-card__content">
-            <i class="fa-solid fa-folder-open fa-2xl"></i>
-            <h3>Proposta incorporada no Plano Clima</h3>
-            <p>
-              As propostas são consolidadas para serem apresentadas na COP 29,
-              no Azerbaijão.
-            </p>
+            <i class="fa-solid fa-check-to-slot fa-2xl"></i>
+            <p class="stage-text">Etapa 4</p>
+            <h3>[Nome da etapa 4]</h3>
+            <p class="step-date">25 de Outubro de 2024</p>
           </div>
-          <div class="step-process-card__footer">Etapa 3</div>
-        </div>
+        </a>
       </div>
     </div>
   </section>
@@ -211,6 +300,9 @@
   }
   .text-content p {
     text-align: justify;
+  }
+  .text-content a {
+    width: 100%;
   }
   .right-content {
     border-radius: 8px;
@@ -240,6 +332,10 @@
   @media (min-width: 1045px) {
     .text-content h2 {
       font-size: 2rem;
+    }
+    .text-content a {
+      width: fit-content;
+      align-self: end;
     }
     .about-btn {
       width: fit-content;
@@ -285,9 +381,10 @@
       </p>
       <a
         href="/processes/planoclima/f/285/"
-        class="br-button primary active about-btn"
-        >Saiba mais</a
+        class="br-button secondary black-and-white-btn"
       >
+        Saiba mais sobre o Plano Clima
+      </a>
     </div>
     <div class="right-content video-content">
       <iframe
@@ -317,6 +414,11 @@
         naturais e eventos climáticos extremos, bem como promover o
         desenvolvimento de práticas e infraestruturas mais resilientes.
       </p>
+      <a
+        href="/processes/planoclima/f/285/"
+        class="br-button secondary black-and-white-btn"
+        >Saiba mais sobre a Adaptação</a
+      >
     </div>
     <div class="right-content">
       <img
@@ -344,6 +446,11 @@
         compromete a cumprir metas ambiciosas de redução de emissões, liderando
         pelo exemplo e incentivando outros países a agir de forma semelhante.
       </p>
+      <a
+        href="/processes/planoclima/f/285/"
+        class="br-button secondary black-and-white-btn"
+        >Saiba mais sobre a Mitigação</a
+      >
     </div>
   </div>
 </section>
