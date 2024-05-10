@@ -12,6 +12,14 @@
         proposalAnnouncement.style.display = "none";
       }
 
+      var removeHomeButton = document.querySelector(
+        ".space-menu > :first-child"
+      );
+
+      if (removeHomeButton) {
+        removeHomeButton.style.display = "none";
+      }
+
       var voting_rules = document.getElementById("voting_rules");
 
       if (voting_rules) {
@@ -190,5 +198,8 @@
     .uf-container {
       flex-direction: row;
     }
+  }
+  .menu-body .divider {
+    margin: 0;
   }
 </style>
