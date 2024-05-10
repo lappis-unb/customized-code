@@ -198,80 +198,6 @@
     </div>
   </section>
   <div class="divider"></div>
-  <section class="bp-logo-container br-container-lg">
-    <a href="https://www.gov.br/brasilparticipativo">
-      <img
-        alt="logo-brasil-participativo"
-        src="https://brasilparticipativo.presidencia.gov.br/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBZ0VpIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--83a2abd12f5092b982cfdec5938eb1296f17c1d2/novo_bp_logo.png"
-        class="bp-logo"
-        style="filter: invert(0); width: 194.13px"
-      />
-    </a>
-  </section>
-  <section class="logos__section">
-    <div class="logos__container">
-      <a
-        href="https://www.unb.br/"
-        data-asw-orgfontsize="14"
-        style="font-size: 14px"
-      >
-        <img
-          alt="unb logo"
-          src="https://brasilparticipativo.presidencia.gov.br/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBGZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--76ef1c7950a4004478f2873e319b6f78971c9c40/logo_unb.png"
-          style="filter: invert(0)"
-          id="unb-logo"
-        />
-      </a>
-      <a
-        href="https://www.gov.br/gestao/pt-br"
-        data-asw-orgfontsize="14"
-        style="font-size: 14px"
-      >
-        <img
-          alt="secretaria nacional de participação social logo"
-          src="https://brasilparticipativo.presidencia.gov.br/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBcXViIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--68612b3f3c458efc4072c975ac322b0f41d129c2/snps.png"
-          style="filter: invert(0)"
-          id="unb-snps"
-        />
-      </a>
-      <a
-        href="https://www.gov.br/sg/pt-br"
-        data-asw-orgfontsize="14"
-        style="font-size: 14px"
-      >
-        <img
-          alt="secretaria geral logo"
-          src="https://brasilparticipativo.presidencia.gov.br/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBcXFiIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--c41c7abefa892d615a4d6b81a2aa06e030cef731/secretaria-geral.png"
-          style="filter: invert(0)"
-          id="logo-sg"
-        />
-      </a>
-      <a
-        href="https://www.gov.br/secom/pt-br"
-        data-asw-orgfontsize="14"
-        style="font-size: 14px"
-      >
-        <img
-          alt="secretaria de comunicação social logo"
-          src="https://brasilparticipativo.presidencia.gov.br/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBcWliIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--6b2780a376b3f9e77e850a5c4a92ad922b104615/Camada%201.png"
-          style="filter: invert(0)"
-          id="secom-logo"
-        />
-      </a>
-      <a
-        href="https://www.gov.br/pt-br"
-        data-asw-orgfontsize="14"
-        style="font-size: 14px"
-      >
-        <img
-          alt="governo federal logo"
-          src="https://brasilparticipativo.presidencia.gov.br/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBcXliIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--6204cf44544e5087d711308b75bfe2f277b31b28/Governo%20Federal.png"
-          style="filter: invert(0)"
-          id="logo-governo-federal"
-        />
-      </a>
-    </div>
-  </section>
 </section>
 <script>
   const brItems = document.querySelectorAll(".br-item");
@@ -480,7 +406,6 @@
     line-height: 2rem;
     color: var(--pure-100);
     height: auto;
-    margin: 0 1rem;
     text-align: center;
     text-decoration: none;
     transition: all 0.3s ease;
@@ -504,7 +429,7 @@
     justify-content: space-between;
     i {
       color: var(--primary);
-      rotate: -30deg;
+      rotate: -45deg;
     }
   }
   .list-item-text {
@@ -605,5 +530,110 @@
     span {
       font-weight: bold;
     }
+  }
+  .page-buttons {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  #news-home-section h2 {
+    font-size: 34.84px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin: 0;
+    padding: 0;
+  }
+  #news-home-section {
+    background-color: var(--pure-0);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    padding: 24px 16px;
+  }
+  .news-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
+    flex-direction: column;
+    margin-bottom: 2rem;
+    gap: 16px;
+  }
+  .news-card {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--pure-0);
+    height: auto;
+    padding: 0;
+    transition: 0.3s ease;
+  }
+
+  .news-card:hover {
+    transform: scale(1.05);
+  }
+
+  .news-img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 0px;
+  }
+  .news-title {
+    font-size: 16.8px;
+    font-weight: 600;
+    max-height: 120px;
+    max-height: 110px;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: var(--blue-warm-vivid-80);
+    text-align: left;
+  }
+
+  .news-card .news-title:hover {
+    color: var(---blue-warm-vivid-70);
+  }
+
+  @media (min-width: 992px) {
+    .news-container {
+      display: flex;
+      gap: 24px;
+      justify-content: center;
+      align-items: baseline;
+      flex-direction: row;
+    }
+    .news-card {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      background-color: var(--pure-0);
+    }
+    .news-img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 0px;
+    }
+    .news-card .news-title {
+      font-style: normal;
+      font-weight: 600;
+      line-height: normal;
+    }
+  }
+
+  .centered-content {
+    display: flex;
+    justify-content: center;
   }
 </style>
