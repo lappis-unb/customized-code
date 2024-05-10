@@ -1,8 +1,8 @@
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     if (
-      window.location.href.includes("/processes/rs-reconstrucao/f/95") ||
-      window.location.href.includes("/processes/rs-reconstrucao/f/102")
+      window.location.href.includes("/processes/unidospelors/f/95") ||
+      window.location.href.includes("/processes/unidospelors/f/102")
     ) {
       var proposalAnnouncement = document.querySelector(
         ".proposals-announcement"
@@ -31,7 +31,7 @@
         labelTitulo.childNodes[0].nodeValue = "Título da Iniciativa";
       }
       var linkEnquete = document.createElement("a");
-      linkEnquete.innerHTML = `<a href="/processes/rs-reconstrucao/f/101/" class="br-button secondary small" type="button">
+      linkEnquete.innerHTML = `<a href="/processes/unidospelors/f/101/" class="br-button secondary small" type="button">
         Cadastrar Iniciativas Governamentais
       </a>`;
       var proposalsActionsDiv = document.querySelector(".proposals-actions");
@@ -112,9 +112,13 @@
         var endereco = document.getElementById("proposal_address").value;
         var cidade = document.querySelector('input[name="cidade"]');
         var uf = document.querySelector('select[name="uf"]');
-
-        cidade.value = endereco.split(",")[0].trim();
-        uf.value = endereco.split(",")[1].trim();
+        const endereco_array = endereco.split(",");
+        if (cidade && endereco_array) {
+          cidade.value = endereco_array[0].trim();
+        }
+        if (uf && endereco_array) {
+          uf.value = endereco_array[1].trim();
+        }
       }
 
       if (window.location.href.includes("/edit")) {
@@ -214,5 +218,8 @@
   }
   .menu-body .divider {
     margin: 0;
+  }
+  .news-card {
+    flex-direction: row;
   }
 </style>
