@@ -1,13 +1,6 @@
 <script>
   document.addEventListener("DOMContentLoaded", function () {
-    if (
-      window.location.href.includes("/processes/unidospelors/f/95") ||
-      window.location.href.includes("/processes/unidospelors/f/102")
-    ) {
-      var proposalAnnouncement = document.querySelector(
-        ".proposals-announcement"
-      );
-
+    if (window.location.href.includes("/processes/unidospelors")) {
       var removeHomeButton = document.querySelector(
         ".space-menu > :first-child"
       );
@@ -15,6 +8,22 @@
       if (removeHomeButton) {
         removeHomeButton.style.display = "none";
       }
+      if (
+        window.location.pathname === "/processes/unidospelors" ||
+        window.location.pathname === "/processes/unidospelors/"
+      ) {
+        const secondLi = document.querySelector(".space-menu li:nth-child(2)");
+        secondLi.classList.add("active");
+      }
+    }
+
+    if (
+      window.location.href.includes("/processes/unidospelors/f/95") ||
+      window.location.href.includes("/processes/unidospelors/f/102")
+    ) {
+      var proposalAnnouncement = document.querySelector(
+        ".proposals-announcement"
+      );
 
       if (proposalAnnouncement) {
         proposalAnnouncement.style.display = "none";
