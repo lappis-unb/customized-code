@@ -144,6 +144,22 @@
       });
   }
 
+  // Helper function to parse date from text and return as Date object
+  function parseDateFromText(dateString) {
+    const [day, month, year] = dateString.split('/').map(Number); // Split and convert to numbers
+    // Adjust year to handle YY format, assuming 20XX for simplicity
+    const fullYear = year < 100 ? 2000 + year : year;
+    return new Date(fullYear, month - 1, day); // Convert to Date object
+  }
+
+  // Function to format a Date object into DD/MM/YY string
+  function formatDateToDDMMYY(date) {
+    const day = date.getDate().toString().padStart(2, '0');
+    const month = (date.getMonth() + 1).toString().padStart(2, '0'); // January is 0!
+    const year = date.getFullYear().toString().substring(2); // Get last two digits
+    return `${day}/${month}/${year}`;
+  }
+
   // Generates blog components and returns the complete HTML
   function generateBlogHTML(url, href, originalHTML) {
     const tempElement = document.createElement('div');
@@ -151,6 +167,7 @@
 
     const originalNewsElements = tempElement.querySelectorAll('.news-item');
     let resultHTMLArray = [];
+    let latestDate = new Date(0); // Initialize with an old date
 
     originalNewsElements.forEach(originalNewsElement => {
       const titleContent = originalNewsElement.querySelector('.news-title').textContent;
@@ -159,6 +176,10 @@
       if (!descriptionElement) return; // Skip if descriptionElement is not found
 
       const fullDescription = descriptionElement.textContent.trim();
+      const dateExtracted = parseDateFromText(fullDescription.split('-')[0].trim()); // Extract and parse date
+      if (dateExtracted > latestDate) {
+        latestDate = dateExtracted; // Save the bigger (more recent) date
+      }
       const subtitleContent = fullDescription.split('-')[1].trim(); // Extract subtitle after hyphen
 
       const htmlTemplate = `
@@ -170,7 +191,12 @@
       resultHTMLArray.push(htmlTemplate);
     });
 
-    let resultHTML = resultHTMLArray.join('\n');
+    let resultHTML = `
+        <div>
+          ${formatDateToDDMMYY(latestDate)}
+        </div>
+    `;
+    resultHTML += resultHTMLArray.join('\n');
     resultHTML += "</div>";
     return resultHTML;
   }
