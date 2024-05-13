@@ -7,134 +7,113 @@
     </p>
   </div>
   <div id="blogContainer"></div>
-  <div class="subcontent-section inform-container">
-    <h2>Boletim Informativo da SECOM</h2>
-    <p>
-      Boletins atualizados sobre as ações do Governo Federal para operação de
-      socorro e assistências às famílias impactadas pelas chuvas no Rio Grande
-      do Sul
-    </p>
-    <div class="itens-list">
-      <a class="list-item inform">
-        <i class="fa-solid fa-share-from-square icon-group"></i>
-        <span class="list-item-group">Lorem Ipsum</span>
-        <span class="list-item-title">Mapeamento crédito extraordinário</span>
-      </a>
-      <a class="list-item inform">
-        <i class="fa-solid fa-share-from-square icon-group"></i>
-        <span class="list-item-group">Lorem Ipsum</span>
-        <span class="list-item-title">Mapeamento crédito extraordinário</span>
-      </a>
-      <a class="list-item inform">
-        <i class="fa-solid fa-share-from-square icon-group"></i>
-        <span class="list-item-group">Lorem Ipsum</span>
-        <span class="list-item-title">Mapeamento crédito extraordinário</span>
-      </a>
-    </div>
-  </div>
   <section class="subcontent-section">
     <div class="home-sections-content information-section">
       <img style=height:24px;width:100%;object-fit:cover; alt=imagers
-        src=https://brasilparticipativo.presidencia.gov.br/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBcWViIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--b529d66240858217bd7a1b613dac32bab20b50c7/6.png
-        class=image-content />
+      src=https://brasilparticipativo.presidencia.gov.br/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBcWViIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--b529d66240858217bd7a1b613dac32bab20b50c7/6.png
+      class=image-content />
       <div class="home-sections-content information-section cards-section">
         <h2>Canais de emergências oficiais</h2>
         <div class="cards-container">
-          <div class="content-container">
-            <div class="content-box">
-              <h2>Ligue 193</h2>
-              <p>bombeiros</p>
-            </div>
-          </div>
-          <div class="content-container">
-            <div class="content-box">
-              <h2>ligue 180</h2>
-              <p>violência contra mulher</p>
-            </div>
-          </div>
-          <div class="content-container">
+          <a
+            class="content-container"
+            href="https://www.gov.br/pt-br/servicos/denunciar-violacao-de-direitos-humanos"
+          >
             <div class="content-box">
               <h2>Ligue 100</h2>
               <p>direitos humanos</p>
             </div>
-          </div>
-          <div class="content-container">
+          </a>
+          <a
+            class="content-container"
+            href="https://www.gov.br/mdh/pt-br/assuntos/denuncie-violencia-contra-a-mulher/violencia-contra-a-mulher"
+          >
+            <div class="content-box">
+              <h2>ligue 180</h2>
+              <p>Central de atendimento à mulher</p>
+            </div>
+          </a>
+          <a class="content-container" href="https://www.bombeiros.rs.gov.br/">
+            <div class="content-box">
+              <h2>Ligue 193</h2>
+              <p>Bombeiros RS</p>
+            </div>
+          </a>
+          <a
+            class="content-container"
+            href="https://www.brigadamilitar.rs.gov.br/numeros-alternativos-190"
+          >
             <div class="content-box">
               <h2>Disque 190</h2>
               <p>Polícia Militar</p>
             </div>
-          </div>
+          </a>
         </div>
       </div>
       <img style=height:24px;width:100%;object-fit:cover; alt=imagers
-        src=https://brasilparticipativo.presidencia.gov.br/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBcWViIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--b529d66240858217bd7a1b613dac32bab20b50c7/6.png
-        class=image-content />
+      src=https://brasilparticipativo.presidencia.gov.br/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBcWViIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--b529d66240858217bd7a1b613dac32bab20b50c7/6.png
+      class=image-content />
     </div>
   </section>
   <section class="bp-logo-container">
-    <a href="https://www.gov.br/brasilparticipativo"><img alt="logo-brasil-participativo"
+    <a href="https://www.gov.br/brasilparticipativo"
+      ><img
+        alt="logo-brasil-participativo"
         src="https://brasilparticipativo.presidencia.gov.br/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBZ0VpIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--83a2abd12f5092b982cfdec5938eb1296f17c1d2/novo_bp_logo.png"
-        class="bp-logo" style="filter: invert(0); width: 194.13px" /></a>
+        class="bp-logo"
+        style="filter: invert(0); width: 194.13px"
+    /></a>
   </section>
 </section>
 <script>
   function fetchAllPages(url) {
     return fetch(url)
-      .then(response => {
+      .then((response) => {
         if (!response.ok) {
-          throw new Error(`Error fetching the page. Response status: ${response.status}`);
+          throw new Error(
+            `Error fetching the page. Response status: ${response.status}`
+          );
         }
         return response.text();
       })
-      .then(html => {
+      .then((html) => {
         let resultHTML = html;
-
         const tempElement = document.createElement("div");
         tempElement.innerHTML = resultHTML;
-
-        const paginationLast = tempElement.querySelector('.pagination-last a');
+        const paginationLast = tempElement.querySelector(".pagination-last a");
         if (!paginationLast) return html;
-
-        const lastPageLink = paginationLast.getAttribute('href');
-
+        const lastPageLink = paginationLast.getAttribute("href");
         const regex = /page=(\d+)/;
         const match = lastPageLink.match(regex);
-
-        // Assuming the base URL is known and provided here
-        const baseURL = 'https://brasilparticipativo.presidencia.gov.br';
-
+        const baseURL = "https://brasilparticipativo.presidencia.gov.br";
         if (match) {
           const totalPageNumber = parseInt(match[1], 10);
           const fetchPromises = [];
-
           for (let i = 2; i <= totalPageNumber; i++) {
-            // Create the new URL by combining the base URL with the replaced page number in the href
-            const newURL = `${baseURL}${lastPageLink.replace(regex, `page=${i}`)}`;
-
+            const newURL = `${baseURL}${lastPageLink.replace(
+              regex,
+              `page=${i}`
+            )}`;
             fetchPromises.push(
               fetchHTML(newURL)
-                .then(pageHtml => {
-                  // Append each fetched news-item to resultHTML
+                .then((pageHtml) => {
                   resultHTML += pageHtml;
                 })
-                .catch(error => {
-                  console.error('Error fetching page:', error);
+                .catch((error) => {
+                  console.error("Error fetching page:", error);
                 })
             );
           }
-
-          // Wait for all fetches to complete before returning resultHTML
           return Promise.all(fetchPromises).then(() => resultHTML);
         } else {
-          console.log('Page number not found');
+          console.log("Page number not found");
           return resultHTML;
         }
       })
-      .catch(error => {
+      .catch((error) => {
         throw new Error(`Error fetching the page: ${error.message}`);
       });
   }
-
   function fetchHTML(url) {
     return fetch(url)
       .then((response) => {
@@ -152,79 +131,44 @@
         throw new Error(`Error fetching the page: ${error.message}`);
       });
   }
-
-  // Generates blog components and returns the complete HTML
   function generateBlogHTML(url, originalHTML) {
     const tempElement = document.createElement("div");
     tempElement.innerHTML = originalHTML;
-
     const originalNewsElements = tempElement.querySelectorAll(".news-item");
-    let hashTypes = {};
-
-    originalNewsElements.forEach((originalNewsElement) => {
-      let titleElement = originalNewsElement.querySelector('.news-title');
-      let titleContent = '';
-      let hrefPost = '#';
-      if (!titleElement) {
-        console.log('No title element');
-        titleElement = '';
-        titleContent = '';
-        hrefPost = '#';
-      }
-      else {
-        titleContent = titleElement.textContent.trim();
-        hrefPost = titleElement.getAttribute('href');
-      }
-
-      const descriptionElement = originalNewsElement.querySelector('.news-description');
-      let fullDescription;
-      let subtitleContent = ''; // Extract subtitle after hyphen
-
-      if (!descriptionElement) {
-        console.log('No description element');
-        descriptionElement = '';
-      }
-      else {
-        fullDescription = descriptionElement.textContent.trim();
-        subtitleContent = fullDescription.split('-')[1].trim(); // Extract subtitle after hyphen
-      }
-
-      const htmlTemplate = `
-        <a
-          class="list-item"
-          href="${hrefPost}"
-        >
-          <span class="list-item-text"> ${titleContent} </span>
-        </a>
-        `;
-
-      if (!hashTypes[subtitleContent]) {
-        hashTypes[subtitleContent] = [];
-      }
-      hashTypes[subtitleContent].push(htmlTemplate);
-    });
-
-    // Build the final HTML string
     let resultHTMLArray = [];
-    for (let subtitle in hashTypes) {
-      const subtitleStyle = `
-        <div class="title-header">
-          <h3 class="title-subtext" data-asw-orgfontsize="16" style="font-size: 16px;">
-            ${subtitle}
-          </h3>
-        </div>
-        <div class="itens-list">
-        `;
-      resultHTMLArray.push(subtitleStyle);
-      resultHTMLArray.push(hashTypes[subtitle].join("\n"));
-      resultHTMLArray.push("</div>"); // closes itens-list element
-    }
-
+    const subtitleStyle = ` <div class="itens-list"> `;
+    resultHTMLArray.push(subtitleStyle);
+    originalNewsElements.forEach((originalNewsElement) => {
+      let titleElement = originalNewsElement.querySelector(".news-title");
+      let titleContent = "";
+      let hrefPost = "#";
+      if (!titleElement) {
+        console.log("No title element");
+        titleElement = "";
+        titleContent = "";
+        hrefPost = "#";
+      } else {
+        titleContent = titleElement.textContent.trim();
+        hrefPost = titleElement.getAttribute("href");
+      }
+      const descriptionElement =
+        originalNewsElement.querySelector(".news-description");
+      let fullDescription;
+      let subtitleContent = "";
+      if (!descriptionElement) {
+        console.log("No description element");
+        descriptionElement = "";
+      } else {
+        fullDescription = descriptionElement.textContent.trim();
+        subtitleContent = fullDescription.split("-")[1].trim();
+      }
+      const htmlTemplate = ` <a class="list-item" href="${hrefPost}" > <span class="list-item-text"> ${titleContent} </span> </a> `;
+      resultHTMLArray.push(htmlTemplate);
+    });
     let resultHTML = resultHTMLArray.join("\n");
+    resultHTMLArray.push("</div>");
     return resultHTML;
   }
-
-  // Calls the fetchHTML and generateBlogHTML functions asynchronously
   function generateBlog(url, title) {
     fetchAllPages(url)
       .then((html) => {
@@ -234,7 +178,6 @@
         if (newsContent !== "error") {
           blogContent = newsContent;
           const blogContainer = document.querySelector("#blogContainer");
-
           if (blogContainer) {
             blogContainer.innerHTML = blogContent;
           } else {
@@ -248,12 +191,8 @@
         console.error("Error:", error);
       });
   }
-
-  // !!!!ONLY NEED TO CALL THIS FUNCTION TO GENERATE THE NEWS!!!!
-  // Information about the variables in readme.md
   const url =
     "https://brasilparticipativo.presidencia.gov.br/processes/unidospelors/f/113/";
-
   generateBlog(url);
 </script>
 <style>
@@ -334,13 +273,12 @@
   }
 
   .itens-list {
-    display: flex;
-    width: 100%;
-    padding: 1rem 0;
-    gap: 1rem;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 250px);
     justify-content: center;
-    margin: 1.5rem 0;
+    width: 100%;
+    gap: 1rem;
+    margin-bottom: 64px;
   }
 
   .list-item {
@@ -350,15 +288,14 @@
     line-height: 2rem;
     color: var(--pure-100);
     height: auto;
-    margin: 0 1rem;
     text-align: center;
     text-decoration: none;
     transition: all 0.3s ease;
-    height: 12rem;
     max-width: 25rem;
     width: 100%;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     transition: transform 0.3s ease;
   }
 
