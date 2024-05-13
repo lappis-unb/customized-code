@@ -28,7 +28,13 @@
           const titleElement = originalNewsElement.querySelector('.news-title');
           const titleContent = titleElement.textContent;
           const hrefPost = titleElement.getAttribute('href');
-          const subtitleContent = originalNewsElement.querySelector('br-card-content').textContent;
+          
+          const descriptionElement = originalNewsElement.querySelector('.news-description');
+          if (!descriptionElement) return; // Skip if descriptionElement is not found
+
+          const fullDescription = descriptionElement.textContent.trim();
+          const subtitleContent = fullDescription.split('-')[1].trim(); // Extract subtitle after hyphen
+
           const imageUrl = originalNewsElement.querySelector('.news-cover-image').getAttribute('src');
 
           count += 1;
