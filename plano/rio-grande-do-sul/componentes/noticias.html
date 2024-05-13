@@ -1,113 +1,178 @@
 <section class="subcontent-section">
-  <section id="news-home-section" class="home-sections-container">
-    <h2>Notícias</h2>
-    <div class="home-sections-content br-container-lg">
-      <div class="news-container">
-        <a href="/processes/unidospelors/f/99/posts/125" class="news-card">
-          <img
-            src="/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBdE9iIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--1fd9fdd2956cd039737bdafa3b22c9df1055960d/6c6fa2bb-2f8c-4031-b030-ee5e1343c2aa.jpg"
-            alt=""
-            class="news-img"
-          />
-          <span class="news-title"
-            >"Caminhos assistenciais" do Governo Federal liberam rodovias para
-            garantir abastecimento do Rio Grande do Sul</span
-          >
-        </a>
-        <a href="/processes/unidospelors/f/99/posts/124" class="news-card">
-          <img
-            src="/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBdEtiIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--fac622943ce71050f3019727f78a34f19432681a/ebde5042-588b-4ed9-9f0f-1826bd45b3f6.jpg"
-            alt=""
-            class="news-img"
-          />
-          <span class="news-title"
-            >AGU suspende cobrança de devedores da União no Rio Grande do Sul
-            por 90 dias</span
-          >
-        </a>
-        <a href="/processes/unidospelors/f/99/posts/123" class="news-card">
-          <img
-            src="/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBdEdiIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--19a784b09aadf034349a7112310e98e43a1b32cd/cd2ba0a2-e219-4c04-89ca-c44615108052.jpg"
-            alt=""
-            class="news-img"
-          />
-          <span class="news-title"
-            >Governo Federal aciona PF para punir quem propaga fake news sobre
-            catástrofe no Rio Grande do Sul</span
-          >
-        </a>
-      </div>
-      <div class="centered-content">
-        <a
-          href="https://brasilparticipativo.presidencia.gov.br/processes/unidospelors/f/99/"
-          class="br-button secondary"
-          >Veja mais</a
-        >
-      </div>
-    </div>
-  </section>
+  <div id="confnoticias"></div>
 </section>
 
-<style>
-  .page-buttons {
-    display: flex;
-    justify-content: flex-end;
+<script>
+  // Faz uma requisicao e retorna o html da pagina
+  function requestHTML(url) {
+    return fetch(url)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(
+            `Erro ao buscar a página. Status de resposta: ${response.status}`
+          );
+        }
+        return response.text();
+      })
+      .then((html) => {
+        return html;
+      })
+      .catch((error) => {
+        throw new Error(`Erro ao buscar a página: ${error.message}`);
+      });
   }
 
-  #news-home-section h2 {
-    font-size: 34.84px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: normal;
-    margin: 0;
-    padding: 0;
+  // Gera os componentes de noticia e retorna o html pronto
+  function getNoticias(url, href, descButton, originalHTML) {
+    const tempElement = document.createElement("div");
+    tempElement.innerHTML = originalHTML;
+
+    const originalNewsElements = tempElement.querySelectorAll(".news-item");
+    const resultHTMLArray = [];
+    let count = 0;
+    originalNewsElements.forEach((originalNewsElement) => {
+      const href_noticia = originalNewsElement
+        .querySelector(".news-title")
+        .getAttribute("href");
+      const titulo_noticia =
+        originalNewsElement.querySelector(".news-title").textContent;
+      const url_img = originalNewsElement
+        .querySelector(".news-cover-image")
+        .getAttribute("src");
+
+      const newHTML = `
+      <a
+        class="news-card__list__item"
+        href="${href_noticia}"
+      >
+        <img
+          src="${url_img}"
+        />
+        <span class="news-card__list__item__overlay">
+          ${titulo_noticia}
+        </span>
+      </a>
+      `;
+      count += 1;
+      if (resultHTMLArray.length >= 3) {
+        buttonMore = `</div></section>
+                          <div class="more-news-button-container">
+                      <a
+                        class="br-button secondary mr-3"
+                        type="button"
+                        href="${href}"
+                        >${descButton}</a
+                      >
+                    </div>`;
+
+        if (resultHTMLArray.length <= 3) resultHTMLArray.push(buttonMore);
+
+        const resultHTML = resultHTMLArray.join("\n");
+
+        return resultHTML;
+      } else resultHTMLArray.push(newHTML);
+    });
+
+    if (count == 0) return "error";
+
+    let resultHTML = resultHTMLArray.join("\n");
+    resultHTML += "</div></section>";
+    return resultHTML;
   }
-  #news-home-section {
-    background-color: var(--pure-0);
+
+  // Chama a funcao requestHTML e a getNoticias de maneira assincrona
+  function gerenciaNoticias(url, href, title, descButton) {
+    requestHTML(url)
+      .then((html) => {
+        return getNoticias(url, href, descButton, html);
+      })
+      .then((responseNoticias) => {
+        if (responseNoticias !== "error") {
+          let contentNoticiais = `<section class="news-card">
+                                    <span class="home-section-title">${title}</span>
+                                      <div class="news-card__list br-container-lg">`;
+          contentNoticiais += responseNoticias;
+
+          const confNoticias = document.querySelector("#confnoticias");
+
+          if (confNoticias) {
+            confNoticias.innerHTML = contentNoticiais;
+          } else {
+            console.error('Elemento com id "confnoticias" não encontrado.');
+          }
+        } else {
+          console.error("Erro ao buscar notícias.");
+        }
+      })
+      .catch((error) => {
+        console.error("Erro:", error);
+      });
+  }
+
+  // !!!!SO PRECISA CHAMAR ESSA FUNCAO PARA GERAR AS NOTICIAS!!!!
+  // Informacoes sobre as variaveis no readme.md
+  url =
+    "https://brasilparticipativo.presidencia.gov.br/processes/unidospelors/f/99/";
+  href =
+    "https://brasilparticipativo.presidencia.gov.br/processes/unidospelors/f/99/";
+  title = "Notícias";
+  descButton = "Mais Notícias";
+  gerenciaNoticias(url, href, title, descButton);
+</script>
+<style>
+  /* NOTICIAS */
+
+  .home-section-title {
+    font-size: 32px;
+  }
+
+  #confnoticias {
+    margin-bottom: 64px;
+  }
+
+  .news-card {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    gap: 16px;
-    padding: 24px 16px;
   }
-  .news-container {
-    display: grid;
-    grid-template-columns: 1fr;
+
+  .news-card__title {
+    color: #242020;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1.75rem;
+    margin-top: 2.5rem;
+    text-align: center;
+  }
+
+  .news-card__list {
+    display: flex;
+    gap: 24px;
     justify-content: center;
-    align-items: center;
-    justify-items: center;
-    flex-direction: column;
+    flex-direction: row;
     margin-bottom: 2rem;
-    gap: 16px;
   }
-  .news-card {
+
+  .news-card__list__item {
     width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     background-color: var(--pure-0);
+    gap: 16px;
     height: auto;
     padding: 0;
     transition: 0.3s ease;
   }
 
-  .news-card:hover {
+  .news-card__list__item:hover {
     transform: scale(1.05);
   }
 
-  .news-img {
-    width: 100%;
-    height: 160px;
-    object-fit: cover;
-    border-radius: 0px;
-  }
-  .news-title {
+  .news-card__list__item__overlay {
     font-size: 16.8px;
     font-weight: 600;
-    max-height: 120px;
-    max-height: 110px;
     display: -webkit-box;
     -webkit-line-clamp: 5;
     -webkit-box-orient: vertical;
@@ -117,41 +182,31 @@
     text-align: left;
   }
 
-  .news-card .news-title:hover {
-    color: var(---blue-warm-vivid-70);
+  .news-card__list__item__overlay:hover {
+    color: var(--color-primary-default);
   }
 
-  @media (min-width: 992px) {
-    .news-container {
-      display: flex;
-      gap: 24px;
-      justify-content: center;
-      align-items: baseline;
-      flex-direction: row;
-    }
-    .news-card {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      align-items: center;
-      background-color: var(--pure-0);
-    }
-    .news-img {
-      width: 100%;
-      height: 150px;
-      object-fit: cover;
-      border-radius: 0px;
-    }
-    .news-card .news-title {
-      font-style: normal;
-      font-weight: 600;
-      line-height: normal;
-    }
-  }
-
-  .centered-content {
+  .more-news-button-container {
     display: flex;
     justify-content: center;
   }
+
+  @media (max-width: 992px) {
+    .news-card__list__item {
+      justify-content: center;
+    }
+
+    .news-card__list {
+      display: grid;
+      grid-template-columns: 1fr;
+      justify-content: center;
+      align-items: center;
+      justify-items: center;
+      flex-direction: column;
+      margin-bottom: 2rem;
+      gap: 16px;
+    }
+  }
+
+  /* FIM NOTICIAS */
 </style>
