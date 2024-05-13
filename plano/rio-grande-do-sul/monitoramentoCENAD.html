@@ -3,6 +3,63 @@
 </section>
 
 <script>
+  function fetchAllPages(url) {
+    return fetch(url)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`Error fetching the page. Response status: ${response.status}`);
+        }
+        return response.text();
+      })
+      .then(html => {
+        let resultHTML = html;
+
+        const tempElement = document.createElement("div");
+        tempElement.innerHTML = resultHTML;
+
+        const pagination = tempElement.querySelector('.pagination-container');
+        if (!pagination) return html;
+
+        const lastPageLink = pagination.querySelector('.pagination-last a').getAttribute('href');
+
+        const regex = /page=(\d+)/;
+        const match = lastPageLink.match(regex);
+
+        // Assuming the base URL is known and provided here
+        const baseURL = 'https://brasilparticipativo.presidencia.gov.br';
+
+        if (match) {
+          const totalPageNumber = parseInt(match[1], 10);
+          const fetchPromises = [];
+
+          for (let i = 2; i <= totalPageNumber; i++) {
+            // Create the new URL by combining the base URL with the replaced page number in the href
+            const newURL = `${baseURL}${lastPageLink.replace(regex, `page=${i}`)}`;
+
+            fetchPromises.push(
+              fetchHTML(newURL)
+                .then(pageHtml => {
+                  // Append each fetched news-item to resultHTML
+                  resultHTML += pageHtml;
+                })
+                .catch(error => {
+                  console.error('Error fetching page:', error);
+                })
+            );
+          }
+
+          // Wait for all fetches to complete before returning resultHTML
+          return Promise.all(fetchPromises).then(() => resultHTML);
+        } else {
+          console.log('Page number not found');
+          return resultHTML;
+        }
+      })
+      .catch(error => {
+        throw new Error(`Error fetching the page: ${error.message}`);
+      });
+  }
+
   function fetchHTML(url) {
     return fetch(url)
       .then(response => {
@@ -45,20 +102,36 @@
     let latestDate = new Date(0); // Initialize with an old date
 
     originalNewsElements.forEach(originalNewsElement => {
-      const titleElement = originalNewsElement.querySelector('.news-title');
-      const titleContent = titleElement.textContent;
-      const hrefPost = titleElement.getAttribute('href');
-
-      const descriptionElement = originalNewsElement.querySelector('.news-description');
-      if (!descriptionElement) return; // Skip if descriptionElement is not found
-
-      const fullDescription = descriptionElement.textContent.trim();
-      const dateExtracted = parseDateFromText(fullDescription.split('-')[0].trim()); // Extract and parse date
-      if (dateExtracted > latestDate) {
-        latestDate = dateExtracted; // Save the bigger (more recent) date
+      let titleElement = originalNewsElement.querySelector('.news-title');
+      let titleContent = titleElement.textContent.trim();
+      let hrefPost = titleElement.getAttribute('href');
+      if (!titleElement) {
+        console.log('No title element');
+        titleElement = '';
+        titleContent = '';
+        hrefPost = '#';
+      }
+      else{
+        titleContent = titleElement.textContent.trim();
+        hrefPost = titleElement.getAttribute('href');
       }
 
-      const subtitleContent = fullDescription.split('-')[1].trim(); // Extract subtitle after hyphen
+      const descriptionElement = originalNewsElement.querySelector('.news-description');
+      let fullDescription;
+      let subtitleContent = ''; // Extract subtitle after hyphen
+
+      if (!descriptionElement) {
+        console.log('No description element');
+        descriptionElement = '';
+      }
+      else {
+        fullDescription = descriptionElement.textContent.trim();
+        subtitleContent = fullDescription.split('-')[1].trim(); // Extract subtitle after hyphen
+        const dateExtracted = parseDateFromText(fullDescription.split('-')[0].trim()); // Extract and parse date
+        if (dateExtracted > latestDate) {
+          latestDate = dateExtracted; // Save the bigger (more recent) date
+        }
+      }
 
       const htmlTemplate = `
         <div class="news-container">
@@ -86,7 +159,7 @@
 
   // Calls the fetchHTML and generateBlogHTML functions asynchronously
   function generateBlog(url, title) {
-    fetchHTML(url)
+    fetchAllPages(url)
       .then(html => {
         return generateBlogHTML(url, html);
       })
