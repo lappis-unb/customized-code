@@ -44,7 +44,12 @@
 
         originalNewsElements.forEach(originalNewsElement => {
             const titleContent = originalNewsElement.querySelector('.news-title').textContent;
-            const subtitleContent = originalNewsElement.querySelector('.news-description').textContent;
+            
+            const descriptionElement = originalNewsElement.querySelector('.news-description');
+            if (!descriptionElement) return; // Skip if descriptionElement is not found
+
+            const fullDescription = descriptionElement.textContent.trim();
+            const subtitleContent = fullDescription.split('-')[1].trim(); // Extract subtitle after hyphen
 
             const htmlTemplate = `
                 <a class="action-card">
