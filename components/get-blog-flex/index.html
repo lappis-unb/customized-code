@@ -13,11 +13,11 @@
         const tempElement = document.createElement("div");
         tempElement.innerHTML = resultHTML;
 
-        const pagination = tempElement.querySelector('.pagination-container');
-        if (!pagination) return html;
+        const paginationLast = tempElement.querySelector('.pagination-last a');
+        if (!paginationLast) return html;
 
-        const lastPageLink = pagination.querySelector('.pagination-last a').getAttribute('href');
-
+        const lastPageLink = paginationLast.getAttribute('href');
+        
         const regex = /page=(\d+)/;
         const match = lastPageLink.match(regex);
 
