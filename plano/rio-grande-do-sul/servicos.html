@@ -95,6 +95,10 @@
   </div>
 </div>
 
+<section>
+  <div id="blogContainer"></div>
+</section>
+
 <script>
   function fetchHTML(url) {
     return fetch(url)
@@ -121,52 +125,54 @@
     let hashTypes = {};
 
     originalNewsElements.forEach(originalNewsElement => {
-        const titleElement = originalNewsElement.querySelector('.news-title');
-        if (!titleElement) return; // Skip if titleElement is not found
+      const titleElement = originalNewsElement.querySelector('.news-title');
+      if (!titleElement) return; // Skip if titleElement is not found
 
-        const titleContent = titleElement.textContent.trim();
-        const hrefPost = titleElement.getAttribute('href');
+      const titleContent = titleElement.textContent.trim();
+      const hrefPost = titleElement.getAttribute('href');
 
-        const descriptionElement = originalNewsElement.querySelector('.news-description');
-        if (!descriptionElement) return; // Skip if descriptionElement is not found
+      const descriptionElement = originalNewsElement.querySelector('.news-description');
+      if (!descriptionElement) return; // Skip if descriptionElement is not found
 
-        const fullDescription = descriptionElement.textContent.trim();
-        const subtitleContent = fullDescription.split('-')[1].trim(); // Extract subtitle after hyphen
+      const fullDescription = descriptionElement.textContent.trim();
+      const subtitleContent = fullDescription.split('-')[1].trim(); // Extract subtitle after hyphen
+      const groupContent = fullDescription.split('-')[2].trim(); // Extract group
 
-        const htmlTemplate = `
-        <a
-          class="list-item"
-          href="${hrefPost}"
-        >
-          <span class="list-item-text"> ${titleContent} </span>
-        </a>
-        `;
+      const htmlTemplate = `
+          <a
+            class="list-item"
+            href="${hrefPost}"
+          >
+            <span class="list-item-text"> ${groupContent} </span>
+            <span class="list-item-text"> ${titleContent} </span>
+          </a>
+          `;
 
-        if (!hashTypes[subtitleContent]) {
-            hashTypes[subtitleContent] = [];
-        }
-        hashTypes[subtitleContent].push(htmlTemplate);
+      if (!hashTypes[subtitleContent]) {
+        hashTypes[subtitleContent] = [];
+      }
+      hashTypes[subtitleContent].push(htmlTemplate);
     });
 
     // Build the final HTML string
     let resultHTMLArray = [];
     for (let subtitle in hashTypes) {
-        const subtitleStyle = `
-        <div class="title-header"> 
-          <h3 class="title-subtext" data-asw-orgfontsize="16" style="font-size: 16px;">
-            ${subtitle}
-          </h3> 
-        </div>
-        <div class="itens-list">
-        `;
-        resultHTMLArray.push(subtitleStyle);
-        resultHTMLArray.push(hashTypes[subtitle].join('\n'));
-        resultHTMLArray.push('</div>'); // closes itens-list element
+      const subtitleStyle = `
+          <div class="title-header"> 
+            <h3 class="title-subtext" data-asw-orgfontsize="16" style="font-size: 16px;">
+              ${subtitle}
+            </h3> 
+          </div>
+          <div class="itens-list">
+          `;
+      resultHTMLArray.push(subtitleStyle);
+      resultHTMLArray.push(hashTypes[subtitle].join('\n'));
+      resultHTMLArray.push('</div>'); // closes itens-list element
     }
 
     let resultHTML = resultHTMLArray.join('\n');
     return resultHTML;
-}
+  }
 
   // Calls the fetchHTML and generateBlogHTML functions asynchronously
   function generateBlog(url, title) {
@@ -177,9 +183,9 @@
       .then(newsContent => {
         if (newsContent !== "error") {
           let blogContent = `
-          <h2 class="title-text" data-asw-orgfontsize="32" style="font-size: 32px;">
-            ${title}
-          </h2>`;
+            <h2 class="title-text" data-asw-orgfontsize="32" style="font-size: 32px;">
+              ${title}
+            </h2>`;
           blogContent += newsContent;
 
           const blogContainer = document.querySelector('#blogContainer');
@@ -200,8 +206,8 @@
 
   // !!!!ONLY NEED TO CALL THIS FUNCTION TO GENERATE THE NEWS!!!!
   // Information about the variables in readme.md
-  const url = 'https://brasilparticipativo.presidencia.gov.br/processes/unidospelors/f/113/';
-  const title = 'Ações do Governo Federal';
+  const url = 'https://brasilparticipativo.presidencia.gov.br/processes/unidospelors/f/118/';
+  const title = 'Acessar Servicos';
 
   generateBlog(url, title);
 </script>
