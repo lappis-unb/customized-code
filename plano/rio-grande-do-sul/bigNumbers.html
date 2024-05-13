@@ -1,210 +1,238 @@
 <section class="br-container-lg">
-    <section class="subcontent-section">
-        <div class="actions-title-container">
-            <h2>Ações do Governo Federal em Números</h2>
-        </div>
-        <div id="bigNumber"></div>
-    </section>
-    <div class="divider"></div>
-    <section class="subcontent-section">
-        <div id="confnoticias"></div>
-    </section>
-    <section class="logos__section">
-        <div class="logos__container"> <a href="https://www.gov.br/pt-br" data-asw-orgfontsize="14"><img
-                    alt="governo federal logo"
-                    src="https://brasilparticipativo.presidencia.gov.br/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBcXliIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--6204cf44544e5087d711308b75bfe2f277b31b28/Governo%20Federal.png"
-                    style="filter:invert(0);height:100px;" id="logo-governo-federal" /> </a> </div>
-    </section>
+  <section class="subcontent-section">
+    <div class="actions-title-container">
+      <h2>Ações do Governo Federal em Números</h2>
+    </div>
+    <div id="bigNumber"></div>
+  </section>
+  <div class="divider"></div>
+  <section class="subcontent-section">
+    <div id="confnoticias"></div>
+  </section>
+  <section class="logos__section">
+    <div class="logos__container"> <a href="https://www.gov.br/pt-br" data-asw-orgfontsize="14"><img
+          alt="governo federal logo"
+          src="https://brasilparticipativo.presidencia.gov.br/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBcXliIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--6204cf44544e5087d711308b75bfe2f277b31b28/Governo%20Federal.png"
+          style="filter:invert(0);height:100px;" id="logo-governo-federal" /> </a> </div>
+  </section>
 </section>
 
 <script>
-    function fetchHTML(url) {
-        return fetch(url)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`Error fetching the page. Response status: ${response.status}`);
-                }
-                return response.text();
-            })
-            .then(html => {
-                return html;
-            })
-            .catch(error => {
-                throw new Error(`Error fetching the page: ${error.message}`);
-            });
-    }
 
-    // Generates blog components and returns the complete HTML
-    function generateBlogHTML(url, href, originalHTML) {
-        const tempElement = document.createElement('div');
-        tempElement.innerHTML = originalHTML;
+  // Helper function to parse date from text and return as Date object
+  function parseDateFromText(dateString) {
+    const [day, month, year] = dateString.split('/').map(Number); // Split and convert to numbers
+    // Adjust year to handle YY format, assuming 20XX for simplicity
+    const fullYear = year < 100 ? 2000 + year : year;
+    return new Date(fullYear, month - 1, day); // Convert to Date object
+  }
 
-        const originalNewsElements = tempElement.querySelectorAll('.news-item');
-        let resultHTMLArray = [];
+  // Function to format a Date object into DD/MM/YY string
+  function formatDateToDDMMYY(date) {
+    const day = date.getDate().toString().padStart(2, '0');
+    const month = (date.getMonth() + 1).toString().padStart(2, '0'); // January is 0!
+    const year = date.getFullYear().toString().substring(2); // Get last two digits
+    return `${day}/${month}/${year}`;
+  }
 
-        originalNewsElements.forEach(originalNewsElement => {
-            const titleContent = originalNewsElement.querySelector('.news-title').textContent;
-            
-            const descriptionElement = originalNewsElement.querySelector('.news-description');
-            if (!descriptionElement) return; // Skip if descriptionElement is not found
+  function fetchHTML(url) {
+    return fetch(url)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`Error fetching the page. Response status: ${response.status}`);
+        }
+        return response.text();
+      })
+      .then(html => {
+        return html;
+      })
+      .catch(error => {
+        throw new Error(`Error fetching the page: ${error.message}`);
+      });
+  }
 
-            const fullDescription = descriptionElement.textContent.trim();
-            const subtitleContent = fullDescription.split('-')[1].trim(); // Extract subtitle after hyphen
+  // Generates blog components and returns the complete HTML
+  function generateBlogHTML(url, href, originalHTML) {
+    const tempElement = document.createElement('div');
+    tempElement.innerHTML = originalHTML;
 
-            const htmlTemplate = `
+    const originalNewsElements = tempElement.querySelectorAll('.news-item');
+    let resultHTMLArray = [];
+
+    originalNewsElements.forEach(originalNewsElement => {
+      const titleContent = originalNewsElement.querySelector('.news-title').textContent;
+
+      const descriptionElement = originalNewsElement.querySelector('.news-description');
+      if (!descriptionElement) return; // Skip if descriptionElement is not found
+
+      const fullDescription = descriptionElement.textContent.trim();
+
+      const dateExtracted = parseDateFromText(fullDescription.split('-')[0].trim()); // Extract and parse date
+      if (dateExtracted > latestDate) {
+        latestDate = dateExtracted; // Save the bigger (more recent) date
+      }
+
+      const subtitleContent = fullDescription.split('-')[1].trim(); // Extract subtitle after hyphen
+
+      const htmlTemplate = `
                 <a class="action-card">
                     <p class="value-text">${subtitleContent}</p>
                     <p class="category-text">${titleContent}</p>
                 </a>`;
 
-            resultHTMLArray.push(htmlTemplate);
-        });
+      resultHTMLArray.push(htmlTemplate);
+    });
 
-        let resultHTML = resultHTMLArray.join('\n');
-        resultHTML += "</div>";
-        return resultHTML;
-    }
+    let resultHTML = `
+        <div>
+          ${formatDateToDDMMYY(latestDate)}
+        </div>
+    `;
+    resultHTML += resultHTMLArray.join('\n');
+    resultHTML += "</div></section>";
+    return resultHTML;
+  }
 
-    // Calls the fetchHTML and generateBlogHTML functions asynchronously
-    function generateBlog(url, href) {
-        fetchHTML(url)
-            .then(html => {
-                return generateBlogHTML(url, href, html);
-            })
-            .then(newsContent => {
-                if (newsContent !== "error") {
-                    let blogContent = `<div class="actions-card-container">`;
-                    blogContent += newsContent;
+  // Calls the fetchHTML and generateBlogHTML functions asynchronously
+  function generateBlog(url, href) {
+    fetchHTML(url)
+      .then(html => {
+        return generateBlogHTML(url, href, html);
+      })
+      .then(newsContent => {
+        if (newsContent !== "error") {
+          let blogContent = `<div class="actions-card-container">`;
+          blogContent += newsContent;
 
-                    let blogContainer = document.querySelector('#bigNumber');
+          let blogContainer = document.querySelector('#bigNumber');
 
-                    if (blogContainer) {
-                        blogContainer.innerHTML = blogContent;
-                    } else {
-                        console.error('Element with id "bigNumber" not found.');
-                    }
-                } else {
-                    console.error('Error fetching news.');
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-    }
+          if (blogContainer) {
+            blogContainer.innerHTML = blogContent;
+          } else {
+            console.error('Element with id "bigNumber" not found.');
+          }
+        } else {
+          console.error('Error fetching news.');
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+  }
 
-    // !!!!ONLY NEED TO CALL THIS FUNCTION TO GENERATE THE NEWS!!!!
-    // Information about the variables in readme.md
-    const url = 'https://brasilparticipativo.presidencia.gov.br/processes/unidospelors/f/111/';
-    const href = 'https://brasilparticipativo.presidencia.gov.br/processes/unidospelors/f/111/';
+  // !!!!ONLY NEED TO CALL THIS FUNCTION TO GENERATE THE NEWS!!!!
+  // Information about the variables in readme.md
+  const url = 'https://brasilparticipativo.presidencia.gov.br/processes/unidospelors/f/111/';
+  const href = 'https://brasilparticipativo.presidencia.gov.br/processes/unidospelors/f/111/';
 
-    generateBlog(url, href);
+  generateBlog(url, href);
 </script>
 
 <style>
-    /* Divider */
+  /* Divider */
 
-    .divider {
-        border-bottom: 1px solid #cccccc;
-        margin: 64px 0px;
+  .divider {
+    border-bottom: 1px solid #cccccc;
+    margin: 64px 0px;
+  }
+
+  .divider.blue {
+    margin: 0.5rem 0;
+    border-bottom: 1px solid var(--blue-warm-vivid-20);
+  }
+
+  /* Title */
+
+  .actions-title-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 64px;
+
+    h2 {
+      font-weight: 800;
+      font-size: 36px;
+      padding: 0;
+      margin: 0;
     }
+  }
 
-    .divider.blue {
-        margin: 0.5rem 0;
-        border-bottom: 1px solid var(--blue-warm-vivid-20);
+  /* BiNumbers */
+
+  .actions-card-container {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .action-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 250px;
+    margin: 0px 12px;
+
+    p {
+      color: var(--blue-warm-vivid-80);
     }
+  }
 
-    /* Title */
+  .value-text {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
 
-    .actions-title-container {
-        display: flex;
-        justify-content: center;
-        margin-bottom: 64px;
+  .value-info {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 30px;
+  }
 
-        h2 {
-            font-weight: 800;
-            font-size: 36px;
-            padding: 0;
-            margin: 0;
-        }
-    }
+  .category-text {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 30px;
+  }
 
-    /* BiNumbers */
-
-    .actions-card-container {
-        display: flex;
-        justify-content: space-between;
-    }
-
-    .action-card {
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: center;
-        width: 250px;
-        margin: 0px 12px;
-
-        p {
-            color: var(--blue-warm-vivid-80);
-        }
-    }
-
-    .value-text {
-        font-size: 3rem;
-        font-weight: 700;
-        margin-bottom: 16px;
-    }
-
-    .value-info {
-        font-size: 1.5rem;
-        font-weight: 700;
-        margin-bottom: 30px;
-    }
-
-    .category-text {
-        font-size: 1.25rem;
-        font-weight: 600;
-        margin-bottom: 30px;
-    }
-
-    .subcategory-text {
-        font-size: 1rem;
-        font-weight: 500;
-        text-align: center;
-    }
+  .subcategory-text {
+    font-size: 1rem;
+    font-weight: 500;
+    text-align: center;
+  }
 </style>
 
 <script>
-    // Faz uma requisicao e retorna o html da pagina
-    function requestHTML(url) {
-        return fetch(url)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`Erro ao buscar a página. Status de resposta: ${response.status}`);
-                }
-                return response.text();
-            })
-            .then(html => {
-                return html;
-            })
-            .catch(error => {
-                throw new Error(`Erro ao buscar a página: ${error.message}`);
-            });
-    }
+  // Faz uma requisicao e retorna o html da pagina
+  function requestHTML(url) {
+    return fetch(url)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`Erro ao buscar a página. Status de resposta: ${response.status}`);
+        }
+        return response.text();
+      })
+      .then(html => {
+        return html;
+      })
+      .catch(error => {
+        throw new Error(`Erro ao buscar a página: ${error.message}`);
+      });
+  }
 
-    // Gera os componentes de noticia e retorna o html pronto
-    function getNoticias(url, href, descButton, originalHTML) {
-        const tempElement = document.createElement('div');
-        tempElement.innerHTML = originalHTML;
+  // Gera os componentes de noticia e retorna o html pronto
+  function getNoticias(url, href, descButton, originalHTML) {
+    const tempElement = document.createElement('div');
+    tempElement.innerHTML = originalHTML;
 
-        const originalNewsElements = tempElement.querySelectorAll('.news-item');
-        const resultHTMLArray = [];
-        let count = 0;
-        originalNewsElements.forEach(originalNewsElement => {
-            const href_noticia = originalNewsElement.querySelector('.news-title').getAttribute('href');
-            const titulo_noticia = originalNewsElement.querySelector('.news-title').textContent;
-            const url_img = originalNewsElement.querySelector('.news-cover-image').getAttribute('src');
+    const originalNewsElements = tempElement.querySelectorAll('.news-item');
+    const resultHTMLArray = [];
+    let count = 0;
+    originalNewsElements.forEach(originalNewsElement => {
+      const href_noticia = originalNewsElement.querySelector('.news-title').getAttribute('href');
+      const titulo_noticia = originalNewsElement.querySelector('.news-title').textContent;
+      const url_img = originalNewsElement.querySelector('.news-cover-image').getAttribute('src');
 
-            const newHTML = `
+      const newHTML = `
         <a
           class="news-card__list__item"
           href="${href_noticia}"
@@ -217,9 +245,9 @@
           </span>
         </a>
         `;
-            count += 1;
-            if (resultHTMLArray.length >= 3) {
-                buttonMore = `</div></section>
+      count += 1;
+      if (resultHTMLArray.length >= 3) {
+        buttonMore = `</div></section>
                             <div class="more-news-button-container">
                         <a
                           class="br-button secondary mr-3"
@@ -229,150 +257,150 @@
                         >
                       </div>`;
 
-                if (resultHTMLArray.length <= 3)
-                    resultHTMLArray.push(buttonMore);
+        if (resultHTMLArray.length <= 3)
+          resultHTMLArray.push(buttonMore);
 
-                const resultHTML = resultHTMLArray.join('\n');
+        const resultHTML = resultHTMLArray.join('\n');
 
-                return resultHTML;
-            }
-            else
-                resultHTMLArray.push(newHTML);
-        });
-
-        if (count == 0)
-            return "error";
-
-        let resultHTML = resultHTMLArray.join('\n');
-        resultHTML += "</div></section>";
         return resultHTML;
-    }
+      }
+      else
+        resultHTMLArray.push(newHTML);
+    });
 
-    // Chama a funcao requestHTML e a getNoticias de maneira assincrona
-    function gerenciaNoticias(url, href, title, descButton) {
-        requestHTML(url)
-            .then(html => {
-                return getNoticias(url, href, descButton, html);
-            })
-            .then(responseNoticias => {
-                if (responseNoticias !== "error") {
-                    let contentNoticiais = `<section class="news-card">
+    if (count == 0)
+      return "error";
+
+    let resultHTML = resultHTMLArray.join('\n');
+    resultHTML += "</div></section>";
+    return resultHTML;
+  }
+
+  // Chama a funcao requestHTML e a getNoticias de maneira assincrona
+  function gerenciaNoticias(url, href, title, descButton) {
+    requestHTML(url)
+      .then(html => {
+        return getNoticias(url, href, descButton, html);
+      })
+      .then(responseNoticias => {
+        if (responseNoticias !== "error") {
+          let contentNoticiais = `<section class="news-card">
                                       <span class="home-section-title">${title}</span>
                                         <div class="news-card__list br-container-lg">`;
-                    contentNoticiais += responseNoticias;
+          contentNoticiais += responseNoticias;
 
-                    const confNoticias = document.querySelector('#confnoticias');
+          const confNoticias = document.querySelector('#confnoticias');
 
-                    if (confNoticias) {
-                        confNoticias.innerHTML = contentNoticiais;
-                    } else {
-                        console.error('Elemento com id "confnoticias" não encontrado.');
-                    }
-                } else {
-                    console.error('Erro ao buscar notícias.');
-                }
-            })
-            .catch(error => {
-                console.error('Erro:', error);
-            });
-    }
+          if (confNoticias) {
+            confNoticias.innerHTML = contentNoticiais;
+          } else {
+            console.error('Elemento com id "confnoticias" não encontrado.');
+          }
+        } else {
+          console.error('Erro ao buscar notícias.');
+        }
+      })
+      .catch(error => {
+        console.error('Erro:', error);
+      });
+  }
 
-    // !!!!SO PRECISA CHAMAR ESSA FUNCAO PARA GERAR AS NOTICIAS!!!!
-    // Informacoes sobre as variaveis no readme.md
-    url = 'https://brasilparticipativo.presidencia.gov.br/processes/unidospelors/f/99/';
-    href = 'https://brasilparticipativo.presidencia.gov.br/processes/unidospelors/f/99/';
-    title = 'Notícias';
-    descButton = 'Mais Notícias';
-    gerenciaNoticias(url, href, title, descButton);
+  // !!!!SO PRECISA CHAMAR ESSA FUNCAO PARA GERAR AS NOTICIAS!!!!
+  // Informacoes sobre as variaveis no readme.md
+  url = 'https://brasilparticipativo.presidencia.gov.br/processes/unidospelors/f/99/';
+  href = 'https://brasilparticipativo.presidencia.gov.br/processes/unidospelors/f/99/';
+  title = 'Notícias';
+  descButton = 'Mais Notícias';
+  gerenciaNoticias(url, href, title, descButton);
 </script>
 <style>
-    /* NOTICIAS */
+  /* NOTICIAS */
 
-    .home-section-title {
-        font-size: 32px;
-    }
+  .home-section-title {
+    font-size: 32px;
+  }
 
-    #confnoticias {
-        margin-bottom: 64px;
-    }
+  #confnoticias {
+    margin-bottom: 64px;
+  }
 
-    .news-card {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
+  .news-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
-    .news-card__title {
-        color: #242020;
-        font-size: 1.5rem;
-        font-weight: 600;
-        margin-bottom: 1.75rem;
-        margin-top: 2.5rem;
-        text-align: center;
+  .news-card__title {
+    color: #242020;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1.75rem;
+    margin-top: 2.5rem;
+    text-align: center;
+  }
+
+  .news-card__list {
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    flex-direction: row;
+    margin-bottom: 2rem;
+  }
+
+  .news-card__list__item {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: var(--pure-0);
+    gap: 16px;
+    height: auto;
+    padding: 0;
+    transition: 0.3s ease;
+  }
+
+  .news-card__list__item:hover {
+    transform: scale(1.05);
+  }
+
+  .news-card__list__item__overlay {
+    font-size: 16.8px;
+    font-weight: 600;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: var(--blue-warm-vivid-80);
+    text-align: left;
+  }
+
+  .news-card__list__item__overlay:hover {
+    color: var(--color-primary-default);
+  }
+
+  .more-news-button-container {
+    display: flex;
+    justify-content: center;
+  }
+
+  @media (max-width: 992px) {
+    .news-card__list__item {
+      justify-content: center;
     }
 
     .news-card__list {
-        display: flex;
-        gap: 24px;
-        justify-content: center;
-        flex-direction: row;
-        margin-bottom: 2rem;
+      display: grid;
+      grid-template-columns: 1fr;
+      justify-content: center;
+      align-items: center;
+      justify-items: center;
+      flex-direction: column;
+      margin-bottom: 2rem;
+      gap: 16px;
     }
+  }
 
-    .news-card__list__item {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: center;
-        background-color: var(--pure-0);
-        gap: 16px;
-        height: auto;
-        padding: 0;
-        transition: 0.3s ease;
-    }
-
-    .news-card__list__item:hover {
-        transform: scale(1.05);
-    }
-
-    .news-card__list__item__overlay {
-        font-size: 16.8px;
-        font-weight: 600;
-        display: -webkit-box;
-        -webkit-line-clamp: 5;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        color: var(--blue-warm-vivid-80);
-        text-align: left;
-    }
-
-    .news-card__list__item__overlay:hover {
-        color: var(--color-primary-default);
-    }
-
-    .more-news-button-container {
-        display: flex;
-        justify-content: center;
-    }
-
-    @media (max-width: 992px) {
-        .news-card__list__item {
-            justify-content: center;
-        }
-
-        .news-card__list {
-            display: grid;
-            grid-template-columns: 1fr;
-            justify-content: center;
-            align-items: center;
-            justify-items: center;
-            flex-direction: column;
-            margin-bottom: 2rem;
-            gap: 16px;
-        }
-    }
-
-    /* FIM NOTICIAS */
+  /* FIM NOTICIAS */
 </style>
