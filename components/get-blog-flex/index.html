@@ -16,7 +16,7 @@
   }
 
   // Generates blog components and returns the complete HTML
-  function generateBlogHTML(url, href, originalHTML) {
+  function generateBlogHTML(url, originalHTML) {
     const tempElement = document.createElement('div');
     tempElement.innerHTML = originalHTML;
 
@@ -57,10 +57,10 @@
   }
 
   // Calls the fetchHTML and generateBlogHTML functions asynchronously
-  function generateBlog(url, href, title) {
+  function generateBlog(url, title) {
     fetchHTML(url)
       .then(html => {
-        return generateBlogHTML(url, href, html);
+        return generateBlogHTML(url, html);
       })
       .then(newsContent => {
         if (newsContent !== "error") {
@@ -88,8 +88,7 @@
   // !!!!ONLY NEED TO CALL THIS FUNCTION TO GENERATE THE NEWS!!!!
   // Information about the variables in readme.md
   const url = '';
-  const href = '';
   const title = '';
 
-  generateBlog(url, href, title);
+  generateBlog(url, title);
 </script>
