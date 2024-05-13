@@ -1,77 +1,6 @@
 <div class="br-container-lg">
   <div class="title-container">
-    <h2 class="title-text">Acessar Serviços</h2>
-    <div class="title-header">
-      <h3 class="title-subtext">EM SITUAÇÃO DE RISCO OU DESASTRE</h3>
-    </div>
-  </div>
-  <div class="itens-list">
-    <a
-      class="list-item"
-      href="https://www.gov.br/pt-br/servicos/como-receber-beneficios-eventuais"
-    >
-      <span class="categories-item"
-        >Outros servicos<i class="fa-solid fa-arrow-right"></i
-      ></span>
-      <span class="list-item-text"> Receber benefícios eventuais </span>
-    </a>
-    <a
-      class="list-item"
-      href="https://www.gov.br/pt-br/servicos/ter-reconhecida-situacao-de-emergencia-ou-estado-de-calamidade-publica"
-    >
-      <span class="categories-item"
-        >Gestão de Riscos e Desastres<i class="fa-solid fa-arrow-right"></i
-      ></span>
-
-      <span class="list-item-text"
-        >Reconhecimento de Situação de Emergência ou Calamidade Pública</span
-      >
-    </a>
-    <a
-      class="list-item"
-      href="https://www.gov.br/pt-br/servicos/solicitar-recursos-para-assistencia-humanitaria"
-    >
-      <span class="categories-item"
-        >Gestão de Riscos e Desastres<i class="fa-solid fa-arrow-right"></i
-      ></span>
-
-      <span class="list-item-text"
-        >Solicitar recursos para assistência humanitária a população atingida
-        por desastre</span
-      >
-    </a>
-    <a
-      class="list-item"
-      href="https://www.gov.br/pt-br/servicos/obter-medicamentos-para-a-populacao-do-estado-ou-municipio"
-    >
-      <span class="categories-item"
-        >Outros Serviços<i class="fa-solid fa-arrow-right"></i
-      ></span>
-
-      <span class="list-item-text"
-        >Obter medicamentos para a população do estado ou município</span
-      >
-    </a>
-    <a
-      class="list-item"
-      href="https://www.gov.br/pt-br/servicos/acessar-centro-pop-centro-de-referencia-especializado-para-populacao-em-situacao-de-rua"
-    >
-      <span class="categories-item"
-        >Proteção Social<i class="fa-solid fa-arrow-right"></i
-      ></span>
-
-      <span class="list-item-text"
-        >Centro de Referência para População em Situação de Rua</span
-      >
-    </a>
-    <a class="list-item" href="https://www.gov.br/pt-br/servicos/sacar-o-fgts">
-      <span class="categories-item"
-        >Para o cidadão<i class="fa-solid fa-arrow-right"></i
-      ></span>
-
-      <span class="list-item-text">Sacar o FGTS</span>
-    </a>
-  </div>
+    <div id="blogContainer"></div>
   <div class="report-container">
     <h2 class="title-text">Outras informações relacionadas</h2>
     <div class="report-card-list">
@@ -165,6 +94,116 @@
     </div>
   </div>
 </div>
+
+<script>
+  function fetchHTML(url) {
+    return fetch(url)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`Error fetching the page. Response status: ${response.status}`);
+        }
+        return response.text();
+      })
+      .then(html => {
+        return html;
+      })
+      .catch(error => {
+        throw new Error(`Error fetching the page: ${error.message}`);
+      });
+  }
+
+  // Generates blog components and returns the complete HTML
+  function generateBlogHTML(url, href, originalHTML) {
+    const tempElement = document.createElement('div');
+    tempElement.innerHTML = originalHTML;
+
+    const originalNewsElements = tempElement.querySelectorAll('.news-item');
+    let hashTypes = {};
+
+    originalNewsElements.forEach(originalNewsElement => {
+        const titleElement = originalNewsElement.querySelector('.news-title');
+        if (!titleElement) return; // Skip if titleElement is not found
+
+        const titleContent = titleElement.textContent.trim();
+        const hrefPost = titleElement.getAttribute('href');
+        const subtitleElement = originalNewsElement.querySelector('.br-card-content');
+        if (!subtitleElement) return; // Skip if subtitleElement is not found
+
+        const subtitleContent = subtitleElement.textContent.trim();
+
+        const htmlTemplate = `
+        <a
+          class="list-item"
+          href="${hrefPost}"
+        >
+          <span class="list-item-text"> ${titleContent} </span>
+        </a>
+        `;
+
+        if (!hashTypes[subtitleContent]) {
+            hashTypes[subtitleContent] = [];
+        }
+        hashTypes[subtitleContent].push(htmlTemplate);
+    });
+
+    // Build the final HTML string
+    let resultHTMLArray = [];
+    for (let subtitle in hashTypes) {
+        const subtitleStyle = `
+        <div class="title-header"> 
+          <h3 class="title-subtext" data-asw-orgfontsize="16" style="font-size: 16px;">
+            ${subtitle}
+          </h3> 
+        </div>
+        <div class="itens-list">
+        `;
+        resultHTMLArray.push(subtitleStyle);
+        resultHTMLArray.push(hashTypes[subtitle].join('\n'));
+        resultHTMLArray.push('</div>'); // closes itens-list element
+    }
+
+    let resultHTML = resultHTMLArray.join('\n');
+    return resultHTML;
+}
+
+  // Calls the fetchHTML and generateBlogHTML functions asynchronously
+  function generateBlog(url, href, title) {
+    fetchHTML(url)
+      .then(html => {
+        return generateBlogHTML(url, href, html);
+      })
+      .then(newsContent => {
+        if (newsContent !== "error") {
+          let blogContent = `
+          <h2 class="title-text" data-asw-orgfontsize="32" style="font-size: 32px;">
+            ${title}
+          </h2>`;
+          blogContent += newsContent;
+
+          const blogContainer = document.querySelector('#blogContainer');
+
+          if (blogContainer) {
+            blogContainer.innerHTML = blogContent;
+          } else {
+            console.error('Element with id "blogContainer" not found.');
+          }
+        } else {
+          console.error('Error fetching news.');
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+  }
+
+  // !!!!ONLY NEED TO CALL THIS FUNCTION TO GENERATE THE NEWS!!!!
+  // Information about the variables in readme.md
+  const url = 'https://brasilparticipativo.presidencia.gov.br/processes/unidospelors/f/113/';
+  const href = '/processes/unidospelors/f/113/';
+  const title = 'Ações do Governo Federal';
+
+  generateBlog(url, href, title);
+</script>
 
 <style>
   .center-container {
