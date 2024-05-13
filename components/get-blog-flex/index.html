@@ -28,7 +28,7 @@
           const totalPageNumber = parseInt(match[1], 10);
           const fetchPromises = [];
 
-          for (let i = 1; i <= totalPageNumber; i++) {
+          for (let i = 2; i <= totalPageNumber; i++) {
             // Create the new URL by combining the base URL with the replaced page number in the href
             const newURL = `${baseURL}${lastPageLink.replace(regex, `page=${i}`)}`;
             
