@@ -126,10 +126,12 @@
 
         const titleContent = titleElement.textContent.trim();
         const hrefPost = titleElement.getAttribute('href');
-        const subtitleElement = originalNewsElement.querySelector('.br-card-content');
-        if (!subtitleElement) return; // Skip if subtitleElement is not found
 
-        const subtitleContent = subtitleElement.textContent.trim();
+        const descriptionElement = originalNewsElement.querySelector('.news-description');
+        if (!descriptionElement) return; // Skip if descriptionElement is not found
+
+        const fullDescription = descriptionElement.textContent.trim();
+        const subtitleContent = fullDescription.split('-')[1].trim(); // Extract subtitle after hyphen
 
         const htmlTemplate = `
         <a
