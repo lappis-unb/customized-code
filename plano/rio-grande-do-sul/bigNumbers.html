@@ -192,12 +192,13 @@
     });
 
     let resultHTML = `
-        <div>
-          ${formatDateToDDMMYY(latestDate)}
-        </div>
+          <div class="last-time-updated">
+            Atualizado em ${formatDateToDDMMYY(latestDate)}
+          </div>
+          <div class="actions-card-container">
     `;
     resultHTML += resultHTMLArray.join('\n');
-    resultHTML += "</div>";
+    resultHTML += "</div></div>";
     return resultHTML;
   }
 
@@ -209,7 +210,7 @@
       })
       .then(newsContent => {
         if (newsContent !== "error") {
-          let blogContent = `<div class="actions-card-container">`;
+          let blogContent = `<div>`;
           blogContent += newsContent;
 
           let blogContainer = document.querySelector('#bigNumber');
@@ -237,6 +238,13 @@
 </script>
 
 <style>
+
+  .last-time-updated {
+    border-bottom: 1px #333333 solid;
+    border-top: 1px #333333 solid;
+    padding: 12px;
+  }
+
   /* Divider */
 
   .divider {
@@ -266,9 +274,21 @@
 
   /* BiNumbers */
 
+  @media (max-width: 992px) {
+    .actions-card-container {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .action-card {
+      margin-bottom: 56px !important;
+    }
+  }
+
   .actions-card-container {
     display: flex;
     justify-content: space-between;
+    margin-top: 80px;
   }
 
   .action-card {
@@ -288,6 +308,7 @@
     font-size: 3rem;
     font-weight: 700;
     margin-bottom: 16px;
+    padding-bottom: 12px;
   }
 
   .value-info {
@@ -299,7 +320,7 @@
   .category-text {
     font-size: 1.25rem;
     font-weight: 600;
-    margin-bottom: 30px;
+    text-align: center;
   }
 
   .subcategory-text {
