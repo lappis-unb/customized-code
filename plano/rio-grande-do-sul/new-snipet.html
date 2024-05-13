@@ -1,19 +1,38 @@
 <script>
   document.addEventListener("DOMContentLoaded", function () {
-    if (window.location.href.includes("/processes/unidospelors")) {
-      var removeHomeButton = document.querySelector(
-        ".space-menu > :first-child"
-      );
-
-      if (removeHomeButton) {
-        removeHomeButton.style.display = "none";
+    if (window.location.pathname.includes("/processes/unidospelors")) {
+      function isMobileDevice() {
+        return window.innerWidth < 720;
       }
+      if (isMobileDevice()) {
+        var elementos = document.querySelectorAll(".tab-item.active");
+        elementos.forEach(function (elemento) {
+          if (
+            elemento.querySelector(".name").innerText.trim() ===
+            "Recursos transferidos a municípios do RS"
+          ) {
+            elemento.style.display = "none";
+          }
+        });
+      }
+      function isSpecificURL() {
+        return;
+      }
+
       if (
-        window.location.pathname === "/processes/unidospelors" ||
-        window.location.pathname === "/processes/unidospelors/"
+        window.location.pathname === "/processes/unidospelors/f/113" ||
+        window.location.pathname === "/processes/unidospelors/f/113/"
       ) {
-        const secondLi = document.querySelector(".space-menu li:nth-child(2)");
-        secondLi.classList.add("active");
+        var elTitles = document.querySelectorAll(".news-card .news-title");
+        elTitles.forEach(function (el) {
+          el.classList.add("news-title-rs");
+        });
+        var elDescriptions = document.querySelectorAll(
+          ".news-card .news-description"
+        );
+        elDescriptions.forEach(function (elemento) {
+          elemento.classList.add("news-description-rs");
+        });
       }
     }
 
@@ -230,5 +249,27 @@
   }
   .news-card {
     flex-direction: row;
+  }
+
+  .news-title-rs {
+    color: var(--blue-warm-vivid-80);
+    text-align: justify;
+    font-variant-numeric: lining-nums proportional-nums;
+    font-size: 16.8px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    background: var(--blue-warm-vivid-5);
+    padding: 10px 12px;
+    margin-bottom: 10px;
+  }
+  .news-description-rs {
+    color: var(--gray-80);
+    text-align: justify;
+    font-size: 16.8px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    padding: 10px 12px;
   }
 </style>
