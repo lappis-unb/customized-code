@@ -35,8 +35,8 @@
   <section class="subcontent-section">
     <div class="home-sections-content information-section">
       <img style=height:24px;width:100%;object-fit:cover; alt=imagers
-      src=https://brasilparticipativo.presidencia.gov.br/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBcWViIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--b529d66240858217bd7a1b613dac32bab20b50c7/6.png
-      class=image-content />
+        src=https://brasilparticipativo.presidencia.gov.br/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBcWViIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--b529d66240858217bd7a1b613dac32bab20b50c7/6.png
+        class=image-content />
       <div class="home-sections-content information-section cards-section">
         <h2>Canais de emergências oficiais</h2>
         <div class="cards-container">
@@ -67,21 +67,74 @@
         </div>
       </div>
       <img style=height:24px;width:100%;object-fit:cover; alt=imagers
-      src=https://brasilparticipativo.presidencia.gov.br/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBcWViIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--b529d66240858217bd7a1b613dac32bab20b50c7/6.png
-      class=image-content />
+        src=https://brasilparticipativo.presidencia.gov.br/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBcWViIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--b529d66240858217bd7a1b613dac32bab20b50c7/6.png
+        class=image-content />
     </div>
   </section>
   <section class="bp-logo-container">
-    <a href="https://www.gov.br/brasilparticipativo"
-      ><img
-        alt="logo-brasil-participativo"
+    <a href="https://www.gov.br/brasilparticipativo"><img alt="logo-brasil-participativo"
         src="https://brasilparticipativo.presidencia.gov.br/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBZ0VpIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--83a2abd12f5092b982cfdec5938eb1296f17c1d2/novo_bp_logo.png"
-        class="bp-logo"
-        style="filter: invert(0); width: 194.13px"
-    /></a>
+        class="bp-logo" style="filter: invert(0); width: 194.13px" /></a>
   </section>
 </section>
 <script>
+  function fetchAllPages(url) {
+    return fetch(url)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`Error fetching the page. Response status: ${response.status}`);
+        }
+        return response.text();
+      })
+      .then(html => {
+        let resultHTML = html;
+
+        const tempElement = document.createElement("div");
+        tempElement.innerHTML = resultHTML;
+
+        const pagination = tempElement.querySelector('.pagination-container');
+        if (!pagination) return html;
+
+        const lastPageLink = pagination.querySelector('.pagination-last a').getAttribute('href');
+
+        const regex = /page=(\d+)/;
+        const match = lastPageLink.match(regex);
+
+        // Assuming the base URL is known and provided here
+        const baseURL = 'https://brasilparticipativo.presidencia.gov.br';
+
+        if (match) {
+          const totalPageNumber = parseInt(match[1], 10);
+          const fetchPromises = [];
+
+          for (let i = 2; i <= totalPageNumber; i++) {
+            // Create the new URL by combining the base URL with the replaced page number in the href
+            const newURL = `${baseURL}${lastPageLink.replace(regex, `page=${i}`)}`;
+
+            fetchPromises.push(
+              fetchHTML(newURL)
+                .then(pageHtml => {
+                  // Append each fetched news-item to resultHTML
+                  resultHTML += pageHtml;
+                })
+                .catch(error => {
+                  console.error('Error fetching page:', error);
+                })
+            );
+          }
+
+          // Wait for all fetches to complete before returning resultHTML
+          return Promise.all(fetchPromises).then(() => resultHTML);
+        } else {
+          console.log('Page number not found');
+          return resultHTML;
+        }
+      })
+      .catch(error => {
+        throw new Error(`Error fetching the page: ${error.message}`);
+      });
+  }
+
   function fetchHTML(url) {
     return fetch(url)
       .then((response) => {
@@ -109,18 +162,32 @@
     let hashTypes = {};
 
     originalNewsElements.forEach((originalNewsElement) => {
-      const titleElement = originalNewsElement.querySelector(".news-title");
-      if (!titleElement) return; // Skip if titleElement is not found
+      let titleElement = originalNewsElement.querySelector('.news-title');
+      let titleContent = titleElement.textContent.trim();
+      let hrefPost = titleElement.getAttribute('href');
+      if (!titleElement) {
+        console.log('No title element');
+        titleElement = '';
+        titleContent = '';
+        hrefPost = '#';
+      }
+      else {
+        titleContent = titleElement.textContent.trim();
+        hrefPost = titleElement.getAttribute('href');
+      }
 
-      const titleContent = titleElement.textContent.trim();
-      const hrefPost = titleElement.getAttribute("href");
+      const descriptionElement = originalNewsElement.querySelector('.news-description');
+      let fullDescription;
+      let subtitleContent = ''; // Extract subtitle after hyphen
 
-      const descriptionElement =
-        originalNewsElement.querySelector(".news-description");
-      if (!descriptionElement) return; // Skip if descriptionElement is not found
-
-      const fullDescription = descriptionElement.textContent.trim();
-      const subtitleContent = fullDescription.split("-")[1].trim(); // Extract subtitle after hyphen
+      if (!descriptionElement) {
+        console.log('No description element');
+        descriptionElement = '';
+      }
+      else {
+        fullDescription = descriptionElement.textContent.trim();
+        subtitleContent = fullDescription.split('-')[1].trim(); // Extract subtitle after hyphen
+      }
 
       const htmlTemplate = `
         <a
@@ -159,7 +226,7 @@
 
   // Calls the fetchHTML and generateBlogHTML functions asynchronously
   function generateBlog(url, title) {
-    fetchHTML(url)
+    fetchAllPages(url)
       .then((html) => {
         return generateBlogHTML(url, html);
       })
@@ -213,6 +280,7 @@
       margin: 0;
       padding: 0;
     }
+
     p {
       font-size: 1.05rem;
       color: var(--gray-90);
@@ -313,6 +381,7 @@
     width: 100%;
     margin-bottom: 1.5rem;
   }
+
   .list-item-title {
     color: var(--blue-warm-vivid-80);
     font-variant-numeric: lining-nums proportional-nums;
@@ -322,6 +391,7 @@
     font-weight: 700;
     line-height: normal;
   }
+
   .icon-group {
     align-self: flex-end;
   }
