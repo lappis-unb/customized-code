@@ -58,6 +58,7 @@
 
     const originalNewsElements = tempElement.querySelectorAll('.news-item');
     let resultHTMLArray = [];
+    let latestDate = new Date(0); // Initialize with an old date
 
     originalNewsElements.forEach(originalNewsElement => {
       const titleContent = originalNewsElement.querySelector('.news-title').textContent;
