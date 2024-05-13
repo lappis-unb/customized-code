@@ -1,0 +1,110 @@
+<script>
+  function fetchHTML(url) {
+      return fetch(url)
+          .then(response => {
+              if (!response.ok) {
+                  throw new Error(`Error fetching the page. Response status: ${response.status}`);
+              }
+              return response.text();
+          })
+          .then(html => {
+              return html;
+          })
+          .catch(error => {
+              throw new Error(`Error fetching the page: ${error.message}`);
+          });
+  }
+
+  // Generates blog components and returns the complete HTML
+  function generateBlogHTML(url, href, buttonDescription, originalHTML, htmlTemplate, loadMoreButton) {  
+      const tempElement = document.createElement('div');
+      tempElement.innerHTML = originalHTML;
+
+      const originalNewsElements = tempElement.querySelectorAll('.news-item');
+      const resultHTMLArray = [];
+      let count = 0;
+      
+      originalNewsElements.forEach(originalNewsElement => {
+          const titleElement = originalNewsElement.querySelector('.news-title');
+          const titleContent = titleElement.textContent;
+          const hrefPost = titleElement.getAttribute('href');
+          const subtitleContent = originalNewsElement.querySelector('br-card-content').textContent;
+          const imageUrl = originalNewsElement.querySelector('.news-cover-image').getAttribute('src');
+
+          count += 1;
+          if (resultHTMLArray.length >= 3) {
+              if (resultHTMLArray.length === 3)                    
+                  resultHTMLArray.push(loadMoreButton);
+
+              const resultHTML = resultHTMLArray.join('\n');
+              return resultHTML;
+          } else {
+              resultHTMLArray.push(htmlTemplate.replace('${hrefPost}', hrefPost).replace('${imageUrl}', imageUrl).replace('${titleContent}', titleContent).replace('${subtitleContent}', subtitleContent));
+          }
+      });
+
+      if (count === 0) return "error";
+
+      let resultHTML = resultHTMLArray.join('\n');
+      resultHTML += "</div></section>";
+      return resultHTML;
+  }
+
+  // Calls the fetchHTML and generateBlogHTML functions asynchronously
+  function generateBlog(url, href, title, buttonDescription, htmlTemplate, loadMoreButton) {
+      fetchHTML(url)
+          .then(html => {
+              return generateBlogHTML(url, href, buttonDescription, html, htmlTemplate, loadMoreButton);
+          })
+          .then(newsContent => {
+              if (newsContent !== "error") {
+                  let blogContent = `<section class="">
+                                          <span class="">${title}</span>
+                                          <div class="">`;
+                  blogContent += newsContent;
+
+                  const blogContainer = document.querySelector('#blogContainer');
+
+                  if (blogContainer) {
+                      blogContainer.innerHTML = blogContent;
+                  } else {
+                      console.error('Element with id "blogContainer" not found.');
+                  }
+              } else {
+                  console.error('Error fetching news.');
+              }
+          })
+          .catch(error => {
+              console.error('Error:', error);
+          });
+  }
+
+  // !!!!ONLY NEED TO CALL THIS FUNCTION TO GENERATE THE NEWS!!!!
+  // Information about the variables in readme.md
+  const url = '';
+  const href = '';
+  const title = '';
+  const buttonDescription = '';
+  const htmlTemplate = `
+      <a class="" href="${hrefPost}">
+          <img src="${imageUrl}" />
+          <div class="">
+              ${titleContent}
+          </div>
+          <div class="">
+              ${subtitleContent}
+          </div>
+      </a>
+  `;
+  const loadMoreButton = `
+      </div>
+  </section>
+  <div class="">
+      <a class="" type="button" href="${href}">
+          ${buttonDescription}
+      </a>
+  </div>
+  `;
+
+  generateBlog(url, href, title, buttonDescription, htmlTemplate, loadMoreButton);
+</script>
