@@ -39,14 +39,14 @@
       const subtitleContent = fullDescription.split('-')[1].trim(); // Extract subtitle after hyphen
 
       const htmlTemplate = `
-            <a class="" href="${hrefPost}">
+            <div class="">
                 <div class="">
                     ${subtitleContent}
                 </div>
                 <div class="">
                     ${titleContent}
                 </div>
-            </a>
+            </div>
         `;
 
       resultHTMLArray.push(htmlTemplate);
