@@ -81,15 +81,32 @@
     const resultHTMLArray = [];
 
     originalNewsElements.forEach(originalNewsElement => {
-      const titleElement = originalNewsElement.querySelector('.news-title');
-      const titleContent = titleElement.textContent;
-      const hrefPost = titleElement.getAttribute('href');
+      let titleElement = originalNewsElement.querySelector('.news-title');
+      let titleContent = titleElement.textContent.trim();
+      let hrefPost = titleElement.getAttribute('href');
+      if (!titleElement) {
+        console.log('No title element');
+        titleElement = '';
+        titleContent = '';
+        hrefPost = '#';
+      }
+      else{
+        titleContent = titleElement.textContent.trim();
+        hrefPost = titleElement.getAttribute('href');
+      }
 
       const descriptionElement = originalNewsElement.querySelector('.news-description');
-      if (!descriptionElement) return; // Skip if descriptionElement is not found
+      let fullDescription;
+      let subtitleContent = ''; // Extract subtitle after hyphen
 
-      const fullDescription = descriptionElement.textContent.trim();
-      const subtitleContent = fullDescription.split('-')[1].trim(); // Extract subtitle after hyphen
+      if (!descriptionElement) {
+        console.log('No description element');
+        descriptionElement = '';
+      }
+      else {
+        fullDescription = descriptionElement.textContent.trim();
+        subtitleContent = fullDescription.split('-')[1].trim(); // Extract subtitle after hyphen
+      }
 
       const imageUrl = originalNewsElement.querySelector('.news-cover-image').getAttribute('src');
 
