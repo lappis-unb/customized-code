@@ -5,6 +5,15 @@
     </div>
     <div id="bigNumber"></div>
   </section>
+  <div class="subcontent-section inform-container">
+    <h2>Boletins Informativos</h2>
+    <p> Informações atualizadas sobre as ações do Governo Federal para operação de socorro e assistência às famílias e aos municípios impactados pelas chuvas no Rio Grande do Sul </p>
+    <div class="itens-list"> <a class="list-item inform"> <i class="fa-solid fa-share-from-square icon-group"></i> 
+          <!-- <span class="list-item-group"></span>  -->
+          <span class="list-item-title">Força Tarefa</span> </a> <a class="list-item inform"> <i class="fa-solid fa-share-from-square icon-group"></i> 
+          <!-- <span class="list-item-group"></span> -->
+          <span class="list-item-title">Atendimento às Prefeituras</span> </a> </div>
+  </div>
   <div class="divider"></div>
   <section class="subcontent-section">
     <div id="confnoticias"></div>
@@ -61,6 +70,138 @@
 </section>
 
 <style>
+
+
+.inform-container {
+    display: flex;
+    flex-direction: column;
+
+    h2 {
+      font-weight: bold;
+      margin: 0;
+      padding: 0;
+    }
+
+    p {
+      font-size: 1.05rem;
+      color: var(--gray-90);
+    }
+  }
+
+  .title-header {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    width: 100%;
+
+    h3 {
+      margin: 0;
+      font-weight: bold;
+      font-size: 1rem;
+      color: var(--gray-70);
+      padding: 0 0.875rem;
+      white-space: nowrap;
+    }
+  }
+
+  .title-header::before {
+    content: "";
+    width: 100%;
+    height: 1px;
+    background-color: var(--gray-10);
+  }
+
+  .title-header::after {
+    content: "";
+    width: 100%;
+    height: 1px;
+    background-color: var(--gray-10);
+  }
+
+  .itens-list {
+    display: flex;
+    width: 100%;
+    padding: 1rem 0;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 1.5rem 0;
+  }
+
+  .list-item {
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+    border-radius: 0.5rem;
+    padding: 1.85rem 2rem;
+    line-height: 2rem;
+    color: var(--pure-100);
+    height: auto;
+    margin: 0 1rem;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    max-width: 25rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease;
+  }
+
+  .list-item.inform {
+    text-align: left;
+  }
+
+  .list-item:hover {
+    transform: scale(1.05);
+  }
+
+  .list-item-group {
+    color: var(--gray-60);
+    font-variant-numeric: lining-nums proportional-nums;
+    font-family: Rawline;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    width: 100%;
+    margin-bottom: 1.5rem;
+  }
+
+  .list-item-title {
+    color: var(--blue-warm-vivid-80);
+    font-variant-numeric: lining-nums proportional-nums;
+    font-family: Rawline;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
+
+  .icon-group {
+    align-self: flex-end;
+  }
+
+  .categories-item {
+    font-size: 0.875rem;
+    font-weight: bold;
+    color: var(--gray-70);
+    display: block;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+
+    i {
+      color: var(--primary);
+      rotate: -30deg;
+    }
+  }
+
+  .list-item-text {
+    font-size: 1rem;
+    color: var(--blue-warm-vivid-80);
+    text-align: left;
+    font-weight: bold;
+  }
+
   .cards-section {
     display: flex;
     flex-direction: column;
@@ -182,12 +323,50 @@
         latestDate = dateExtracted; // Save the bigger (more recent) date
       }
       const subtitleContent = fullDescription.split('-')[1].trim(); // Extract subtitle after hyphen
+      let htmlTemplate = ``;
 
-      const htmlTemplate = `
-                <a class="action-card">
-                    <p class="value-text">${subtitleContent}</p>
-                    <p class="category-text">${titleContent}</p>
-                </a>`;
+      if(titleContent.includes("Investimento Total")) {
+        htmlTemplate = `
+                  <div>
+                    <a class="action-card investment">
+                        <p class="value-text investment">${subtitleContent}</p>
+                        <p class="value-info investment">bilhões</p>
+                        <p class="category-text investment">${titleContent}</p>
+                    </a>
+                  </div>
+                  <div class="other-big-numbers">`;
+      }
+
+      if(titleContent.includes("Profissionais em Campo")) {
+        htmlTemplate = `
+            <a class="action-card">
+                <p class="value-text">${subtitleContent}</p>
+                <p class="value-info">bilhões</p>
+                <p class="category-text">${titleContent}</p>
+            </a>`;
+      }
+
+      if(titleContent.includes("Equipamentos")) {
+        htmlTemplate = `
+            <a class="action-card">
+                <p class="value-text">${subtitleContent}</p>
+                <p class="value-info"></p>
+                <p class="category-text">${titleContent}</p>
+                <p class="subcategory-text">para resgate e transporte</p>
+            </a>`;
+      }
+      
+      if(titleContent.includes("Hospitais de Campanha")) {
+        htmlTemplate = `
+            <a class="action-card">
+                <p class="value-text">${subtitleContent}</p>
+                <p class="value-info"></p>
+                <p class="category-text">${titleContent}</p>
+                <p class="subcategory-text">com capacidade para XXX atendimentos diários</p>
+            </a>`;
+      }
+
+
 
       resultHTMLArray.push(htmlTemplate);
     });
@@ -199,7 +378,7 @@
           <div class="actions-card-container">
     `;
     resultHTML += resultHTMLArray.join('\n');
-    resultHTML += "</div></div>";
+    resultHTML += "</div></div></div>";
     return resultHTML;
   }
 
@@ -276,20 +455,26 @@
   /* BiNumbers */
 
   @media (max-width: 992px) {
-    .actions-card-container {
+    .other-big-numbers {
       flex-direction: column;
       align-items: center;
     }
+  }
 
-    .action-card {
-      margin-bottom: 56px !important;
-    }
+  .other-big-numbers {
+    display: flex;    
+    align-items: flex-start;
+    justify-content: center;
+    margin-top: 64px;
   }
 
   .actions-card-container {
     display: flex;
+    align-items: center;
+    flex-direction: column;
     justify-content: space-between;
     margin-top: 80px;
+    margin-bottom: 64px;
   }
 
   .action-card {
@@ -322,6 +507,16 @@
     font-size: 1.25rem;
     font-weight: 600;
     text-align: center;
+  }
+
+  .value-text.investment {
+    font-size: 62px;
+  }
+  .value-info.investment {
+    font-size: 32px;
+  }
+  .category-text.investment {
+    font-size: 26px;
   }
 
   .subcategory-text {
