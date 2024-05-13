@@ -1,88 +1,88 @@
 <script>
   function fetchHTML(url) {
-      return fetch(url)
-          .then(response => {
-              if (!response.ok) {
-                  throw new Error(`Error fetching the page. Response status: ${response.status}`);
-              }
-              return response.text();
-          })
-          .then(html => {
-              return html;
-          })
-          .catch(error => {
-              throw new Error(`Error fetching the page: ${error.message}`);
-          });
+    return fetch(url)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`Error fetching the page. Response status: ${response.status}`);
+        }
+        return response.text();
+      })
+      .then(html => {
+        return html;
+      })
+      .catch(error => {
+        throw new Error(`Error fetching the page: ${error.message}`);
+      });
   }
 
   // Generates blog components and returns the complete HTML
-  function generateBlogHTML(url, href, buttonDescription, originalHTML, htmlTemplate, loadMoreButton) {  
-      const tempElement = document.createElement('div');
-      tempElement.innerHTML = originalHTML;
+  function generateBlogHTML(url, href, originalHTML) {
+    const tempElement = document.createElement('div');
+    tempElement.innerHTML = originalHTML;
 
-      const originalNewsElements = tempElement.querySelectorAll('.news-item');
-      const resultHTMLArray = [];
-      let count = 0;
-      
-      originalNewsElements.forEach(originalNewsElement => {
-          const titleElement = originalNewsElement.querySelector('.news-title');
-          const titleContent = titleElement.textContent;
-          const hrefPost = titleElement.getAttribute('href');
-          
-          const descriptionElement = originalNewsElement.querySelector('.news-description');
-          if (!descriptionElement) return; // Skip if descriptionElement is not found
+    const originalNewsElements = tempElement.querySelectorAll('.news-item');
+    const resultHTMLArray = [];
 
-          const fullDescription = descriptionElement.textContent.trim();
-          const subtitleContent = fullDescription.split('-')[1].trim(); // Extract subtitle after hyphen
+    originalNewsElements.forEach(originalNewsElement => {
+      const titleElement = originalNewsElement.querySelector('.news-title');
+      const titleContent = titleElement.textContent;
+      const hrefPost = titleElement.getAttribute('href');
 
-          const imageUrl = originalNewsElement.querySelector('.news-cover-image').getAttribute('src');
+      const descriptionElement = originalNewsElement.querySelector('.news-description');
+      if (!descriptionElement) return; // Skip if descriptionElement is not found
 
-          count += 1;
-          if (resultHTMLArray.length >= 3) {
-              if (resultHTMLArray.length === 3)                    
-                  resultHTMLArray.push(loadMoreButton);
+      const fullDescription = descriptionElement.textContent.trim();
+      const subtitleContent = fullDescription.split('-')[1].trim(); // Extract subtitle after hyphen
 
-              const resultHTML = resultHTMLArray.join('\n');
-              return resultHTML;
-          } else {
-              resultHTMLArray.push(htmlTemplate.replace('${hrefPost}', hrefPost).replace('${imageUrl}', imageUrl).replace('${titleContent}', titleContent).replace('${subtitleContent}', subtitleContent));
-          }
-      });
+      const imageUrl = originalNewsElement.querySelector('.news-cover-image').getAttribute('src');
 
-      if (count === 0) return "error";
+      const htmlTemplate = `
+          <a class="" href="${hrefPost}">
+              <img src="${imageUrl}" />
+              <div class="">
+                  ${titleContent}
+              </div>
+              <div class="">
+                  ${subtitleContent}
+              </div>
+          </a>
+      `;
 
-      let resultHTML = resultHTMLArray.join('\n');
-      resultHTML += "</div></section>";
-      return resultHTML;
+      resultHTMLArray.push(htmlTemplate);
+    });
+
+    let resultHTML = resultHTMLArray.join('\n');
+    resultHTML += "</div></section>";
+    return resultHTML;
   }
 
   // Calls the fetchHTML and generateBlogHTML functions asynchronously
-  function generateBlog(url, href, title, buttonDescription, htmlTemplate, loadMoreButton) {
-      fetchHTML(url)
-          .then(html => {
-              return generateBlogHTML(url, href, buttonDescription, html, htmlTemplate, loadMoreButton);
-          })
-          .then(newsContent => {
-              if (newsContent !== "error") {
-                  let blogContent = `<section class="">
-                                          <span class="">${title}</span>
-                                          <div class="">`;
-                  blogContent += newsContent;
+  function generateBlog(url, href, title) {
+    fetchHTML(url)
+      .then(html => {
+        return generateBlogHTML(url, href, html);
+      })
+      .then(newsContent => {
+        if (newsContent !== "error") {
+          let blogContent = `<section class="">
+                              <span class="">${title}</span>
+                              <div class="">`;
+          blogContent += newsContent;
 
-                  const blogContainer = document.querySelector('#blogContainer');
+          const blogContainer = document.querySelector('#blogContainer');
 
-                  if (blogContainer) {
-                      blogContainer.innerHTML = blogContent;
-                  } else {
-                      console.error('Element with id "blogContainer" not found.');
-                  }
-              } else {
-                  console.error('Error fetching news.');
-              }
-          })
-          .catch(error => {
-              console.error('Error:', error);
-          });
+          if (blogContainer) {
+            blogContainer.innerHTML = blogContent;
+          } else {
+            console.error('Element with id "blogContainer" not found.');
+          }
+        } else {
+          console.error('Error fetching news.');
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
   }
 
   // !!!!ONLY NEED TO CALL THIS FUNCTION TO GENERATE THE NEWS!!!!
@@ -90,27 +90,6 @@
   const url = '';
   const href = '';
   const title = '';
-  const buttonDescription = '';
-  const htmlTemplate = `
-      <a class="" href="${hrefPost}">
-          <img src="${imageUrl}" />
-          <div class="">
-              ${titleContent}
-          </div>
-          <div class="">
-              ${subtitleContent}
-          </div>
-      </a>
-  `;
-  const loadMoreButton = `
-      </div>
-  </section>
-  <div class="">
-      <a class="" type="button" href="${href}">
-          ${buttonDescription}
-      </a>
-  </div>
-  `;
 
-  generateBlog(url, href, title, buttonDescription, htmlTemplate, loadMoreButton);
+  generateBlog(url, href, title);
 </script>
