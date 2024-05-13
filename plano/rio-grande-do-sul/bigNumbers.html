@@ -9,6 +9,49 @@
   <section class="subcontent-section">
     <div id="confnoticias"></div>
   </section>
+  <secion  class="subcontent-section">
+    <div class="home-sections-content information-section">
+      <img style=height:24px;width:100%;object-fit:cover; alt=imagers
+        src=https://brasilparticipativo.presidencia.gov.br/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBcWViIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--b529d66240858217bd7a1b613dac32bab20b50c7/6.png
+        class=image-content />
+      <div class="home-sections-content information-section cards-section">
+        <h2>Canais de emergências oficiais</h2>
+        <div class="cards-container">
+          <div class="content-container">
+            <div class="content-box">
+              <h2>Ligue 193</h2>
+              <p>bombeiros</p>
+            </div>
+            <i class="fa-solid fa-external-link fa-lg"></i>
+          </div>
+          <div class="content-container">
+            <div class="content-box">
+              <h2>ligue 180</h2>
+              <p>violência contra mulher</p>
+            </div>
+            <i class="fa-solid fa-external-link fa-lg"></i>
+          </div>
+          <div class="content-container">
+            <div class="content-box">
+              <h2>Ligue 100</h2>
+              <p>diretos humanos</p>
+            </div>
+            <i class="fa-solid fa-external-link fa-lg"></i>
+          </div>
+          <div class="content-container">
+            <div class="content-box">
+              <h2>Disque 190</h2>
+              <p>Polícia Militar</p>
+            </div>
+            <i class="fa-solid fa-external-link fa-lg"></i>
+          </div>
+        </div>
+      </div>
+      <img style=height:24px;width:100%;object-fit:cover; alt=imagers
+        src=https://brasilparticipativo.presidencia.gov.br/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBcWViIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--b529d66240858217bd7a1b613dac32bab20b50c7/6.png
+        class=image-content />
+    </div>
+  </secion>
   <section class="logos__section">
     <div class="logos__container"> <a href="https://www.gov.br/pt-br" data-asw-orgfontsize="14"><img
           alt="governo federal logo"
@@ -17,24 +60,74 @@
   </section>
 </section>
 
+<style>
+  .cards-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 24px;
+    justify-content: space-evenly;
+    background-color: #f3f7fb;
+
+    h2 {
+      font-weight: 800;
+      font-size: 36px;
+      padding: 0;
+      margin: 0;
+      margin-bottom: 16px;
+    }
+  }
+
+  .cards-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .content-container {
+    display: flex;
+    background-color: white;
+    padding: 10px 16px;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .content-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #0C326F;
+
+    h2 {
+      font-size: 16px;
+      font-weight: 600;
+      color: #0C326F;
+      padding: 0;
+      margin: 0;
+      text-transform: uppercase;
+    }
+
+    p {
+      font-size: 14px;
+      margin: 0;
+      color: #0C326F;
+      font-weight: 500;
+      text-transform: uppercase;
+    }
+  }
+
+  @media (max-width: 1045px) {
+    .content-container {
+      margin-bottom: 12px;
+    }
+
+    .cards-container {
+      flex-direction: column;
+    }
+  } 
+</style>
+
 <script>
-
-  // Helper function to parse date from text and return as Date object
-  function parseDateFromText(dateString) {
-    const [day, month, year] = dateString.split('/').map(Number); // Split and convert to numbers
-    // Adjust year to handle YY format, assuming 20XX for simplicity
-    const fullYear = year < 100 ? 2000 + year : year;
-    return new Date(fullYear, month - 1, day); // Convert to Date object
-  }
-
-  // Function to format a Date object into DD/MM/YY string
-  function formatDateToDDMMYY(date) {
-    const day = date.getDate().toString().padStart(2, '0');
-    const month = (date.getMonth() + 1).toString().padStart(2, '0'); // January is 0!
-    const year = date.getFullYear().toString().substring(2); // Get last two digits
-    return `${day}/${month}/${year}`;
-  }
-
   function fetchHTML(url) {
     return fetch(url)
       .then(response => {
@@ -58,7 +151,6 @@
 
     const originalNewsElements = tempElement.querySelectorAll('.news-item');
     let resultHTMLArray = [];
-    let latestDate = new Date(0); // Initialize with an old date
 
     originalNewsElements.forEach(originalNewsElement => {
       const titleContent = originalNewsElement.querySelector('.news-title').textContent;
@@ -67,12 +159,6 @@
       if (!descriptionElement) return; // Skip if descriptionElement is not found
 
       const fullDescription = descriptionElement.textContent.trim();
-
-      const dateExtracted = parseDateFromText(fullDescription.split('-')[0].trim()); // Extract and parse date
-      if (dateExtracted > latestDate) {
-        latestDate = dateExtracted; // Save the bigger (more recent) date
-      }
-
       const subtitleContent = fullDescription.split('-')[1].trim(); // Extract subtitle after hyphen
 
       const htmlTemplate = `
@@ -84,13 +170,8 @@
       resultHTMLArray.push(htmlTemplate);
     });
 
-    let resultHTML = `
-        <div>
-          ${formatDateToDDMMYY(latestDate)}
-        </div>
-    `;
-    resultHTML += resultHTMLArray.join('\n');
-    resultHTML += "</div></section>";
+    let resultHTML = resultHTMLArray.join('\n');
+    resultHTML += "</div>";
     return resultHTML;
   }
 
@@ -308,11 +389,11 @@
 
   // !!!!SO PRECISA CHAMAR ESSA FUNCAO PARA GERAR AS NOTICIAS!!!!
   // Informacoes sobre as variaveis no readme.md
-  url = 'https://brasilparticipativo.presidencia.gov.br/processes/unidospelors/f/99/';
-  href = 'https://brasilparticipativo.presidencia.gov.br/processes/unidospelors/f/99/';
-  title = 'Notícias';
-  descButton = 'Mais Notícias';
-  gerenciaNoticias(url, href, title, descButton);
+  const url_not = 'https://brasilparticipativo.presidencia.gov.br/processes/unidospelors/f/99/';
+  const href_not = 'https://brasilparticipativo.presidencia.gov.br/processes/unidospelors/f/99/';
+  const title = 'Notícias';
+  const descButton = 'Mais Notícias';
+  gerenciaNoticias(url_not, href_not, title, descButton);
 </script>
 <style>
   /* NOTICIAS */
