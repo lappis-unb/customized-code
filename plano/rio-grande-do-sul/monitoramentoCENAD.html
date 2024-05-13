@@ -1,0 +1,96 @@
+<section>
+    <div id="blogContainer"></div>
+</section>
+
+<script>
+    function fetchHTML(url) {
+      return fetch(url)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error(`Error fetching the page. Response status: ${response.status}`);
+          }
+          return response.text();
+        })
+        .then(html => {
+          return html;
+        })
+        .catch(error => {
+          throw new Error(`Error fetching the page: ${error.message}`);
+        });
+    }
+  
+    // Generates blog components and returns the complete HTML
+    function generateBlogHTML(url, href, originalHTML) {
+      const tempElement = document.createElement('div');
+      tempElement.innerHTML = originalHTML;
+  
+      const originalNewsElements = tempElement.querySelectorAll('.news-item');
+      const resultHTMLArray = [];
+  
+      originalNewsElements.forEach(originalNewsElement => {
+        const titleElement = originalNewsElement.querySelector('.news-title');
+        const titleContent = titleElement.textContent;
+        const hrefPost = titleElement.getAttribute('href');
+  
+        const descriptionElement = originalNewsElement.querySelector('.news-description');
+        if (!descriptionElement) return; // Skip if descriptionElement is not found
+  
+        const fullDescription = descriptionElement.textContent.trim();
+        const subtitleContent = fullDescription.split('-')[1].trim(); // Extract subtitle after hyphen
+
+        const htmlTemplate = `
+            <a class="" href="${hrefPost}">
+                <div class="">
+                    ${subtitleContent}
+                </div>
+                <div class="">
+                    ${titleContent}
+                </div>
+            </a>
+        `;
+  
+        resultHTMLArray.push(htmlTemplate);
+      });
+  
+      let resultHTML = resultHTMLArray.join('\n');
+      resultHTML += "</div></section>";
+      return resultHTML;
+    }
+  
+    // Calls the fetchHTML and generateBlogHTML functions asynchronously
+    function generateBlog(url, href, title) {
+      fetchHTML(url)
+        .then(html => {
+          return generateBlogHTML(url, href, html);
+        })
+        .then(newsContent => {
+          if (newsContent !== "error") {
+            let blogContent = `<section class="">
+                                <span class="">${title}</span>
+                                <div class="">`;
+            blogContent += newsContent;
+  
+            const blogContainer = document.querySelector('#blogContainer');
+  
+            if (blogContainer) {
+              blogContainer.innerHTML = blogContent;
+            } else {
+              console.error('Element with id "blogContainer" not found.');
+            }
+          } else {
+            console.error('Error fetching news.');
+          }
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
+    }
+  
+    // !!!!ONLY NEED TO CALL THIS FUNCTION TO GENERATE THE NEWS!!!!
+    // Information about the variables in readme.md
+    const url = 'https://brasilparticipativo.presidencia.gov.br/processes/unidospelors/f/114/';
+    const href = '/processes/unidospelors/f/114/';
+    const title = 'Monitoramento CENAD';
+  
+    generateBlog(url, href, title);
+  </script>
