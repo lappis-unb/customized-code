@@ -1,4 +1,3 @@
-
 <script>
   // Faz uma requisicao e retorna o html da pagina
   function requestHTML(url) {
@@ -18,19 +17,17 @@
   }
 
   // Gera os componentes de noticia e retorna o html pronto
-  function getNoticias(url, href, descButton, originalHTML) {
-
+  function getNoticias(url, href, descButton, originalHTML) {  
     const tempElement = document.createElement('div');
     tempElement.innerHTML = originalHTML;
 
-    const originalNewsElements = tempElement.querySelectorAll('.card--post');
+    const originalNewsElements = tempElement.querySelectorAll('.news-item');
     const resultHTMLArray = [];
     let count = 0;
     originalNewsElements.forEach(originalNewsElement => {
-      const href_noticia = originalNewsElement.querySelector('.card__link').getAttribute('href');
-      const titulo_noticia = originalNewsElement.querySelector('.card__title').textContent;
-      const paiImagem = originalNewsElement.querySelector('.ql-editor-display');
-      const url_img = paiImagem.querySelector('img').getAttribute('src');
+      const href_noticia = originalNewsElement.querySelector('.news-title').getAttribute('href');
+      const titulo_noticia = originalNewsElement.querySelector('.news-title').textContent;
+      const url_img = originalNewsElement.querySelector('.news-cover-image').getAttribute('src');
 
       const newHTML = `
       <a
@@ -46,7 +43,7 @@
       </a>
       `;
       count += 1;
-      if (resultHTMLArray.length >= 2){
+      if (resultHTMLArray.length >= 3){
         buttonMore = `</div></section>
                           <div class="more-news-button-container">
                       <a
@@ -57,7 +54,7 @@
                       >
                     </div>`;
         
-        if (resultHTMLArray.length <= 2)                    
+        if (resultHTMLArray.length <= 3)                    
           resultHTMLArray.push(buttonMore);
 
         const resultHTML = resultHTMLArray.join('\n');
@@ -77,7 +74,6 @@
   }
 
   // Chama a funcao requestHTML e a getNoticias de maneira assincrona
-  // !!!!SO PRECISA CHAMAR ESSA FUNCAO PARA GERAR AS NOTICIAS!!!!
   function gerenciaNoticias(url, href, title, descButton){
     requestHTML(url)
       .then(html => {
@@ -105,6 +101,14 @@
         console.error('Erro:', error);
       });
   }
+
+  // !!!!SO PRECISA CHAMAR ESSA FUNCAO PARA GERAR AS NOTICIAS!!!!
+  // Informacoes sobre as variaveis no readme.md
+  url = '';
+  href = '';
+  title = '';
+  descButton = '';
+  gerenciaNoticias(url, href, title, descButton);
 
 </script>
 
