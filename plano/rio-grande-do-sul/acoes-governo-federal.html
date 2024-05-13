@@ -1,10 +1,84 @@
-<section>
+<section class="br-container-lg">
+  <div class="subcontent-section title-header-content">
+    <h2>Ações do Governo Federal</h2>
+    <p>
+      Saiba quais as principais ações já realizadas pelo Governo Federal para
+      ajudar o Rio Grande do Sul
+    </p>
+  </div>
   <div id="blogContainer"></div>
+  <div class="subcontent-section inform-container">
+    <h2>Boletim Informativo da SECOM</h2>
+    <p>
+      Boletins atualizados sobre as ações do Governo Federal para operação de
+      socorro e assistências às famílias impactadas pelas chuvas no Rio Grande
+      do Sul
+    </p>
+    <div class="itens-list">
+      <a class="list-item inform">
+        <i class="fa-solid fa-share-from-square icon-group"></i>
+        <span class="list-item-group">Lorem Ipsum</span>
+        <span class="list-item-title">Mapeamento crédito extraordinário</span>
+      </a>
+      <a class="list-item inform">
+        <i class="fa-solid fa-share-from-square icon-group"></i>
+        <span class="list-item-group">Lorem Ipsum</span>
+        <span class="list-item-title">Mapeamento crédito extraordinário</span>
+      </a>
+      <a class="list-item inform">
+        <i class="fa-solid fa-share-from-square icon-group"></i>
+        <span class="list-item-group">Lorem Ipsum</span>
+        <span class="list-item-title">Mapeamento crédito extraordinário</span>
+      </a>
+    </div>
+  </div>
+  <section class="subcontent-section">
+    <div class="home-sections-content information-section">
+      <img style=height:24px;width:100%;object-fit:cover; alt=imagers
+        src=https://brasilparticipativo.presidencia.gov.br/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBcWViIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--b529d66240858217bd7a1b613dac32bab20b50c7/6.png
+        class=image-content />
+      <div class="home-sections-content information-section cards-section">
+        <h2>Canais de emergências oficiais</h2>
+        <div class="cards-container">
+          <div class="content-container">
+            <div class="content-box">
+              <h2>Ligue 193</h2>
+              <p>bombeiros</p>
+            </div>
+          </div>
+          <div class="content-container">
+            <div class="content-box">
+              <h2>ligue 180</h2>
+              <p>violência contra mulher</p>
+            </div>
+          </div>
+          <div class="content-container">
+            <div class="content-box">
+              <h2>Ligue 100</h2>
+              <p>direitos humanos</p>
+            </div>
+          </div>
+          <div class="content-container">
+            <div class="content-box">
+              <h2>Disque 190</h2>
+              <p>Polícia Militar</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <img style=height:24px;width:100%;object-fit:cover; alt=imagers
+        src=https://brasilparticipativo.presidencia.gov.br/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBcWViIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--b529d66240858217bd7a1b613dac32bab20b50c7/6.png
+        class=image-content />
+    </div>
+  </section>
+  <section class="bp-logo-container">
+    <a href="https://www.gov.br/brasilparticipativo"><img alt="logo-brasil-participativo"
+        src="https://brasilparticipativo.presidencia.gov.br/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBZ0VpIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--83a2abd12f5092b982cfdec5938eb1296f17c1d2/novo_bp_logo.png"
+        class="bp-logo" style="filter: invert(0); width: 194.13px" /></a>
+  </section>
 </section>
-
-
 <script>
-  function fetchHTML(url) {
+  function fetchAllPages(url) {
     return fetch(url)
       .then(response => {
         if (!response.ok) {
@@ -13,35 +87,109 @@
         return response.text();
       })
       .then(html => {
-        return html;
+        let resultHTML = html;
+
+        const tempElement = document.createElement("div");
+        tempElement.innerHTML = resultHTML;
+
+        const pagination = tempElement.querySelector('.pagination-container');
+        if (!pagination) return html;
+
+        const lastPageLink = pagination.querySelector('.pagination-last a').getAttribute('href');
+
+        const regex = /page=(\d+)/;
+        const match = lastPageLink.match(regex);
+
+        // Assuming the base URL is known and provided here
+        const baseURL = 'https://brasilparticipativo.presidencia.gov.br';
+
+        if (match) {
+          const totalPageNumber = parseInt(match[1], 10);
+          const fetchPromises = [];
+
+          for (let i = 2; i <= totalPageNumber; i++) {
+            // Create the new URL by combining the base URL with the replaced page number in the href
+            const newURL = `${baseURL}${lastPageLink.replace(regex, `page=${i}`)}`;
+
+            fetchPromises.push(
+              fetchHTML(newURL)
+                .then(pageHtml => {
+                  // Append each fetched news-item to resultHTML
+                  resultHTML += pageHtml;
+                })
+                .catch(error => {
+                  console.error('Error fetching page:', error);
+                })
+            );
+          }
+
+          // Wait for all fetches to complete before returning resultHTML
+          return Promise.all(fetchPromises).then(() => resultHTML);
+        } else {
+          console.log('Page number not found');
+          return resultHTML;
+        }
       })
       .catch(error => {
         throw new Error(`Error fetching the page: ${error.message}`);
       });
   }
 
+  function fetchHTML(url) {
+    return fetch(url)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(
+            `Error fetching the page. Response status: ${response.status}`
+          );
+        }
+        return response.text();
+      })
+      .then((html) => {
+        return html;
+      })
+      .catch((error) => {
+        throw new Error(`Error fetching the page: ${error.message}`);
+      });
+  }
+
   // Generates blog components and returns the complete HTML
   function generateBlogHTML(url, originalHTML) {
-    const tempElement = document.createElement('div');
+    const tempElement = document.createElement("div");
     tempElement.innerHTML = originalHTML;
 
-    const originalNewsElements = tempElement.querySelectorAll('.news-item');
+    const originalNewsElements = tempElement.querySelectorAll(".news-item");
     let hashTypes = {};
 
-    originalNewsElements.forEach(originalNewsElement => {
-        const titleElement = originalNewsElement.querySelector('.news-title');
-        if (!titleElement) return; // Skip if titleElement is not found
+    originalNewsElements.forEach((originalNewsElement) => {
+      let titleElement = originalNewsElement.querySelector('.news-title');
+      let titleContent = titleElement.textContent.trim();
+      let hrefPost = titleElement.getAttribute('href');
+      if (!titleElement) {
+        console.log('No title element');
+        titleElement = '';
+        titleContent = '';
+        hrefPost = '#';
+      }
+      else {
+        titleContent = titleElement.textContent.trim();
+        hrefPost = titleElement.getAttribute('href');
+      }
 
-        const titleContent = titleElement.textContent.trim();
-        const hrefPost = titleElement.getAttribute('href');
+      const descriptionElement = originalNewsElement.querySelector('.news-description');
+      let fullDescription;
+      let subtitleContent = ''; // Extract subtitle after hyphen
 
-        const descriptionElement = originalNewsElement.querySelector('.news-description');
-        if (!descriptionElement) return; // Skip if descriptionElement is not found
+      if (!descriptionElement) {
+        console.log('No description element');
+        descriptionElement = '';
+      }
+      else {
+        fullDescription = descriptionElement.textContent.trim();
+        subtitleContent = fullDescription.split('-')[1].trim(); // Extract subtitle after hyphen
+      }
 
-        const fullDescription = descriptionElement.textContent.trim();
-        const subtitleContent = fullDescription.split('-')[1].trim(); // Extract subtitle after hyphen
-
-        const htmlTemplate = `
+      const htmlTemplate = `
         <a
           class="list-item"
           href="${hrefPost}"
@@ -50,47 +198,42 @@
         </a>
         `;
 
-        if (!hashTypes[subtitleContent]) {
-            hashTypes[subtitleContent] = [];
-        }
-        hashTypes[subtitleContent].push(htmlTemplate);
+      if (!hashTypes[subtitleContent]) {
+        hashTypes[subtitleContent] = [];
+      }
+      hashTypes[subtitleContent].push(htmlTemplate);
     });
 
     // Build the final HTML string
     let resultHTMLArray = [];
     for (let subtitle in hashTypes) {
-        const subtitleStyle = `
-        <div class="title-header"> 
+      const subtitleStyle = `
+        <div class="title-header">
           <h3 class="title-subtext" data-asw-orgfontsize="16" style="font-size: 16px;">
             ${subtitle}
-          </h3> 
+          </h3>
         </div>
         <div class="itens-list">
         `;
-        resultHTMLArray.push(subtitleStyle);
-        resultHTMLArray.push(hashTypes[subtitle].join('\n'));
-        resultHTMLArray.push('</div>'); // closes itens-list element
+      resultHTMLArray.push(subtitleStyle);
+      resultHTMLArray.push(hashTypes[subtitle].join("\n"));
+      resultHTMLArray.push("</div>"); // closes itens-list element
     }
 
-    let resultHTML = resultHTMLArray.join('\n');
+    let resultHTML = resultHTMLArray.join("\n");
     return resultHTML;
-}
+  }
 
   // Calls the fetchHTML and generateBlogHTML functions asynchronously
   function generateBlog(url, title) {
-    fetchHTML(url)
-      .then(html => {
+    fetchAllPages(url)
+      .then((html) => {
         return generateBlogHTML(url, html);
       })
-      .then(newsContent => {
+      .then((newsContent) => {
         if (newsContent !== "error") {
-          let blogContent = `
-          <h2 class="title-text" data-asw-orgfontsize="32" style="font-size: 32px;">
-            ${title}
-          </h2>`;
-          blogContent += newsContent;
-
-          const blogContainer = document.querySelector('#blogContainer');
+          blogContent = newsContent;
+          const blogContainer = document.querySelector("#blogContainer");
 
           if (blogContainer) {
             blogContainer.innerHTML = blogContent;
@@ -98,23 +241,21 @@
             console.error('Element with id "blogContainer" not found.');
           }
         } else {
-          console.error('Error fetching news.');
+          console.error("Error fetching news.");
         }
       })
-      .catch(error => {
-        console.error('Error:', error);
+      .catch((error) => {
+        console.error("Error:", error);
       });
   }
 
   // !!!!ONLY NEED TO CALL THIS FUNCTION TO GENERATE THE NEWS!!!!
   // Information about the variables in readme.md
-  const url = 'https://brasilparticipativo.presidencia.gov.br/processes/unidospelors/f/113/';
-  const title = 'Ações do Governo Federal';
+  const url =
+    "https://brasilparticipativo.presidencia.gov.br/processes/unidospelors/f/113/";
 
-  generateBlog(url, title);
+  generateBlog(url);
 </script>
-
-
 <style>
   .center-container {
     display: flex;
@@ -127,13 +268,38 @@
     font-weight: bold;
   }
 
-  .title-container {
+  .title-header-content {
     display: flex;
+    flex-direction: column;
     align-items: center;
+    gap: 1rem;
+    padding: 1rem 0;
+
+    h2 {
+      font-weight: bold;
+      margin: 0;
+      padding: 0;
+    }
+
+    p {
+      font-size: 1.05rem;
+      color: var(--gray-90);
+    }
+  }
+
+  .inform-container {
+    display: flex;
     flex-direction: column;
 
     h2 {
+      font-weight: bold;
       margin: 0;
+      padding: 0;
+    }
+
+    p {
+      font-size: 1.05rem;
+      color: var(--gray-90);
     }
   }
 
@@ -174,6 +340,7 @@
     gap: 1rem;
     flex-wrap: wrap;
     justify-content: center;
+    margin: 1.5rem 0;
   }
 
   .list-item {
@@ -195,8 +362,38 @@
     transition: transform 0.3s ease;
   }
 
+  .list-item.inform {
+    text-align: left;
+  }
+
   .list-item:hover {
     transform: scale(1.05);
+  }
+
+  .list-item-group {
+    color: var(--gray-60);
+    font-variant-numeric: lining-nums proportional-nums;
+    font-family: Rawline;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    width: 100%;
+    margin-bottom: 1.5rem;
+  }
+
+  .list-item-title {
+    color: var(--blue-warm-vivid-80);
+    font-variant-numeric: lining-nums proportional-nums;
+    font-family: Rawline;
+    font-size: 16.8px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
+
+  .icon-group {
+    align-self: flex-end;
   }
 
   .categories-item {
@@ -325,35 +522,78 @@
       font-weight: bold;
     }
   }
+
+  .cards-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 24px;
+    justify-content: space-evenly;
+    background-color: #f3f7fb;
+
+    h2 {
+      font-weight: 800;
+      font-size: 36px;
+      padding: 0;
+      margin: 0;
+      margin-bottom: 16px;
+    }
+  }
+
+  .cards-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    gap: 2.5rem;
+  }
+
+  .content-container {
+    display: flex;
+    background-color: white;
+    padding: 10px 16px;
+    justify-content: center;
+    align-items: center;
+    width: 15rem;
+  }
+
+  .content-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #0c326f;
+    gap: 0.25rem;
+
+    h2 {
+      font-size: 16px;
+      font-weight: 600;
+      color: #0c326f;
+      padding: 0;
+      margin: 0;
+      text-transform: uppercase;
+    }
+
+    p {
+      font-size: 14px;
+      margin: 0;
+      color: #0c326f;
+      font-weight: 500;
+      text-transform: uppercase;
+    }
+  }
+
+  @media (max-width: 1045px) {
+    .content-container {
+      margin-bottom: 12px;
+    }
+
+    .cards-container {
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+    }
+  }
+
+  .bp-logo-container {
+    margin-top: 1.5rem;
+  }
 </style>
-<script>
-  const infoCardButtons = document.querySelectorAll(".info-card-button");
-
-  infoCardButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-      const cardItem = button.parentElement;
-
-      const cardFront = cardItem.querySelector(".report-card-front");
-      const cardBack = cardItem.querySelector(".report-card-back");
-
-      if (cardFront.style.display !== "none") {
-        button.classList.remove("background-active");
-        cardFront.style.display = "none";
-        cardBack.style.display = "flex";
-      } else {
-        button.classList.add("background-active");
-        cardFront.style.display = "flex";
-        cardBack.style.display = "none";
-      }
-      const icon = button.querySelector("i");
-
-      if (icon.classList.contains("fa-info")) {
-        icon.classList.remove("fa-info");
-        icon.classList.add("fa-times");
-      } else {
-        icon.classList.remove("fa-times");
-        icon.classList.add("fa-info");
-      }
-    });
-  });
-</script>
