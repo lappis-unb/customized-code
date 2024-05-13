@@ -1,402 +1,5 @@
 <div class="br-container-lg">
-  <div class="title-container">
-    <div id="blogContainer"></div>
-  </div>
-
-  <section>
-    <div id="blogContainer"></div>
-  </section>
-
-  <script>
-    function fetchHTML(url) {
-      return fetch(url)
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error(
-              `Error fetching the page. Response status: ${response.status}`
-            );
-          }
-          return response.text();
-        })
-        .then((html) => {
-          return html;
-        })
-        .catch((error) => {
-          throw new Error(`Error fetching the page: ${error.message}`);
-        });
-    }
-
-    // Generates blog components and returns the complete HTML
-    function generateBlogHTML(url, originalHTML) {
-      const tempElement = document.createElement("div");
-      tempElement.innerHTML = originalHTML;
-
-      const originalNewsElements = tempElement.querySelectorAll(".news-item");
-      let hashTypes = {};
-
-      originalNewsElements.forEach((originalNewsElement) => {
-        const titleElement = originalNewsElement.querySelector(".news-title");
-        if (!titleElement) return; // Skip if titleElement is not found
-
-        const titleContent = titleElement.textContent.trim();
-        const hrefPost = titleElement.getAttribute("href");
-
-        const descriptionElement =
-          originalNewsElement.querySelector(".news-description");
-        if (!descriptionElement) return; // Skip if descriptionElement is not found
-
-        const fullDescription = descriptionElement.textContent.trim();
-        const subtitleContent = fullDescription.split("-")[1].trim(); // Extract subtitle after hyphen
-        const groupContent = fullDescription.split("-")[2].trim(); // Extract group
-
-        const htmlTemplate = `
-            <a
-              class="list-item"
-              href="${hrefPost}"
-            >
-              <i class="fa-solid fa-share-from-square icon-group"></i>
-              <span class="list-item-group"> ${groupContent} </span>
-              <span class="list-item-title"> ${titleContent} </span>
-            </a>
-            `;
-
-        if (!hashTypes[subtitleContent]) {
-          hashTypes[subtitleContent] = [];
-        }
-        hashTypes[subtitleContent].push(htmlTemplate);
-      });
-
-      // Build the final HTML string
-      let resultHTMLArray = [];
-      for (let subtitle in hashTypes) {
-        const subtitleStyle = `
-            <div class="title-header"> 
-              <h3 class="title-subtext" data-asw-orgfontsize="16" style="font-size: 16px;">
-                ${subtitle}
-              </h3> 
-            </div>
-            <div class="itens-list">
-            `;
-        resultHTMLArray.push(subtitleStyle);
-        resultHTMLArray.push(hashTypes[subtitle].join("\n"));
-        resultHTMLArray.push("</div>"); // closes itens-list element
-      }
-
-      let resultHTML = resultHTMLArray.join("\n");
-      return resultHTML;
-    }
-
-    // Calls the fetchHTML and generateBlogHTML functions asynchronously
-    function generateBlog(url, title) {
-      fetchHTML(url)
-        .then((html) => {
-          return generateBlogHTML(url, html);
-        })
-        .then((newsContent) => {
-          if (newsContent !== "error") {
-            let blogContent = `
-              <h2 class="title-text" data-asw-orgfontsize="32" style="font-size: 32px;">
-                ${title}
-              </h2>`;
-            blogContent += newsContent;
-
-            const blogContainer = document.querySelector("#blogContainer");
-
-            if (blogContainer) {
-              blogContainer.innerHTML = blogContent;
-            } else {
-              console.error('Element with id "blogContainer" not found.');
-            }
-          } else {
-            console.error("Error fetching news.");
-          }
-        })
-        .catch((error) => {
-          console.error("Error:", error);
-        });
-    }
-
-    // !!!!ONLY NEED TO CALL THIS FUNCTION TO GENERATE THE NEWS!!!!
-    // Information about the variables in readme.md
-    const url =
-      "https://brasilparticipativo.presidencia.gov.br/processes/unidospelors/f/118/";
-    const title = "Acessar Serviços";
-
-    generateBlog(url, title);
-  </script>
-
-  <style>
-    .center-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-    }
-    .title-text {
-      font-weight: bold;
-      text-align: center;
-    }
-
-    .title-container {
-      display: flex;
-      align-items: center;
-      flex-direction: column;
-
-      h2 {
-        margin: 0;
-      }
-    }
-    .title-header {
-      display: flex;
-      align-items: center;
-      flex-direction: row;
-      width: 100%;
-
-      h3 {
-        margin: 0;
-        font-weight: bold;
-        font-size: 1rem;
-        color: var(--gray-70);
-        padding: 0 0.875rem;
-        white-space: nowrap;
-      }
-    }
-    .title-header::before {
-      content: "";
-      width: 100%;
-      height: 1px;
-      background-color: var(--gray-10);
-    }
-    .title-header::after {
-      content: "";
-      width: 100%;
-      height: 1px;
-      background-color: var(--gray-10);
-    }
-
-    .itens-list {
-      display: flex;
-      width: 100%;
-      padding: 1rem 0;
-      gap: 1rem;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    .list-item {
-      box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
-      border-radius: 0.5rem;
-      padding: 1.85rem 2rem;
-      line-height: 2rem;
-      color: var(--pure-100);
-      height: auto;
-      margin: 0 1rem;
-      text-align: left;
-      text-decoration: none;
-      transition: all 0.3s ease;
-      height: 12rem;
-      max-width: 25rem;
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      transition: transform 0.3s ease;
-      background: var(--gray-2);
-      align-items: center;
-      gap: 16px;
-      align-self: stretch;
-    }
-    .list-item:hover {
-      transform: scale(1.05);
-    }
-
-    .categories-item {
-      font-size: 0.875rem;
-      font-weight: bold;
-      color: var(--gray-70);
-      display: block;
-      text-align: left;
-      display: flex;
-      justify-content: space-between;
-
-      i {
-        color: var(--primary);
-        rotate: -30deg;
-      }
-    }
-    .list-item-text {
-      font-size: 1rem;
-      color: var(--blue-warm-vivid-80);
-      text-align: left;
-      font-weight: bold;
-    }
-
-    .report-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 1rem 0;
-      gap: 1rem;
-    }
-    .report-card-list {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-      justify-content: center;
-      width: 100%;
-    }
-    .report-card-item {
-      position: relative;
-      width: 100%;
-      max-width: 15rem;
-      height: 12rem;
-      box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
-      border-radius: 0.5rem;
-      overflow: hidden;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      transition: transform 0.3s ease;
-
-      .info-card-button {
-        padding: 0.75rem;
-        position: absolute;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        top: 0.5rem;
-        right: 0.5rem;
-        color: white;
-        border-radius: 50%;
-        border: none;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-        height: 0.5rem;
-        width: 0.5rem;
-        z-index: 2;
-      }
-
-      .background-active {
-        background-color: var(--primary);
-      }
-
-      .card-link {
-        width: 100%;
-        height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        text-decoration: none;
-        color: var(--blue-warm-vivid-80);
-        background-color: var(--gray-2);
-        transition: background-color 0.3s ease;
-
-        i {
-          font-size: 3rem;
-        }
-      }
-    }
-
-    .report-card-item:hover {
-      transform: scale(1.05);
-    }
-
-    .report-card-front {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      gap: 1rem;
-      z-index: 2;
-
-      span {
-        font-weight: bold;
-      }
-    }
-
-    .report-card-back {
-      display: flex;
-      width: 100%;
-      height: 100%;
-      color: white;
-      padding: 1rem;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      gap: 1rem;
-      background-color: var(--gray-70);
-      display: none;
-      transition: all 0.3s ease;
-
-      span {
-        font-weight: bold;
-      }
-    }
-    .list-item-group {
-      color: var(--gray-60);
-      font-variant-numeric: lining-nums proportional-nums;
-      font-family: Rawline;
-      font-size: 14px;
-      font-style: normal;
-      font-weight: 600;
-      line-height: normal;
-      width: 100%;
-    }
-    .list-item-title {
-      color: var(--blue-warm-vivid-80);
-      font-variant-numeric: lining-nums proportional-nums;
-      font-family: Rawline;
-      font-size: 16.8px;
-      font-style: normal;
-      font-weight: 700;
-      line-height: normal;
-    }
-    .icon-group {
-      align-self: flex-end;
-    }
-    .title-subtext {
-      color: var(--gray-90);
-      text-align: center;
-      font-variant-numeric: lining-nums proportional-nums;
-      font-family: Rawline;
-      font-size: 20px;
-      font-style: normal;
-      font-weight: 400 !important;
-      line-height: normal;
-      text-transform: uppercase;
-    }
-  </style>
-  <script>
-    const infoCardButtons = document.querySelectorAll(".info-card-button");
-
-    infoCardButtons.forEach((button) => {
-      button.addEventListener("click", () => {
-        const cardItem = button.parentElement;
-
-        const cardFront = cardItem.querySelector(".report-card-front");
-        const cardBack = cardItem.querySelector(".report-card-back");
-
-        if (cardFront.style.display !== "none") {
-          button.classList.remove("background-active");
-          cardFront.style.display = "none";
-          cardBack.style.display = "flex";
-        } else {
-          button.classList.add("background-active");
-          cardFront.style.display = "flex";
-          cardBack.style.display = "none";
-        }
-        const icon = button.querySelector("i");
-
-        if (icon.classList.contains("fa-info")) {
-          icon.classList.remove("fa-info");
-          icon.classList.add("fa-times");
-        } else {
-          icon.classList.remove("fa-times");
-          icon.classList.add("fa-info");
-        }
-      });
-    });
-  </script>
-
+  <div class="title-container"><div id="blogContainer"></div></div>
   <secion class="subcontent-section">
     <div class="home-sections-content information-section">
       <img style=height:24px;width:100%;object-fit:cover; alt=imagers
@@ -410,28 +13,24 @@
               <h2>Ligue 193</h2>
               <p>bombeiros</p>
             </div>
-            <i class="fa-solid fa-external-link fa-lg"></i>
           </div>
           <div class="content-container">
             <div class="content-box">
               <h2>ligue 180</h2>
               <p>violência contra mulher</p>
             </div>
-            <i class="fa-solid fa-external-link fa-lg"></i>
           </div>
           <div class="content-container">
             <div class="content-box">
               <h2>Ligue 100</h2>
-              <p>diretos humanos</p>
+              <p>direitos humanos</p>
             </div>
-            <i class="fa-solid fa-external-link fa-lg"></i>
           </div>
           <div class="content-container">
             <div class="content-box">
               <h2>Disque 190</h2>
               <p>Polícia Militar</p>
             </div>
-            <i class="fa-solid fa-external-link fa-lg"></i>
           </div>
         </div>
       </div>
@@ -441,8 +40,331 @@
     </div>
   </secion>
 </div>
-
+<script>
+  function fetchHTML(url) {
+    return fetch(url)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(
+            `Error fetching the page. Response status: ${response.status}`
+          );
+        }
+        return response.text();
+      })
+      .then((html) => {
+        return html;
+      })
+      .catch((error) => {
+        throw new Error(`Error fetching the page: ${error.message}`);
+      });
+  }
+  function generateBlogHTML(url, originalHTML) {
+    const tempElement = document.createElement("div");
+    tempElement.innerHTML = originalHTML;
+    const originalNewsElements = tempElement.querySelectorAll(".news-item");
+    let hashTypes = {};
+    originalNewsElements.forEach((originalNewsElement) => {
+      const titleElement = originalNewsElement.querySelector(".news-title");
+      if (!titleElement) return;
+      const titleContent = titleElement.textContent.trim();
+      const hrefPost = titleElement.getAttribute("href");
+      const descriptionElement =
+        originalNewsElement.querySelector(".news-description");
+      if (!descriptionElement) return;
+      const fullDescription = descriptionElement.textContent.trim();
+      const subtitleContent = fullDescription.split("-")[1].trim();
+      const htmlTemplate = `        <a          class="list-item"          href="${hrefPost}"        >          <span class="list-item-text"> ${titleContent} </span>        </a>        `;
+      if (!hashTypes[subtitleContent]) {
+        hashTypes[subtitleContent] = [];
+      }
+      hashTypes[subtitleContent].push(htmlTemplate);
+    });
+    let resultHTMLArray = [];
+    for (let subtitle in hashTypes) {
+      const subtitleStyle = `        <div class="title-header">          <h3 class="title-subtext" data-asw-orgfontsize="16" style="font-size: 16px;">            ${subtitle}          </h3>        </div>        <div class="itens-list">        `;
+      resultHTMLArray.push(subtitleStyle);
+      resultHTMLArray.push(hashTypes[subtitle].join("\n"));
+      resultHTMLArray.push("</div>");
+    }
+    let resultHTML = resultHTMLArray.join("\n");
+    return resultHTML;
+  }
+  function generateBlog(url, title) {
+    fetchHTML(url)
+      .then((html) => {
+        return generateBlogHTML(url, html);
+      })
+      .then((newsContent) => {
+        if (newsContent !== "error") {
+          blogContent = newsContent;
+          const blogContainer = document.querySelector("#blogContainer");
+          if (blogContainer) {
+            blogContainer.innerHTML = blogContent;
+          } else {
+            console.error('Element with id "blogContainer" not found.');
+          }
+        } else {
+          console.error("Error fetching news.");
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  }
+  const url =
+    "https://brasilparticipativo.presidencia.gov.br/processes/unidospelors/f/118/";
+  generateBlog(url);
+</script>
+<script>
+  const infoCardButtons = document.querySelectorAll(".info-card-button");
+  infoCardButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const cardItem = button.parentElement;
+      const cardFront = cardItem.querySelector(".report-card-front");
+      const cardBack = cardItem.querySelector(".report-card-back");
+      if (cardFront.style.display !== "none") {
+        button.classList.remove("background-active");
+        cardFront.style.display = "none";
+        cardBack.style.display = "flex";
+      } else {
+        button.classList.add("background-active");
+        cardFront.style.display = "flex";
+        cardBack.style.display = "none";
+      }
+      const icon = button.querySelector("i");
+      if (icon.classList.contains("fa-info")) {
+        icon.classList.remove("fa-info");
+        icon.classList.add("fa-times");
+      } else {
+        icon.classList.remove("fa-times");
+        icon.classList.add("fa-info");
+      }
+    });
+  });
+</script>
 <style>
+  .center-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  .title-text {
+    font-weight: bold;
+    text-align: center;
+  }
+  .title-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    h2 {
+      margin: 0;
+    }
+  }
+  .title-header {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    width: 100%;
+    h3 {
+      margin: 0;
+      font-weight: bold;
+      font-size: 1rem;
+      color: var(--gray-70);
+      padding: 0 0.875rem;
+      white-space: nowrap;
+    }
+  }
+  .title-header::before {
+    content: "";
+    width: 100%;
+    height: 1px;
+    background-color: var(--gray-10);
+  }
+  .title-header::after {
+    content: "";
+    width: 100%;
+    height: 1px;
+    background-color: var(--gray-10);
+  }
+  .itens-list {
+    display: flex;
+    width: 100%;
+    padding: 1rem 0;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .list-item {
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+    border-radius: 0.5rem;
+    padding: 1.85rem 2rem;
+    line-height: 2rem;
+    color: var(--pure-100);
+    height: auto;
+    margin: 0 1rem;
+    text-align: left;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    height: 12rem;
+    max-width: 25rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease;
+    background: var(--gray-2);
+    align-items: center;
+    gap: 16px;
+    align-self: stretch;
+  }
+  .list-item:hover {
+    transform: scale(1.05);
+  }
+  .categories-item {
+    font-size: 0.875rem;
+    font-weight: bold;
+    color: var(--gray-70);
+    display: block;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    i {
+      color: var(--primary);
+      rotate: -30deg;
+    }
+  }
+  .list-item-text {
+    font-size: 1rem;
+    color: var(--blue-warm-vivid-80);
+    text-align: left;
+    font-weight: bold;
+  }
+  .report-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 0;
+    gap: 1rem;
+  }
+  .report-card-list {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+  }
+  .report-card-item {
+    position: relative;
+    width: 100%;
+    max-width: 15rem;
+    height: 12rem;
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+    border-radius: 0.5rem;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s ease;
+    .info-card-button {
+      padding: 0.75rem;
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      top: 0.5rem;
+      right: 0.5rem;
+      color: white;
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      height: 0.5rem;
+      width: 0.5rem;
+      z-index: 2;
+    }
+    .background-active {
+      background-color: var(--primary);
+    }
+    .card-link {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-decoration: none;
+      color: var(--blue-warm-vivid-80);
+      background-color: var(--gray-2);
+      transition: background-color 0.3s ease;
+      i {
+        font-size: 3rem;
+      }
+    }
+  }
+  .report-card-item:hover {
+    transform: scale(1.05);
+  }
+  .report-card-front {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    z-index: 2;
+    span {
+      font-weight: bold;
+    }
+  }
+  .report-card-back {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    color: white;
+    padding: 1rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    background-color: var(--gray-70);
+    display: none;
+    transition: all 0.3s ease;
+    span {
+      font-weight: bold;
+    }
+  }
+  .list-item-group {
+    color: var(--gray-60);
+    font-variant-numeric: lining-nums proportional-nums;
+    font-family: Rawline;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    width: 100%;
+  }
+  .list-item-title {
+    color: var(--blue-warm-vivid-80);
+    font-variant-numeric: lining-nums proportional-nums;
+    font-family: Rawline;
+    font-size: 16.8px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
+  .icon-group {
+    align-self: flex-end;
+  }
+  .title-subtext {
+    color: var(--gray-90);
+    text-align: center;
+    font-variant-numeric: lining-nums proportional-nums;
+    font-family: Rawline;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400 !important;
+    line-height: normal;
+    text-transform: uppercase;
+  }
   .cards-section {
     display: flex;
     flex-direction: column;
@@ -450,7 +372,6 @@
     padding: 24px;
     justify-content: space-evenly;
     background-color: #f3f7fb;
-
     h2 {
       color: #0c326f;
       font-family: Rawline;
@@ -460,14 +381,12 @@
       line-height: normal;
     }
   }
-
   .cards-container {
     display: flex;
     justify-content: center;
     gap: 24px;
     width: 100%;
   }
-
   .content-container {
     display: flex;
     background-color: white;
@@ -475,13 +394,11 @@
     justify-content: center;
     align-items: center;
   }
-
   .content-box {
     display: flex;
     flex-direction: column;
     align-items: center;
     color: #0c326f;
-
     h2 {
       font-size: 16px;
       font-weight: 600;
@@ -490,7 +407,6 @@
       margin: 0;
       text-transform: uppercase;
     }
-
     p {
       font-size: 14px;
       margin: 0;
@@ -499,17 +415,14 @@
       text-transform: uppercase;
     }
   }
-
   @media (max-width: 1045px) {
     .content-container {
       margin-bottom: 12px;
     }
-
     .cards-container {
       flex-direction: column;
     }
   }
-
   #blogContainer {
     width: 100%;
   }
