@@ -2,7 +2,6 @@
   <section class="subcontent-section">
     <div class="actions-title-container">
       <h2>Ações do Governo Federal em Números</h2>
-      <p>Fonte: Governo Federal</p>
     </div>
     <div id="bigNumber"></div>
   </section>
@@ -16,13 +15,13 @@
     <div class="itens-list">
       <a
         class="list-item inform"
-        href="https://drive.google.com/drive/folders/1C3bh_EtZiwoJjEP9JU6qZ10mlVc_W_rV"
+        href="https://brasilparticipativo.presidencia.gov.br/processes/unidospelors/f/122/"
       >
         <i class="fa-solid fa-share-from-square icon-group"></i>
         <!-- <span class="list-item-group"></span>  -->
         <span class="list-item-title">Força Tarefa</span>
       </a>
-      <a class="list-item inform" href="#">
+      <a class="list-item inform" href="https://brasilparticipativo.presidencia.gov.br/processes/unidospelors/f/123/">
         <i class="fa-solid fa-share-from-square icon-group"></i>
         <!-- <span class="list-item-group"></span> -->
         <span class="list-item-title">Atendimento às Prefeituras</span>
@@ -104,11 +103,13 @@
       font-weight: bold;
       margin: 0;
       padding: 0;
+      text-align: center;
     }
 
     p {
       font-size: 1.05rem;
       color: var(--gray-90);
+      text-align: center;
     }
   }
 
@@ -359,8 +360,7 @@
         htmlTemplate = `
                   <div>
                     <a class="action-card investment">
-                        <p class="value-text investment">${subtitleContent}</p>
-                        <p class="value-info investment">bilhões</p>
+                        <p class="value-text investment">${subtitleContent} bi</p>
                         <p class="category-text investment">${titleContent}</p>
                     </a>
                   </div>
@@ -379,10 +379,8 @@
       if (titleContent.includes("Equipamentos")) {
         htmlTemplate = `
             <a class="action-card">
-                <p class="value-text">${subtitleContent}</p>
-                <p class="value-info"></p>
+                <p class="value-text">${subtitleContent} mil</p>
                 <p class="category-text">${titleContent}</p>
-                <p class="subcategory-text">para resgate e transporte</p>
             </a>`;
       }
 
@@ -513,7 +511,7 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    width: 250px;
+    flex-wrap: wrap;
     margin: 0px 12px;
 
     p {

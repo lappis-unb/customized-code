@@ -1,6 +1,11 @@
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     if (window.location.pathname.includes("/processes/unidospelors")) {
+      const back_btn = document.querySelector(".small.hollow");
+      if (back_btn) {
+        back_btn.remove();
+      }
+
       function isMobileDevice() {
         return window.innerWidth < 720;
       }
@@ -275,6 +280,6 @@
   .news-card__list__item img {
     object-fit: cover;
     width: 100%;
-    height: 250px;
+    height: 200px;
   }
 </style>
