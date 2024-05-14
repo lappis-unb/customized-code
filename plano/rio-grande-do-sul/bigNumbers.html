@@ -85,7 +85,7 @@
       <a href="https://www.gov.br/pt-br" data-asw-orgfontsize="14"
         ><img
           alt="governo federal logo"
-          src="https://brasilparticipativo.presidencia.gov.br/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBcXliIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--6204cf44544e5087d711308b75bfe2f277b31b28/Governo%20Federal.png"
+          src="https://brasilparticipativo.presidencia.gov.br/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBc3ljIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--dce22bca6bfc8919b166189814133934aefba1bc/gov-fed.png"
           style="filter: invert(0); height: 100px"
           id="logo-governo-federal"
         />
@@ -264,6 +264,7 @@
     flex-direction: column;
     align-items: center;
     color: #0c326f;
+    gap: 0.25rem;
 
     h2 {
       font-size: 16px;
@@ -421,7 +422,7 @@ function fetchAllPages(url) {
       imageUrl = imageElement.getAttribute('href');
     }
 
-    return { titleContent, hrefPost, subtitleContent, imageUrl }
+    return { titleContent, hrefPost, subtitleContent, imageUrl, dateExtracted }
   }
 
   // Generates blog components and returns the complete HTML
