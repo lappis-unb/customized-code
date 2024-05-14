@@ -410,7 +410,7 @@ function fetchAllPages(url) {
     }
     else if (originalNewsElement.querySelector('.br-card-content')){
       // mobile devices
-      subtitleContent = originalNewsElement.querySelector('.br-card-content');
+      subtitleContent = originalNewsElement.querySelector('.br-card-content').textContent.trim();
       const tempElement = originalNewsElement.querySelector('.br-card-date');
       dateExtracted = parseDateFromText(tempElement.textContent.trim());
     }
