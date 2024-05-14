@@ -295,6 +295,64 @@
 </style>
 
 <script>
+
+function fetchAllPages(url) {
+    return fetch(url)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`Error fetching the page. Response status: ${response.status}`);
+        }
+        return response.text();
+      })
+      .then(html => {
+        let resultHTML = html;
+
+        const tempElement = document.createElement("div");
+        tempElement.innerHTML = resultHTML;
+
+        const paginationLast = tempElement.querySelector('.pagination-last a');
+        if (!paginationLast) return html;
+
+        const lastPageLink = paginationLast.getAttribute('href');
+
+        const regex = /page=(\d+)/;
+        const match = lastPageLink.match(regex);
+
+        // Assuming the base URL is known and provided here
+        const baseURL = 'https://brasilparticipativo.presidencia.gov.br';
+
+        if (match) {
+          const totalPageNumber = parseInt(match[1], 10);
+          const fetchPromises = [];
+
+          for (let i = 2; i <= totalPageNumber; i++) {
+            // Create the new URL by combining the base URL with the replaced page number in the href
+            const newURL = `${baseURL}${lastPageLink.replace(regex, `page=${i}`)}`;
+
+            fetchPromises.push(
+              fetchHTML(newURL)
+                .then(pageHtml => {
+                  // Append each fetched news-item to resultHTML
+                  resultHTML += pageHtml;
+                })
+                .catch(error => {
+                  console.error('Error fetching page:', error);
+                })
+            );
+          }
+
+          // Wait for all fetches to complete before returning resultHTML
+          return Promise.all(fetchPromises).then(() => resultHTML);
+        } else {
+          console.log('Page number not found');
+          return resultHTML;
+        }
+      })
+      .catch(error => {
+        throw new Error(`Error fetching the page: ${error.message}`);
+      });
+  }
+
   function fetchHTML(url) {
     return fetch(url)
       .then((response) => {
@@ -329,6 +387,43 @@
     return `${day}/${month}/${year}`;
   }
 
+  function getElements(originalNewsElement) {
+    const titleElement = originalNewsElement.querySelector('.news-title');
+
+    let titleContent = '';
+    let hrefPost = '#';
+
+    if (titleElement) {
+      titleContent = titleElement.textContent.trim();
+      hrefPost = titleElement.getAttribute('href');
+    }
+
+    const descriptionElement = originalNewsElement.querySelector('.news-description');
+    let dateExtracted = new Date(0);
+    let subtitleContent = '';
+
+    if (descriptionElement) {
+      const fullDescription = descriptionElement.textContent.trim();
+      subtitleContent = fullDescription.split('-')[1].trim();
+      dateExtracted = parseDateFromText(fullDescription.split("-")[0].trim());
+    }
+    else if (originalNewsElement.querySelector('.br-card-content')){
+      // mobile devices
+      subtitleContent = originalNewsElement.querySelector('.br-card-content');
+      const tempElement = originalNewsElement.querySelector('.br-card-date');
+      dateExtracted = parseDateFromText(tempElement.textContent.trim());
+    }
+
+    const imageElement = originalNewsElement.querySelector('.news-cover-image');
+    let imageUrl = '#';
+    
+    if (imageElement){
+      imageUrl = imageElement.getAttribute('href');
+    }
+
+    return { titleContent, hrefPost, subtitleContent, imageUrl }
+  }
+
   // Generates blog components and returns the complete HTML
   function generateBlogHTML(url, href, originalHTML) {
     const tempElement = document.createElement("div");
@@ -339,22 +434,15 @@
     let latestDate = new Date(0); // Initialize with an old date
 
     originalNewsElements.forEach((originalNewsElement) => {
-      const titleContent =
-        originalNewsElement.querySelector(".news-title").textContent;
+      const { titleContent, hrefPost, subtitleContent, imageUrl, dateExtracted } = getElements(originalNewsElement);
 
-      const descriptionElement =
-        originalNewsElement.querySelector(".news-description");
-      if (!descriptionElement) return; // Skip if descriptionElement is not found
-
-      const fullDescription = descriptionElement.textContent.trim();
-      const dateExtracted = parseDateFromText(
-        fullDescription.split("-")[0].trim()
-      ); // Extract and parse date
       if (dateExtracted > latestDate) {
         latestDate = dateExtracted; // Save the bigger (more recent) date
       }
-      const subtitleContent = fullDescription.split("-")[1].trim(); // Extract subtitle after hyphen
-      let htmlTemplate = ``;
+      let htmlTemplate = `<a class="action-card">
+                <p class="value-text">${subtitleContent} mil</p>
+                <p class="category-text">${titleContent}</p>
+            </a>`;
 
       if (titleContent.includes("Investimento Total")) {
         htmlTemplate = `
@@ -410,7 +498,7 @@
 
   // Calls the fetchHTML and generateBlogHTML functions asynchronously
   function generateBlog(url, href) {
-    fetchHTML(url)
+    fetchAllPages(url)
       .then((html) => {
         return generateBlogHTML(url, href, html);
       })
