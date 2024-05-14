@@ -131,57 +131,47 @@
         throw new Error(`Error fetching the page: ${error.message}`);
       });
   }
-
   function parseDateFromText(dateString) {
     const [day, month, year] = dateString.split("/").map(Number);
     const fullYear = year < 100 ? 2000 + year : year;
     return new Date(fullYear, month - 1, day);
   }
-
   function formatDateToDDMMYY(date) {
     const day = date.getDate().toString().padStart(2, "0");
-    const month = (date.getMonth() + 1).toString().padStart(2, "0"); 
-    const year = date.getFullYear().toString().substring(2); 
+    const month = (date.getMonth() + 1).toString().padStart(2, "0");
+    const year = date.getFullYear().toString().substring(2);
     return `${day}/${month}/${year}`;
   }
-
   function getElements(originalNewsElement) {
-    const titleElement = originalNewsElement.querySelector('.news-title');
-
-    let titleContent = '';
-    let hrefPost = '#';
-
+    const titleElement = originalNewsElement.querySelector(".news-title");
+    let titleContent = "";
+    let hrefPost = "#";
     if (titleElement) {
       titleContent = titleElement.textContent.trim();
-      hrefPost = titleElement.getAttribute('href');
+      hrefPost = titleElement.getAttribute("href");
     }
-
-    const descriptionElement = originalNewsElement.querySelector('.news-description');
+    const descriptionElement =
+      originalNewsElement.querySelector(".news-description");
     let dateExtracted = new Date(0);
-    let subtitleContent = '';
-
+    let subtitleContent = "";
     if (descriptionElement) {
       const fullDescription = descriptionElement.textContent.trim();
-      subtitleContent = fullDescription.split('-')[1].trim();
+      subtitleContent = fullDescription.split("-")[1].trim();
       dateExtracted = parseDateFromText(fullDescription.split("-")[0].trim());
-    }
-    else if (originalNewsElement.querySelector('.br-card-content')){
-      // mobile devices
-      subtitleContent = originalNewsElement.querySelector('.br-card-content').textContent.trim();
-      const tempElement = originalNewsElement.querySelector('.br-card-date');
+    } else if (originalNewsElement.querySelector(".br-card-content")) {
+      subtitleContent = originalNewsElement
+        .querySelector(".br-card-content")
+        .textContent.trim();
+      const tempElement = originalNewsElement.querySelector(".br-card-date");
       dateExtracted = parseDateFromText(tempElement.textContent.trim());
     }
-
-    const imageElement = originalNewsElement.querySelector('.news-cover-image');
-    let imageUrl = '#';
-    
-    if (imageElement){
-      imageUrl = imageElement.getAttribute('href');
+    const imageElement = originalNewsElement.querySelector(".news-cover-image");
+    let imageUrl = "#";
+    if (imageElement) {
+      imageUrl = imageElement.getAttribute("href");
     }
-
-    return { titleContent, hrefPost, subtitleContent, imageUrl, dateExtracted}
+    return { titleContent, hrefPost, subtitleContent, imageUrl, dateExtracted };
   }
-
   function generateBlogHTML(url, originalHTML) {
     const tempElement = document.createElement("div");
     tempElement.innerHTML = originalHTML;
@@ -190,7 +180,13 @@
     const subtitleStyle = ` <div class="itens-list"> `;
     resultHTMLArray.push(subtitleStyle);
     originalNewsElements.forEach((originalNewsElement) => {
-      const { titleContent, hrefPost, subtitleContent, imageUrl, dateExtracted } = getElements(originalNewsElement);
+      const {
+        titleContent,
+        hrefPost,
+        subtitleContent,
+        imageUrl,
+        dateExtracted,
+      } = getElements(originalNewsElement);
       const htmlTemplate = ` <a class="list-item" href="${hrefPost}" > <span class="list-item-text"> ${titleContent} </span> </a> `;
       resultHTMLArray.push(htmlTemplate);
     });
@@ -231,52 +227,43 @@
     align-items: center;
     flex-direction: column;
   }
-
   .title-text {
     font-weight: bold;
   }
-
   .title-header-content {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 1rem;
     padding: 1rem 0;
-
     h2 {
       font-weight: bold;
       margin: 0;
       padding: 0;
     }
-
     p {
       font-size: 1.05rem;
       color: var(--gray-90);
     }
   }
-
   .inform-container {
     display: flex;
     flex-direction: column;
-
     h2 {
       font-weight: bold;
       margin: 0;
       padding: 0;
     }
-
     p {
       font-size: 1.05rem;
       color: var(--gray-90);
     }
   }
-
   .title-header {
     display: flex;
     align-items: center;
     flex-direction: row;
     width: 100%;
-
     h3 {
       margin: 0;
       font-weight: bold;
@@ -286,30 +273,27 @@
       white-space: nowrap;
     }
   }
-
   .title-header::before {
     content: "";
     width: 100%;
     height: 1px;
     background-color: var(--gray-10);
   }
-
   .title-header::after {
     content: "";
     width: 100%;
     height: 1px;
     background-color: var(--gray-10);
   }
-
   .itens-list {
     display: grid;
     grid-template-columns: repeat(auto-fill, 250px);
+    grid-auto-rows: 1fr;
     justify-content: center;
     width: 100%;
     gap: 1rem;
     margin-bottom: 64px;
   }
-
   .list-item {
     box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
     border-radius: 0.5rem;
@@ -327,15 +311,12 @@
     justify-content: center;
     transition: transform 0.3s ease;
   }
-
   .list-item.inform {
     text-align: left;
   }
-
   .list-item:hover {
     transform: scale(1.05);
   }
-
   .list-item-group {
     color: var(--gray-60);
     font-variant-numeric: lining-nums proportional-nums;
@@ -347,7 +328,6 @@
     width: 100%;
     margin-bottom: 1.5rem;
   }
-
   .list-item-title {
     color: var(--blue-warm-vivid-80);
     font-variant-numeric: lining-nums proportional-nums;
@@ -357,11 +337,9 @@
     font-weight: 700;
     line-height: normal;
   }
-
   .icon-group {
     align-self: flex-end;
   }
-
   .categories-item {
     font-size: 0.875rem;
     font-weight: bold;
@@ -370,20 +348,18 @@
     text-align: left;
     display: flex;
     justify-content: space-between;
-
     i {
       color: var(--primary);
       rotate: -30deg;
     }
   }
-
   .list-item-text {
     font-size: 1rem;
     color: var(--blue-warm-vivid-80);
     text-align: left;
+    text-align: center;
     font-weight: bold;
   }
-
   .report-container {
     display: flex;
     flex-direction: column;
@@ -392,7 +368,6 @@
     padding: 1rem 0;
     gap: 1rem;
   }
-
   .report-card-list {
     display: flex;
     gap: 1rem;
@@ -400,7 +375,6 @@
     justify-content: center;
     width: 100%;
   }
-
   .report-card-item {
     position: relative;
     width: 100%;
@@ -413,7 +387,6 @@
     justify-content: center;
     align-items: center;
     transition: transform 0.3s ease;
-
     .info-card-button {
       padding: 0.75rem;
       position: absolute;
@@ -431,11 +404,9 @@
       width: 0.5rem;
       z-index: 2;
     }
-
     .background-active {
       background-color: var(--primary);
     }
-
     .card-link {
       width: 100%;
       height: 100%;
@@ -446,17 +417,14 @@
       color: var(--blue-warm-vivid-80);
       background-color: var(--gray-2);
       transition: background-color 0.3s ease;
-
       i {
         font-size: 3rem;
       }
     }
   }
-
   .report-card-item:hover {
     transform: scale(1.05);
   }
-
   .report-card-front {
     display: flex;
     flex-direction: column;
@@ -464,12 +432,10 @@
     align-items: center;
     gap: 1rem;
     z-index: 2;
-
     span {
       font-weight: bold;
     }
   }
-
   .report-card-back {
     display: flex;
     width: 100%;
@@ -483,12 +449,10 @@
     background-color: var(--gray-70);
     display: none;
     transition: all 0.3s ease;
-
     span {
       font-weight: bold;
     }
   }
-
   .cards-section {
     display: flex;
     flex-direction: column;
@@ -496,7 +460,6 @@
     padding: 24px;
     justify-content: space-evenly;
     background-color: #f3f7fb;
-
     h2 {
       font-weight: 800;
       font-size: 36px;
@@ -505,14 +468,12 @@
       margin-bottom: 16px;
     }
   }
-
   .cards-container {
     display: flex;
     justify-content: center;
     width: 100%;
     gap: 2.5rem;
   }
-
   .content-container {
     display: flex;
     background-color: white;
@@ -521,23 +482,22 @@
     align-items: center;
     width: 15rem;
   }
-
   .content-box {
     display: flex;
     flex-direction: column;
     align-items: center;
     color: #0c326f;
     gap: 0.25rem;
+    text-align: center;
 
     h2 {
       font-size: 16px;
-      font-weight: 600;
+      font-weight: 700;
       color: #0c326f;
       padding: 0;
       margin: 0;
       text-transform: uppercase;
     }
-
     p {
       font-size: 14px;
       margin: 0;
@@ -546,19 +506,16 @@
       text-transform: uppercase;
     }
   }
-
   @media (max-width: 1045px) {
     .content-container {
       margin-bottom: 12px;
     }
-
     .cards-container {
       flex-direction: column;
       align-items: center;
       gap: 1.5rem;
     }
   }
-
   .bp-logo-container {
     margin-top: 1.5rem;
   }

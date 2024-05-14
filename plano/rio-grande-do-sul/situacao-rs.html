@@ -147,7 +147,7 @@
           >
             <div class="content-box">
               <h2>Ligue 100</h2>
-              <p>direitos humanos</p>
+              <p>Direitos Humanos</p>
             </div>
           </a>
           <a
@@ -262,57 +262,47 @@
         throw new Error(`Error fetching the page: ${error.message}`);
       });
   }
-  
   function parseDateFromText(dateString) {
     const [day, month, year] = dateString.split("/").map(Number);
     const fullYear = year < 100 ? 2000 + year : year;
     return new Date(fullYear, month - 1, day);
   }
-
   function formatDateToDDMMYY(date) {
     const day = date.getDate().toString().padStart(2, "0");
-    const month = (date.getMonth() + 1).toString().padStart(2, "0"); 
-    const year = date.getFullYear().toString().substring(2); 
+    const month = (date.getMonth() + 1).toString().padStart(2, "0");
+    const year = date.getFullYear().toString().substring(2);
     return `${day}/${month}/${year}`;
   }
-
   function getElements(originalNewsElement) {
-    const titleElement = originalNewsElement.querySelector('.news-title');
-
-    let titleContent = '';
-    let hrefPost = '#';
-
+    const titleElement = originalNewsElement.querySelector(".news-title");
+    let titleContent = "";
+    let hrefPost = "#";
     if (titleElement) {
       titleContent = titleElement.textContent.trim();
-      hrefPost = titleElement.getAttribute('href');
+      hrefPost = titleElement.getAttribute("href");
     }
-
-    const descriptionElement = originalNewsElement.querySelector('.news-description');
+    const descriptionElement =
+      originalNewsElement.querySelector(".news-description");
     let dateExtracted = new Date(0);
-    let subtitleContent = '';
-
+    let subtitleContent = "";
     if (descriptionElement) {
       const fullDescription = descriptionElement.textContent.trim();
-      subtitleContent = fullDescription.split('-')[1].trim();
+      subtitleContent = fullDescription.split("-")[1].trim();
       dateExtracted = parseDateFromText(fullDescription.split("-")[0].trim());
-    }
-    else if (originalNewsElement.querySelector('.br-card-content')){
-      // mobile devices
-      subtitleContent = originalNewsElement.querySelector('.br-card-content').textContent.trim();
-      const tempElement = originalNewsElement.querySelector('.br-card-date');
+    } else if (originalNewsElement.querySelector(".br-card-content")) {
+      subtitleContent = originalNewsElement
+        .querySelector(".br-card-content")
+        .textContent.trim();
+      const tempElement = originalNewsElement.querySelector(".br-card-date");
       dateExtracted = parseDateFromText(tempElement.textContent.trim());
     }
-
-    const imageElement = originalNewsElement.querySelector('.news-cover-image');
-    let imageUrl = '#';
-    
-    if (imageElement){
-      imageUrl = imageElement.getAttribute('href');
+    const imageElement = originalNewsElement.querySelector(".news-cover-image");
+    let imageUrl = "#";
+    if (imageElement) {
+      imageUrl = imageElement.getAttribute("href");
     }
-
-    return { titleContent, hrefPost, subtitleContent, imageUrl, dateExtracted}
+    return { titleContent, hrefPost, subtitleContent, imageUrl, dateExtracted };
   }
-
   function generateBlogHTML(url, originalHTML) {
     const tempElement = document.createElement("div");
     tempElement.innerHTML = originalHTML;
@@ -320,12 +310,16 @@
     const resultHTMLArray = [];
     let latestDate = new Date(0);
     originalNewsElements.forEach((originalNewsElement) => {
-      const { titleContent, hrefPost, subtitleContent, imageUrl, dateExtracted } = getElements(originalNewsElement);
-
+      const {
+        titleContent,
+        hrefPost,
+        subtitleContent,
+        imageUrl,
+        dateExtracted,
+      } = getElements(originalNewsElement);
       if (dateExtracted > latestDate) {
         latestDate = dateExtracted;
       }
-      
       const htmlTemplate = ` <div class="report-content"> <h3 class="report-number">${subtitleContent}</h3> <p class="report-description">${titleContent}</p> </div> `;
       resultHTMLArray.push(htmlTemplate);
     });
@@ -550,7 +544,7 @@
   .list-item-text {
     font-size: 1rem;
     color: var(--blue-warm-vivid-80);
-    text-align: center;
+    text-align: left;
     font-weight: bold;
   }
   .report-container {
