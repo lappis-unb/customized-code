@@ -98,6 +98,9 @@
   .inform-container {
     display: flex;
     flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+    align-items: center;
 
     h2 {
       font-weight: bold;
@@ -110,6 +113,7 @@
       font-size: 1.05rem;
       color: var(--gray-90);
       text-align: center;
+      max-width: 800px;
     }
   }
 
@@ -150,7 +154,6 @@
     gap: 1rem;
     flex-wrap: wrap;
     justify-content: center;
-    margin: 1.5rem 0;
   }
 
   .list-item {
@@ -440,20 +443,18 @@ function fetchAllPages(url) {
       if (dateExtracted > latestDate) {
         latestDate = dateExtracted; // Save the bigger (more recent) date
       }
-      let htmlTemplate = `<a class="action-card">
-                <p class="value-text">${subtitleContent} mil</p>
-                <p class="category-text">${titleContent}</p>
-            </a>`;
+      let htmlTemplate = `<div class="action-card">
+        <p class="value-text">${subtitleContent}</p>
+        <p class="category-text">${titleContent}</p>
+      </div>`;
 
-      if (titleContent.includes("Investimento Total")) {
+      if (titleContent.includes("investimento total")) {
         htmlTemplate = `
-                  <div>
-                    <a class="action-card investment">
-                        <p class="value-text investment">${subtitleContent} bi</p>
-                        <p class="category-text investment">${titleContent}</p>
-                    </a>
-                  </div>
-                  <div class="other-big-numbers">`;
+          <div class="action-card investment">
+            <p class="value-text investment">${subtitleContent}</p>
+            <p class="category-text investment">${titleContent}</p>
+          </div>
+          <div class="other-big-numbers">`;
       }
 
       if (titleContent.includes("Profissionais em Campo")) {
@@ -584,15 +585,19 @@ function fetchAllPages(url) {
     align-items: flex-start;
     justify-content: center;
     margin-top: 64px;
+    flex-wrap: wrap;
+    gap: 2rem 0;
   }
 
   .actions-card-container {
     display: flex;
     align-items: center;
     flex-direction: column;
-    justify-content: space-between;
-    margin-top: 80px;
+    justify-content: center;
     margin-bottom: 64px;
+    flex-wrap: wrap;
+    max-width: 1140px;
+    margin: 60px auto;
   }
 
   .action-card {
@@ -602,6 +607,7 @@ function fetchAllPages(url) {
     align-items: center;
     flex-wrap: wrap;
     margin: 0px 12px;
+    width: 300px;
 
     p {
       color: var(--blue-warm-vivid-80);
