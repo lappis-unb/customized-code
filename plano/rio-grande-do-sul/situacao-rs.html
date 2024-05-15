@@ -323,9 +323,7 @@
       const htmlTemplate = ` <div class="report-content"> <h3 class="report-number">${subtitleContent}</h3> <p class="report-description">${titleContent}</p> </div> `;
       resultHTMLArray.push(htmlTemplate);
     });
-    let resultHTML = ` <div class="last-time-updated"> Atualizado em ${formatDateToDDMMYY(
-      latestDate
-    )} </div> <div class="report-section" > `;
+    let resultHTML = ` <div class="last-time-updated"> Atualizado em 14/05/2024 - 18h </div> <div class="report-section" > `;
     resultHTML += resultHTMLArray.join("\n");
     resultHTML += "</div></div></section>";
     return resultHTML;
