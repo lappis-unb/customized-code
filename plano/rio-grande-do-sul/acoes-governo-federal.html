@@ -172,6 +172,14 @@
     }
     return { titleContent, hrefPost, subtitleContent, imageUrl, dateExtracted };
   }
+  function ordenarPorChave(arrayDeObjetos) {
+    arrayDeObjetos.sort((a, b) => {
+      return a.key - b.key;
+    });
+
+    return arrayDeObjetos;
+  }
+
   function generateBlogHTML(url, originalHTML) {
     const tempElement = document.createElement("div");
     tempElement.innerHTML = originalHTML;
@@ -179,6 +187,7 @@
     let resultHTMLArray = [];
     const subtitleStyle = ` <div class="itens-list"> `;
     resultHTMLArray.push(subtitleStyle);
+    let cardsElements = [];
     originalNewsElements.forEach((originalNewsElement) => {
       const {
         titleContent,
@@ -187,13 +196,23 @@
         imageUrl,
         dateExtracted,
       } = getElements(originalNewsElement);
-      const htmlTemplate = ` <a class="list-item" href="${hrefPost}" > <span class="list-item-text"> ${titleContent} </span> </a> `;
-      resultHTMLArray.push(htmlTemplate);
+      const htmlTemplate = `
+        <a class="list-item" href="${hrefPost}"><span class="list-item-text">${titleContent}</span></a>
+      `;
+      cardsElements.push({
+        key: parseInt(subtitleContent),
+        value: htmlTemplate,
+      });
+    });
+    const arrayOrdenado = ordenarPorChave(cardsElements);
+    arrayOrdenado.forEach((a) => {
+      resultHTMLArray.push(a.value);
     });
     let resultHTML = resultHTMLArray.join("\n");
     resultHTMLArray.push("</div>");
     return resultHTML;
   }
+
   function generateBlog(url) {
     fetchAllPages(url)
       .then((html) => {
