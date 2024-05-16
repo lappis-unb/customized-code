@@ -65,197 +65,7 @@
     /></a>
   </section>
 </div>
-<script>
-  function fetchAllPages(url) {
-    return fetch(url)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(
-            `Error fetching the page. Response status: ${response.status}`
-          );
-        }
-        return response.text();
-      })
-      .then((html) => {
-        let resultHTML = html;
-        const tempElement = document.createElement("div");
-        tempElement.innerHTML = resultHTML;
-        const pagination = tempElement.querySelector(".pagination-container");
-        if (!pagination) return html;
-        const lastPageLink = pagination
-          .querySelector(".pagination-last a")
-          .getAttribute("href");
-        const regex = /page=(\d+)/;
-        const match = lastPageLink.match(regex);
-        const baseURL = "https://brasilparticipativo.presidencia.gov.br";
-        if (match) {
-          const totalPageNumber = parseInt(match[1], 10);
-          const fetchPromises = [];
-          for (let i = 2; i <= totalPageNumber; i++) {
-            const newURL = `${baseURL}${lastPageLink.replace(
-              regex,
-              `page=${i}`
-            )}`;
-            fetchPromises.push(
-              fetchHTML(newURL)
-                .then((pageHtml) => {
-                  resultHTML += pageHtml;
-                })
-                .catch((error) => {
-                  console.error("Error fetching page:", error);
-                })
-            );
-          }
-          return Promise.all(fetchPromises).then(() => resultHTML);
-        } else {
-          console.log("Page number not found");
-          return resultHTML;
-        }
-      })
-      .catch((error) => {
-        throw new Error(`Error fetching the page: ${error.message}`);
-      });
-  }
-  function fetchHTML(url) {
-    return fetch(url)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(
-            `Error fetching the page. Response status: ${response.status}`
-          );
-        }
-        return response.text();
-      })
-      .then((html) => {
-        return html;
-      })
-      .catch((error) => {
-        throw new Error(`Error fetching the page: ${error.message}`);
-      });
-  }
-  function parseDateFromText(dateString) {
-    const [day, month, year] = dateString.split("/").map(Number);
-    const fullYear = year < 100 ? 2000 + year : year;
-    return new Date(fullYear, month - 1, day);
-  }
-  function formatDateToDDMMYY(date) {
-    const day = date.getDate().toString().padStart(2, "0");
-    const month = (date.getMonth() + 1).toString().padStart(2, "0");
-    const year = date.getFullYear().toString().substring(2);
-    return `${day}/${month}/${year}`;
-  }
-  function getElements(originalNewsElement) {
-    const titleElement = originalNewsElement.querySelector(".news-title");
-    let titleContent = "";
-    let hrefPost = "#";
-    if (titleElement) {
-      titleContent = titleElement.textContent.trim();
-      hrefPost = titleElement.getAttribute("href");
-    }
-    const descriptionElement =
-      originalNewsElement.querySelector(".news-description");
-    let dateExtracted = new Date(0);
-    let subtitleContent = "";
-    if (descriptionElement) {
-      const fullDescription = descriptionElement.textContent.trim();
-      subtitleContent = fullDescription.split("-")[1].trim();
-      dateExtracted = parseDateFromText(fullDescription.split("-")[0].trim());
-    } else if (originalNewsElement.querySelector(".br-card-content")) {
-      subtitleContent = originalNewsElement
-        .querySelector(".br-card-content")
-        .textContent.trim();
-      const tempElement = originalNewsElement.querySelector(".br-card-date");
-      dateExtracted = parseDateFromText(tempElement.textContent.trim());
-    }
-    const imageElement = originalNewsElement.querySelector(".news-cover-image");
-    let imageUrl = "#";
-    if (imageElement) {
-      imageUrl = imageElement.getAttribute("href");
-    }
-    return { titleContent, hrefPost, subtitleContent, imageUrl, dateExtracted };
-  }
-  function generateBlogHTML(url, originalHTML) {
-    const tempElement = document.createElement("div");
-    tempElement.innerHTML = originalHTML;
-    const originalNewsElements = tempElement.querySelectorAll(".news-item");
-    let hashTypes = {};
-    originalNewsElements.forEach((originalNewsElement) => {
-      const {
-        titleContent,
-        hrefPost,
-        subtitleContent,
-        imageUrl,
-        dateExtracted,
-      } = getElements(originalNewsElement);
-      const htmlTemplate = ` <a class="list-item" href="${hrefPost}"> <span class="list-item-text"> ${titleContent} </span> </a>`;
-      if (!hashTypes[subtitleContent]) {
-        hashTypes[subtitleContent] = [];
-      }
-      hashTypes[subtitleContent].push(htmlTemplate);
-    });
-    let resultHTMLArray = [];
-    for (let subtitle in hashTypes) {
-      const subtitleStyle = ` <div class="title-header"> <h3 class="title-subtext" data-asw-orgfontsize="16" style="font-size: 16px;"> ${subtitle} </h3> </div> <div class="itens-list"> `;
-      resultHTMLArray.push(subtitleStyle);
-      resultHTMLArray.push(hashTypes[subtitle].join("\n"));
-      resultHTMLArray.push("</div>");
-    }
-    let resultHTML = resultHTMLArray.join("\n");
-    return resultHTML;
-  }
-  function generateBlog(url) {
-    fetchAllPages(url)
-      .then((html) => {
-        return generateBlogHTML(url, html);
-      })
-      .then((newsContent) => {
-        if (newsContent !== "error") {
-          blogContent = newsContent;
-          const blogContainer = document.querySelector("#blogContainer");
-          if (blogContainer) {
-            blogContainer.innerHTML = blogContent;
-          } else {
-            console.error('Element with id "blogContainer" not found.');
-          }
-        } else {
-          console.error("Error fetching news.");
-        }
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
-  }
-  const url =
-    "https://brasilparticipativo.presidencia.gov.br/processes/unidospelors/f/118/";
-  generateBlog(url);
-</script>
-<script>
-  const infoCardButtons = document.querySelectorAll(".info-card-button");
-  infoCardButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-      const cardItem = button.parentElement;
-      const cardFront = cardItem.querySelector(".report-card-front");
-      const cardBack = cardItem.querySelector(".report-card-back");
-      if (cardFront.style.display !== "none") {
-        button.classList.remove("background-active");
-        cardFront.style.display = "none";
-        cardBack.style.display = "flex";
-      } else {
-        button.classList.add("background-active");
-        cardFront.style.display = "flex";
-        cardBack.style.display = "none";
-      }
-      const icon = button.querySelector("i");
-      if (icon.classList.contains("fa-info")) {
-        icon.classList.remove("fa-info");
-        icon.classList.add("fa-times");
-      } else {
-        icon.classList.remove("fa-times");
-        icon.classList.add("fa-info");
-      }
-    });
-  });
-</script>
+
 <style>
   .center-container {
     display: flex;
@@ -491,19 +301,18 @@
     justify-content: space-evenly;
     background-color: #f3f7fb;
     h2 {
-      color: #0c326f;
-      font-family: Rawline;
-      font-size: 32px;
-      font-style: normal;
-      font-weight: 700;
-      line-height: normal;
+      font-weight: 800;
+      font-size: 36px;
+      padding: 0;
+      margin: 0;
+      margin-bottom: 16px;
     }
   }
   .cards-container {
     display: flex;
     justify-content: center;
-    gap: 24px;
     width: 100%;
+    gap: 2.5rem;
   }
   .content-container {
     display: flex;
@@ -511,15 +320,18 @@
     padding: 10px 16px;
     justify-content: center;
     align-items: center;
+    width: 15rem;
   }
   .content-box {
     display: flex;
     flex-direction: column;
     align-items: center;
     color: #0c326f;
+    gap: 0.25rem;
+    text-align: center;
     h2 {
       font-size: 16px;
-      font-weight: 600;
+      font-weight: 700;
       color: #0c326f;
       padding: 0;
       margin: 0;
@@ -539,9 +351,201 @@
     }
     .cards-container {
       flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
     }
   }
   #blogContainer {
     width: 100%;
   }
 </style>
+
+<script>
+  function fetchAllPages(url) {
+    return fetch(url)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(
+            `Error fetching the page. Response status: ${response.status}`
+          );
+        }
+        return response.text();
+      })
+      .then((html) => {
+        let resultHTML = html;
+        const tempElement = document.createElement("div");
+        tempElement.innerHTML = resultHTML;
+        const pagination = tempElement.querySelector(".pagination-container");
+        if (!pagination) return html;
+        const lastPageLink = pagination
+          .querySelector(".pagination-last a")
+          .getAttribute("href");
+        const regex = /page=(\d+)/;
+        const match = lastPageLink.match(regex);
+        const baseURL = "https://brasilparticipativo.presidencia.gov.br";
+        if (match) {
+          const totalPageNumber = parseInt(match[1], 10);
+          const fetchPromises = [];
+          for (let i = 2; i <= totalPageNumber; i++) {
+            const newURL = `${baseURL}${lastPageLink.replace(
+              regex,
+              `page=${i}`
+            )}`;
+            fetchPromises.push(
+              fetchHTML(newURL)
+                .then((pageHtml) => {
+                  resultHTML += pageHtml;
+                })
+                .catch((error) => {
+                  console.error("Error fetching page:", error);
+                })
+            );
+          }
+          return Promise.all(fetchPromises).then(() => resultHTML);
+        } else {
+          console.log("Page number not found");
+          return resultHTML;
+        }
+      })
+      .catch((error) => {
+        throw new Error(`Error fetching the page: ${error.message}`);
+      });
+  }
+  function fetchHTML(url) {
+    return fetch(url)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(
+            `Error fetching the page. Response status: ${response.status}`
+          );
+        }
+        return response.text();
+      })
+      .then((html) => {
+        return html;
+      })
+      .catch((error) => {
+        throw new Error(`Error fetching the page: ${error.message}`);
+      });
+  }
+  function parseDateFromText(dateString) {
+    const [day, month, year] = dateString.split("/").map(Number);
+    const fullYear = year < 100 ? 2000 + year : year;
+    return new Date(fullYear, month - 1, day);
+  }
+  function formatDateToDDMMYY(date) {
+    const day = date.getDate().toString().padStart(2, "0");
+    const month = (date.getMonth() + 1).toString().padStart(2, "0");
+    const year = date.getFullYear().toString().substring(2);
+    return `${day}/${month}/${year}`;
+  }
+  function getElements(originalNewsElement) {
+    const titleElement = originalNewsElement.querySelector(".news-title");
+    let titleContent = "";
+    let hrefPost = "#";
+    if (titleElement) {
+      titleContent = titleElement.textContent.trim();
+      hrefPost = titleElement.getAttribute("href");
+    }
+    const descriptionElement =
+      originalNewsElement.querySelector(".news-description");
+    let dateExtracted = new Date(0);
+    let subtitleContent = "";
+    if (descriptionElement) {
+      const fullDescription = descriptionElement.textContent.trim();
+      subtitleContent = fullDescription.split("-")[1].trim();
+      dateExtracted = parseDateFromText(fullDescription.split("-")[0].trim());
+    } else if (originalNewsElement.querySelector(".br-card-content")) {
+      subtitleContent = originalNewsElement
+        .querySelector(".br-card-content")
+        .textContent.trim();
+      const tempElement = originalNewsElement.querySelector(".br-card-date");
+      dateExtracted = parseDateFromText(tempElement.textContent.trim());
+    }
+    const imageElement = originalNewsElement.querySelector(".news-cover-image");
+    let imageUrl = "#";
+    if (imageElement) {
+      imageUrl = imageElement.getAttribute("href");
+    }
+    return { titleContent, hrefPost, subtitleContent, imageUrl, dateExtracted };
+  }
+  function generateBlogHTML(url, originalHTML) {
+    const tempElement = document.createElement("div");
+    tempElement.innerHTML = originalHTML;
+    const originalNewsElements = tempElement.querySelectorAll(".news-item");
+    let hashTypes = {};
+    originalNewsElements.forEach((originalNewsElement) => {
+      const {
+        titleContent,
+        hrefPost,
+        subtitleContent,
+        imageUrl,
+        dateExtracted,
+      } = getElements(originalNewsElement);
+      const htmlTemplate = ` <a class="list-item" href="${hrefPost}"> <span class="list-item-text"> ${titleContent} </span> </a>`;
+      if (!hashTypes[subtitleContent]) {
+        hashTypes[subtitleContent] = [];
+      }
+      hashTypes[subtitleContent].push(htmlTemplate);
+    });
+    let resultHTMLArray = [];
+    for (let subtitle in hashTypes) {
+      const subtitleStyle = ` <div class="title-header"> <h3 class="title-subtext" data-asw-orgfontsize="16" style="font-size: 16px;"> ${subtitle} </h3> </div> <div class="itens-list"> `;
+      resultHTMLArray.push(subtitleStyle);
+      resultHTMLArray.push(hashTypes[subtitle].join("\n"));
+      resultHTMLArray.push("</div>");
+    }
+    let resultHTML = resultHTMLArray.join("\n");
+    return resultHTML;
+  }
+  function generateBlog(url) {
+    fetchAllPages(url)
+      .then((html) => {
+        return generateBlogHTML(url, html);
+      })
+      .then((newsContent) => {
+        if (newsContent !== "error") {
+          blogContent = newsContent;
+          const blogContainer = document.querySelector("#blogContainer");
+          if (blogContainer) {
+            blogContainer.innerHTML = blogContent;
+          } else {
+            console.error('Element with id "blogContainer" not found.');
+          }
+        } else {
+          console.error("Error fetching news.");
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  }
+  const url =
+    "https://brasilparticipativo.presidencia.gov.br/processes/unidospelors/f/118/";
+  generateBlog(url);
+  const infoCardButtons = document.querySelectorAll(".info-card-button");
+  infoCardButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const cardItem = button.parentElement;
+      const cardFront = cardItem.querySelector(".report-card-front");
+      const cardBack = cardItem.querySelector(".report-card-back");
+      if (cardFront.style.display !== "none") {
+        button.classList.remove("background-active");
+        cardFront.style.display = "none";
+        cardBack.style.display = "flex";
+      } else {
+        button.classList.add("background-active");
+        cardFront.style.display = "flex";
+        cardBack.style.display = "none";
+      }
+      const icon = button.querySelector("i");
+      if (icon.classList.contains("fa-info")) {
+        icon.classList.remove("fa-info");
+        icon.classList.add("fa-times");
+      } else {
+        icon.classList.remove("fa-times");
+        icon.classList.add("fa-info");
+      }
+    });
+  });
+</script>

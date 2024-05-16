@@ -111,7 +111,177 @@
     </div>
   </section>
 </section>
+
 <style>
+  .last-time-updated {
+    border-bottom: 1px #333333 solid;
+    border-top: 1px #333333 solid;
+    padding: 12px;
+  } /* Divider */
+  .divider {
+    border-bottom: 1px solid #cccccc;
+    margin: 64px 0px;
+  }
+  .divider.blue {
+    margin: 0.5rem 0;
+    border-bottom: 1px solid var(--blue-warm-vivid-20);
+  } /* Title */
+  .actions-title-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 64px;
+    h2 {
+      font-weight: 800;
+      font-size: 36px;
+      padding: 0;
+      margin: 0;
+    }
+  } /* BiNumbers */
+  @media (max-width: 992px) {
+    .other-big-numbers {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+  .other-big-numbers {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    margin-top: 64px;
+    flex-wrap: wrap;
+    gap: 2rem 0;
+  }
+  .actions-card-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 64px;
+    flex-wrap: wrap;
+    max-width: 1140px;
+    margin: 60px auto;
+  }
+  .action-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 0px 12px;
+    width: 300px;
+    p {
+      color: var(--blue-warm-vivid-80);
+    }
+  }
+  .value-text {
+    font-size: 3rem !important;
+    font-weight: 700;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    color: var(--blue-warm-vivid-80);
+  }
+  .value-info {
+    font-size: 1.5rem !important;
+    font-weight: 700;
+    margin-bottom: 30px;
+  }
+  .category-text {
+    font-size: 1.25rem !important;
+    font-weight: 600;
+    text-align: center;
+  }
+  .value-text.investment {
+    font-size: 62px;
+  }
+  .value-info.investment {
+    font-size: 32px;
+  }
+  .category-text.investment {
+    font-size: 26px;
+  }
+  .subcategory-text {
+    font-size: 1rem;
+    font-weight: 500;
+    text-align: center;
+  }
+
+  .home-section-title {
+    font-size: 32px;
+  }
+  #confnoticias {
+    margin-bottom: 64px;
+  }
+  .news-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .news-card__title {
+    color: #242020;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1.75rem;
+    margin-top: 2.5rem;
+    text-align: center;
+  }
+  .news-card__list {
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    flex-direction: row;
+    margin-bottom: 2rem;
+  }
+  .news-card__list__item {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: var(--pure-0);
+    gap: 16px;
+    height: auto;
+    padding: 0;
+    transition: 0.3s ease;
+  }
+  .news-card__list__item:hover {
+    transform: scale(1.05);
+  }
+  .news-card__list__item__overlay {
+    font-size: 16.8px;
+    font-weight: 600;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: var(--blue-warm-vivid-80);
+    text-align: left;
+  }
+  .news-card__list__item__overlay:hover {
+    color: var(--color-primary-default);
+  }
+  .more-news-button-container {
+    display: flex;
+    justify-content: center;
+  }
+  @media (max-width: 992px) {
+    .news-card__list__item {
+      justify-content: center;
+    }
+    .news-card__list {
+      display: grid;
+      grid-template-columns: 1fr;
+      justify-content: center;
+      align-items: center;
+      justify-items: center;
+      flex-direction: column;
+      margin-bottom: 2rem;
+      gap: 16px;
+    }
+  }
+
   .inform-container {
     display: flex;
     flex-direction: column;
@@ -126,7 +296,6 @@
     }
     p {
       font-size: 1.05rem;
-      color: var(--gray-90);
       text-align: center;
       max-width: 800px;
     }
@@ -248,8 +417,8 @@
   .cards-container {
     display: flex;
     justify-content: center;
-    gap: 24px;
     width: 100%;
+    gap: 2.5rem;
   }
   .content-container {
     display: flex;
@@ -257,6 +426,7 @@
     padding: 10px 16px;
     justify-content: center;
     align-items: center;
+    width: 15rem;
   }
   .content-box {
     display: flex;
@@ -264,9 +434,10 @@
     align-items: center;
     color: #0c326f;
     gap: 0.25rem;
+    text-align: center;
     h2 {
       font-size: 16px;
-      font-weight: 600;
+      font-weight: 700;
       color: #0c326f;
       padding: 0;
       margin: 0;
@@ -286,10 +457,97 @@
     }
     .cards-container {
       flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
     }
   }
+  .debt-class {
+    margin-bottom: 60px;
+  } /* FIM NOTICIAS */
+
+  .image-content {
+    margin-top: -0.25rem;
+  }
 </style>
+
 <script>
+  function requestHTML(url) {
+    return fetch(url)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(
+            `Erro ao buscar a página. Status de resposta: ${response.status}`
+          );
+        }
+        return response.text();
+      })
+      .then((html) => {
+        return html;
+      })
+      .catch((error) => {
+        throw new Error(`Erro ao buscar a página: ${error.message}`);
+      });
+  }
+  function getNoticias(url, href, descButton, originalHTML) {
+    const tempElement = document.createElement("div");
+    tempElement.innerHTML = originalHTML;
+    const originalNewsElements = tempElement.querySelectorAll(".news-item");
+    const resultHTMLArray = [];
+    let count = 0;
+    originalNewsElements.forEach((originalNewsElement) => {
+      const href_noticia = originalNewsElement
+        .querySelector(".news-title")
+        .getAttribute("href");
+      const titulo_noticia =
+        originalNewsElement.querySelector(".news-title").textContent;
+      const url_img = originalNewsElement
+        .querySelector(".news-cover-image")
+        .getAttribute("src");
+      const newHTML = ` <a class="news-card__list__item" href="${href_noticia}" > <img src="${url_img}" /> <span class="news-card__list__item__overlay"> ${titulo_noticia} </span> </a> `;
+      count += 1;
+      if (resultHTMLArray.length >= 3) {
+        buttonMore = `</div></section> <div class="more-news-button-container"> <a class="br-button secondary mr-3" type="button" href="${href}" >${descButton}</a > </div>`;
+        if (resultHTMLArray.length <= 3) resultHTMLArray.push(buttonMore);
+        const resultHTML = resultHTMLArray.join("\n");
+        return resultHTML;
+      } else resultHTMLArray.push(newHTML);
+    });
+    if (count == 0) return "error";
+    let resultHTML = resultHTMLArray.join("\n");
+    resultHTML += "</div></section>";
+    return resultHTML;
+  }
+  function gerenciaNoticias(url, href, title, descButton) {
+    requestHTML(url)
+      .then((html) => {
+        return getNoticias(url, href, descButton, html);
+      })
+      .then((responseNoticias) => {
+        if (responseNoticias !== "error") {
+          let contentNoticiais = `<section class="news-card"> <span class="home-section-title">${title}</span> <div class="news-card__list br-container-lg">`;
+          contentNoticiais += responseNoticias;
+          const confNoticias = document.querySelector("#confnoticias");
+          if (confNoticias) {
+            confNoticias.innerHTML = contentNoticiais;
+          } else {
+            console.error('Elemento com id "confnoticias" não encontrado.');
+          }
+        } else {
+          console.error("Erro ao buscar notícias.");
+        }
+      })
+      .catch((error) => {
+        console.error("Erro:", error);
+      });
+  }
+  const url_not =
+    "https://brasilparticipativo.presidencia.gov.br/processes/unidospelors/f/99/";
+  const href_not =
+    "https://www.gov.br/secom/pt-br/assuntos/acoes-federais-no-rs/ultimas-noticias";
+  const title = "Notícias";
+  const descButton = "Mais Notícias";
+  gerenciaNoticias(url_not, href_not, title, descButton);
+
   function fetchAllPages(url) {
     return fetch(url)
       .then((response) => {
@@ -462,255 +720,3 @@
     "https://brasilparticipativo.presidencia.gov.br/processes/unidospelors/f/111/";
   generateBlog(url, href);
 </script>
-<style>
-  .last-time-updated {
-    border-bottom: 1px #333333 solid;
-    border-top: 1px #333333 solid;
-    padding: 12px;
-  } /* Divider */
-  .divider {
-    border-bottom: 1px solid #cccccc;
-    margin: 64px 0px;
-  }
-  .divider.blue {
-    margin: 0.5rem 0;
-    border-bottom: 1px solid var(--blue-warm-vivid-20);
-  } /* Title */
-  .actions-title-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 64px;
-    h2 {
-      font-weight: 800;
-      font-size: 36px;
-      padding: 0;
-      margin: 0;
-    }
-  } /* BiNumbers */
-  @media (max-width: 992px) {
-    .other-big-numbers {
-      flex-direction: column;
-      align-items: center;
-    }
-  }
-  .other-big-numbers {
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    margin-top: 64px;
-    flex-wrap: wrap;
-    gap: 2rem 0;
-  }
-  .actions-card-container {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
-    margin-bottom: 64px;
-    flex-wrap: wrap;
-    max-width: 1140px;
-    margin: 60px auto;
-  }
-  .action-card {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    flex-wrap: wrap;
-    margin: 0px 12px;
-    width: 300px;
-    p {
-      color: var(--blue-warm-vivid-80);
-    }
-  }
-  .value-text {
-    font-size: 3rem !important;
-    font-weight: 700;
-    margin-bottom: 16px;
-    padding-bottom: 12px;
-  }
-  .value-info {
-    font-size: 1.5rem !important;
-    font-weight: 700;
-    margin-bottom: 30px;
-  }
-  .category-text {
-    font-size: 1.25rem !important;
-    font-weight: 600;
-    text-align: center;
-  }
-  .value-text.investment {
-    font-size: 62px;
-  }
-  .value-info.investment {
-    font-size: 32px;
-  }
-  .category-text.investment {
-    font-size: 26px;
-  }
-  .subcategory-text {
-    font-size: 1rem;
-    font-weight: 500;
-    text-align: center;
-  }
-</style>
-<script>
-  function requestHTML(url) {
-    return fetch(url)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(
-            `Erro ao buscar a página. Status de resposta: ${response.status}`
-          );
-        }
-        return response.text();
-      })
-      .then((html) => {
-        return html;
-      })
-      .catch((error) => {
-        throw new Error(`Erro ao buscar a página: ${error.message}`);
-      });
-  }
-  function getNoticias(url, href, descButton, originalHTML) {
-    const tempElement = document.createElement("div");
-    tempElement.innerHTML = originalHTML;
-    const originalNewsElements = tempElement.querySelectorAll(".news-item");
-    const resultHTMLArray = [];
-    let count = 0;
-    originalNewsElements.forEach((originalNewsElement) => {
-      const href_noticia = originalNewsElement
-        .querySelector(".news-title")
-        .getAttribute("href");
-      const titulo_noticia =
-        originalNewsElement.querySelector(".news-title").textContent;
-      const url_img = originalNewsElement
-        .querySelector(".news-cover-image")
-        .getAttribute("src");
-      const newHTML = ` <a class="news-card__list__item" href="${href_noticia}" > <img src="${url_img}" /> <span class="news-card__list__item__overlay"> ${titulo_noticia} </span> </a> `;
-      count += 1;
-      if (resultHTMLArray.length >= 3) {
-        buttonMore = `</div></section> <div class="more-news-button-container"> <a class="br-button secondary mr-3" type="button" href="${href}" >${descButton}</a > </div>`;
-        if (resultHTMLArray.length <= 3) resultHTMLArray.push(buttonMore);
-        const resultHTML = resultHTMLArray.join("\n");
-        return resultHTML;
-      } else resultHTMLArray.push(newHTML);
-    });
-    if (count == 0) return "error";
-    let resultHTML = resultHTMLArray.join("\n");
-    resultHTML += "</div></section>";
-    return resultHTML;
-  }
-  function gerenciaNoticias(url, href, title, descButton) {
-    requestHTML(url)
-      .then((html) => {
-        return getNoticias(url, href, descButton, html);
-      })
-      .then((responseNoticias) => {
-        if (responseNoticias !== "error") {
-          let contentNoticiais = `<section class="news-card"> <span class="home-section-title">${title}</span> <div class="news-card__list br-container-lg">`;
-          contentNoticiais += responseNoticias;
-          const confNoticias = document.querySelector("#confnoticias");
-          if (confNoticias) {
-            confNoticias.innerHTML = contentNoticiais;
-          } else {
-            console.error('Elemento com id "confnoticias" não encontrado.');
-          }
-        } else {
-          console.error("Erro ao buscar notícias.");
-        }
-      })
-      .catch((error) => {
-        console.error("Erro:", error);
-      });
-  }
-  const url_not =
-    "https://brasilparticipativo.presidencia.gov.br/processes/unidospelors/f/99/";
-  const href_not =
-    "https://www.gov.br/secom/pt-br/assuntos/acoes-federais-no-rs/ultimas-noticias";
-  const title = "Notícias";
-  const descButton = "Mais Notícias";
-  gerenciaNoticias(url_not, href_not, title, descButton);
-</script>
-<style>
-  /* NOTICIAS */
-  .home-section-title {
-    font-size: 32px;
-  }
-  #confnoticias {
-    margin-bottom: 64px;
-  }
-  .news-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  .news-card__title {
-    color: #242020;
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin-bottom: 1.75rem;
-    margin-top: 2.5rem;
-    text-align: center;
-  }
-  .news-card__list {
-    display: flex;
-    gap: 24px;
-    justify-content: center;
-    flex-direction: row;
-    margin-bottom: 2rem;
-  }
-  .news-card__list__item {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    background-color: var(--pure-0);
-    gap: 16px;
-    height: auto;
-    padding: 0;
-    transition: 0.3s ease;
-  }
-  .news-card__list__item:hover {
-    transform: scale(1.05);
-  }
-  .news-card__list__item__overlay {
-    font-size: 16.8px;
-    font-weight: 600;
-    display: -webkit-box;
-    -webkit-line-clamp: 5;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    color: var(--blue-warm-vivid-80);
-    text-align: left;
-  }
-  .news-card__list__item__overlay:hover {
-    color: var(--color-primary-default);
-  }
-  .more-news-button-container {
-    display: flex;
-    justify-content: center;
-  }
-  @media (max-width: 992px) {
-    .news-card__list__item {
-      justify-content: center;
-    }
-    .news-card__list {
-      display: grid;
-      grid-template-columns: 1fr;
-      justify-content: center;
-      align-items: center;
-      justify-items: center;
-      flex-direction: column;
-      margin-bottom: 2rem;
-      gap: 16px;
-    }
-  }
-  .debt-class {
-    margin-bottom: 60px;
-  } /* FIM NOTICIAS */
-</style>
