@@ -194,7 +194,9 @@
         imageUrl,
         dateExtracted,
       } = getElements(originalNewsElement);
-      const htmlTemplate = ` <a class="list-item" href="${hrefPost}"><span class="list-item-text">${titleContent}</span></a> `;
+      const htmlTemplate = `
+        <a class="list-item" href="${hrefPost}"><span class="list-item-text">${titleContent}</span></a>
+      `;
       cardsElements.push({
         key: parseInt(subtitleContent),
         value: htmlTemplate,
@@ -208,6 +210,7 @@
     resultHTMLArray.push("</div>");
     return resultHTML;
   }
+
   function generateBlog(url) {
     fetchAllPages(url)
       .then((html) => {

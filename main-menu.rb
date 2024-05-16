@@ -8,6 +8,13 @@
       "is_visible"=> true
     },
     {
+      "id"=> "unidospelors",
+      "href"=> "/processes/unidospelors/",
+      "label"=> "O Brasil Unido pelo RS",
+      "sub_items"=> [],
+      "is_visible"=> true
+    },
+    {
       "id"=> "conferencias",
       "href"=> "/assemblies/",
       "label"=> "Conferências",
