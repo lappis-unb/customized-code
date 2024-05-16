@@ -1,6 +1,6 @@
 <section class="br-container-lg">
   <div class="report-container">
-    <h2 class="title-text">Situação no RS</h2>
+    <h1 class="title-text">Situação no RS</h1>
     <div class="report-card-list">
       <div class="report-card-item">
         <a
@@ -139,7 +139,7 @@
       src=https://brasilparticipativo.presidencia.gov.br/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBcWViIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--b529d66240858217bd7a1b613dac32bab20b50c7/6.png
       class=image-content />
       <div class="home-sections-content information-section cards-section">
-        <h2>Canais de emergências oficiais</h2>
+        <h2>Canais de emergência oficiais</h2>
         <div class="cards-container">
           <a
             class="content-container"
@@ -323,7 +323,7 @@
       const htmlTemplate = ` <div class="report-content"> <h3 class="report-number">${subtitleContent}</h3> <p class="report-description">${titleContent}</p> </div> `;
       resultHTMLArray.push(htmlTemplate);
     });
-    let resultHTML = ` <div class="last-time-updated"> Atualizado em 14/05/2024 - 18h </div> <div class="report-section" > `;
+    let resultHTML = ` <div class="last-time-updated"> Atualizado em 15/05/2024 - 21h </div> <div class="report-section" > `;
     resultHTML += resultHTMLArray.join("\n");
     resultHTML += "</div></div></section>";
     return resultHTML;
@@ -453,6 +453,8 @@
   }
   .title-text {
     font-weight: bold;
+    color: var(--blue-warm-vivid-80);
+    font-size: 2rem;
     padding: 0px;
   }
   .report-subtitle {

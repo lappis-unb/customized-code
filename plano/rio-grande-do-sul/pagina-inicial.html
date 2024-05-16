@@ -4,6 +4,23 @@
       <h2>Ações do Governo Federal em Números</h2>
     </div>
     <div id="bigNumber"></div>
+    <div class="subcontent-section inform-container debt-class">
+      <h2>Suspensão da dívida do Estado pelo Governo Federal por 3 anos</h2>
+      <div class="other-big-numbers">
+        <div class="action-card">
+          <p class="value-text">R$ 27 bi</p>
+          <p class="category-text">recursos total</p>
+        </div>
+        <div class="action-card">
+          <p class="value-text">R$ 11 bi</p>
+          <p class="category-text">suspensão de pagamento</p>
+        </div>
+        <div class="action-card">
+          <p class="value-text">R$ 12 bi</p>
+          <p class="category-text">juros e correção</p>
+        </div>
+      </div>
+    </div>
   </section>
   <div class="subcontent-section inform-container">
     <h2>Boletins Informativos</h2>
@@ -210,7 +227,7 @@
   .list-item-text {
     font-size: 1rem;
     color: var(--blue-warm-vivid-80);
-    text-align: left;
+    text-align: center;
     font-weight: bold;
   }
   .cards-section {
@@ -411,7 +428,7 @@
       }
       resultHTMLArray.push(htmlTemplate);
     });
-    let resultHTML = ` <div class="last-time-updated"> Atualizado em 14/05/2024 </div> <div class="actions-card-container"> `;
+    let resultHTML = ` <div class="last-time-updated"> Atualizado em 15/05/2024 </div> <div class="actions-card-container"> `;
     resultHTML += resultHTMLArray.join("\n");
     resultHTML += "</div></div></div>";
     return resultHTML;
@@ -509,18 +526,18 @@
     }
   }
   .value-text {
-    font-size: 3rem;
+    font-size: 3rem !important;
     font-weight: 700;
     margin-bottom: 16px;
     padding-bottom: 12px;
   }
   .value-info {
-    font-size: 1.5rem;
+    font-size: 1.5rem !important;
     font-weight: 700;
     margin-bottom: 30px;
   }
   .category-text {
-    font-size: 1.25rem;
+    font-size: 1.25rem !important;
     font-weight: 600;
     text-align: center;
   }
@@ -612,7 +629,7 @@
   const url_not =
     "https://brasilparticipativo.presidencia.gov.br/processes/unidospelors/f/99/";
   const href_not =
-    "https://brasilparticipativo.presidencia.gov.br/processes/unidospelors/f/99/";
+    "https://www.gov.br/secom/pt-br/assuntos/acoes-federais-no-rs/ultimas-noticias";
   const title = "Notícias";
   const descButton = "Mais Notícias";
   gerenciaNoticias(url_not, href_not, title, descButton);
@@ -692,5 +709,8 @@
       margin-bottom: 2rem;
       gap: 16px;
     }
+  }
+  .debt-class {
+    margin-bottom: 60px;
   } /* FIM NOTICIAS */
 </style>

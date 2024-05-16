@@ -1,3 +1,4 @@
+<!-- Matomo -->
 <script>
   var _paq = (window._paq =
     window._paq ||
@@ -16,9 +17,17 @@
     s.parentNode.insertBefore(g, s);
   })();
 </script>
+<!-- End Matomo Code -->
 
 <script>
   document.addEventListener("DOMContentLoaded", function () {
+    var linkElement = document.querySelector('link[rel="icon"]');
+    if (linkElement) {
+      var currentHref = linkElement.getAttribute("href");
+      var newHref = currentHref.replace("http://", "https://");
+      linkElement.setAttribute("href", newHref);
+    }
+
     if (window.location.pathname.includes("/processes/unidospelors")) {
       const back_btn = document.querySelector(".small.hollow");
       if (back_btn) {
@@ -60,6 +69,13 @@
       }
     }
 
+    if (window.location.href.includes("/processes/unidospelors/f/113/posts/")) {
+      var noticeBlogOrder = document.querySelector(".blog-subtitle");
+
+      if (noticeBlogOrder) {
+        noticeBlogOrder.style.display = "none";
+      }
+    }
     if (
       window.location.href.includes("/processes/unidospelors/f/95") ||
       window.location.href.includes("/processes/unidospelors/f/102")
