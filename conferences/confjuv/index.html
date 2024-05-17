@@ -833,3 +833,23 @@
     max-width: 1152px;
   }
 </style>
+
+<script>
+  const firstActionContainer = document.querySelector('.action-container');
+
+  function stopRedirect(evt){
+    event.preventDefault();
+    let url = document.querySelector('.action-container').href;
+    fetch(url)
+    .then(response => {
+        if(response.ok){
+          window.location.href = response.url;
+          return
+        }
+        alert("Não é possível criar eventos agora, a data final de submissões já passou")
+      }
+    )
+  }
+
+  firstActionContainer.addEventListener("click", stopRedirect, event)
+</script>
