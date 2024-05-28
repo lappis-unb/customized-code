@@ -1,0 +1,139 @@
+<section>
+    <div class="container-cards">
+        <div class="itens-list">
+            <div>
+                <a class="list-item"
+                    href="https://www.gov.br/secom/pt-br/assuntos/acoes-federais-no-rs/repasses-federais-para-cidades-gauchas/arroio-do-meio-rs">
+                    <span class="list-item-text"> Arroio do Meio (RS) </span>
+                </a>
+            </div>
+            <div>
+                <a class="list-item"
+                    href="https://www.gov.br/secom/pt-br/assuntos/acoes-federais-no-rs/repasses-federais-para-cidades-gauchas/bom-retiro-do-sul">
+                    <span class="list-item-text"> Bom Retiro do Sul (RS) </span>
+                </a>
+            </div>
+            <div>
+                <a class="list-item"
+                    href="https://www.gov.br/secom/pt-br/assuntos/acoes-federais-no-rs/repasses-federais-para-cidades-gauchas/colinas">
+                    <span class="list-item-text"> Colinas (RS) </span>
+                </a>
+            </div>
+            <div>
+                <a class="list-item"
+                    href="https://www.gov.br/secom/pt-br/assuntos/acoes-federais-no-rs/repasses-federais-para-cidades-gauchas/cruzeiro-do-sul">
+                    <span class="list-item-text"> Cruzeiro do Sul (RS) </span>
+                </a>
+            </div>
+            <div>
+                <a class="list-item"
+                    href="https://www.gov.br/secom/pt-br/assuntos/acoes-federais-no-rs/repasses-federais-para-cidades-gauchas/encantado">
+                    <span class="list-item-text"> Encantado (RS) </span>
+                </a>
+            </div>
+            <div>
+                <a class="list-item"
+                    href="https://www.gov.br/secom/pt-br/assuntos/acoes-federais-no-rs/repasses-federais-para-cidades-gauchas/estrela">
+                    <span class="list-item-text"> Estrela (RS) </span>
+                </a>
+            </div>
+            <div>
+                <a class="list-item"
+                    href="https://www.gov.br/secom/pt-br/assuntos/acoes-federais-no-rs/repasses-federais-para-cidades-gauchas/lajeado">
+                    <span class="list-item-text"> Lajeado (RS) </span>
+                </a>
+            </div>
+            <div>
+                <a class="list-item"
+                    href="https://www.gov.br/secom/pt-br/assuntos/acoes-federais-no-rs/repasses-federais-para-cidades-gauchas/mucum">
+                    <span class="list-item-text"> Muçum (RS) </span>
+                </a>
+            </div>
+            <div>
+                <a class="list-item"
+                    href="https://www.gov.br/secom/pt-br/assuntos/acoes-federais-no-rs/repasses-federais-para-cidades-gauchas/roca-sales">
+                    <span class="list-item-text"> Roca Sales (RS) </span>
+                </a>
+            </div>
+            <div>
+                <a class="list-item"
+                    href="https://www.gov.br/secom/pt-br/assuntos/acoes-federais-no-rs/repasses-federais-para-cidades-gauchas/venancio-aires">
+                    <span class="list-item-text"> Venâncio Aires (RS) </span>
+                </a>
+            </div>
+            <div>
+                <a class="list-item"
+                    href="https://www.gov.br/secom/pt-br/assuntos/acoes-federais-no-rs/repasses-federais-para-cidades-gauchas/taquari">
+                    <span class="list-item-text"> Taquari (RS) </span>
+                </a>
+            </div>
+            <div>
+                <a class="list-item"
+                    href="https://www.gov.br/secom/pt-br/assuntos/acoes-federais-no-rs/repasses-federais-para-cidades-gauchas/santa-tereza">
+                    <span class="list-item-text"> Santa Tereza (RS) </span>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<style>
+    .container-cards {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+
+        h2 {
+            margin: 0;
+        }
+    }
+
+    .itens-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, 250px);
+        grid-auto-rows: 1fr;
+        width: 100%;
+        padding: 1rem 0;
+        gap: 1rem;
+        justify-content: center;
+    }
+
+    .list-item {
+        box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+        border-radius: 0.5rem;
+        padding: 1.85rem 2rem;
+        line-height: 2rem;
+        color: var(--pure-100);
+        height: auto;
+        margin: 0;
+        text-align: left;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        max-width: 25rem;
+        min-height: 10rem;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        transition: transform 0.3s ease;
+        background: var(--gray-2);
+        align-items: center;
+        gap: 16px;
+        align-self: stretch;
+        text-transform: uppercase;
+        justify-content: center;
+    }
+
+    .list-item:hover {
+        transform: scale(1.05);
+    }
+
+    .list-item-text {
+        font-size: 1rem;
+        color: var(--blue-warm-vivid-80);
+        text-align: center;
+        line-height: normal;
+        text-align: center;
+        font-weight: bold;
+    }
+</style>
