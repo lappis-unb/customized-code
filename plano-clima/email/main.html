@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+
+    <style>
+        body {
+            font-family: 'Rawline', sans-serif;
+            color: white;
+        }
+    
+        li {
+            font-weight: 600;
+        }
+    
+        #video_container {
+            margin: 30px 0;
+            width: 100%; 
+            text-align: center;
+        }
+    
+        .step_img {
+            width: auto;
+            height: 412px;
+        }
+    
+        @media (min-width: 768px) {
+            .step_img {
+                width: auto;
+                height: auto;
+            }
+        }
+    
+        .steps {
+            padding-top: 50px;
+            margin: auto;
+        }
+    
+        .step_content {
+            color: #17a2a9;
+            max-width: 300px;
+            text-align: left;
+        }
+    
+        .step_title {
+            color: #e5382a;
+            font-weight: 700;
+        }
+    
+        .step_text {
+            color: #17a2a9;
+            font-weight: 600;
+        }
+    
+        .step_text_container {
+            font-size: 18px;
+        }
+    
+        .row {
+            margin: auto;
+        }
+    
+        #participation_help_text_container {
+            padding-top: 20px;
+        }
+    
+        .participation_help_text {
+            color: #17a2a9;
+            text-align: center;
+            font-size: 18px;
+            padding: 0 32%;
+            font-weight: 700;
+        }
+    
+        #participation_title {
+            text-align: center;
+            background-color: #17a2a9;
+            width: 278px;
+            padding: 2px 10px;
+            font-size: 28px;
+            font-weight: 700;
+            border-radius: 25px;
+            margin-left: auto;
+            margin-right: auto;
+            color: white;
+        }
+    
+        #participation_container {
+            margin: 40px;
+            text-align: center;
+        }
+    
+        #partners_container {
+            min-height: 130px;
+            padding: 0 10%;
+            margin: auto;
+        }
+    
+        #sec_geral_img {
+            width: 110px;
+        }
+    
+        .partner_img {
+            height: 45px;
+        }
+    
+        #medias {
+            width: auto;
+            height: 80px;
+        }
+    
+        #bp-planoclima-banner {
+            width: 100%;
+            height: 213px;
+            background-color: white;
+            border-radius: 30px;
+            margin-top: -40px;
+            margin-bottom: -40px;
+            position: relative;
+            z-index: 9999;
+        }
+    
+        #planoclima_logo {
+            height: 140px;
+            display: inline-block;
+        }
+    
+        #bp_background_logo {
+            background-image: url("https://i.imgur.com/cBA1qMo.png");
+            width: 100%;
+            height: 326px;
+        }
+    
+        #bp_logo {
+            position: relative;
+            width: 147px;
+            height: 61px;
+        }
+    
+        #about_background {
+            width: 100%;
+            min-height: 399px;
+            background-color: #17a2a9;
+            text-align: center;
+            position: relative;
+            padding-bottom: 20px;
+        }
+        
+        #about_title {
+            font-weight: 600;
+            font-size: 40px;
+            color: white;
+            margin: 0 10%;
+        }
+    
+        #about_text {
+            font-weight: 400;
+            font-size: 25px;
+            color: white;
+            margin: 0 15%;
+        }
+    
+        #social_media_title {
+            font-weight: 700;
+            font-size: 26px;
+            color: white;
+        }
+    
+        #social_media_text {
+            font-weight: 500;
+            font-size: 22px;
+            color: white;
+            padding: 0 30%;
+            text-align: center;
+        }
+    
+        #about_text_container {
+            padding-top: 80px;
+        }
+    
+        .link-button {
+            font-weight: 600;
+            background-color: #e5382a;
+            border: none;
+            color: white;
+            padding: 1px 16px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 32px;
+            width: auto;
+            height: auto;
+            border-radius: 20px;
+            z-index: 1000;
+            margin: 0 20px;
+            display: inline-block;
+        }
+    
+        .link-button:hover {
+            background-color: #0056b3;
+        }
+    
+        .link-button a {
+            text-decoration: none;
+            color: white;
+            z-index: 9999;
+        }
+    
+        #social_media_container {
+            background-color: #17a2a9;
+            width: 100%;
+            min-height: 400px;
+            padding: 40px 0;
+        }
+        </style>
+    </head>
+    <body>
+        <div>
+                <table id="bp_background_logo" role="presentation" width="100%">
+                    <tr>
+                        <td align="center" valign="middle">
+                            <img id="bp_logo" src="https://i.imgur.com/d7RRma0.png"></div>
+                        </td>
+                    </tr>
+                </table>
+                <table id="bp-planoclima-banner" role="presentation" width="100%">
+                    <tr>
+                        <td align="center" valign="middle">
+                            <img id="planoclima_logo" src="https://i.imgur.com/w3l7gzm.png"></div>
+                        </td>
+                    </tr>
+                </table>
+                <div id="about_background">
+                    <div style="height: 90px"></div>
+                    <table>
+                        <tr>
+                            <div id="about_title">
+                                Como o Brasil pode enfrentar as mudanças climáticas e reduzir seus impactos?
+                            </div>
+                            <div style="height: 30px;"></div>
+                            <div id="about_text">
+                                A plataforma <b>Brasil Participativo</b> está aberta para receber as suas propostas e contribuições até o dia <b>05 de agosto de 2024.</b>
+                            </div>
+                            <div style="height: 30px;"></div>
+                            <div class="link-button">
+                                <a href="http://gov.br/planoclima" target="_blank">Acesse aqui</a>
+                            </div>
+                        </tr>
+                    </table>
+                </div>
+                <div id="participation_container">
+                    <div id="participation_title">
+                        Como participar?
+                    </div>
+                    <div style="height: 30px;"></div>
+                    <table style="margin-top: 30px">
+                        <tr>
+                            <div class="participation_help_text">
+                                Siga o passo a passo abaixo e contribua para a construção de um futuro mais sustentável.
+                            </div>
+                            <div style="height: 30px;"></div>
+                            <div class="participation_help_text">
+                                Você pode votar, comentar e compartilhar as propostas de sua preferência.
+                            </div>
+                        </tr>
+                    </table>
+                    <div class="step_container">
+                        <table class="steps">
+                            <tr>
+                                <td>
+                                    <img class="step_img" src="https://i.imgur.com/cmDwEVr.png">
+                                </td>
+                                <td>
+                                    <table class="step_content" cellspacing="20">
+                                        <tr>
+                                            <td>
+                                                <div class="step_text_container">
+                                                    <div class="step_title">1º Passo</div>
+                                                    <div class="step_text">Acesse gov.br/planoclima</div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="step_text_container">
+                                                    <div class="step_title">2º Passo</div>
+                                                    <div class="step_text">Clique em Entrar</div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="step_text_container">
+                                                    <div class="step_title">3º Passo</div>
+                                                    <div class="step_text">Faça login com a sua conta <b>GOV.BR</b></div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <ul>
+                                                    <li>É importante logar com o <b>GOV.BR</b> para que você possa acessar todas as funcionalidades da plataforma.</li>
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                        <table class="steps">
+                            <tr>
+                                <td>
+                                    <img class="step_img" src="https://i.imgur.com/juolC61.png">
+                                </td>
+                                <td>
+                                    <table class="step_content" cellspacing="20">
+                                        <tr>
+                                            <td>
+                                                <div class="step_text_container">
+                                                    <div class="step_title">4º Passo</div>
+                                                    <div class="step_text">Clique em Propostas na página inicial</div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="step_text_container">
+                                                    <div class="step_title">5º Passo</div>
+                                                    <div class="step_text">Clique em Criar minha proposta</div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <ul>
+                                                    <li>Certifique que seu login com o <b>GOV.BR</b> foi realizado para que você possa acessar todas as funcionalidades da plataforma.</li>
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                        <table class="steps">
+                            <tr>
+                                <td>
+                                    <img class="step_img" src="https://i.imgur.com/sOdfYck.png">
+                                </td>
+                                <td>
+                                    <table class="step_content" cellspacing="20">
+                                        <tr>
+                                            <td>
+                                                <div class="step_text_container">
+                                                    <div class="step_title">6º Passo</div>
+                                                    <div class="step_text">Preencha com todos os dados orientados para que sua proposta seja validada.</div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <ul>
+                                                    <li>Tenha em mente <b>"Como o Brasil pode enfrentar as mudanças climáticas e reduzir seus impactos?"</b> ao criar uma proposta.</li>
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div style="font-weight: 600;">
+                                                    Você pode criar até 3 propostas e distribuir até 10 votos de acordo com as suas preferências.
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div id="video_container">
+                    <a href="https://www.youtube.com/watch?v=CWm3hgqIxZQ" target="_blank">
+                        <img src="https://img.youtube.com/vi/CWm3hgqIxZQ/hqdefault.jpg" style="width: 440px; height: 240px">
+                    </a>
+                </div>
+                <table id="social_media_container" style="border-spacing: 30px;">
+                    <tr>
+                        <td>
+                            <table class="row" style="border-spacing: 50px;">
+                                <tr>
+                                    <td>
+                                        <div id="social_media_title">
+                                            Compartilhe e <br>divulgue a sua <br>proposta!
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <img id="medias" src="https://i.imgur.com/xjKaFyE.png">
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div id="social_media_text">
+                                Essa é uma forma da sua proposta ser vista e votada por mais pessoas, aumentando a chance de seguir para as próximas fases.
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div style="width: 100%; text-align: center;">
+                                <div class="link-button">
+                                    <a href="http://gov.br/planoclima" target="_blank">Saiba mais sobre o Plano Clima</a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <table id="partners_container" style="border-spacing: 50px;">
+                    <tr>
+                        <td>
+                            <img class="partner_img" src="https://i.imgur.com/5gskuYO.png">
+                        </td>
+                        <td>
+                            <img class="partner_img" src="https://i.imgur.com/Rvr8QHK.png">
+                        </td>
+                        <td>
+                            <img class="partner_img" src="https://i.imgur.com/lBPyTOK.png">
+                        </td>
+                        <td>
+                            <img id="sec_geral_img" src="https://i.imgur.com/Rh4lSjH.png">
+                        </td>
+                        <td>
+                            <img class="partner_img" src="https://i.imgur.com/CuDc6z4.png">
+                        </td>
+                    </tr>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
