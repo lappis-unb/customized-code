@@ -834,10 +834,100 @@
   }
 </style>
 
-<script>
-  const firstActionContainer = document.querySelector('.action-container');
+<!-- The Modal -->
+<div id="myModal" class="newEventModal">
+  <!-- Modal content -->
+  <div class="modal-content">
+    <h3>Não foi possível criar o evento</h3>
 
-  function stopRedirect(evt){
+    <span>
+      A data limite de submissão de eventos expirou, não sendo possível a criar novos eventos
+    </span>
+
+    <button id="closeModal" 
+      class="br-button secondary black-and-white-btn"
+    >
+      Fechar
+    </button>
+  </div>
+</div>
+
+<style>
+  /* The Modal (background) */
+  .newEventModal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 300px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  
+  /* Modal Content */
+  .modal-content {
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem 0;
+    align-items: center;
+    gap: 1.5rem;
+    background-color: #fefefe;
+    margin: auto;
+    border: 1px solid #888;
+    border-radius: 0.25rem;
+    width: 80%;
+    max-width: 600px;
+  }
+
+  .modal-content h3 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin: 0;
+    width: 100%;
+    font-size: 1.25rem !important;
+    font-weight: var(--font-weight-semi-bold);
+    text-align: left;
+  }
+
+  .modal-content span {
+    width: 100%;
+    font-size: var(--font-size-16) !important;
+    font-weight: var(--font-weight-semi-bold);
+    text-align: left;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--gray-4);
+  }
+  
+  #closeModal {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    width: fit-content;
+    font-size: var(--font-size-14);
+    font-weight: var(--font-weight-bold);
+    text-align: center;
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", (event) => {
+    let modal = document.getElementById("myModal");
+    let close = document.getElementById("closeModal");
+
+    close.addEventListener("click", () => {
+      modal.style.display = "none";
+    })
+  });
+
+  const firstActionContainer = document.querySelector('.action-container');
+  let modal = document.getElementById("myModal");
+
+  function stopRedirect(event){
     event.preventDefault();
     let url = document.querySelector('.action-container').href;
     fetch(url)
@@ -846,9 +936,17 @@
           window.location.href = response.url;
           return
         }
-        alert("Não é possível criar eventos agora, a data final de submissões já passou")
+        throw new Error('Não foi possível criar um novo evento');
       }
-    )
+    ).catch((error) => {
+      modal.style.display = "block";
+
+      window.onclick = function(event) {
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+      }
+    })
   }
 
   firstActionContainer.addEventListener("click", stopRedirect, event)
