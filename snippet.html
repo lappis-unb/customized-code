@@ -22,6 +22,18 @@
 <script>
   document.addEventListener("DOMContentLoaded", function () {
 
+    if (window.location.pathname.includes("/processes/confmma")) {
+        const menu = document.querySelector('.space-menu');
+    
+        if (menu) {
+            const lastItem = menu.querySelector('li:last-child span');
+            
+            if (lastItem) {
+                lastItem.textContent = "Documentos";
+            }
+        }
+    }
+
     var linkElement = document.querySelector('link[rel="icon"]');
     if (linkElement) {
       var currentHref = linkElement.getAttribute("href");
