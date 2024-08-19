@@ -1,335 +1,1004 @@
+<head>
+  <script>
+      (function() {
+          // Create the script element
+          var translateScript = document.createElement('script');
+          
+          // Set the script source to the Google Translate script
+          translateScript.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+          
+          // Append the script to the head
+          document.head.appendChild(translateScript);
+
+          // Define the googleTranslateElementInit function
+          window.googleTranslateElementInit = function() {
+              new google.translate.TranslateElement({
+              pageLanguage: 'pt',
+              includedLanguages: 'pt,en,es',
+              layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+              }, 'google_translate_element');
+          };
+          })();
+  </script>
+</head>
 <!-- Matomo -->
 <script>
-  var _paq = (window._paq =
-    window._paq ||
-    []); /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
-  _paq.push(["trackPageView"]);
-  _paq.push(["enableLinkTracking"]);
-  (function () {
-    var u = "https://ew.dataprev.gov.br/";
-    _paq.push(["setTrackerUrl", u + "matomo.php"]);
-    _paq.push(["setSiteId", "18"]);
-    var d = document,
-      g = d.createElement("script"),
-      s = d.getElementsByTagName("script")[0];
-    g.async = true;
-    g.src = u + "matomo.js";
-    s.parentNode.insertBefore(g, s);
-  })();
+var _paq = (window._paq =
+  window._paq ||
+  []); /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+_paq.push(["trackPageView"]);
+_paq.push(["enableLinkTracking"]);
+(function () {
+  var u = "https://ew.dataprev.gov.br/";
+  _paq.push(["setTrackerUrl", u + "matomo.php"]);
+  _paq.push(["setSiteId", "18"]);
+  var d = document,
+    g = d.createElement("script"),
+    s = d.getElementsByTagName("script")[0];
+  g.async = true;
+  g.src = u + "matomo.js";
+  s.parentNode.insertBefore(g, s);
+})();
 </script>
 <!-- End Matomo Code -->
 
 <script>
-  document.addEventListener("DOMContentLoaded", function () {
-
-    if (window.location.pathname.includes("/processes/confmma")) {
-        const menu = document.querySelector('.space-menu');
-    
-        if (menu) {
-            const lastItem = menu.querySelector('li:last-child span');
-            
-            if (lastItem) {
-                lastItem.textContent = "Documentos";
-            }
-        }
-    }
-
-    var linkElement = document.querySelector('link[rel="icon"]');
-    if (linkElement) {
-      var currentHref = linkElement.getAttribute("href");
-      var newHref = currentHref.replace("http://", "https://");
-      linkElement.setAttribute("href", newHref);
-    }
-
-    if (window.location.pathname.includes("/processes/unidospelors")) {
-      const back_btn = document.querySelector(".small.hollow");
-      if (back_btn) {
-        back_btn.remove();
-      }
-
-      function isMobileDevice() {
-        return window.innerWidth < 720;
-      }
-      if (isMobileDevice()) {
-        var elementos = document.querySelectorAll(".tab-item.active");
-        elementos.forEach(function (elemento) {
-          if (
-            elemento.querySelector(".name").innerText.trim() ===
-            "Recursos transferidos a municípios do RS"
-          ) {
-            elemento.style.display = "none";
-          }
-        });
-      }
-      function isSpecificURL() {
-        return;
-      }
-
-      if (
-        window.location.pathname === "/processes/unidospelors/f/113" ||
-        window.location.pathname === "/processes/unidospelors/f/113/"
-      ) {
-        var elTitles = document.querySelectorAll(".news-card .news-title");
-        elTitles.forEach(function (el) {
-          el.classList.add("news-title-rs");
-        });
-        var elDescriptions = document.querySelectorAll(
-          ".news-card .news-description"
+window.addEventListener("DOMContentLoaded", (e) => {
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({pageLanguage: 'pt', includedLanguages: "pt,en,es", layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+}
+if (window.location.href === "https://brasilparticipativo.presidencia.gov.br/processes/G20/f/214/") {
+  const button = document.querySelector('a.br-button.secondary.black-and-white-btn[aria-label="OK"]');
+  if (button) {
+      button.textContent = "Sim, Continuar";
+      button.setAttribute("aria-label", "Sim, Continuar");
+  }
+}
+if (window.location.href.includes("/processes/G20")) {
+  const mainDiv= document.querySelector('.menu-container-space');
+  if (mainDiv) {
+  const translateDiv = document.createElement("div");
+  translateDiv.id = "google_translate_element";
+  translateDiv.className = "br-container-lg";
+  mainDiv.insertBefore(translateDiv, mainDiv.firstChild);
+  var targetNode = document.getElementById("google_translate_element");
+  var observerOptions = { childList: true, subtree: true };
+  var observer = new MutationObserver(function (mutations) {
+    mutations.forEach(function (mutation) {
+      if (mutation.addedNodes.length > 0) {
+        var spanElement = document.querySelector(
+          ".goog-te-menu-value span:first-child"
         );
-        elDescriptions.forEach(function (elemento) {
-          elemento.classList.add("news-description-rs");
-        });
+        if (spanElement) {
+          spanElement.textContent = "LANGUAGE";
+        }
+        var iframe = document.querySelector(
+          ".goog-te-menu-frame.skiptranslate"
+        );
+        if (iframe) {
+          iframe.addEventListener("load", function () {
+            setTimeout(function () {
+              var selectedText = iframe.contentDocument.querySelector(
+                ".goog-te-menu2-item-selected .text"
+              );
+              if (selectedText) {
+                selectedText.textContent = "LANGUAGE";
+              }
+            }, 100);
+          });
+        }
+      }
+    });
+  });
+  observer.observe(targetNode, observerOptions);
+}
+}
+
+  function updateMetaDescription(newContent) {
+    var metaTags = document.getElementsByTagName("meta");
+    for (var i = 0; i < metaTags.length; i++) {
+
+      if (metaTags[i].getAttribute("name")) {
+        if (
+          metaTags[i].getAttribute("name").includes(":description")
+        ) {
+          metaTags[i].setAttribute("content", newContent);
+        }
+      }
+      if (metaTags[i].getAttribute("property")) {
+        if (
+          metaTags[i].getAttribute("property").includes(":description")
+        ) {
+          metaTags[i].setAttribute("content", newContent);
+        }
+      }
+    }
+  }
+
+  // Substituindo o conteúdo da metatag og:description por "arroz"
+  updateMetaDescription(
+    "Acesse Brasil Participativo"
+  );
+});
+document.addEventListener("DOMContentLoaded", function () {
+
+  if (window.location.pathname.includes("/processes/cnma")) {
+    const menu = document.querySelector('.space-menu');
+
+    if (menu) {
+      const lastItem = menu.querySelector('li:last-child span');
+
+      if (lastItem) {
+        lastItem.textContent = "Documentos";
+      }
+    }
+  }
+  if (window.location.pathname.includes("/processes/cnma/media")) {
+  var paragraph = document.querySelector('.docs__title-container');
+  
+  if (paragraph) {
+      paragraph.textContent = "Abaixo você encontra documentos exemplos, e de explicações sobre a conferência.";
+      
+      var h1 = document.createElement('h1');
+      h1.textContent = "Documento";
+      
+      h1.style.color = 'var(--blue-warm-vivid-70)';
+      h1.style.fontFamily = 'Rawline';
+      h1.style.fontSize = '32px';
+      h1.style.fontStyle = 'normal';
+      h1.style.fontWeight = '600';
+      h1.style.lineHeight = 'normal';
+      
+      h1.classList.add('document-title');
+      
+      paragraph.parentNode.insertBefore(h1, paragraph);
+  }
+}
+
+
+  if (window.location.href.includes("/processes/planoclima/f/85")) {
+    let arrayRules = document.querySelector(".votings-rules-list");
+    let proposalDisabled = document.querySelector(".proposal-disabled");
+    let counter = document.querySelector(".voting-rules-counter");
+
+    let newElement = document.createElement('li');
+    let newElement2 = document.createElement('li');
+
+    if (arrayRules) {
+      newElement.innerHTML = `
+      <li>
+        Saiba mais sobre todas as regras de participação nos <a href="https://brasilparticipativo.presidencia.gov.br/processes/brasilparticipativo/f/78/">Termos de Uso</a>.
+      </li>
+      `;
+
+      newElement2.innerHTML = `
+      <li>
+        A criação de propostas e a inserção de comentários podem ser feitas todos os dias, das 8h às 22h. Fora desses horários, estas funcionalidades estão indisponíveis devido à necessidade de moderação humana.
+      </li>
+      `;
+      arrayRules.append(newElement);
+      arrayRules.append(newElement2);
+    }
+
+    if (counter) {
+      counter.style.alignSelf = "center";
+    }
+
+    if (proposalDisabled) {
+      proposalDisabled.innerHTML = `<b>O período para submissão e interação com propostas não está aberto no momento.</b></br></br>A criação de propostas e a inserção de comentários podem ser feitas todos os dias, das 8h às 22h. Fora desses horários, estas funcionalidades estão indisponíveis devido à necessidade de moderação humana.`;
+    }
+
+  }
+
+
+
+  var linkElement = document.querySelector('link[rel="icon"]');
+  if (linkElement) {
+    var currentHref = linkElement.getAttribute("href");
+    var newHref = currentHref.replace("http://", "https://");
+    linkElement.setAttribute("href", newHref);
+  }
+
+  if (window.location.pathname.includes("/processes/unidospelors")) {
+    function isMobileDevice() {
+      return window.innerWidth < 720;
+    }
+    if (isMobileDevice()) {
+      var elementos = document.querySelectorAll(".tab-item.active");
+      elementos.forEach(function (elemento) {
+        if (
+          elemento.querySelector(".name").innerText.trim() ===
+          "Recursos transferidos a municípios do RS"
+        ) {
+          elemento.style.display = "none";
+        }
+      });
+    }
+    function isSpecificURL() {
+      return;
+    }
+
+    // Executa o script somente quando a URL corresponde à rota especificada
+    if (window.location.pathname.includes("/processes/unidospelors")) {
+      // Seleciona a lista pela classe "space-menu"
+      const menu = document.querySelector('.space-menu');
+
+      // Verifica se a lista foi encontrada
+      if (menu) {
+        // Seleciona todos os itens da lista (li) dentro da ul
+        const items = menu.querySelectorAll('li');
+
+        // Mantém o primeiro item e remove os demais
+        for (let i = 1; i < items.length; i++) {
+          items[i].remove();
+        }
       }
     }
 
-    if (window.location.href.includes("/processes/unidospelors/f/110/proposals")) {
-      document.body.classList.add("list_inicitativas");
-    }
-
-    if (window.location.href.includes("/processes/unidospelors/f/113/posts/")) {
-      var noticeBlogOrder = document.querySelector(".blog-subtitle");
-
-      if (noticeBlogOrder) {
-        noticeBlogOrder.style.display = "none";
-      }
-    }
     if (
-      window.location.href.includes("/processes/unidospelors/f/95") ||
-      window.location.href.includes("/processes/unidospelors/f/110")
+      window.location.pathname === "/processes/unidospelors/f/113" ||
+      window.location.pathname === "/processes/unidospelors/f/113/"
     ) {
-      var proposalAnnouncement = document.querySelector(
-        ".proposals-announcement"
+      var elTitles = document.querySelectorAll(".news-card .news-title");
+      elTitles.forEach(function (el) {
+        el.classList.add("news-title-rs");
+      });
+      var elDescriptions = document.querySelectorAll(
+        ".news-card .news-description"
+      );
+      elDescriptions.forEach(function (elemento) {
+        elemento.classList.add("news-description-rs");
+      });
+    }
+  }
+
+  if (window.location.href.includes("/processes/unidospelors/f/110")) {
+    document.body.classList.add("list_inicitativas");
+
+    const adminbuttons = document.querySelector(".proposals-actions-admin");
+    const announcement = document.querySelector(".proposals-announcement");
+
+    if (adminbuttons && announcement) {
+      announcement.style.paddingBottom = "0";
+      adminbuttons.insertAdjacentElement("afterend", announcement);
+
+      let textrules = document.createElement('h3');
+      textrules.innerHTML = `
+      <h3 class="textrules" data-asw-orgfontsize="20" style="margin: 0 0 1.5rem 0; color:#1b1b1b; font-weight: 400; font-size: 20px; text-align: justify;">Esta seção é dedicada a cadastrar e mapear iniciativas de apoio às vítimas das enchentes no Rio Grande do Sul. O objetivo é centralizar e organizar as ações de solidariedade, facilitando a conexão entre quem precisa de ajuda e quem pode oferecê-la. Dirige-se tanto a indivíduos ou cidadãos, quanto a organizações, como ONGs, empresas e grupos comunitários, que estejam realizando atividades de apoio, como doação de alimentos, roupas, medicamentos, abrigo temporário, e serviços de saúde e assistência social. Qualquer pessoa ou entidade envolvida em ações de socorro pode se cadastrar, contribuindo para um mapa colaborativo que potencializa os esforços de auxílio e garante que os recursos cheguem a quem mais necessita. Junte-se a nós e faça a diferença na vida daqueles afetados pelas enchentes.</h3>
+      `;
+
+      announcement.insertAdjacentElement("afterend", textrules);
+
+      let cardrules = document.createElement('div');
+      cardrules.innerHTML = `
+        <div class="callout secondary voting-rules-container" style="margin: 0 0 1.5rem 0;">
+          <div class="voting-rules-content">
+            <h3 class="voting-rules-title" data-asw-orgfontsize="20" style="font-size: 20px;">Regras e Esclarecimentos:</h3>
+            <ul class="votings-rules-list">
+              <li data-asw-orgfontsize="16" style="font-size: 16px;">
+                Neste cadastro não são permitidas iniciativas que envolvam qualquer tipo de transferência bancária ou recursos financeiros para entes privados ou públicos. 
+              </li>
+              <li data-asw-orgfontsize="16" style="font-size: 16px;">
+                O cadastro nesta plataforma tem como objetivo único o de divulgação e não tem qualquer implicação para fins de recebimento de benefícios sociais ou políticas públicas. Para se informar, acesse os <a href="https://brasilparticipativo.presidencia.gov.br/processes/unidospelors/f/108/" target="_blank">Serviços ao Cidadão</a>.
+              </li>
+              <li data-asw-orgfontsize="16" style="font-size: 16px;">
+                Iniciativas preenchidas de forma incompleta ou com contatos incorretos estão sujeitas a invalidação.
+              </li>
+              <li data-asw-orgfontsize="16" style="font-size: 16px;">
+                Todas as iniciativas serão analisadas e disponibilizadas de forma pública em até 72h.
+              </li>
+              <li data-asw-orgfontsize="16" style="font-size: 16px;">
+                Para saber mais: Conheça os <a href="https://brasilparticipativo.presidencia.gov.br/processes/brasilparticipativo/f/78/" target="_blank">Termos de uso</a>.
+              </li>
+            </ul>
+          </div>
+            
+        </div>`;
+
+      textrules.insertAdjacentElement("afterend", cardrules);
+
+    }
+
+  }
+
+  if (window.location.href.includes("/processes/unidospelors/f/110/proposals")) {
+    let actionContainer = document.querySelector('.bp-new-proposal-container');
+
+    if (actionContainer) {
+      let newElement = document.createElement('div');
+      newElement.innerHTML = `
+        <div class="field" style="font-size:16px !important;">
+          <label for="proposal_accept_terms" style="font-size:16px !important;">
+            <input name="proposal[accept_terms]" type="hidden" value="0" autocomplete="off">
+            <input type="checkbox" value="1" name="proposal[accept_terms]" id="proposal_accept_terms" style="font-size:16px !important;">
+            Ao submeter uma iniciativa, você concorda com os <a href="https://brasilparticipativo.presidencia.gov.br/processes/brasilparticipativo/f/78/" target="_blank">Termos de uso</a>.
+          </label>
+        </div>
+      `;
+
+      newElement.style.fontSize = "16px !important";
+
+      actionContainer.insertAdjacentElement('beforeBegin', newElement);
+
+      let checkbox = document.getElementById('proposal_accept_terms');
+      let submitButton = document.getElementById('publish-button');
+      let previewButton = document.getElementById('preview-button');
+
+      const toggleButtons = () => {
+        const isCheckboxChecked = checkbox.checked;
+        submitButton.disabled = !isCheckboxChecked;
+        previewButton.disabled = !isCheckboxChecked;
+      };
+
+      checkbox.addEventListener('change', toggleButtons);
+      toggleButtons();
+
+    }
+  }
+
+  if (window.location.href.includes("/processes/unidospelors/f/110/proposals")) {
+
+    const map = document.querySelector(".card--secondary");
+    const disclaimer = document.querySelector(".br-message-feedback");
+
+    if (map && disclaimer) {
+      map.insertAdjacentElement("beforebegin", disclaimer);
+
+      const title = document.querySelector(".message-title");
+      title.remove();
+
+      const message = document.querySelector(".message-body");
+      message.children[0].innerHTML = "Aviso:";
+    }
+
+  }
+
+
+  if (window.location.href.includes("/processes/unidospelors/f/113/posts/")) {
+    var noticeBlogOrder = document.querySelector(".blog-subtitle");
+
+    if (noticeBlogOrder) {
+      noticeBlogOrder.style.display = "none";
+    }
+  }
+  if (
+    window.location.href.includes("/processes/unidospelors/f/95") ||
+    window.location.href.includes("/processes/unidospelors/f/110")
+  ) {
+    var proposalAnnouncement = document.querySelector(
+      ".proposals-announcement"
+    );
+
+
+    var labelTitulo = document.querySelector('label[for="proposal_title"]');
+    if (labelTitulo) {
+      labelTitulo.childNodes[0].nodeValue = "Título da Iniciativa";
+    }
+
+    const card_vazio = document.querySelector(".proposal-card");
+    if (card_vazio) card_vazio.remove();
+    var spanElement = document.querySelector(".create-proposal-text");
+    if (spanElement) {
+      spanElement.innerHTML =
+        '<i class="fa-solid fa-plus fa-md"></i> Cadastrar minha iniciativa';
+    }
+    var labelTema = document.querySelector(
+      'label[for="proposal_category_id"]'
+    );
+    if (labelTema) {
+      labelTema.childNodes[0].nodeValue = "Categoria";
+    }
+
+    var selectElement = document.getElementById("proposal_category_id");
+
+    if (selectElement) {
+      selectElement.value = "94";
+      selectElement.addEventListener("change", function () {
+        document.getElementById("proposal_category_id_hidden").value =
+          this.value;
+      });
+      var div_label = document.querySelector(".bp-select.input-highlight");
+      div_label.style.display = "none";
+    }
+
+    var header = document.querySelector(".section-header-text");
+    if (header) {
+      header.innerHTML = "Cadastre a sua iniciativa";
+    }
+
+    let helpHeader = document.querySelector(".section-header-help-text");
+    if (helpHeader) {
+      helpHeader.innerHTML = "Cadastre sua ação e contribua para o mapeamento das iniciativas de apoio às vítimas das chuvas no Rio Grande do Sul. </br></br> Consulte as Regras e Esclarecimentos:";
+
+      let newElement = document.createElement('div');
+
+      newElement.innerHTML = `
+        <div class="rules" style="font-size:16px;">
+          <ul>
+            <li>Podem se cadastrar iniciativas de cidadã/os e da sociedade civil como: cozinhas solidárias, pontos de coleta de alimentos, dentre outros. </li>
+            <li>Neste cadastro, não são permitidas iniciativas que envolvam qualquer tipo de transferência bancária ou recursos financeiros para entes privados.</li>
+            <li>O cadastro nesta plataforma tem como objetivo único o de divulgação e não tem qualquer implicação para fins de recebimento de benefícios sociais ou políticas públicas. Para se informar, acesse os <a href="https://brasilparticipativo.presidencia.gov.br/processes/unidospelors/f/108/" target="_blank">Serviços ao Cidadão</a>.</li>
+            <li>Iniciativas preenchidas de forma incompleta ou com contatos incorretos estão sujeitas a invalidação.</li>
+            <li>Todas as iniciativas serão analisadas e disponibilizadas de forma pública em até 72h.</li>
+            <li>Submeter uma iniciativa é de total responsabilidade do proponente, vinculando-se ao seu CPF. Havendo infração dos Termos de Uso a sua iniciativa está passível de remoção da plataforma. Para mais informações, verifique os <a href="https://brasilparticipativo.presidencia.gov.br/processes/brasilparticipativo/f/78/" target="_blank">Termos de uso</a>.</li>
+          </ul>
+        </div>
+      `;
+      helpHeader.insertAdjacentElement("afterend", newElement);
+    }
+
+    var descricaoTextarea = document.getElementById("proposal_body");
+    if (descricaoTextarea) {
+      var preenchimento =
+        "Nome ou Organização responsável:\n\nContato Público (telefone e/ou e-mail):\n\nEndereço:\n\nComo a iniciativa busca mobilizar recursos e esforços coordenados para ajudar os afetados:";
+      descricaoTextarea.value = preenchimento;
+    }
+    var helpText = document.querySelector(".help-new-proposal-header");
+    if (helpText) {
+      helpText.textContent =
+        "Revise o seu conteúdo e tenha certeza que está tudo correto antes de publicar. Após a publicação, você poderá editar ou apagar a iniciativa somente se não tiver recebido nenhum comentário.";
+    }
+    var legendElement = document.querySelector(
+      ".gallery__container.photos_container legend"
+    );
+    if (legendElement) {
+      var currentText = legendElement.textContent;
+      var updatedText = currentText.replace("à carta da proposta", "");
+      legendElement.textContent = updatedText;
+    }
+
+    const checkbox_location = document.getElementById("proposal_has_address");
+    if (checkbox_location) {
+      checkbox_location.checked = true;
+    }
+
+    function adicionarCampos() {
+      var campoCidadeHTML = ` <div class="br-input input-highlight bp-input" id="cidade-id"> <label>Município: * <input type="text" name="cidade" placeholder="Digite o nome da cidade ou município"> </label> </div> `;
+      var campoUFHTML = ` <div class="bp-select input-highlight" id="uf-id"> <label for="proposal_category_id">Estado: * <select name="uf" id="proposal_category_id"> <option value="">Selecione o seu estado...</option> <option value="Acre">Acre</option> <option value="Alagoas">Alagoas</option> <option value="Amapá">Amapá</option> <option value="Amazonas">Amazonas</option> <option value="Bahia">Bahia</option> <option value="Ceará">Ceará</option> <option value="Distrito Federal">Distrito Federal</option> <option value="Espírito Santo">Espírito Santo</option> <option value="Goiás">Goiás</option> <option value="Maranhão">Maranhão</option> <option value="Mato Grosso">Mato Grosso</option> <option value="Mato Grosso do Sul">Mato Grosso do Sul</option> <option value="Minas Gerais">Minas Gerais</option> <option value="Pará">Pará</option> <option value="Paraíba">Paraíba</option> <option value="Paraná">Paraná</option> <option value="Pernambuco">Pernambuco</option> <option value="Piauí">Piauí</option> <option value="Rio de Janeiro">Rio de Janeiro</option> <option value="Rio Grande do Norte">Rio Grande do Norte</option> <option value="Rio Grande do Sul">Rio Grande do Sul</option> <option value="Rondônia">Rondônia</option> <option value="Roraima">Roraima</option> <option value="Santa Catarina">Santa Catarina</option> <option value="São Paulo">São Paulo</option> <option value="Sergipe">Sergipe</option> <option value="Tocantins">Tocantins</option> </select> </label> </div> `;
+      var ufContainer = document.createElement("div");
+      ufContainer.classList.add("uf-container");
+      ufContainer.innerHTML = campoCidadeHTML + campoUFHTML;
+      var newProposalForm = document.querySelector(".new-proposal-form");
+      if (newProposalForm) {
+        newProposalForm.insertAdjacentElement("afterbegin", ufContainer);
+      }
+    }
+    adicionarCampos();
+
+    function atualizarCampos() {
+      var endereco = document.getElementById("proposal_address").value;
+      var cidade = document.querySelector('input[name="cidade"]');
+      var uf = document.querySelector('select[name="uf"]');
+      const endereco_array = endereco.split(",");
+      if (cidade && endereco_array) {
+        cidade.value = endereco_array[0].trim();
+      }
+      if (uf && endereco_array) {
+        uf.value = endereco_array[1].trim();
+      }
+    }
+
+    if (window.location.href.includes("/edit")) {
+      atualizarCampos();
+    }
+
+    function atualizarEndereco() {
+      var cidade = document.querySelector('input[name="cidade"]').value;
+      var uf = document.querySelector('select[name="uf"]').value;
+      var endereco = document.getElementById("proposal_address");
+      endereco.value = cidade + ", " + uf;
+    }
+    var label = document.querySelector('label[for="proposal_has_address"]');
+    if (label) {
+      var parentElement = label.closest(".field");
+      if (parentElement) parentElement.style.display = "none";
+    }
+    var addressField = document.getElementById("address_input");
+    if (addressField) {
+      addressField.style.display = "none";
+    }
+    const city = document.querySelector('input[name="cidade"]');
+    if (city) city.addEventListener("input", atualizarEndereco);
+    const uf_name = document.querySelector('select[name="uf"]');
+    if (uf_name) uf_name.addEventListener("change", atualizarEndereco);
+  }
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  if (
+    window.location.href.includes(
+      "/processes/cnma/f/130/meetings"
+    )
+  ) {
+
+    let meetingButtons = document.querySelector(
+      ".meeting-actions-buttons"
+    );
+
+    let status = document.querySelector(
+      ".card__text--status"
+    );
+    if (meetingButtons !== undefined && meetingButtons && status) {
+       meetingButtons.lastElementChild.setAttribute("href", "https://brasilparticipativo.presidencia.gov.br/processes/cnma/f/142/");
+
+      if (status.innerText == "Próximo") {
+        meetingButtons.lastElementChild.style.display = "none";
+      }else if (status.innerText == "Acontecendo") {
+        meetingButtons.lastElementChild.style.display = "none";
+      }else if (status.innerText == "Encerrado") {
+
+        let customButton = document.createElement("a");
+        customButton.setAttribute(
+          "class",
+          "br-button secondary black-and-white-btn"
+        );
+        customButton.setAttribute(
+          "href",
+          "https://brasilparticipativo.presidencia.gov.br/processes/cnma/f/131/proposals/new"
+        );
+        customButton.textContent = "Criar propostas";
+
+        meetingButtons.insertBefore(customButton, meetingButtons.children[0]);
+
+
+      }
+
+    }
+  }
+
+  if (
+    window.location.href.includes(
+      "/processes/cnma/f/131/"
+    )) {
+
+
+    var descricaoTextarea = document.getElementById("proposal_body");
+    if (descricaoTextarea) {
+      var preenchimento =
+        "Descreva detalhadamente a sua proposta. Defina o eixo temático, o bioma ou o tema da proposta.";
+      descricaoTextarea.value = preenchimento;
+    }
+
+    let newProposal = document.querySelector(
+      ".br-magic-button"
+    );
+
+    if (newProposal) {
+      newProposal.remove();
+    }
+
+    let buttons = document.querySelector(
+      ".proposal__btn__controls"
+    );
+
+    if (buttons !== undefined && buttons.childElementCount > 0) {
+      let customButton = document.createElement("a");
+      customButton.setAttribute(
+        "class",
+        "br-button secondary black-and-white-btn"
+      );
+      customButton.setAttribute(
+        "href",
+        "https://brasilparticipativo.presidencia.gov.br/processes/cnma/f/131/proposals/new"
+      );
+      customButton.textContent = "Criar nova proposta";
+
+      buttons.appendChild(customButton);
+    }
+
+  }
+
+
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+   if (window.location.pathname.includes("/processes/G20")) {
+  const mobilizacaoItem = document.querySelector('.space-menu li a[href="/processes/G20/media"]').closest('li');
+if (window.location.pathname.includes("/processes/G20/media")) mobilizacaoItem 
+  if (mobilizacaoItem) {
+      const nameSpan = mobilizacaoItem.querySelector('.name');
+      nameSpan.textContent = "Propostas";
+
+      const ul = document.querySelector('.space-menu');
+
+      ul.removeChild(mobilizacaoItem);
+
+      ul.insertBefore(mobilizacaoItem, ul.children[0]);
+  }
+   var button = document.querySelector(' a[href="/processes/G20/f/206/"]');
+    if (button) {
+      button.href = "/processes/G20/f/206/ej/surveys/4"; 
+    }
+ }
+ if (window.location.pathname.includes("/processes/G20/media")) {
+  var element = document.querySelector('.docs__title-container');
+  
+  if (element) {
+      element.innerHTML = `
+         <style>
+             .action_title {
+                 font-size: 2rem;
+                 color: var(--blue-warm-vivid-80);
+                 font-weight: var(--font-weight-bold);
+                 padding: 0;
+                 margin: 0;
+             }
+         </style>
+         <h2 class="action_title" data-asw-orgfontsize="32" style="font-size: 32px;">Envie suas propostas em documentos colaborativos</h2>
+          <p>Este espaço foi criado para promover a colaboração e o compartilhamento de conhecimento, soluções e reflexões para os temas do G20 Social. Aqui, você pode subir documentos, artigos, referências e outros materiais dentro dos três eixos temáticos da Presidência brasileira no G20:</p>
+          <ul>
+              <li>Combate à fome, pobreza e desigualdade</li>
+              <li>Sustentabilidade, mudança do clima e transição energética</li>
+              <li>Reforma da governança global</li>
+          </ul>
+          <p>Envie seu arquivo e junte-se a nós na construção de soluções para os desafios globais.</p>
+      `;
+  }
+}
+ 
+
+  if (window.location.pathname.includes("/processes/G20/f/207/")) {
+  var element = document.querySelector('.action_text[data-asw-orgfontsize="18"]');
+  
+  if (element) {
+      element.innerHTML = `
+          Uma das marcas do governo do presidente Lula é que a sociedade civil seja ouvida no processo de construção das políticas públicas. A determinação é a mesma para a agenda internacional. O objetivo do G20 Social é ampliar a participação de atores não-governamentais nas atividades e nos processos decisórios do G20, que garantirá espaço para as diferentes vozes, lutas e reivindicações das populações e dos agentes não-governamentais dos países que compõem as maiores economias do mundo.
+      `;
+      element.insertAdjacentHTML('afterend', `
+          <p class="action_text" data-asw-orgfontsize="18" style="font-size: 18px;">
+              O ponto alto do G20 Social será a Cúpula Social, entre os dias 14 e 16 de novembro de 2024, às vésperas da Cúpula de Líderes do G20, as duas no Rio de Janeiro. A Cúpula Social será o palco que mostrará os trabalhos desenvolvidos ao longo de quase um ano, um panorama rico da troca de experiências entre agentes não-governamentais que, certamente, mostrarão novos caminhos para a construção de políticas que reflitam valores como justiça social, econômica e ambiental e a luta pela redução de todo tipo de desigualdade.
+          </p>
+      `);
+  }
+}
+
+
+  
+  if (window.location.pathname.includes("/processes/G20")){
+    var button = document.querySelector(' a[href="/participatory_processes/G20/attachments"]');
+     if (button) {
+       button.href = "/processes/G20/f/214"; 
+     }
+
+  }
+  if (window.location.pathname.includes("/processes/G20")) {
+  var container = document.querySelector('.ej-survey-background');
+  
+  if (container) {
+      var buttonHTML = `
+          <a class="br-button primary action_link" href="https://www.g20.org/pt-br/sobre-o-g20/faq?activeAccordion=" data-asw-orgfontsize="16" style="font-size: 16px;">
+              Saiba mais
+          </a>
+      `;
+      
+      container.insertAdjacentHTML('beforeend', buttonHTML);
+  }
+}
+
+
+  if (window.location.pathname.includes("/processes/G20/media")) {
+  var element = document.querySelector('.docs__title-container p[data-asw-orgfontsize="20"][style="font-size: 20px;"]');
+  
+  if (element) {
+      element.innerHTML = `
+          Este espaço foi criado para promover a colaboração e o compartilhamento de conhecimento, soluções e reflexões para os temas do G20 Social. Aqui, você pode subir documentos, artigos, referências e outros materiais dentro dos três eixos temáticos da Presidência brasileira no G20:
+          <ul>
+              <li>Combate à fome, pobreza e desigualdade</li>
+              <li>Sustentabilidade, mudança do clima e transição energética</li>
+              <li>Democratização da governança global</li>
+          </ul>
+          Envie seu arquivo e junte-se a nós na construção de soluções para os desafios globais.
+      `;
+  }
+}
+
+   if (window.location.pathname.includes("/processes/G20")) {
+  var mediaButton = document.querySelector('a[href="/processes/G20/media"]');
+  var targetButton = document.querySelector('a[href="/processes/G20/f/206/ej/surveys/4"]');
+  
+  if (mediaButton && targetButton) {
+      targetButton.insertAdjacentElement('afterend', mediaButton);
+  }
+}
+
+ if (window.location.pathname.includes("/processes/cnma/media")) {
+  var button = document.querySelector('.title-action.br-magic-button.medium');
+  
+  if (button) {
+      button.remove();
+  }
+}
+
+
+  if (window.location.pathname.includes("/processes/pnedh")) {
+    let menu = document.querySelector('.space-menu');
+
+    if (menu) {
+      let lastItem = menu.querySelector('li:last-child span');
+
+      if (lastItem) {
+        lastItem.textContent = "Documentos";
+      }
+    }
+  }
+
+  if(
+    window.location.href.includes(
+      "/processes/planoclima/f/189/meetings/396"
+    )){
+      let label = document.querySelector(".gray.card__text--status");
+      let date = document.querySelector('.side-content');
+
+      if(label){
+        label.classList.remove("gray");
+        label.classList.add("orange");
+        label.textContent = "Transferido";
+      }
+      if(date){
+        date.style.display = "none";
+      }
+
+  }
+
+  if (
+    window.location.href.includes(
+      "/processes/planoclima/f/189/"
+    )) {
+
+      let cardFooter = document.querySelectorAll(
+        ".component_card__footer"
       );
 
-      if (proposalAnnouncement) {
-        proposalAnnouncement.style.display = "none";
+      let labels = document.querySelectorAll(
+        ".component-card_badges"
+      );
+
+      let datas = document.querySelectorAll(
+        ".component-card-data"
+      );
+
+      let status = document.querySelector(
+        ".card__text--status"
+      );
+
+      let map = document.querySelector(
+        ".google-map"
+      );
+      
+      // remove mapa grande
+      if(map){
+        map.style.display = "none";
       }
 
-      var voting_rules = document.getElementById("voting_rules");
+      let bugButton = document.querySelector(
+        ".meeting-actions-buttons"
+      );
 
-      if (voting_rules) {
-        voting_rules.style.display = "none";
-      }
-      var showRulesButton = document.getElementById("showRulesButton");
-      var labelTitulo = document.querySelector('label[for="proposal_title"]');
-      if (labelTitulo) {
-        labelTitulo.childNodes[0].nodeValue = "Título da Iniciativa";
+      // remove o botão de cancelar na tela deslogada
+      if(bugButton){
+        bugButton.style.display = "none";
       }
       
-      const card_vazio = document.querySelector(".proposal-card");
-      if (card_vazio) card_vazio.remove();
-      var spanElement = document.querySelector(".create-proposal-text");
-      if (spanElement) {
-        spanElement.innerHTML =
-          '<i class="fa-solid fa-plus fa-md"></i> Cadastrar minha iniciativa';
-      }
-      var labelTema = document.querySelector(
-        'label[for="proposal_category_id"]'
+      let filters = document.querySelector(
+        ".proposals-filters"
       );
-      if (labelTema) {
-        labelTema.childNodes[0].nodeValue = "Categoria";
+
+      // remove o filtro
+      if(filters){
+        filters.style.display = "none";
       }
 
-      var selectElement = document.getElementById("proposal_category_id");
+      if(cardFooter && labels && datas){
 
-      if (selectElement) {
-        selectElement.value = "94";
-        selectElement.addEventListener("change", function () {
-          document.getElementById("proposal_category_id_hidden").value =
-            this.value;
-        });
-        var div_label = document.querySelector(".bp-select.input-highlight");
-        div_label.style.display = "none";
-      }
+        for (let i = 0; i < labels.length; i++) {
 
-      var header = document.querySelector(".section-header-text");
-      if (header) {
-        header.innerHTML = "Cadastre a sua iniciativa";
-      }
-      var descricaoTextarea = document.getElementById("proposal_body");
-      if (descricaoTextarea) {
-        var preenchimento =
-          "Nome da Iniciativa:\n\nOrganização responsável:\n\nContato Público (telefone e e-mail):\n\nComo a iniciativa busca mobilizar recursos e esforços coordenados para ajudar os afetados:";
-        descricaoTextarea.value = preenchimento;
-      }
-      var helpText = document.querySelector(".help-new-proposal-header");
-      if (helpText) {
-        helpText.textContent =
-          "Revise o seu conteúdo e tenha certeza que está tudo correto antes de publicar. Após a publicação, você poderá editar ou apagar a iniciativa somente se não tiver recebido nenhum comentário.";
-      }
-      var legendElement = document.querySelector(
-        ".gallery__container.photos_container legend"
-      );
-      if (legendElement) {
-        var currentText = legendElement.textContent;
-        var updatedText = currentText.replace("à carta da proposta", "");
-        legendElement.textContent = updatedText;
-      }
-      if (showRulesButton) {
-        showRulesButton.remove();
-      }
-      const checkbox_location = document.getElementById("proposal_has_address");
-      if (checkbox_location) {
-        checkbox_location.checked = true;
-      }
-
-      function adicionarCampos() {
-        var campoCidadeHTML = ` <div class="br-input input-highlight bp-input" id="cidade-id"> <label>Município: * <input type="text" name="cidade" placeholder="Digite o nome da cidade ou município"> </label> </div> `;
-        var campoUFHTML = ` <div class="bp-select input-highlight" id="uf-id"> <label for="proposal_category_id">Estado: * <select name="uf" id="proposal_category_id"> <option value="">Selecione o seu estado...</option> <option value="Acre">Acre</option> <option value="Alagoas">Alagoas</option> <option value="Amapá">Amapá</option> <option value="Amazonas">Amazonas</option> <option value="Bahia">Bahia</option> <option value="Ceará">Ceará</option> <option value="Distrito Federal">Distrito Federal</option> <option value="Espírito Santo">Espírito Santo</option> <option value="Goiás">Goiás</option> <option value="Maranhão">Maranhão</option> <option value="Mato Grosso">Mato Grosso</option> <option value="Mato Grosso do Sul">Mato Grosso do Sul</option> <option value="Minas Gerais">Minas Gerais</option> <option value="Pará">Pará</option> <option value="Paraíba">Paraíba</option> <option value="Paraná">Paraná</option> <option value="Pernambuco">Pernambuco</option> <option value="Piauí">Piauí</option> <option value="Rio de Janeiro">Rio de Janeiro</option> <option value="Rio Grande do Norte">Rio Grande do Norte</option> <option value="Rio Grande do Sul">Rio Grande do Sul</option> <option value="Rondônia">Rondônia</option> <option value="Roraima">Roraima</option> <option value="Santa Catarina">Santa Catarina</option> <option value="São Paulo">São Paulo</option> <option value="Sergipe">Sergipe</option> <option value="Tocantins">Tocantins</option> </select> </label> </div> `;
-        var ufContainer = document.createElement("div");
-        ufContainer.classList.add("uf-container");
-        ufContainer.innerHTML = campoCidadeHTML + campoUFHTML;
-        var newProposalForm = document.querySelector(".new-proposal-form");
-        if (newProposalForm) {
-          newProposalForm.insertAdjacentElement("afterbegin", ufContainer);
+          // altera data para "Cancelado" em eventos cancelado
+          if(datas[i].children[0].children[1].innerText == "08/08/2024 00:00"){
+            datas[i].children[0].children[1].innerHTML = "Transferido para Santarém";
+            datas[i].children[2].children[1].innerHTML = "Transferido para Santarém";
+            
+            labels[i].children[1].classList.remove("gray");
+            labels[i].children[1].classList.add("orange");
+            labels[i].children[1].textContent = "Transferido";
+          }
+          
+          // adiciona botão para se inscrever caso o evento não esteja encerrado
+          if(labels[i].children[0].innerText !=  "Encerrado"){
+            let newElement = document.createElement('div');
+            newElement.classList.add("component_buttons");
+            newElement.innerHTML = `
+                <div class="meeting-actions-container">
+                  <a href="https://docs.google.com/forms/d/e/1FAIpQLSd0nWgoJWZIfrBylglOa_NDXqdutJxhaSm4B8hlNBFEZSHqcQ/viewform" target="_blank">
+                    <button class="br-button primary large-button"aria-haspopup="dialog" tabindex="0">Inscreva-se</button>
+                  </a>
+                </div>
+            `;
+            cardFooter[i].insertBefore(newElement, cardFooter[i].children[1]);
+            cardFooter[i].children[2].style.display = "none";
+          }else{
+            cardFooter[i].children[1].style.display = "none";
+          }
         }
+          
       }
-      adicionarCampos();
 
-      function atualizarCampos() {
-        var endereco = document.getElementById("proposal_address").value;
-        var cidade = document.querySelector('input[name="cidade"]');
-        var uf = document.querySelector('select[name="uf"]');
-        const endereco_array = endereco.split(",");
-        if (cidade && endereco_array) {
-          cidade.value = endereco_array[0].trim();
+      // remove o número de inscritos na tela do evento e o botão caso encerrado
+      if(status){
+        let components = document.querySelectorAll(
+          ".card-component"
+        );
+        let data = document.querySelector(
+          ".date-set"
+        );
+
+        if(components){
+          components[1].children[0].setAttribute("target", "_blank");
+          components[1].children[0].setAttribute("href", "https://docs.google.com/forms/d/e/1FAIpQLSd0nWgoJWZIfrBylglOa_NDXqdutJxhaSm4B8hlNBFEZSHqcQ/viewform");
+          
+          if(status.innerText == "Encerrado"){
+            components[1].remove();
+          }else{
+            components[1].children[0].remove();
+          }
+
         }
-        if (uf && endereco_array) {
-          uf.value = endereco_array[1].trim();
-        }
+
+        
       }
 
-      if (window.location.href.includes("/edit")) {
-        atualizarCampos();
-      }
-
-      function atualizarEndereco() {
-        var cidade = document.querySelector('input[name="cidade"]').value;
-        var uf = document.querySelector('select[name="uf"]').value;
-        var endereco = document.getElementById("proposal_address");
-        endereco.value = cidade + ", " + uf;
-      }
-      var label = document.querySelector('label[for="proposal_has_address"]');
-      if (label) {
-        var parentElement = label.closest(".field");
-        if (parentElement) parentElement.style.display = "none";
-      }
-      var addressField = document.getElementById("address_input");
-      if (addressField) {
-        addressField.style.display = "none";
-      }
-      const city = document.querySelector('input[name="cidade"]');
-      if (city) city.addEventListener("input", atualizarEndereco);
-      const uf_name = document.querySelector('select[name="uf"]');
-      if (uf_name) uf_name.addEventListener("change", atualizarEndereco);
     }
-  });
-  document.addEventListener("DOMContentLoaded", function () {
-    if (
-      window.location.href.includes(
-        "https://lab-decide.dataprev.gov.br/processes/conferencia-exemplo/f/784/meetings/"
-      )
-    ) {
-      var containerButton = document.createElement("div");
-      containerButton.setAttribute("class", "meeting-actions-buttons");
-      var customButton = document.createElement("a");
-      customButton.setAttribute(
-        "class",
-        "br-button secondary black-and-white-btn"
-      );
-      customButton.setAttribute(
-        "href",
-        "https://lab-decide.dataprev.gov.br/processes/conferencia-exemplo/f/789/"
-      );
-      customButton.textContent = "Registre o que aconteceu";
-      var customButton1 = document.createElement("a");
-      customButton1.setAttribute(
-        "class",
-        "br-button secondary black-and-white-btn"
-      );
-      customButton1.setAttribute(
-        "href",
-        "https://lab-decide.dataprev.gov.br/processes/conferencia-exemplo/f/796/"
-      );
-      customButton1.textContent = "Formalize a conferência";
-      var exportButtons = document.querySelector(
-        ".wrapper div.br-container-lg"
-      );
-      if (containerButton) {
-        containerButton.appendChild(customButton);
-        containerButton.appendChild(customButton1);
-      }
-      if (exportButtons) {
-        var firstChild = exportButtons.firstChild;
-        exportButtons.insertBefore(containerButton, firstChild);
-      } else {
-        console.error('Element with class "export-buttons" not found.');
-      }
-    }
-  });
+
+});
+
 </script>
+
 <style>
-  .meeting-actions-buttons {
-    display: flex;
-    justify-content: flex-end;
-    gap: 8px;
-    flex-wrap: wrap;
-  }
-  div#address_input {
-    visibility: hidden;
-  }
+.meeting-actions-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+div#address_input {
+  visibility: hidden;
+}
+
+.uf-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+#uf-id,
+#cidade-id {
+  flex: 1;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
   .uf-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 24px;
-  }
-  #uf-id,
-  #cidade-id {
-    flex: 1;
-    width: 100%;
-  }
-  @media (min-width: 768px) {
-    .uf-container {
-      flex-direction: row;
-    }
-  }
-  .menu-body .divider {
-    margin: 0;
-  }
-  .news-card {
     flex-direction: row;
   }
-  .news-title-rs {
-    color: var(--blue-warm-vivid-80);
-    text-align: justify;
-    font-variant-numeric: lining-nums proportional-nums;
-    font-size: 16.8px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-    background: var(--blue-warm-vivid-5);
-    padding: 10px 12px;
-    margin-bottom: 10px;
+}
+
+.menu-body .divider {
+  margin: 0;
+}
+
+.news-card {
+  flex-direction: row;
+}
+
+.news-title-rs {
+  color: var(--blue-warm-vivid-80);
+  text-align: justify;
+  font-variant-numeric: lining-nums proportional-nums;
+  font-size: 16.8px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  background: var(--blue-warm-vivid-5);
+  padding: 10px 12px;
+  margin-bottom: 10px;
+}
+
+.news-description-rs {
+  color: var(--gray-80);
+  text-align: justify;
+  font-size: 16.8px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  padding: 10px 12px;
+}
+
+.news-card__list__item img {
+  object-fit: cover;
+  width: 100%;
+  height: 200px;
+}
+
+
+.proposals-br .card-grid .column,
+.proposals-br .card-grid .columns {
+  height: fit-content;
+}
+
+@media (min-width: 768px) {
+
+  .proposals-br .card-grid .column,
+  .proposals-br .card-grid .columns {
+    height: 100%;
   }
-  .news-description-rs {
-    color: var(--gray-80);
-    text-align: justify;
-    font-size: 16.8px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    padding: 10px 12px;
+}
+
+.voting-rules-container::after {
+  border: none !important;
+}
+
+.organizers__container a img {
+  width: 420px;
+}
+
+.process-header__main {
+  background-size: cover;
+  background-position: center;
+  position: absolute;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .organizers__container a img {
+    width: 420px;
   }
 
-  .news-card__list__item img {
-    object-fit: cover;
+  .process-header__main {
+    background-size: initial;
+    background-position: center;
+    position: absolute;
+    z-index: 0;
     width: 100%;
-    height: 200px;
+    height: 100%;
+    margin: 0 auto;
   }
+}
 
-  .list_inicitativas .author__data__card{
-    display: none;
-  }
+.attachment-file h4 {
+  max-width: 100%;
+}
 
+.goog-te-gadget-icon {
+  display: none;
+}
+
+.goog-te-gadget {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.goog-te-gadget-simple {
+  background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0NCIgaGVpZ2h0PSI0NCIgdmlld0JveD0iMCAwIDQ0IDQ0IiBmaWxsPSJub25lIj4KPHBhdGggZD0iTTAuNSAyMkMwLjUgMTAuMTI1OSAxMC4xMjU5IDAuNSAyMiAwLjVDMzMuODc0MSAwLjUgNDMuNSAxMC4xMjU5IDQzLjUgMjJDNDMuNSAzMy44NzQxIDMzLjg3NDEgNDMuNSAyMiA0My41QzEwLjEyNTkgNDMuNSAwLjUgMzMuODc0MSAwLjUgMjJaIiBmaWxsPSIjMTM1MUI0Ii8+CjxwYXRoIGQ9Ik0wLjUgMjJDMC41IDEwLjEyNTkgMTAuMTI1OSAwLjUgMjIgMC41QzMzLjg3NDEgMC41IDQzLjUgMTAuMTI1OSA0My41IDIyQzQzLjUgMzMuODc0MSAzMy44NzQxIDQzLjUgMjIgNDMuNUMxMC4xMjU5IDQzLjUgMC41IDMzLjg3NDEgMC41IDIyWiIgc3Ryb2tlPSIjMTM1MUI0IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KPHBhdGggZD0iTTIyLjU0MTggMjUuMDU4NEMyMi42NTg1IDI0Ljc1ODQgMjIuNTgzNSAyNC40MTY3IDIyLjM1MDIgMjQuMTgzNEwyMC42MDg1IDIyLjQ2NjdMMjAuNjMzNSAyMi40NDE3QzIyLjA4MzUgMjAuODI1IDIzLjExNjggMTguOTY2NyAyMy43MjUyIDE3SDI1LjM0MThDMjUuNzkxOCAxNyAyNi4xNjY4IDE2LjYyNSAyNi4xNjY4IDE2LjE3NVYxNi4xNTg0QzI2LjE2NjggMTUuNzA4NCAyNS43OTE4IDE1LjMzMzQgMjUuMzQxOCAxNS4zMzM0SDIwLjMzMzVWMTQuNUMyMC4zMzM1IDE0LjA0MTcgMTkuOTU4NSAxMy42NjY3IDE5LjUwMDIgMTMuNjY2N0MxOS4wNDE4IDEzLjY2NjcgMTguNjY2OCAxNC4wNDE3IDE4LjY2NjggMTQuNVYxNS4zMzM0SDEzLjY1ODVDMTMuMjA4NSAxNS4zMzM0IDEyLjgzMzUgMTUuNzA4NCAxMi44MzM1IDE2LjE1ODRDMTIuODMzNSAxNi42MTY3IDEzLjIwODUgMTYuOTgzNCAxMy42NTg1IDE2Ljk4MzRIMjIuMTQxOEMyMS41ODM1IDE4LjYgMjAuNzAwMiAyMC4xMjUgMTkuNTAwMiAyMS40NTg0QzE4LjgyNTIgMjAuNzE2NyAxOC4yNTg1IDE5LjkwODQgMTcuNzgzNSAxOS4wNTg0QzE3LjY1MDIgMTguODE2NyAxNy40MDg1IDE4LjY2NjcgMTcuMTMzNSAxOC42NjY3QzE2LjU1ODUgMTguNjY2NyAxNi4xOTE4IDE5LjI5MTcgMTYuNDc1MiAxOS43OTE3QzE3LjAwMDIgMjAuNzMzNCAxNy42NDE4IDIxLjYzMzQgMTguMzkxOCAyMi40NjY3TDE0Ljc1MDIgMjYuMDU4NEMxNC40MTY4IDI2LjM4MzQgMTQuNDE2OCAyNi45MTY3IDE0Ljc1MDIgMjcuMjQxN0MxNS4wNzUyIDI3LjU2NjcgMTUuNjAwMiAyNy41NjY3IDE1LjkzMzUgMjcuMjQxN0wxOS41MDAyIDIzLjY2NjdMMjEuMTgzNSAyNS4zNUMyMS42MDg1IDI1Ljc3NSAyMi4zMzM1IDI1LjYxNjcgMjIuNTQxOCAyNS4wNTg0VjI1LjA1ODRaTTI2LjU4MzUgMjAuMzMzNEMyNi4wODM1IDIwLjMzMzQgMjUuNjMzNSAyMC42NDE3IDI1LjQ1ODUgMjEuMTE2N0wyMi40MDAyIDI5LjI4MzRDMjIuMjAwMiAyOS43OTE3IDIyLjU4MzUgMzAuMzMzNCAyMy4xMjUyIDMwLjMzMzRDMjMuNDUwMiAzMC4zMzM0IDIzLjc0MTggMzAuMTMzNCAyMy44NTg1IDI5LjgyNUwyNC42MDAyIDI3LjgzMzRIMjguNTU4NUwyOS4zMDg1IDI5LjgyNUMyOS40MjUyIDMwLjEyNSAyOS43MTY4IDMwLjMzMzQgMzAuMDQxOCAzMC4zMzM0QzMwLjU4MzUgMzAuMzMzNCAzMC45NjY4IDI5Ljc5MTcgMzAuNzc1MiAyOS4yODM0TDI3LjcxNjggMjEuMTE2N0MyNy41MzM1IDIwLjY0MTcgMjcuMDgzNSAyMC4zMzM0IDI2LjU4MzUgMjAuMzMzNFYyMC4zMzM0Wk0yNS4yMzM1IDI2LjE2NjdMMjYuNTgzNSAyMi41NTg0TDI3LjkzMzUgMjYuMTY2N0gyNS4yMzM1VjI2LjE2NjdaIiBmaWxsPSJ3aGl0ZSIvPgo8L3N2Zz4=');
+  background-repeat: no-repeat;
+  border: none !important;
+  width: 44px;
+  height: 44px;
+  padding: 10px 10px !important;
+  cursor: pointer;
+  zoom: 1;
+}
+
+.goog-te-gadget-simple span {
+  color: #3e3065 !important;
+  display: none;
+}
+.goog-te-gadget-simple:hover {
+  transform: scale(1.2);
+  transition: transform 0.3s linear;
+}
 </style>
